@@ -110,13 +110,37 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 </ul>
 <h3 id="d-left"><a class="markdownIt-Anchor" href="#d-left"></a> d-left</h3>
 <ul>
-<li>when n objects are hashed into n buckets, the expectation of this maximum is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>o</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi></mrow><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{(1 + o(1))log n}{loglog n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.491108em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">o</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mclose mtight">)</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> (high probability) when a random hash function is used</li>
+<li>when n objects are hashed into n buckets, the expectation of this maximum is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>o</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{(1 + o(1))\log n}{\log\log n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.491108em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">o</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mclose mtight">)</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> (high probability) when a random hash function is used</li>
 <li>Goal: reduce this maximum to a small number (say 2 or 3) so that every bucket can fit into a memory block</li>
-<li></li>
+<li>d-random
+<ul>
+<li>use d &gt; 1 random hash functions (h1, h2, ···, hd) instead of 1. Given a hash key x, there are <strong>d</strong> candidate hash buckets into which x can be inserted: buckets indexed by h1(x), h2(x), ···, hd(x) respectively.
+<ul>
+<li>x is inserted into the bucket that is least occupied</li>
+</ul>
+</li>
+<li>The expectation of the maximum value is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo fence="true">(</mo><mfrac><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>d</mi></mrow></mfrac><mo fence="true">)</mo></mrow><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\left( \frac{\log \log n}{\log d} \right) + O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+</li>
+<li>d-left
+<ul>
+<li>variation of d-random</li>
+<li>Hash table is partitioned into logically independent subsets of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>n</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. d-random doesn’t have such partition</li>
+<li>if there are more than one least occupied buckets among the d buckets where an object x should be inserted into, then x will be inserted into the leftmost one among them</li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <tags>
         <tag>networking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OS Security and Access Control</title>
+    <url>/os-security-and-access-control/index.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>security</tag>
       </tags>
   </entry>
   <entry>
@@ -188,6 +212,191 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <p>Happy coding!</p>
 <hr />
 <p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>career fair</title>
+    <url>/career-fair/index.html</url>
+    <content><![CDATA[<h1 id="all-companies"><a class="markdownIt-Anchor" href="#all-companies"></a> All Companies</h1>
+<ul>
+<li>[ ] <strong>412th Test Engineering Group</strong>：美军测试工程团队，专注于军事设备测试。</li>
+<li>[ ] <strong>AFCS Robins Air Force Base</strong>：空军平民服务系统，位于罗宾斯空军基地。</li>
+<li>[ ] <strong>Aflac</strong>：美国知名的保险公司，提供意外和健康保险。</li>
+<li>[ ] <strong>Air Liquide</strong>：全球领先的气体供应商，服务于工业和医疗行业。</li>
+<li>[ ] <strong>Akuna Capital</strong>：技术驱动的交易公司，专注于算法交易和市场流动性。</li>
+<li>[ ] <strong>Albemarle Corporation</strong>：全球领先的特种化学品制造商，涉及锂、催化剂等产品。</li>
+<li>[ ] <strong>Alcon</strong>：全球眼科医疗设备公司，专注于眼科手术和护理产品。</li>
+<li>[ ] <strong>Alex Lee, Inc.</strong>：零售和食品配送公司，主要为超市提供服务。</li>
+<li>[ ] <strong>ALL4</strong>：环境咨询公司，提供空气质量、废水等环境合规服务。</li>
+<li>[ ] <strong>Allison-Smith Company LLC</strong>：提供电气承包和工程服务的公司。</li>
+<li>[ ] <strong>Alpek Polyester USA</strong>：主要生产聚酯纤维和塑料的公司。</li>
+<li>[ ] <strong>Alvarez &amp; Marsal</strong>：全球管理咨询公司，专注于企业重组和运营改进。</li>
+<li>[ ] <strong>Ameresco</strong>：能源服务公司，专注于可再生能源和节能项目。</li>
+<li>[ ] <strong>American Credit Acceptance</strong>：为消费者提供汽车贷款服务的金融公司。</li>
+<li>[ ] <strong>Americold Logistics</strong>：全球领先的冷链物流公司。</li>
+<li>[ ] <strong>AMI</strong>：医疗器械制造商，专注于植入式医疗设备。</li>
+<li>[ ] <strong>Analog Devices Inc.</strong>：全球领先的半导体公司，专注于模拟和数字信号处理技术。</li>
+<li>[ ] <strong>Apollo Mission Critical Engineering</strong>：为关键任务提供工程解决方案的公司。</li>
+<li>[ ] <strong>ASM</strong>：半导体设备制造商，专注于原子层沉积技术。</li>
+<li>[ ] <strong>Axis Infrastructure</strong>：基础设施建设与管理公司，涉及交通、能源等领域。</li>
+<li>[ ] <strong>Barr Engineering Co.</strong>：提供环境、能源和水资源管理咨询服务的公司。</li>
+<li>[ ] <strong>Bernhard</strong>：能源服务公司，专注于建筑能效管理。</li>
+<li>[ ] <strong>Black &amp; Veatch</strong>：全球工程公司，专注于能源、水务和通信基础设施。</li>
+<li>[ ] <strong>Bose Corporation</strong>：知名的音响设备制造商，以高质量音频产品著称。</li>
+<li>[ ] <strong>bp</strong>：全球能源公司，主要从事石油和天然气的勘探、生产和销售。</li>
+<li>[ ] <strong>BRPH Companies</strong>：提供设计和建筑服务的公司，涉及航空航天、教育等领域。</li>
+<li>[ ] <strong>C3 AI</strong>：提供企业级AI解决方案的公司，专注于大数据分析和机器学习。</li>
+<li>[ ] <strong>CareSource</strong>：医疗保险公司，主要提供Medicaid和Medicare计划。</li>
+<li>[ ] <strong>Caterpillar Inc.</strong>：全球最大的工程机械和矿山设备制造商之一。</li>
+<li>[ ] <strong>CB&amp;I</strong>：提供能源基础设施建设服务的公司，涉及石油、天然气等领域。</li>
+<li>[ ] <strong>Celanese</strong>：全球特种化学品公司，产品涉及塑料、化工材料等。</li>
+<li>[ ] <strong>Chevron Corporation</strong>：全球领先的能源公司，涉及石油、天然气的开发与销售。</li>
+<li>[ ] <strong>CM Mission Critical Engineering</strong>：为关键任务提供工程和咨询服务。</li>
+<li>[ ] <strong>Colonial Pipeline</strong>：运营全美最大的成品油管道网络。</li>
+<li>[ ] <strong>Cox Enterprises</strong>：多元化企业，涉及通信、媒体和汽车服务等领域。</li>
+<li>[ ] <strong>CRANE Currency</strong>：生产高安全性纸币的公司，服务全球各大央行。</li>
+<li>[ ] <strong>CRB</strong>：设计和建筑公司，专注于生物技术、食品和制药行业。</li>
+<li>[ ] <strong>Cretex Medical</strong>：生产医疗设备的公司，专注于植入式和外科设备。</li>
+<li>[ ] <strong>D.R. Horton</strong>：美国最大的住宅建筑公司之一。</li>
+<li>[ ] <strong>Defense Intelligence Agency</strong>：美国国防部的情报机构，提供军事情报分析。</li>
+<li>[ ] <strong>Delta Air Lines, Inc.</strong>：全球领先的航空公司之一。</li>
+<li>[ ] <strong>Duracell</strong>：全球知名的电池制造商。</li>
+<li>[ ] <strong>Enercon Services, Inc.</strong>：能源和环境咨询公司。</li>
+<li>[ ] <strong>EPRI</strong>：电力研究所，专注于电力行业技术和标准的研发。</li>
+<li>[ ] <strong>Equifax</strong>：全球领先的信用报告和数据分析公司。</li>
+<li>[ ] <strong>Evonik</strong>：特种化学品公司，产品涉及日化、医疗、农业等行业。</li>
+<li>[ ] <strong>Exotec</strong>：机器人技术公司，专注于自动化仓储和物流解决方案。</li>
+<li>[ ] <strong>Factory Automation Systems, Inc.</strong>：提供工厂自动化解决方案的公司。</li>
+<li>[ ] <strong>Federal Aviation Administration</strong>：美国联邦航空管理局，负责监管航空安全。</li>
+<li>[ ] <strong>Federal Deposit Insurance Corporation</strong>：美国联邦存款保险公司，保障银行存款安全。</li>
+<li>[ ] <strong>FM GLOBAL</strong>：全球领先的商业和工业财产保险公司，专注于风险管理和防灾技术。</li>
+<li>[ ] <strong>FORTNA</strong>：供应链优化公司，提供设计和实施智能物流解决方案。</li>
+<li>[ ] <strong>Freudenberg</strong>：全球技术集团，提供密封件、滤材、表面处理等高科技产品。</li>
+<li>[ ] <strong>Freudenberg-NOK</strong>：Freudenberg集团旗下的子公司，专注于生产密封技术。</li>
+<li>[ ] <strong>FTI Consulting</strong>：全球商业咨询公司，提供法律、金融和战略咨询服务。</li>
+<li>[ ] <strong>GDS Associates, Inc.</strong>：能源咨询公司，专注于电力和能源市场的技术和管理服务。</li>
+<li>[ ] <strong>GE Healthcare</strong>：全球医疗技术公司，提供医疗设备和数字化医疗解决方案。</li>
+<li>[ ] <strong>GE Vernova</strong>：GE旗下的能源子公司，专注于可再生能源和数字化电网解决方案。</li>
+<li>[ ] <strong>Genuine Parts Company</strong>：全球分销商，提供汽车零部件、工业设备等产品。</li>
+<li>[ ] <strong>Georgia System Operations Corporation</strong>：提供电网管理和能源控制服务的公司。</li>
+<li>[ ] <strong>Georgia-Pacific</strong>：全球最大的纸制品和建筑材料公司之一。</li>
+<li>[ ] <strong>Geotab</strong>：全球领先的车队管理和物联网解决方案供应商。</li>
+<li>[ ] <strong>Gerdau</strong>：全球钢铁公司，专注于长材生产和金属回收。</li>
+<li>[ ] <strong>GPD Group</strong>：提供工程设计和建筑咨询服务，涉及公共和私营部门项目。</li>
+<li>[ ] <strong>Graphic Packaging International, Inc.</strong>：全球包装解决方案供应商，专注于纸板包装。</li>
+<li>[ ] <strong>Great Dane Trailers</strong>：美国知名拖车和半挂车制造商。</li>
+<li>[ ] <strong>Greater Fort Lauderdale Alliance</strong>：促进佛罗里达州劳德代尔堡地区经济发展的机构。</li>
+<li>[ ] <strong>HD Supply</strong>：一家工业分销公司，专注于维护、维修和运营产品的分销。</li>
+<li>[ ] <strong>HDR</strong>：全球设计、建筑和工程公司，涉及水务、能源、交通等多个领域。</li>
+<li>[ ] <strong>Heidelberg Materials</strong>：全球领先的建筑材料公司，专注于水泥、骨料和混凝土生产。</li>
+<li>[ ] <strong>Honda</strong>：全球知名汽车和摩托车制造商，也涉足机器人和能源技术领域。</li>
+<li>[ ] <strong>Huntsman</strong>：全球化工公司，生产一系列特种化学品，用于不同的工业领域。</li>
+<li>[ ] <strong>Ingersoll Rand</strong>：提供压缩机、泵和流体管理设备的全球制造商。</li>
+<li>[ ] <strong>Jim Ellis Automotive Group</strong>：亚特兰大地区的汽车经销商，提供多个品牌的汽车销售和服务。</li>
+<li>[ ] <strong>Johnson &amp; Johnson</strong>：全球医疗和消费品巨头，专注于制药、医疗设备和健康产品。</li>
+<li>[ ] <strong>Kajima Building &amp; Design Group, Inc.</strong>：建筑设计和建设公司，专注于商业和工业项目。</li>
+<li>[ ] <strong>Kia</strong>：全球知名汽车制造商，提供各种车型及电动汽车技术。</li>
+<li>[ ] <strong>Kimberly Clark</strong>：全球领先的卫生用品公司，旗下品牌包括舒洁、好奇等。</li>
+<li>[ ] <strong>KLA</strong>：半导体设备供应商，专注于半导体制造过程中的检测和计量。</li>
+<li>[ ] <strong>LOCKHEED MARTIN</strong>：全球领先的航空航天和国防公司，专注于研发先进技术。</li>
+<li>[ ] <strong>Mars, Inc.</strong>：全球食品和宠物护理公司，旗下拥有众多知名品牌，如玛氏、宝路。</li>
+<li>[ ] <strong>Martin/Martin</strong>：工程咨询公司，提供土木、结构工程服务。</li>
+<li>[ ] <strong>McKenney’s Inc.</strong>：提供机械和电气系统的设计、施工和维护服务的公司。</li>
+<li>[ ] <strong>Merck &amp; Co., Inc.</strong>：全球领先的制药公司，专注于药物研发和疫苗制造。</li>
+<li>[ ] <strong>Micron Technology</strong>：存储和半导体解决方案的全球领导者。</li>
+<li>[ ] <strong>Milwaukee Tool</strong>：专业电动工具、手动工具和配件的知名制造商。</li>
+<li>[ ] <strong>Mobile Communications America</strong>：为企业提供通信解决方案，专注于无线通信技术。</li>
+<li>[ ] <strong>Mohawk Industries</strong>：全球最大的地板制造商之一，产品涉及地毯、瓷砖、木材等。</li>
+<li>[ ] <strong>Monolith</strong>：一家碳黑生产企业，采用清洁能源技术生产碳基材料。</li>
+<li>[ ] <strong>Murata Electronics</strong>：全球电子元器件制造商，专注于被动元件、传感器和通信模块。</li>
+<li>[ ] <strong>Nagarro</strong>：全球IT咨询公司，提供软件开发、数字化转型等技术服务。</li>
+<li>[ ] <strong>National Air and Space Intelligence Center (NASIC)</strong>：美国空军的情报部门，专注于空天领域的威胁评估。</li>
+<li>[ ] <strong>Naval Air Warfare Center, Weapons Division</strong>：美国海军航空武器研发和测试中心。</li>
+<li>[ ] <strong>NCR Atleos &amp; NCR Voyix</strong>：全球支付、零售和技术解决方案提供商。</li>
+<li>[ ] <strong>Neptune Technology Group Inc.</strong>：水资源管理和计量技术的全球供应商。</li>
+<li>[ ] <strong>Nexus Technologies, Inc.</strong>：提供能源、通信和自动化解决方案的工程公司。</li>
+<li>[ ] <strong>NIWC Atlantic</strong>：美国海军信息战中心，专注于网络和信息技术。</li>
+<li>[ ] <strong>NORFOLK NAVAL SHIPYARD</strong>：美国海军最大的造船厂之一，负责维护和修理舰艇。</li>
+<li>[ ] <strong>Norfolk Southern</strong>：美国铁路运输公司，提供货运和物流服务。</li>
+<li>[ ] <strong>NSWC Carderock Division</strong>：美国海军水面战中心，专注于舰船设计和工程研究。</li>
+<li>[ ] <strong>Nutrien</strong>：全球农业公司，提供肥料和农业服务，致力于提升全球农业生产力。</li>
+<li>[ ] <strong>Origami Risk</strong>：提供保险行业的软件解决方案，专注于风险管理平台。</li>
+<li>[ ] <strong>Packaging Corporation of America</strong>：美国领先的纸板和包装制造商。</li>
+<li>[ ] <strong>Parker Hannifin Corporation</strong>：全球领先的运动和控制技术供应商，产品覆盖多个行业。</li>
+<li>[ ] <strong>Paulson-Cheek Mechanical, Inc.</strong>：提供暖通空调和管道安装服务的机械承包公司。</li>
+<li>[ ] <strong>PBF Energy Chalmette Refining</strong>：美国能源公司，专注于石油炼制和生产。</li>
+<li>[ ] <strong>PepsiCo</strong>：全球饮料和食品公司，旗下拥有百事可乐、乐事等品牌。</li>
+<li>[ ] <strong>Phillips 66</strong>：能源公司，专注于炼油、化工和物流业务。</li>
+<li>[ ] <strong>Procter &amp; Gamble</strong>：全球日用消费品公司，产品涉及个人护理、家庭清洁等领域。</li>
+<li>[ ] <strong>Protiviti</strong>：全球咨询公司，提供风险管理、技术咨询和内部审计服务。</li>
+<li>[ ] <strong>RaceTrac</strong>：美国东南部的连锁加油站和便利店运营商。</li>
+<li>[ ] <strong>Redwire Space</strong>：航空航天技术公司，专注于太空探索和卫星技术。</li>
+<li>[ ] <strong>Rincon Research Corporation</strong>：提供信号处理和数据分析解决方案的技术公司。</li>
+<li>[ ] <strong>Rockwell Automation</strong>：工业自动化和信息技术公司，专注于数字化转型。</li>
+<li>[ ] <strong>Sage UK Limited</strong>：全球商业管理软件提供商，产品覆盖会计、支付和工资管理等领域。</li>
+<li>[ ] <strong>Samsung Austin Semiconductor</strong>：三星电子在美国的半导体制造基地，生产内存和处理器芯片。</li>
+<li>[ ] <strong>Sargent &amp; Lundy</strong>：提供能源和基础设施工程设计服务的公司。</li>
+<li>[ ] <strong>Savannah River Mission Completion</strong>：美国能源部的清洁能源和环境管理项目。</li>
+<li>[ ] <strong>Shimizu North America, LLC.</strong>：日本知名建筑公司清水建设的北美子公司，专注于大型建筑项目。</li>
+<li>[ ] <strong>SK On</strong>：韩国SK集团旗下的电池制造商，专注于电动汽车电池研发。</li>
+<li>[ ] <strong>SLB</strong>：全球领先的油田服务公司，专注于石油、天然气领域的技术和设备。</li>
+<li>[ ] <strong>SSOE</strong>：全球工程、采购和建筑管理服务公司。</li>
+<li>[ ] <strong>STP Nuclear Operating Company</strong>：核电运营公司，负责德克萨斯州核电站的运营和维护。</li>
+<li>[ ] <strong>Stream Realty</strong>：商业房地产公司，提供房地产开发、租赁和投资管理服务。</li>
+<li>[ ] <strong>Stryten Energy</strong>：提供储能解决方案的公司，专注于电动汽车和可再生能源领域。</li>
+<li>[ ] <strong>Terma Inc.</strong>：提供防务、航空航天和安全系统的公司。</li>
+<li>[ ] <strong>Texas Instruments (TI)</strong>：全球知名半导体制造商，产品涵盖模拟和数字信号处理芯片。</li>
+<li>[ ] <strong>The Cigna Group</strong>：全球健康服务公司，提供健康保险和相关服务。</li>
+<li>[ ] <strong>The Clorox Company</strong>：全球消费品公司，旗下拥有高乐氏等多个知名品牌。</li>
+<li>[ ] <strong>The Mosaic Company</strong>：全球领先的农业化肥公司，专注于钾肥和磷肥的生产。</li>
+<li>[ ] <strong>The Shpigler Group</strong>：提供战略咨询服务，专注于公共和私营部门的运营优化。</li>
+<li>[ ] <strong>Ulteig Engineers</strong>：提供电力、运输和水资源管理的工程设计和咨询服务。</li>
+</ul>
+<h1 id="curated-list"><a class="markdownIt-Anchor" href="#curated-list"></a> Curated List</h1>
+<h2 id="akuna-capital-d18"><a class="markdownIt-Anchor" href="#akuna-capital-d18"></a> Akuna Capital (D18)</h2>
+<p>“Hello, I’m a CS major from Georgia Tech, and I’m really interested in Akuna’s work with low-latency trading technologies. My experience with algorithms and optimization aligns well with your focus on developing high-performance trading systems. I’d love to explore how I could contribute to your trading strategies and systems.”</p>
+<h2 id="c3-ai-f3"><a class="markdownIt-Anchor" href="#c3-ai-f3"></a> C3 AI (F3)</h2>
+<p>&quot;Hello, I’m a CS student from Georgia Tech, and I’m passionate about AI and machine learning. C3 AI’s focus on enterprise AI solutions is impressive, and I would love to discuss how my experience in data analysis and system design could help contribute to your AI-driven platfor</p>
+<h2 id="lockheed-martin-a4"><a class="markdownIt-Anchor" href="#lockheed-martin-a4"></a> Lockheed Martin (A4)</h2>
+<p>“Hi, I’m a computer science major from Georgia Tech, and I’m passionate about systems engineering and software development. Lockheed Martin’s innovations in defense technology align with my skills in network security and system optimization. I’d love to discuss how I could contribute to your mission-critical projects.”</p>
+<h2 id="micron-technology-g17"><a class="markdownIt-Anchor" href="#micron-technology-g17"></a> Micron Technology (G17)</h2>
+<p>“Hello, I’m a CS major from Georgia Tech with an interest in embedded systems and storage solutions. Micron’s leadership in memory technology and your innovative approach to data management excites me. I’d love to learn more about how my software development skills could contribute to your cutting-edge technologies.”</p>
+<h2 id="texas-instruments-ti-f23"><a class="markdownIt-Anchor" href="#texas-instruments-ti-f23"></a> Texas Instruments (TI) (F23)</h2>
+<p>“Hi, I’m a CS major from Georgia Tech with a deep interest in embedded systems and digital signal processing. Texas Instruments’ role in developing cutting-edge semiconductor technologies excites me, and I’d love to discuss how my experience in software optimization and embedded systems can contribute to your innovations.”</p>
+<h2 id="kla-g8"><a class="markdownIt-Anchor" href="#kla-g8"></a> KLA (G8)</h2>
+<p>&quot;Hello, I’m a CS student at Georgia Tech, and I’m particularly interested in data analytics and machine learning. KLA’s role in semiconductor manufacturing and the application of AI in your processes is fascinating to me. I’d love to explore how my skills in algorithm development and system optimization could fit within your te</p>
+<h2 id="fortna-e14"><a class="markdownIt-Anchor" href="#fortna-e14"></a> FORTNA (E14)</h2>
+<p>“Hello, I’m a CS major at Georgia Tech with a strong interest in logistics and automation. I’ve worked on system optimization projects, and I’m excited about FORTNA’s focus on supply chain automation. I’d love to discuss how my software development and system integration skills could fit into your intelligent logistics solutions.”</p>
+<h2 id="rockwell-automation-c16"><a class="markdownIt-Anchor" href="#rockwell-automation-c16"></a> Rockwell Automation (C16)</h2>
+<p>“Hi, I’m a computer science student from Georgia Tech, and I’m very interested in industrial automation. Rockwell Automation’s digital transformation initiatives align with my experience in IoT and systems optimization. I’d love to explore how I can contribute to your efforts in improving automated industrial systems.”</p>
+<h2 id="ge-vernova-a10-a11-a12"><a class="markdownIt-Anchor" href="#ge-vernova-a10-a11-a12"></a> GE Vernova (A10, A11, A12)</h2>
+<p>“Hello, I’m a CS major at Georgia Tech, and I’m excited about the work GE Vernova is doing in energy solutions. My experience in web development and systems optimization could contribute to your digital energy platforms, and I’d love to learn more about your current projects.”</p>
+<h2 id="samsung-austin-semiconductor-c23"><a class="markdownIt-Anchor" href="#samsung-austin-semiconductor-c23"></a> Samsung Austin Semiconductor (C23)</h2>
+<p>“Hello, I’m a computer science major at Georgia Tech, and I’m fascinated by semiconductor technology. Samsung’s leadership in the semiconductor industry and the focus on advanced systems and software excites me, and I’d love to explore how my skills in software development and embedded systems could contribute to your projects.”</p>
+<h2 id="ncr-atleos-h1-ncr-voyix-h2"><a class="markdownIt-Anchor" href="#ncr-atleos-h1-ncr-voyix-h2"></a> NCR Atleos (H1) &amp; NCR Voyix (H2)</h2>
+<p>“Hello, I’m a CS major from Georgia Tech, and I’m particularly interested in fintech and IoT. NCR’s focus on payment solutions and cloud services aligns with my skills in software development and system integration. I’d love to learn more about how I could contribute to your technological innovation.”</p>
+<h2 id="nagarro-d7"><a class="markdownIt-Anchor" href="#nagarro-d7"></a> Nagarro (D7)</h2>
+<p>“Hi, I’m a computer science major from Georgia Tech with a passion for software development and digital transformation. Nagarro’s focus on technology consulting and delivering customized solutions really interests me, and I’d love to discuss how my experience in web development and system optimization can contribute to your projects.”</p>
+<h2 id="equifax-e12"><a class="markdownIt-Anchor" href="#equifax-e12"></a> Equifax (E12)</h2>
+<p>“Hi, I’m a computer science major from Georgia Tech, and I have a deep interest in data security and analytics. I’ve worked on projects involving data privacy, and I’d love to explore opportunities where I could contribute to Equifax’s work in ensuring data security and enhancing your IT infrastructure.”</p>
+<h2 id="geotab-f7"><a class="markdownIt-Anchor" href="#geotab-f7"></a> Geotab (F7)</h2>
+<p>“Hi, I’m a computer science major from Georgia Tech with an interest in IoT and data analytics. Geotab’s work in fleet management and connected vehicles excites me, and I’d love to discuss how my skills in system optimization and real-time data processing could contribute to your innovative solutions.”</p>
+<h2 id="origami-risk-f8"><a class="markdownIt-Anchor" href="#origami-risk-f8"></a> Origami Risk (F8)</h2>
+<p>“Hi, I’m a computer science student from Georgia Tech, and I’m interested in risk management and software solutions. Origami Risk’s work in providing IT-driven risk management platforms excites me, and I’d love to explore how my experience in software development and system design could fit within your team.”</p>
+<h2 id="procter-gamble-g11-g12"><a class="markdownIt-Anchor" href="#procter-gamble-g11-g12"></a> Procter &amp; Gamble (G11, G12)</h2>
+<p>“Hello, I’m a computer science major at Georgia Tech, and I’m fascinated by P&amp;G’s application of IT in consumer products and operations. I’d love to explore how my skills in data analysis and software development can contribute to your digital transformation initiatives.”</p>
+<h2 id="protiviti-e9"><a class="markdownIt-Anchor" href="#protiviti-e9"></a> Protiviti (E9)</h2>
+<p>“Hi, I’m a CS major from Georgia Tech, and I’m passionate about IT consulting and risk management. Protiviti’s focus on technology consulting and IT risk management aligns with my interest, and I’d love to discuss how my software development and problem-solving skills could contribute to your projects.”</p>
+<h2 id="the-cigna-group-f10"><a class="markdownIt-Anchor" href="#the-cigna-group-f10"></a> The Cigna Group (F10)</h2>
+<p>“Hello, I’m a CS major at Georgia Tech, and I’m interested in the intersection of healthcare and technology. Cigna’s focus on digital health solutions and data analytics aligns with my skills in software development, and I’d love to learn more about how I could contribute to your health tech projects.”</p>
+<h2 id="the-clorox-company-e1"><a class="markdownIt-Anchor" href="#the-clorox-company-e1"></a> The Clorox Company (E1)</h2>
+<p>“Hi, I’m a computer science major from Georgia Tech, and I’m particularly interested in how Clorox is using data analytics and IT to improve its operations. I’d love to explore how my experience in data management and software development could contribute to your digital transformation initiatives.”</p>
+<h2 id="valero-b15"><a class="markdownIt-Anchor" href="#valero-b15"></a> Valero (B15)</h2>
+<p>“Hello, I’m a CS student from Georgia Tech, and I’m very interested in digital transformation within the energy sector. Valero’s focus on technology and optimizing operations through IT aligns with my interests, and I’d love to explore how my skills could contribute to your innovative energy solutions.”</p>
+<h2 id="westrock-c8"><a class="markdownIt-Anchor" href="#westrock-c8"></a> WestRock (C8)</h2>
+<p>“Hi, I’m a CS major at Georgia Tech with a strong interest in digital transformation and IT infrastructure. WestRock’s work in optimizing packaging solutions through technology is fascinating, and I’d love to discuss how my experience in system optimization and software development can contribute to your digital initiatives.”</p>
+<h2 id="wsp-in-the-us-b2"><a class="markdownIt-Anchor" href="#wsp-in-the-us-b2"></a> WSP in the U.S. (B2)</h2>
+<p>“Hello, I’m a computer science major from Georgia Tech, and I’m particularly interested in smart infrastructure and digital solutions. WSP’s focus on integrating technology into building systems aligns with my skills in software development and IoT, and I’d love to explore how I could contribute to your projects.”</p>
 ]]></content>
   </entry>
 </search>
