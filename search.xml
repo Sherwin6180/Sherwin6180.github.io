@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OS Security and Access Control</title>
+    <url>/os-security-and-access-control/index.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>security</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Exact Match</title>
     <url>/exact-match/index.html</url>
     <content><![CDATA[<blockquote>
 <p>[!NOTE] Definition<br />
 Assume a database with a set of tuples; each tuple consists of a unique fixed-length key together with some state information. A query specifies a key K. The goal is to return the state information associated with the tuple whose key is K.</p>
 </blockquote>
-<p><a href="https://postimg.cc/CzYQg7yf"><img  
-                       lazyload
-                       alt="image"
-                       data-src="https://i.postimg.cc/sDZd5HwK/image.png"
-                        alt="image.png" 
-                 ></a><br />
-routers = interconnect devices</p>
+<p>routers = interconnect devices</p>
 <h1 id="why-do-we-learn-exact-match"><a class="markdownIt-Anchor" href="#why-do-we-learn-exact-match"></a> Why do we learn Exact Match?</h1>
 <ul>
 <li>In the context of networking
@@ -142,14 +144,6 @@ routers = interconnect devices</p>
       </tags>
   </entry>
   <entry>
-    <title>OS Security and Access Control</title>
-    <url>/os-security-and-access-control/index.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>security</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Verilog Basics</title>
     <url>/verilog-basics/index.html</url>
     <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
@@ -224,7 +218,7 @@ routers = interconnect devices</p>
     <title>career fair</title>
     <url>/career-fair/index.html</url>
     <content><![CDATA[<h1 id="all-companies-day-3"><a class="markdownIt-Anchor" href="#all-companies-day-3"></a> All Companies - Day 3</h1>
-<p>![[Pasted image 20240912123634.png]]</p>
+<p>![[Pasted image 20240912124910.png]]</p>
 <ul>
 <li><strong>402 Software Engineering Group</strong> 是一个政府和国防组织，专注于为军事应用开发软件工程解决方案。</li>
 <li><strong>ADP</strong> 是一家全球提供云端人力资本管理解决方案的公司，提供薪资、HR 和劳动力管理技术。</li>
