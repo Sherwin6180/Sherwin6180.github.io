@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OS Security and Access Control</title>
+    <url>/os-security-and-access-control/index.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>security</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Exact Match</title>
     <url>/exact-match/index.html</url>
     <content><![CDATA[<blockquote>
@@ -205,14 +213,6 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <hr />
 <p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>OS Security and Access Control</title>
-    <url>/os-security-and-access-control/index.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>security</tag>
-      </tags>
   </entry>
   <entry>
     <title>career fair</title>
