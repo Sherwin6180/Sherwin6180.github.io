@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            Java Enhanced Switch |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Java Enhanced Switch
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-12-19 23:02:49</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Dec 19 2024 23:03:11 GMT-0500">2024-12-19 23:03:11</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Java/">Java</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.2k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>9 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <p>在Java中，<strong>增强的Switch</strong>（Enhanced Switch）是从Java 14开始引入，并在Java 17中正式成为标准功能的一项特性。它对传统的<code>switch</code>语句进行了改进，使其更简洁、更具表达力，并支持作为表达式使用。下面将详细介绍Java中的增强Switch，包括其定义、特点、语法、使用示例以及与传统Switch的对比。</p>
+<h2 id="什么是增强的switch"><a class="markdownIt-Anchor" href="#什么是增强的switch"></a> 什么是增强的Switch？</h2>
+<p><strong>增强的Switch</strong>（Enhanced Switch）是对Java中传统<code>switch</code>语句的升级，提供了更简洁的语法和更多的功能。它不仅可以作为语句使用，还可以作为表达式返回值，从而简化代码并减少错误。</p>
+<h3 id="传统switch的局限性"><a class="markdownIt-Anchor" href="#传统switch的局限性"></a> 传统Switch的局限性</h3>
+<p>在增强Switch引入之前，传统的<code>switch</code>语句存在以下一些局限性：</p>
+<ol>
+<li><strong>样板代码多</strong>：需要手动编写<code>break</code>语句以防止fall-through（贯穿）。</li>
+<li><strong>可读性差</strong>：多个<code>case</code>标签通常需要重复编写相似的代码。</li>
+<li><strong>不支持作为表达式</strong>：传统<code>switch</code>不能直接返回值，需要额外的变量来存储结果。</li>
+</ol>
+<h2 id="增强switch的主要特性"><a class="markdownIt-Anchor" href="#增强switch的主要特性"></a> 增强Switch的主要特性</h2>
+<ol>
+<li>
+<p><strong>Switch作为表达式</strong>：</p>
+<ul>
+<li>可以直接返回值，简化赋值操作。</li>
+</ul>
+</li>
+<li>
+<p><strong>箭头语法（Arrow Syntax）</strong>：</p>
+<ul>
+<li>使用<code>-&gt;</code>代替<code>:</code>和<code>break</code>，减少样板代码。</li>
+</ul>
+</li>
+<li>
+<p><strong>多标签匹配（Multiple Labels）</strong>：</p>
+<ul>
+<li>一个<code>case</code>可以匹配多个标签，语法更简洁。</li>
+</ul>
+</li>
+<li>
+<p><strong>自动阻止fall-through</strong>：</p>
+<ul>
+<li>不需要显式的<code>break</code>语句，防止意外的代码贯穿。</li>
+</ul>
+</li>
+<li>
+<p><strong>Yield语句</strong>：</p>
+<ul>
+<li>在需要返回值的代码块中使用<code>yield</code>返回结果。</li>
+</ul>
+</li>
+<li>
+<p><strong>代码块支持</strong>：</p>
+<ul>
+<li>在箭头语法中，可以使用代码块执行复杂逻辑，并通过<code>yield</code>返回值。</li>
+</ul>
+</li>
+</ol>
+<h2 id="增强switch的语法和使用方式"><a class="markdownIt-Anchor" href="#增强switch的语法和使用方式"></a> 增强Switch的语法和使用方式</h2>
+<h3 id="1-switch作为表达式"><a class="markdownIt-Anchor" href="#1-switch作为表达式"></a> 1. Switch作为表达式</h3>
+<p>增强Switch可以作为表达式使用，直接返回值。这使得代码更加简洁。</p>
+<p><strong>传统Switch作为语句</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<p><strong>增强Switch作为表达式</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-使用箭头语法和多标签"><a class="markdownIt-Anchor" href="#2-使用箭头语法和多标签"></a> 2. 使用箭头语法和多标签</h3>
+<p>增强Switch允许在一个<code>case</code>中匹配多个标签，并使用箭头语法代替传统的<code>:</code>和<code>break</code>。</p>
+<p><strong>传统Switch的多标签</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> numLetters;</span><br><span class="line"><span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;FRIDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SUNDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SATURDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">9</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
+<p><strong>增强Switch的多标签</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">numLetters</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>, <span class="string">&quot;FRIDAY&quot;</span>, <span class="string">&quot;SUNDAY&quot;</span> -&gt; <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span> -&gt; <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>, <span class="string">&quot;SATURDAY&quot;</span> -&gt; <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span> -&gt; <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-使用代码块和yield"><a class="markdownIt-Anchor" href="#3-使用代码块和yield"></a> 3. 使用代码块和yield</h3>
+<p>当需要在<code>case</code>中执行多行代码或复杂逻辑时，可以使用代码块，并通过<code>yield</code>返回值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="comment">// 执行一些额外的操作</span></span><br><span class="line">        <span class="keyword">yield</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-switch与枚举的结合使用"><a class="markdownIt-Anchor" href="#4-switch与枚举的结合使用"></a> 4. Switch与枚举的结合使用</h3>
+<p>增强Switch在处理枚举类型时非常简洁和强大。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Day</span> &#123;</span><br><span class="line">    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Day</span> <span class="variable">day</span> <span class="operator">=</span> Day.MONDAY;</span><br><span class="line"><span class="type">String</span> <span class="variable">typeOfDay</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> MONDAY, FRIDAY, SUNDAY -&gt; <span class="string">&quot;Six letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> TUESDAY -&gt; <span class="string">&quot;Seven letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> THURSDAY, SATURDAY -&gt; <span class="string">&quot;Eight letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> WEDNESDAY -&gt; <span class="string">&quot;Nine letters&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(typeOfDay); <span class="comment">// 输出: Six letters</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-增强switch与类型模式匹配java-17及以上"><a class="markdownIt-Anchor" href="#5-增强switch与类型模式匹配java-17及以上"></a> 5. 增强Switch与类型模式匹配（Java 17及以上）</h3>
+<p>在Java 17中，增强Switch还支持类型模式匹配，使得switch表达式更加灵活。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (obj) &#123;</span><br><span class="line">    <span class="keyword">case</span> String s -&gt; <span class="string">&quot;It&#x27;s a string of length &quot;</span> + s.length();</span><br><span class="line">    <span class="keyword">case</span> Integer i -&gt; <span class="string">&quot;It&#x27;s an integer: &quot;</span> + i;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown type&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: It&#x27;s a string of length 5</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-带有默认值的switch表达式"><a class="markdownIt-Anchor" href="#6-带有默认值的switch表达式"></a> 6. 带有默认值的Switch表达式</h3>
+<p>确保所有可能的情况都被覆盖，避免遗漏<code>default</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Unknown</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-switch表达式的复合类型"><a class="markdownIt-Anchor" href="#7-switch表达式的复合类型"></a> 7. Switch表达式的复合类型</h3>
+<p>Switch表达式不仅可以返回单一类型的值，还可以返回更复杂的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        System.out.println(result); <span class="comment">// 输出: 15.0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="增强switch与传统switch的对比"><a class="markdownIt-Anchor" href="#增强switch与传统switch的对比"></a> 增强Switch与传统Switch的对比</h2>
+<h3 id="传统switch"><a class="markdownIt-Anchor" href="#传统switch"></a> 传统Switch</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
+<h3 id="增强switch"><a class="markdownIt-Anchor" href="#增强switch"></a> 增强Switch</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
+<h3 id="对比总结"><a class="markdownIt-Anchor" href="#对比总结"></a> 对比总结</h3>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>传统Switch</strong></th>
+<th><strong>增强Switch</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>语法简洁性</strong></td>
+<td>需要编写<code>case</code>、<code>break</code>、<code>default</code>等，样板代码较多</td>
+<td>使用箭头语法，省略<code>break</code>，代码更简洁</td>
+</tr>
+<tr>
+<td><strong>作为表达式使用</strong></td>
+<td>不能直接返回值，需要额外变量存储结果</td>
+<td>可以直接作为表达式返回值，赋值更直接</td>
+</tr>
+<tr>
+<td><strong>多标签匹配</strong></td>
+<td>需要多个<code>case</code>标签并重复编写代码</td>
+<td>一个<code>case</code>可以匹配多个标签，使用逗号分隔</td>
+</tr>
+<tr>
+<td><strong>代码块支持</strong></td>
+<td>只能在单行执行代码，复杂逻辑需要手动管理<code>break</code></td>
+<td>可以在<code>case</code>中使用代码块，并通过<code>yield</code>返回值</td>
+</tr>
+<tr>
+<td><strong>防止fall-through</strong></td>
+<td>需要手动添加<code>break</code>，容易忘记导致逻辑错误</td>
+<td>自动阻止fall-through，减少错误</td>
+</tr>
+<tr>
+<td><strong>类型模式匹配</strong></td>
+<td>不支持</td>
+<td>支持（Java 17及以上），可以根据类型匹配并处理不同的对象</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用增强switch的优势"><a class="markdownIt-Anchor" href="#使用增强switch的优势"></a> 使用增强Switch的优势</h2>
+<ol>
+<li><strong>减少样板代码</strong>：不需要编写<code>break</code>语句，减少了重复代码，提高了代码的简洁性。</li>
+<li><strong>提高可读性</strong>：箭头语法使得<code>switch</code>结构更加清晰，容易理解。</li>
+<li><strong>防止错误</strong>：自动阻止fall-through，避免了因忘记<code>break</code>导致的逻辑错误。</li>
+<li><strong>灵活性</strong>：可以作为表达式使用，直接返回值，赋值更方便。</li>
+<li><strong>增强功能</strong>：支持代码块和<code>yield</code>语句，能够处理复杂的逻辑需求。</li>
+</ol>
+<h2 id="使用增强switch的注意事项"><a class="markdownIt-Anchor" href="#使用增强switch的注意事项"></a> 使用增强Switch的注意事项</h2>
+<ol>
+<li><strong>Java版本</strong>：增强Switch在Java 14中作为预览功能引入，在Java 17中正式发布。确保使用的Java版本支持增强Switch。</li>
+<li><strong>兼容性</strong>：如果项目需要兼容较低版本的Java，不能使用增强Switch。</li>
+<li><strong>代码风格</strong>：在团队协作中，确保所有成员都熟悉增强Switch的用法，以保持代码的一致性和可读性。</li>
+<li><strong>复杂逻辑</strong>：虽然增强Switch支持代码块，但对于非常复杂的逻辑，可能仍需使用传统的<code>switch</code>或其他控制结构以保持代码的清晰度。</li>
+</ol>
+<h2 id="完整示例"><a class="markdownIt-Anchor" href="#完整示例"></a> 完整示例</h2>
+<p>以下是一个更复杂的示例，展示如何在一个实际应用中使用增强Switch。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">TrafficLight</span> &#123;</span><br><span class="line">    RED, YELLOW, GREEN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TrafficController</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getAction</span><span class="params">(TrafficLight light)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (light) &#123;</span><br><span class="line">            <span class="keyword">case</span> RED -&gt; <span class="string">&quot;Stop&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> YELLOW -&gt; <span class="string">&quot;Caution&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> GREEN -&gt; <span class="string">&quot;Go&quot;</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">TrafficLight</span> <span class="variable">currentLight</span> <span class="operator">=</span> TrafficLight.GREEN;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> getAction(currentLight);</span><br><span class="line">        System.out.println(<span class="string">&quot;Traffic Light is &quot;</span> + currentLight + <span class="string">&quot;: &quot;</span> + action);</span><br><span class="line">        <span class="comment">// 输出: Traffic Light is GREEN: Go</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂逻辑示例计算数学运算"><a class="markdownIt-Anchor" href="#复杂逻辑示例计算数学运算"></a> 复杂逻辑示例：计算数学运算</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result1</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        <span class="type">double</span> <span class="variable">result2</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">0</span>, Operation.DIVIDE);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;10 + 5 = &quot;</span> + result1); <span class="comment">// 输出: 10 + 5 = 15.0</span></span><br><span class="line">        System.out.println(<span class="string">&quot;10 / 0 = &quot;</span> + result2); <span class="comment">// 输出: 10 / 0 = NaN</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>Java中的增强Switch大大改进了传统<code>switch</code>语句，使其更加简洁、易读且功能更强大。通过箭头语法、多标签匹配、作为表达式使用以及代码块支持，增强Switch能够有效减少样板代码，提高代码质量和可维护性。</p>
+<p>掌握增强Switch的使用，可以让您的Java代码更加现代化和高效。在编写条件分支逻辑时，优先考虑使用增强Switch，以充分利用其带来的优势。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Java/">Java</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/java-pojo-and-record/index.html"
+                                   title="Java POJO and Record"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Java POJO and Record</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A2%9E%E5%BC%BA%E7%9A%84switch"><span class="nav-number">1.</span> <span class="nav-text"> 什么是增强的Switch？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9Fswitch%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text"> 传统Switch的局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text"> 增强Switch的主要特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E8%AF%AD%E6%B3%95%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text"> 增强Switch的语法和使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-switch%E4%BD%9C%E4%B8%BA%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text"> 1. Switch作为表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E8%AF%AD%E6%B3%95%E5%92%8C%E5%A4%9A%E6%A0%87%E7%AD%BE"><span class="nav-number">3.2.</span> <span class="nav-text"> 2. 使用箭头语法和多标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E5%9D%97%E5%92%8Cyield"><span class="nav-number">3.3.</span> <span class="nav-text"> 3. 使用代码块和yield</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-switch%E4%B8%8E%E6%9E%9A%E4%B8%BE%E7%9A%84%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">3.4.</span> <span class="nav-text"> 4. Switch与枚举的结合使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%A2%9E%E5%BC%BAswitch%E4%B8%8E%E7%B1%BB%E5%9E%8B%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8Djava-17%E5%8F%8A%E4%BB%A5%E4%B8%8A"><span class="nav-number">3.5.</span> <span class="nav-text"> 5. 增强Switch与类型模式匹配（Java 17及以上）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%B8%A6%E6%9C%89%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84switch%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.6.</span> <span class="nav-text"> 6. 带有默认值的Switch表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-switch%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.7.</span> <span class="nav-text"> 7. Switch表达式的复合类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch%E4%B8%8E%E4%BC%A0%E7%BB%9Fswitch%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">4.</span> <span class="nav-text"> 增强Switch与传统Switch的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9Fswitch"><span class="nav-number">4.1.</span> <span class="nav-text"> 传统Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch"><span class="nav-number">4.2.</span> <span class="nav-text"> 增强Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">4.3.</span> <span class="nav-text"> 对比总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">5.</span> <span class="nav-text"> 使用增强Switch的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">6.</span> <span class="nav-text"> 使用增强Switch的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="nav-number">7.</span> <span class="nav-text"> 完整示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E9%80%BB%E8%BE%91%E7%A4%BA%E4%BE%8B%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97"><span class="nav-number">7.1.</span> <span class="nav-text"> 复杂逻辑示例：计算数学运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text"> 总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%A2%9E%E5%BC%BA%E7%9A%84switch"><span class="nav-number">1.</span> <span class="nav-text"> 什么是增强的Switch？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9Fswitch%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text"> 传统Switch的局限性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text"> 增强Switch的主要特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E8%AF%AD%E6%B3%95%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text"> 增强Switch的语法和使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-switch%E4%BD%9C%E4%B8%BA%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text"> 1. Switch作为表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E8%AF%AD%E6%B3%95%E5%92%8C%E5%A4%9A%E6%A0%87%E7%AD%BE"><span class="nav-number">3.2.</span> <span class="nav-text"> 2. 使用箭头语法和多标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E5%9D%97%E5%92%8Cyield"><span class="nav-number">3.3.</span> <span class="nav-text"> 3. 使用代码块和yield</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-switch%E4%B8%8E%E6%9E%9A%E4%B8%BE%E7%9A%84%E7%BB%93%E5%90%88%E4%BD%BF%E7%94%A8"><span class="nav-number">3.4.</span> <span class="nav-text"> 4. Switch与枚举的结合使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%A2%9E%E5%BC%BAswitch%E4%B8%8E%E7%B1%BB%E5%9E%8B%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8Djava-17%E5%8F%8A%E4%BB%A5%E4%B8%8A"><span class="nav-number">3.5.</span> <span class="nav-text"> 5. 增强Switch与类型模式匹配（Java 17及以上）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%B8%A6%E6%9C%89%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84switch%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">3.6.</span> <span class="nav-text"> 6. 带有默认值的Switch表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-switch%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.7.</span> <span class="nav-text"> 7. Switch表达式的复合类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch%E4%B8%8E%E4%BC%A0%E7%BB%9Fswitch%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">4.</span> <span class="nav-text"> 增强Switch与传统Switch的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9Fswitch"><span class="nav-number">4.1.</span> <span class="nav-text"> 传统Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BAswitch"><span class="nav-number">4.2.</span> <span class="nav-text"> 增强Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">4.3.</span> <span class="nav-text"> 对比总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">5.</span> <span class="nav-text"> 使用增强Switch的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A2%9E%E5%BC%BAswitch%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">6.</span> <span class="nav-text"> 使用增强Switch的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="nav-number">7.</span> <span class="nav-text"> 完整示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E9%80%BB%E8%BE%91%E7%A4%BA%E4%BE%8B%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97"><span class="nav-number">7.1.</span> <span class="nav-text"> 复杂逻辑示例：计算数学运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text"> 总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
