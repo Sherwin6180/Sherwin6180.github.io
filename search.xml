@@ -1,77 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Verilog Basics</title>
-    <url>/verilog-basics/index.html</url>
-    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
-<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
-<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
-<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
-<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
-<ul>
-<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
-<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
-<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
-</ul>
-<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
-<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
-<ul>
-<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
-<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
-</ul>
-<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
-<p>Let’s start with the basics of Verilog syntax:</p>
-<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
-<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
-<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
-<p>Verilog provides several data types for representing signals:</p>
-<ul>
-<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
-<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
-</ul>
-<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
-<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
-<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
-<p>Let’s write a simple Verilog program that implements an AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
-<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
-<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
-<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
-<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
-<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
-<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
-<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
-<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
-<p>As you start coding in Verilog, keep the following best practices in mind:</p>
-<ul>
-<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
-<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
-<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
-<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
-</ul>
-<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
-<p>Here are some resources to help you continue your Verilog learning journey:</p>
-<ul>
-<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
-<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
-<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
-</ul>
-<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
-<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
-<p>Happy coding!</p>
-<hr />
-<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Exact Match</title>
     <url>/exact-match/index.html</url>
     <content><![CDATA[<blockquote>
@@ -205,6 +134,85 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       <tags>
         <tag>networking</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>OS Security and Access Control</title>
+    <url>/os-security-and-access-control/index.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>security</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Verilog Basics</title>
+    <url>/verilog-basics/index.html</url>
+    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
+<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
+<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
+<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
+<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
+<ul>
+<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
+<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
+<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
+</ul>
+<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
+<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
+<ul>
+<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
+<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
+</ul>
+<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
+<p>Let’s start with the basics of Verilog syntax:</p>
+<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
+<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
+<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
+<p>Verilog provides several data types for representing signals:</p>
+<ul>
+<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
+<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
+</ul>
+<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
+<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
+<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
+<p>Let’s write a simple Verilog program that implements an AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
+<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
+<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
+<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
+<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
+<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
+<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
+<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
+<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
+<p>As you start coding in Verilog, keep the following best practices in mind:</p>
+<ul>
+<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
+<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
+<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
+<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
+</ul>
+<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
+<p>Here are some resources to help you continue your Verilog learning journey:</p>
+<ul>
+<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
+<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
+<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
+</ul>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
+<p>Happy coding!</p>
+<hr />
+<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
+]]></content>
   </entry>
   <entry>
     <title>common syntax</title>
@@ -479,6 +487,160 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 </ol>
 <p>通过系统地学习和比较C++、Java、Python、JavaScript的常用语法，结合实际编程练习，您将在面试中更具竞争力，并能够灵活应对不同语言的相关问题。</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>protected vs default</title>
+    <url>/protected-vs-default/index.html</url>
+    <content><![CDATA[<p><a href="https://postimg.cc/zyZtFBBk"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://i.postimg.cc/Dwm9F43R/image.png"
+                        alt="image.png" 
+                 ></a></p>
+<p>在Java中，**访问修饰符（Access Modifiers）**用于控制类、方法、变量等的可见性和访问权限。Java提供了四种访问修饰符：</p>
+<ol>
+<li><strong><code>public</code></strong>：公共的，所有类都可以访问。</li>
+<li><strong><code>protected</code></strong>：受保护的，同一包中的类和不同包中的子类可以访问。</li>
+<li><strong>默认访问级别（包私有，Package-Private）</strong>：当没有显式指定访问修饰符时，默认为包私有，仅同一包中的类可以访问。</li>
+<li><strong><code>private</code></strong>：私有的，仅在定义它的类内部可见。</li>
+</ol>
+<h3 id="重点关注protected-与-默认访问级别省略访问修饰符"><a class="markdownIt-Anchor" href="#重点关注protected-与-默认访问级别省略访问修饰符"></a> 重点关注：<code>protected</code> 与 默认访问级别（省略访问修饰符）</h3>
+<p>下面详细解释 <code>protected</code> 和默认访问级别之间的区别：</p>
+<h4 id="1-定义与语法"><a class="markdownIt-Anchor" href="#1-定义与语法"></a> 1. 定义与语法</h4>
+<ul>
+<li>
+<p><strong><code>protected</code> 修饰符</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> protectedVar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">protectedMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 受保护的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>默认访问级别（省略修饰符）</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="type">int</span> defaultVar; <span class="comment">// 默认访问级别</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">defaultMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 默认访问级别的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-可见性范围"><a class="markdownIt-Anchor" href="#2-可见性范围"></a> 2. 可见性范围</h4>
+<table>
+<thead>
+<tr>
+<th><strong>访问修饰符</strong></th>
+<th><strong>同一类中</strong></th>
+<th><strong>同一包中</strong></th>
+<th><strong>不同包的子类</strong></th>
+<th><strong>不同包的非子类</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>默认（包私有）</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>private</code></td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong><code>protected</code></strong></p>
+<ul>
+<li><strong>同一类中</strong>：可访问。</li>
+<li><strong>同一包中</strong>：可访问。</li>
+<li><strong>不同包的子类中</strong>：可访问（通过继承）。</li>
+<li><strong>不同包的非子类中</strong>：不可访问。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（省略修饰符）</strong></p>
+<ul>
+<li><strong>同一类中</strong>：可访问。</li>
+<li><strong>同一包中</strong>：可访问。</li>
+<li><strong>不同包的子类中</strong>：不可访问。</li>
+<li><strong>不同包的非子类中</strong>：不可访问。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-示例解析"><a class="markdownIt-Anchor" href="#3-示例解析"></a> 3. 示例解析</h4>
+<h5 id="同一包中的类"><a class="markdownIt-Anchor" href="#同一包中的类"></a> 同一包中的类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> <span class="variable">protectedVar</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">defaultVar</span> <span class="operator">=</span> <span class="number">20</span>; <span class="comment">// 默认访问级别</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SamePackageClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 可访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>同一包</strong> 中，<code>protected</code> 和默认访问级别的成员都可以被访问。</li>
+</ul>
+<h5 id="不同包中的子类"><a class="markdownIt-Anchor" href="#不同包中的子类"></a> 不同包中的子类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="built_in">this</span>.protectedVar); <span class="comment">// 可访问，因为是子类</span></span><br><span class="line">        <span class="comment">// System.out.println(this.defaultVar); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>不同包</strong> 中，<code>protected</code> 成员可以通过继承（即子类）访问。</li>
+<li>默认访问级别的成员在不同包的子类中不可访问。</li>
+</ul>
+<h5 id="不同包中的非子类"><a class="markdownIt-Anchor" href="#不同包中的非子类"></a> 不同包中的非子类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 编译错误，非子类不同包无法访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>不同包</strong> 的 <strong>非子类</strong> 中，<code>protected</code> 和默认访问级别的成员都不可访问。</li>
+</ul>
+<h4 id="4-设计意图与使用场景"><a class="markdownIt-Anchor" href="#4-设计意图与使用场景"></a> 4. 设计意图与使用场景</h4>
+<ul>
+<li>
+<p><strong><code>protected</code></strong>：</p>
+<ul>
+<li><strong>设计意图</strong>：允许子类继承和访问父类的某些成员，同时限制外部类的直接访问。</li>
+<li><strong>使用场景</strong>：当你希望子类能够访问和修改父类的某些成员，但不希望其他非相关类访问这些成员时，使用 <code>protected</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（包私有）</strong>：</p>
+<ul>
+<li><strong>设计意图</strong>：限制成员仅在同一包内可见，增强封装性。</li>
+<li><strong>使用场景</strong>：当你希望在同一包内的类之间共享成员，但不希望包外的类访问时，使用默认访问级别。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-实际应用示例"><a class="markdownIt-Anchor" href="#5-实际应用示例"></a> 5. 实际应用示例</h4>
+<h5 id="使用-protected"><a class="markdownIt-Anchor" href="#使用-protected"></a> 使用 <code>protected</code></h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Protected method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        show(); <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display(); <span class="comment">// 输出: Protected method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="使用默认访问级别"><a class="markdownIt-Anchor" href="#使用默认访问级别"></a> 使用默认访问级别</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Default access method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/example/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        display(); <span class="comment">// 可访问，因为在同一包</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.show(); <span class="comment">// 输出: Default access method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">access</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        <span class="comment">// parent.display(); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li>
+<p><strong><code>protected</code></strong>：</p>
+<ul>
+<li>允许在 <strong>同一包</strong> 中访问。</li>
+<li>允许 <strong>不同包的子类</strong> 访问。</li>
+<li>不允许 <strong>不同包的非子类</strong> 访问。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（省略访问修饰符）</strong>：</p>
+<ul>
+<li>仅允许在 <strong>同一包</strong> 中访问。</li>
+<li>不允许在 <strong>不同包</strong> 中的任何类访问，无论是否为子类。</li>
+</ul>
+</li>
+</ul>
+<p>选择使用 <code>protected</code> 还是默认访问级别取决于你希望如何控制成员的可见性。<code>protected</code> 提供了更灵活的访问权限，尤其是在需要通过继承关系进行访问时，而默认访问级别则更严格，仅限于包内使用。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>career fair</title>
@@ -1227,162 +1389,5 @@ Atlanta Technology Consulting Intern<br />
 <h2 id="wsp-in-the-us-b2"><a class="markdownIt-Anchor" href="#wsp-in-the-us-b2"></a> WSP in the U.S. (B2)</h2>
 <p><strong>WSP in the U.S.</strong> is an engineering consulting firm that integrates smart infrastructure solutions and IoT for urban development projects</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>OS Security and Access Control</title>
-    <url>/os-security-and-access-control/index.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>security</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>protected vs default</title>
-    <url>/protected-vs-default/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://postimg.cc/zyZtFBBk" >image.png<i class="fas fa-external-link-alt"></i></a></p>
-<p>在Java中，**访问修饰符（Access Modifiers）**用于控制类、方法、变量等的可见性和访问权限。Java提供了四种访问修饰符：</p>
-<ol>
-<li><strong><code>public</code></strong>：公共的，所有类都可以访问。</li>
-<li><strong><code>protected</code></strong>：受保护的，同一包中的类和不同包中的子类可以访问。</li>
-<li><strong>默认访问级别（包私有，Package-Private）</strong>：当没有显式指定访问修饰符时，默认为包私有，仅同一包中的类可以访问。</li>
-<li><strong><code>private</code></strong>：私有的，仅在定义它的类内部可见。</li>
-</ol>
-<h3 id="重点关注protected-与-默认访问级别省略访问修饰符"><a class="markdownIt-Anchor" href="#重点关注protected-与-默认访问级别省略访问修饰符"></a> 重点关注：<code>protected</code> 与 默认访问级别（省略访问修饰符）</h3>
-<p>下面详细解释 <code>protected</code> 和默认访问级别之间的区别：</p>
-<h4 id="1-定义与语法"><a class="markdownIt-Anchor" href="#1-定义与语法"></a> 1. 定义与语法</h4>
-<ul>
-<li>
-<p><strong><code>protected</code> 修饰符</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> protectedVar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">protectedMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 受保护的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>默认访问级别（省略修饰符）</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="type">int</span> defaultVar; <span class="comment">// 默认访问级别</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">defaultMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 默认访问级别的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="2-可见性范围"><a class="markdownIt-Anchor" href="#2-可见性范围"></a> 2. 可见性范围</h4>
-<table>
-<thead>
-<tr>
-<th><strong>访问修饰符</strong></th>
-<th><strong>同一类中</strong></th>
-<th><strong>同一包中</strong></th>
-<th><strong>不同包的子类</strong></th>
-<th><strong>不同包的非子类</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>public</code></td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-</tr>
-<tr>
-<td><code>protected</code></td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>默认（包私有）</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td><code>private</code></td>
-<td>✔️</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>
-<p><strong><code>protected</code></strong></p>
-<ul>
-<li><strong>同一类中</strong>：可访问。</li>
-<li><strong>同一包中</strong>：可访问。</li>
-<li><strong>不同包的子类中</strong>：可访问（通过继承）。</li>
-<li><strong>不同包的非子类中</strong>：不可访问。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（省略修饰符）</strong></p>
-<ul>
-<li><strong>同一类中</strong>：可访问。</li>
-<li><strong>同一包中</strong>：可访问。</li>
-<li><strong>不同包的子类中</strong>：不可访问。</li>
-<li><strong>不同包的非子类中</strong>：不可访问。</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-示例解析"><a class="markdownIt-Anchor" href="#3-示例解析"></a> 3. 示例解析</h4>
-<h5 id="同一包中的类"><a class="markdownIt-Anchor" href="#同一包中的类"></a> 同一包中的类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> <span class="variable">protectedVar</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">defaultVar</span> <span class="operator">=</span> <span class="number">20</span>; <span class="comment">// 默认访问级别</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SamePackageClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 可访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>同一包</strong> 中，<code>protected</code> 和默认访问级别的成员都可以被访问。</li>
-</ul>
-<h5 id="不同包中的子类"><a class="markdownIt-Anchor" href="#不同包中的子类"></a> 不同包中的子类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="built_in">this</span>.protectedVar); <span class="comment">// 可访问，因为是子类</span></span><br><span class="line">        <span class="comment">// System.out.println(this.defaultVar); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>不同包</strong> 中，<code>protected</code> 成员可以通过继承（即子类）访问。</li>
-<li>默认访问级别的成员在不同包的子类中不可访问。</li>
-</ul>
-<h5 id="不同包中的非子类"><a class="markdownIt-Anchor" href="#不同包中的非子类"></a> 不同包中的非子类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 编译错误，非子类不同包无法访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>不同包</strong> 的 <strong>非子类</strong> 中，<code>protected</code> 和默认访问级别的成员都不可访问。</li>
-</ul>
-<h4 id="4-设计意图与使用场景"><a class="markdownIt-Anchor" href="#4-设计意图与使用场景"></a> 4. 设计意图与使用场景</h4>
-<ul>
-<li>
-<p><strong><code>protected</code></strong>：</p>
-<ul>
-<li><strong>设计意图</strong>：允许子类继承和访问父类的某些成员，同时限制外部类的直接访问。</li>
-<li><strong>使用场景</strong>：当你希望子类能够访问和修改父类的某些成员，但不希望其他非相关类访问这些成员时，使用 <code>protected</code>。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（包私有）</strong>：</p>
-<ul>
-<li><strong>设计意图</strong>：限制成员仅在同一包内可见，增强封装性。</li>
-<li><strong>使用场景</strong>：当你希望在同一包内的类之间共享成员，但不希望包外的类访问时，使用默认访问级别。</li>
-</ul>
-</li>
-</ul>
-<h4 id="5-实际应用示例"><a class="markdownIt-Anchor" href="#5-实际应用示例"></a> 5. 实际应用示例</h4>
-<h5 id="使用-protected"><a class="markdownIt-Anchor" href="#使用-protected"></a> 使用 <code>protected</code></h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Protected method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        show(); <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display(); <span class="comment">// 输出: Protected method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="使用默认访问级别"><a class="markdownIt-Anchor" href="#使用默认访问级别"></a> 使用默认访问级别</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Default access method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/example/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        display(); <span class="comment">// 可访问，因为在同一包</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.show(); <span class="comment">// 输出: Default access method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">access</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        <span class="comment">// parent.display(); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<ul>
-<li>
-<p><strong><code>protected</code></strong>：</p>
-<ul>
-<li>允许在 <strong>同一包</strong> 中访问。</li>
-<li>允许 <strong>不同包的子类</strong> 访问。</li>
-<li>不允许 <strong>不同包的非子类</strong> 访问。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（省略访问修饰符）</strong>：</p>
-<ul>
-<li>仅允许在 <strong>同一包</strong> 中访问。</li>
-<li>不允许在 <strong>不同包</strong> 中的任何类访问，无论是否为子类。</li>
-</ul>
-</li>
-</ul>
-<p>选择使用 <code>protected</code> 还是默认访问级别取决于你希望如何控制成员的可见性。<code>protected</code> 提供了更灵活的访问权限，尤其是在需要通过继承关系进行访问时，而默认访问级别则更严格，仅限于包内使用。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
 </search>
