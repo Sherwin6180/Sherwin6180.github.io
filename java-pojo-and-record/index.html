@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            Java POJO and Record |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Java POJO and Record
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-12-19 22:18:53</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Dec 19 2024 22:19:14 GMT-0500">2024-12-19 22:19:14</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Java/">Java</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.5k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <p>在Java编程中，<strong>POJO</strong> 和 <strong>Record</strong> 是两种用于定义数据模型的不同概念。它们各自有不同的用途和特性，适用于不同的场景。下面详细介绍这两者的定义、特点以及如何使用<code>record</code>。</p>
+<h2 id="什么是-pojo"><a class="markdownIt-Anchor" href="#什么是-pojo"></a> 什么是 POJO？</h2>
+<h3 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h3>
+<p><strong>POJO</strong>（Plain Old Java Object，简单的Java对象）是一种没有依赖任何特定框架或库的普通Java对象。POJO通常用于封装数据，具有简单的属性和相应的访问器（getter）和修改器（setter）方法。</p>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ul>
+<li><strong>简单性</strong>：POJO没有继承或依赖任何特殊的类或接口，易于理解和使用。</li>
+<li><strong>封装性</strong>：通过私有字段和公共的getter/setter方法实现数据的封装。</li>
+<li><strong>可重用性</strong>：由于其简单性，POJO可以在不同的上下文中重复使用。</li>
+<li><strong>灵活性</strong>：POJO可以根据需求自由地添加方法和属性。</li>
+</ul>
+<h3 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h3>
+<p>以下是一个典型的POJO类示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 无参构造函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 带参构造函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Getter 和 Setter 方法</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写 toString 方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;name=&#x27;&quot;</span> + name + <span class="string">&quot;&#x27;, age=&quot;</span> + age + <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写 equals 和 hashCode 方法（可选）</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> (Person) o;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (age != person.age) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> name != <span class="literal">null</span> ? name.equals(person.name) : person.name == <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> name != <span class="literal">null</span> ? name.hashCode() : <span class="number">0</span>;</span><br><span class="line">        result = <span class="number">31</span> * result + age;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用场景"><a class="markdownIt-Anchor" href="#使用场景"></a> 使用场景</h3>
+<ul>
+<li><strong>数据传输对象（DTO）</strong>：在不同层（如控制层和服务层）之间传递数据。</li>
+<li><strong>持久化实体</strong>：与ORM框架（如Hibernate）结合使用，表示数据库中的表记录。</li>
+<li><strong>配置对象</strong>：封装配置信息，如应用程序配置文件中的设置。</li>
+</ul>
+<h2 id="什么是-record"><a class="markdownIt-Anchor" href="#什么是-record"></a> 什么是 Record？</h2>
+<h3 id="定义-2"><a class="markdownIt-Anchor" href="#定义-2"></a> 定义</h3>
+<p><strong>Record</strong> 是Java 14引入的一个新特性，作为预览功能在Java 16中正式发布。Record是一种特殊的类，用于简化不可变数据的声明。它们主要用于存储数据，无需编写繁琐的样板代码（如getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法）。</p>
+<h3 id="特点-2"><a class="markdownIt-Anchor" href="#特点-2"></a> 特点</h3>
+<ul>
+<li><strong>简洁性</strong>：使用简单的语法定义数据类，自动生成必要的方法。</li>
+<li><strong>不可变性</strong>：Record中的字段是最终的（<code>final</code>），一旦创建，无法修改。</li>
+<li><strong>自动生成方法</strong>：编译器自动为Record生成<code>equals</code>、<code>hashCode</code>、<code>toString</code>以及访问器方法。</li>
+<li><strong>透明性</strong>：Record的所有字段在类声明中明确列出，增强了代码的可读性。</li>
+</ul>
+<h3 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h3>
+<p>定义Record的基本语法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">RecordName</span><span class="params">(FieldType1 field1, FieldType2 field2, ...)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="示例-2"><a class="markdownIt-Anchor" href="#示例-2"></a> 示例</h3>
+<p>以下是将前面提到的<code>Person</code>类转换为Record的示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译器会自动生成以下内容：</p>
+<ul>
+<li>私有的、最终的字段 <code>name</code> 和 <code>age</code>。</li>
+<li>公共的访问器方法 <code>name()</code> 和 <code>age()</code>。</li>
+<li>构造函数。</li>
+<li>重写的 <code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</li>
+</ul>
+<h3 id="使用-record-的优势"><a class="markdownIt-Anchor" href="#使用-record-的优势"></a> 使用 Record 的优势</h3>
+<ol>
+<li><strong>减少样板代码</strong>：无需手动编写getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</li>
+<li><strong>增强可读性</strong>：类的声明直接展示了它包含的字段。</li>
+<li><strong>确保不可变性</strong>：默认情况下，Record的字段是不可变的，减少了不必要的状态变化。</li>
+<li><strong>简化代码维护</strong>：自动生成的方法减少了人为错误，提高了代码的一致性。</li>
+</ol>
+<h3 id="示例使用"><a class="markdownIt-Anchor" href="#示例使用"></a> 示例使用</h3>
+<p>以下是一个使用Record的完整示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可以添加自定义方法或覆盖自动生成的方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义构造函数</span></span><br><span class="line">    <span class="keyword">public</span> Person &#123;</span><br><span class="line">        <span class="keyword">if</span> (age &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Age cannot be negative&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义方法</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, my name is &quot;</span> + name + <span class="string">&quot; and I am &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Alice&quot;</span>, <span class="number">30</span>);</span><br><span class="line">        System.out.println(person); <span class="comment">// 输出: Person[name=Alice, age=30]</span></span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, my name is Alice and I am 30 years old.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 访问字段</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> person.name();</span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> person.age();</span><br><span class="line">        System.out.println(name + <span class="string">&quot; is &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h3>
+<ul>
+<li><strong>不可继承</strong>：Record 是隐式 <code>final</code>，无法被继承。</li>
+<li><strong>构造函数限制</strong>：Record 的所有字段必须在声明中定义，且构造函数必须初始化所有字段。</li>
+<li><strong>继承限制</strong>：Record 不能继承其他类（除了隐式继承自 <code>java.lang.Record</code>），但可以实现接口。</li>
+<li><strong>可变字段</strong>：虽然Record的字段是不可变的，但如果字段引用的是可变对象（如列表），则该对象本身仍然可以被修改。为了确保完全不可变，需要使用不可变的对象类型作为字段。</li>
+</ul>
+<h2 id="pojo-与-record-的对比"><a class="markdownIt-Anchor" href="#pojo-与-record-的对比"></a> POJO 与 Record 的对比</h2>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>POJO</strong></th>
+<th><strong>Record</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>语法简洁性</strong></td>
+<td>需要手动编写getter、setter、<code>equals</code>、<code>hashCode</code>等方法</td>
+<td>简洁的语法，自动生成所有必要的方法</td>
+</tr>
+<tr>
+<td><strong>可变性</strong></td>
+<td>通常是可变的，通过setter方法修改字段值</td>
+<td>默认不可变，字段是 <code>final</code> 的，不提供setter方法</td>
+</tr>
+<tr>
+<td><strong>样板代码</strong></td>
+<td>较多，需要编写大量的样板代码</td>
+<td>几乎无需样板代码，减少代码冗余</td>
+</tr>
+<tr>
+<td><strong>继承性</strong></td>
+<td>可以继承其他类，实现接口</td>
+<td>不能继承其他类，只能实现接口</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>广泛用于各种场景，如数据传输对象（DTO）、持久化实体等</td>
+<td>主要用于不可变的数据表示，如值对象（Value Object）</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>由于可变性和样板代码，可能在某些情况下略逊于Record</td>
+<td>更高的性能，特别是在需要大量不可变对象时</td>
+</tr>
+<tr>
+<td><strong>构造函数</strong></td>
+<td>可以有多个构造函数，灵活性更高</td>
+<td>构造函数必须初始化所有字段，限制更严格</td>
+</tr>
+<tr>
+<td><strong>方法覆盖</strong></td>
+<td>可以自由地覆盖和添加方法</td>
+<td>可以添加自定义方法和覆盖生成的方法，但整体结构固定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="何时使用-pojo-和-record"><a class="markdownIt-Anchor" href="#何时使用-pojo-和-record"></a> 何时使用 POJO 和 Record</h3>
+<ul>
+<li>
+<p><strong>使用 POJO</strong>：</p>
+<ul>
+<li>需要可变对象时。</li>
+<li>需要继承其他类或进行复杂的继承层次结构时。</li>
+<li>需要灵活地添加和修改方法时。</li>
+</ul>
+</li>
+<li>
+<p><strong>使用 Record</strong>：</p>
+<ul>
+<li>需要不可变对象时。</li>
+<li>主要用于数据传输或存储，不需要复杂的业务逻辑。</li>
+<li>希望减少样板代码，提高代码的可读性和维护性时。</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何使用-record"><a class="markdownIt-Anchor" href="#如何使用-record"></a> 如何使用 Record</h2>
+<h3 id="1-定义-record"><a class="markdownIt-Anchor" href="#1-定义-record"></a> 1. 定义 Record</h3>
+<p>定义一个Record非常简单，只需使用 <code>record</code> 关键字并列出所有字段。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-创建-record-实例"><a class="markdownIt-Anchor" href="#2-创建-record-实例"></a> 2. 创建 Record 实例</h3>
+<p>与普通类类似，通过构造函数创建Record的实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Bob&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        System.out.println(person); <span class="comment">// 输出: Person[name=Bob, age=25]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-访问-record-字段"><a class="markdownIt-Anchor" href="#3-访问-record-字段"></a> 3. 访问 Record 字段</h3>
+<p>Record自动生成访问器方法，方法名与字段名相同。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Bob&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> person.name(); <span class="comment">// 访问name字段</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> person.age();       <span class="comment">// 访问age字段</span></span><br><span class="line">        System.out.println(name + <span class="string">&quot; is &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-添加自定义构造函数"><a class="markdownIt-Anchor" href="#4-添加自定义构造函数"></a> 4. 添加自定义构造函数</h3>
+<p>可以添加自定义构造函数，以添加验证或修改输入参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Person &#123;</span><br><span class="line">        <span class="keyword">if</span> (age &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Age cannot be negative&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (name == <span class="literal">null</span> || name.isBlank()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Name cannot be null or blank&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-添加自定义方法"><a class="markdownIt-Anchor" href="#5-添加自定义方法"></a> 5. 添加自定义方法</h3>
+<p>可以在Record中添加自定义方法，以提供额外的功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, my name is &quot;</span> + name + <span class="string">&quot; and I am &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Charlie&quot;</span>, <span class="number">28</span>);</span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, my name is Charlie and I am 28 years old.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-重写自动生成的方法"><a class="markdownIt-Anchor" href="#6-重写自动生成的方法"></a> 6. 重写自动生成的方法</h3>
+<p>可以根据需要重写Record自动生成的<code>toString</code>、<code>equals</code>和<code>hashCode</code>方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;name=&#x27;&quot;</span> + name + <span class="string">&quot;&#x27;, age=&quot;</span> + age + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Dana&quot;</span>, <span class="number">32</span>);</span><br><span class="line">        System.out.println(person.toString()); <span class="comment">// 输出: Person&#123;name=&#x27;Dana&#x27;, age=32&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-使用-record-进行模式匹配java-16"><a class="markdownIt-Anchor" href="#7-使用-record-进行模式匹配java-16"></a> 7. 使用 Record 进行模式匹配（Java 16+）</h3>
+<p>Java 16引入了Record的模式匹配功能，使得在 <code>instanceof</code> 检查中更方便地解构Record。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Eve&quot;</span>, <span class="number">29</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Person p) &#123;</span><br><span class="line">            System.out.println(p.name() + <span class="string">&quot; is &quot;</span> + p.age() + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-record-继承和接口实现"><a class="markdownIt-Anchor" href="#8-record-继承和接口实现"></a> 8. Record 继承和接口实现</h3>
+<p>虽然Record不能继承其他类，但可以实现接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Greetable</span> &#123;</span><br><span class="line">    String <span class="title function_">greet</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> <span class="keyword">implements</span> <span class="title class_">Greetable</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, I&#x27;m &quot;</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Frank&quot;</span>, <span class="number">40</span>);</span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, I&#x27;m Frank</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<ul>
+<li>
+<p><strong>POJO（Plain Old Java Object）</strong> 是一种简单的Java对象，用于封装数据，具有灵活性和可变性。它需要编写大量的样板代码，如getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</p>
+</li>
+<li>
+<p><strong>Record</strong> 是Java 16引入的一种新特性，旨在简化不可变数据的声明。Record通过简洁的语法自动生成必要的方法，减少了样板代码，增强了代码的可读性和维护性。Record适用于需要不可变对象和数据传输的场景。</p>
+</li>
+</ul>
+<p>根据项目需求和设计考虑，选择合适的方式来定义数据模型。如果需要简单的数据存储并希望减少样板代码，<strong>Record</strong> 是一个理想的选择；如果需要更多的灵活性和可变性，或需要继承其他类，则应使用 <strong>POJO</strong>。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Java/">Java</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/protected-vs-default/index.html"
+                                   title="protected vs default"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">protected vs default</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-pojo"><span class="nav-number">1.</span> <span class="nav-text"> 什么是 POJO？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text"> 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text"> 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text"> 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.4.</span> <span class="nav-text"> 使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-record"><span class="nav-number">2.</span> <span class="nav-text"> 什么是 Record？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">2.1.</span> <span class="nav-text"> 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9-2"><span class="nav-number">2.2.</span> <span class="nav-text"> 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text"> 语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">2.4.</span> <span class="nav-text"> 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-record-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">2.5.</span> <span class="nav-text"> 使用 Record 的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BD%BF%E7%94%A8"><span class="nav-number">2.6.</span> <span class="nav-text"> 示例使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.7.</span> <span class="nav-text"> 注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pojo-%E4%B8%8E-record-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text"> POJO 与 Record 的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8-pojo-%E5%92%8C-record"><span class="nav-number">3.1.</span> <span class="nav-text"> 何时使用 POJO 和 Record</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-record"><span class="nav-number">4.</span> <span class="nav-text"> 如何使用 Record</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89-record"><span class="nav-number">4.1.</span> <span class="nav-text"> 1. 定义 Record</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BA-record-%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text"> 2. 创建 Record 实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BF%E9%97%AE-record-%E5%AD%97%E6%AE%B5"><span class="nav-number">4.3.</span> <span class="nav-text"> 3. 访问 Record 字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">4.4.</span> <span class="nav-text"> 4. 添加自定义构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="nav-number">4.5.</span> <span class="nav-text"> 5. 添加自定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E9%87%8D%E5%86%99%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">4.6.</span> <span class="nav-text"> 6. 重写自动生成的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8-record-%E8%BF%9B%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8Djava-16"><span class="nav-number">4.7.</span> <span class="nav-text"> 7. 使用 Record 进行模式匹配（Java 16+）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-record-%E7%BB%A7%E6%89%BF%E5%92%8C%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.8.</span> <span class="nav-text"> 8. Record 继承和接口实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text"> 总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-pojo"><span class="nav-number">1.</span> <span class="nav-text"> 什么是 POJO？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text"> 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text"> 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text"> 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.4.</span> <span class="nav-text"> 使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-record"><span class="nav-number">2.</span> <span class="nav-text"> 什么是 Record？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">2.1.</span> <span class="nav-text"> 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9-2"><span class="nav-number">2.2.</span> <span class="nav-text"> 特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text"> 语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">2.4.</span> <span class="nav-text"> 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-record-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">2.5.</span> <span class="nav-text"> 使用 Record 的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BD%BF%E7%94%A8"><span class="nav-number">2.6.</span> <span class="nav-text"> 示例使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.7.</span> <span class="nav-text"> 注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pojo-%E4%B8%8E-record-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text"> POJO 与 Record 的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8-pojo-%E5%92%8C-record"><span class="nav-number">3.1.</span> <span class="nav-text"> 何时使用 POJO 和 Record</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-record"><span class="nav-number">4.</span> <span class="nav-text"> 如何使用 Record</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89-record"><span class="nav-number">4.1.</span> <span class="nav-text"> 1. 定义 Record</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BA-record-%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text"> 2. 创建 Record 实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BF%E9%97%AE-record-%E5%AD%97%E6%AE%B5"><span class="nav-number">4.3.</span> <span class="nav-text"> 3. 访问 Record 字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">4.4.</span> <span class="nav-text"> 4. 添加自定义构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95"><span class="nav-number">4.5.</span> <span class="nav-text"> 5. 添加自定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E9%87%8D%E5%86%99%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">4.6.</span> <span class="nav-text"> 6. 重写自动生成的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8-record-%E8%BF%9B%E8%A1%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8Djava-16"><span class="nav-number">4.7.</span> <span class="nav-text"> 7. 使用 Record 进行模式匹配（Java 16+）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-record-%E7%BB%A7%E6%89%BF%E5%92%8C%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.8.</span> <span class="nav-text"> 8. Record 继承和接口实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text"> 总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
