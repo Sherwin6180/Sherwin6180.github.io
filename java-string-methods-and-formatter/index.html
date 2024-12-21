@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            Java String methods and Formatter |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Java String methods and Formatter
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-12-20 23:59:27</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Dec 21 2024 00:00:37 GMT-0500">2024-12-21 00:00:37</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Java/">Java</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.6k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body code-block-unshrink">
+                    
+
+                    
+                         <h3 id="全面解析-java-string-方法及-formatter-的使用"><a class="markdownIt-Anchor" href="#全面解析-java-string-方法及-formatter-的使用"></a> 全面解析 Java String 方法及 Formatter 的使用</h3>
+<p>在 Java 中，<code>String</code> 是一个不可变对象（Immutable Object），提供了丰富的方法来操作和处理字符串。本文将对常见的 String 方法进行分类，并配合示例进行详细解析。此外，还将介绍 Java <code>Formatter</code> 的使用，为格式化字符串提供高效解决方案。</p>
+<hr />
+<h2 id="1-string-方法分类及示例"><a class="markdownIt-Anchor" href="#1-string-方法分类及示例"></a> 1. String 方法分类及示例</h2>
+<h3 id="11-字符串检查方法string-inspection-methods"><a class="markdownIt-Anchor" href="#11-字符串检查方法string-inspection-methods"></a> <strong>1.1 字符串检查方法（String Inspection Methods）</strong></h3>
+<p>这些方法用于检查字符串的特性或内容。</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>length</code></td>
+<td>返回字符串的长度（字符数量）。</td>
+</tr>
+<tr>
+<td><code>charAt</code></td>
+<td>返回指定索引处的字符。</td>
+</tr>
+<tr>
+<td><code>indexOf</code></td>
+<td>返回字符或子串在字符串中的首次出现位置的索引。</td>
+</tr>
+<tr>
+<td><code>lastIndexOf</code></td>
+<td>返回字符或子串在字符串中的最后一次出现位置的索引。</td>
+</tr>
+<tr>
+<td><code>isEmpty</code></td>
+<td>如果字符串长度为零，返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>isBlank</code></td>
+<td>如果字符串长度为零或只包含空白字符，返回 <code>true</code>。（JDK 11 新增）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringInspection</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;  Hello World  &quot;</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;Length: &quot;</span> + str.length());       <span class="comment">// 输出: 15</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Char at 0: &quot;</span> + str.charAt(<span class="number">0</span>));   <span class="comment">// 输出: &#x27; &#x27;</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Index of &#x27;World&#x27;: &quot;</span> + str.indexOf(<span class="string">&quot;World&quot;</span>)); <span class="comment">// 输出: 8</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Is Empty: &quot;</span> + str.isEmpty());    <span class="comment">// 输出: false</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Is Blank: &quot;</span> + str.isBlank());    <span class="comment">// 输出: false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="12-字符串比较方法string-comparison-methods"><a class="markdownIt-Anchor" href="#12-字符串比较方法string-comparison-methods"></a> <strong>1.2 字符串比较方法（String Comparison Methods）</strong></h3>
+<p>用于比较两个字符串的内容。</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>contentEquals</code></td>
+<td>如果字符串的值与传入的 <code>CharSequence</code> 参数相等，返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>equals</code></td>
+<td>如果字符串的值与参数字符串相等，返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>equalsIgnoreCase</code></td>
+<td>忽略大小写比较两个字符串是否相等，返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>contains</code></td>
+<td>如果字符串包含指定的字符序列，返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>startsWith</code></td>
+<td>检查字符串是否以指定前缀开头，返回 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>endsWith</code></td>
+<td>检查字符串是否以指定后缀结尾，返回 <code>true</code>。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringComparison</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;Equals: &quot;</span> + str1.equals(str2));             <span class="comment">// 输出: false</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Equals Ignore Case: &quot;</span> + str1.equalsIgnoreCase(str2)); <span class="comment">// 输出: true</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Starts with &#x27;He&#x27;: &quot;</span> + str1.startsWith(<span class="string">&quot;He&quot;</span>)); <span class="comment">// 输出: true</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Ends with &#x27;lo&#x27;: &quot;</span> + str1.endsWith(<span class="string">&quot;lo&quot;</span>));   <span class="comment">// 输出: true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="13-字符串清理方法string-cleanup-methods"><a class="markdownIt-Anchor" href="#13-字符串清理方法string-cleanup-methods"></a> <strong>1.3 字符串清理方法（String Cleanup Methods）</strong></h3>
+<p>这些方法对字符串进行清理或转换操作。</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>indent</code></td>
+<td>在多行文本的每行前增加或减少缩进（JDK 15 引入）。</td>
+</tr>
+<tr>
+<td><code>strip</code></td>
+<td>去除字符串两端的空白字符（支持更多 Unicode 空白字符，比 <code>trim</code> 更强）。</td>
+</tr>
+<tr>
+<td><code>stripLeading</code></td>
+<td>去除字符串开头的空白字符。</td>
+</tr>
+<tr>
+<td><code>stripTrailing</code></td>
+<td>去除字符串末尾的空白字符。</td>
+</tr>
+<tr>
+<td><code>toLowerCase</code></td>
+<td>将字符串转换为小写。</td>
+</tr>
+<tr>
+<td><code>toUpperCase</code></td>
+<td>将字符串转换为大写。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringCleanup</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;  Hello World  &quot;</span>;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;Trim: &#x27;&quot;</span> + str.trim() + <span class="string">&quot;&#x27;&quot;</span>);               <span class="comment">// 输出: &#x27;Hello World&#x27;</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Strip: &#x27;&quot;</span> + str.strip() + <span class="string">&quot;&#x27;&quot;</span>);            <span class="comment">// 输出: &#x27;Hello World&#x27;</span></span><br><span class="line">        System.out.println(<span class="string">&quot;To Upper: &quot;</span> + str.toUpperCase());          <span class="comment">// 输出: &#x27;  HELLO WORLD  &#x27;</span></span><br><span class="line">        System.out.println(<span class="string">&quot;To Lower: &quot;</span> + str.toLowerCase());          <span class="comment">// 输出: &#x27;  hello world  &#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="14-字符串操作方法string-manipulation-methods"><a class="markdownIt-Anchor" href="#14-字符串操作方法string-manipulation-methods"></a> <strong>1.4 字符串操作方法（String Manipulation Methods）</strong></h3>
+<p>这些方法对字符串进行修改或生成新字符串。</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>concat</code></td>
+<td>将一个字符串连接到另一个字符串末尾。</td>
+</tr>
+<tr>
+<td><code>join</code></td>
+<td>使用分隔符将多个字符串连接成一个字符串。</td>
+</tr>
+<tr>
+<td><code>repeat</code></td>
+<td>返回重复指定次数的新字符串。</td>
+</tr>
+<tr>
+<td><code>replace</code></td>
+<td>替换字符串中的字符或子串。</td>
+</tr>
+<tr>
+<td><code>substring</code></td>
+<td>截取字符串的子串。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringManipulation</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;Concat: &quot;</span> + str.concat(<span class="string">&quot; World&quot;</span>));        <span class="comment">// 输出: Hello World</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Repeat: &quot;</span> + str.repeat(<span class="number">3</span>));              <span class="comment">// 输出: HelloHelloHello</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Substring: &quot;</span> + str.substring(<span class="number">0</span>, <span class="number">3</span>));     <span class="comment">// 输出: Hel</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Replace: &quot;</span> + str.replace(<span class="string">&quot;l&quot;</span>, <span class="string">&quot;p&quot;</span>));     <span class="comment">// 输出: Heppo</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="java-formatter-规则详解"><a class="markdownIt-Anchor" href="#java-formatter-规则详解"></a> Java Formatter 规则详解</h2>
+<p>在 Java 中，<code>Formatter</code> 的规则以以下结构为基础：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[argument_index$][flags][width][.precision]<span class="keyword">conversion</span></span><br></pre></td></tr></table></figure>
+<p>每个部分的含义和用法如下：</p>
+<hr />
+<h3 id="1-各部分详解"><a class="markdownIt-Anchor" href="#1-各部分详解"></a> <strong>1. 各部分详解</strong></h3>
+<h4 id="11-argument-index"><a class="markdownIt-Anchor" href="#11-argument-index"></a> <strong>1.1 Argument Index</strong></h4>
+<ul>
+<li>用于指定哪个参数将被格式化。</li>
+<li>格式：<code>n$</code>，其中 <code>n</code> 是从 1 开始的参数索引。</li>
+<li><strong>默认</strong>：如果没有提供，按参数出现顺序依次使用。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%1$s, %2$d, %1$s\n&quot;</span>, <span class="string">&quot;Alice&quot;</span>, <span class="number">25</span>);</span><br><span class="line"><span class="comment">// 输出: Alice, 25, Alice</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="12-flags"><a class="markdownIt-Anchor" href="#12-flags"></a> <strong>1.2 Flags</strong></h4>
+<ul>
+<li>修改输出格式的标志。</li>
+<li>常用标志：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>标志</strong></th>
+<th><strong>作用</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-</code></td>
+<td>左对齐（默认右对齐）。</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>在数字前始终显示正号或负号。</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>使用零填充数字，直到达到指定宽度。</td>
+</tr>
+<tr>
+<td><code>,</code></td>
+<td>显示数字时使用千位分隔符。</td>
+</tr>
+<tr>
+<td><code>(</code></td>
+<td>将负数括在括号中，而不是显示负号。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%+d\n&quot;</span>, <span class="number">25</span>);    <span class="comment">// 输出: +25</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%(d\n&quot;</span>, -<span class="number">25</span>);   <span class="comment">// 输出: (25)</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%05d\n&quot;</span>, <span class="number">25</span>);   <span class="comment">// 输出: 00025</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="13-width"><a class="markdownIt-Anchor" href="#13-width"></a> <strong>1.3 Width</strong></h4>
+<ul>
+<li>指定最小输出宽度。</li>
+<li>如果实际内容短于宽度，则用空格填充。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%10s\n&quot;</span>, <span class="string">&quot;Alice&quot;</span>);  <span class="comment">// 输出:      Alice</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%-10s\n&quot;</span>, <span class="string">&quot;Alice&quot;</span>); <span class="comment">// 输出: Alice     </span></span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="14-precision"><a class="markdownIt-Anchor" href="#14-precision"></a> <strong>1.4 Precision</strong></h4>
+<ul>
+<li>针对浮点数：指定小数点后的数字位数。</li>
+<li>针对字符串：限制输出的最大字符数。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%.2f\n&quot;</span>, <span class="number">3.14159</span>);  <span class="comment">// 输出: 3.14</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%.5s\n&quot;</span>, <span class="string">&quot;Alice Wonderland&quot;</span>); <span class="comment">// 输出: Alice</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="15-conversion"><a class="markdownIt-Anchor" href="#15-conversion"></a> <strong>1.5 Conversion</strong></h4>
+<ul>
+<li>指定输出数据的类型。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>转换符</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%s</code></td>
+<td>字符串</td>
+<td><code>System.out.printf(&quot;%s&quot;, &quot;Hi&quot;);</code></td>
+</tr>
+<tr>
+<td><code>%d</code></td>
+<td>十进制整数</td>
+<td><code>System.out.printf(&quot;%d&quot;, 10);</code></td>
+</tr>
+<tr>
+<td><code>%f</code></td>
+<td>浮点数</td>
+<td><code>System.out.printf(&quot;%.2f&quot;, 3.14);</code></td>
+</tr>
+<tr>
+<td><code>%x</code></td>
+<td>十六进制整数</td>
+<td><code>System.out.printf(&quot;%x&quot;, 255);</code></td>
+</tr>
+<tr>
+<td><code>%n</code></td>
+<td>平台相关的换行符（如 <code>\n</code>）。</td>
+<td><code>System.out.printf(&quot;Hello%n&quot;);</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="2-综合示例"><a class="markdownIt-Anchor" href="#2-综合示例"></a> <strong>2. 综合示例</strong></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FormatterDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;Alice&quot;</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line">        <span class="type">double</span> <span class="variable">height</span> <span class="operator">=</span> <span class="number">5.6789</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用所有格式规则</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;Name: %1$-10s Age: %2$+03d Height: %3$.2f\n&quot;</span>, name, age, height);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>输出</strong>：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Name</span>: Alice      Age: +<span class="number">25</span> Height: <span class="number">5</span>.<span class="number">68</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="3-formatter-与-stringformat"><a class="markdownIt-Anchor" href="#3-formatter-与-stringformat"></a> <strong>3. Formatter 与 String.format</strong></h3>
+<p><code>Formatter</code> 和 <code>String.format</code> 本质相同，区别在于：</p>
+<ul>
+<li><code>String.format</code> 返回格式化后的字符串。</li>
+<li><code>Formatter</code> 通常与文件或控制台输出结合。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">formatted</span> <span class="operator">=</span> String.format(<span class="string">&quot;Name: %s, Age: %d&quot;</span>, <span class="string">&quot;Alice&quot;</span>, <span class="number">25</span>);</span><br><span class="line">System.out.println(formatted);  <span class="comment">// 输出: Name: Alice, Age: 25</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<p>通过掌握 <code>Formatter</code> 的规则，开发者可以实现复杂的字符串格式化功能，无论是对齐、填充还是小数精度，都能精准控制输出效果。这种工具特别适合用于日志、报告和用户界面开发！</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Java/">Java</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/overloading-vs-overriding/index.html"
+                                   title="Overloading vs Overriding"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Overloading vs Overriding</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90-java-string-%E6%96%B9%E6%B3%95%E5%8F%8A-formatter-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text"> 全面解析 Java String 方法及 Formatter 的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-string-%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB%E5%8F%8A%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text"> 1. String 方法分类及示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A3%80%E6%9F%A5%E6%96%B9%E6%B3%95string-inspection-methods"><span class="nav-number">1.</span> <span class="nav-text"> 1.1 字符串检查方法（String Inspection Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95string-comparison-methods"><span class="nav-number">2.</span> <span class="nav-text"> 1.2 字符串比较方法（String Comparison Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B8%85%E7%90%86%E6%96%B9%E6%B3%95string-cleanup-methods"><span class="nav-number">3.</span> <span class="nav-text"> 1.3 字符串清理方法（String Cleanup Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95string-manipulation-methods"><span class="nav-number">4.</span> <span class="nav-text"> 1.4 字符串操作方法（String Manipulation Methods）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-formatter-%E8%A7%84%E5%88%99%E8%AF%A6%E8%A7%A3"><span class="nav-number"></span> <span class="nav-text"> Java Formatter 规则详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%90%84%E9%83%A8%E5%88%86%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text"> 1. 各部分详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-argument-index"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.1 Argument Index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-flags"><span class="nav-number">1.2.</span> <span class="nav-text"> 1.2 Flags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-width"><span class="nav-number">1.3.</span> <span class="nav-text"> 1.3 Width</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-precision"><span class="nav-number">1.4.</span> <span class="nav-text"> 1.4 Precision</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-conversion"><span class="nav-number">1.5.</span> <span class="nav-text"> 1.5 Conversion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%BC%E5%90%88%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text"> 2. 综合示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-formatter-%E4%B8%8E-stringformat"><span class="nav-number">3.</span> <span class="nav-text"> 3. Formatter 与 String.format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text"> 总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2024
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90-java-string-%E6%96%B9%E6%B3%95%E5%8F%8A-formatter-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text"> 全面解析 Java String 方法及 Formatter 的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-string-%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB%E5%8F%8A%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text"> 1. String 方法分类及示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A3%80%E6%9F%A5%E6%96%B9%E6%B3%95string-inspection-methods"><span class="nav-number">1.</span> <span class="nav-text"> 1.1 字符串检查方法（String Inspection Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95string-comparison-methods"><span class="nav-number">2.</span> <span class="nav-text"> 1.2 字符串比较方法（String Comparison Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B8%85%E7%90%86%E6%96%B9%E6%B3%95string-cleanup-methods"><span class="nav-number">3.</span> <span class="nav-text"> 1.3 字符串清理方法（String Cleanup Methods）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95string-manipulation-methods"><span class="nav-number">4.</span> <span class="nav-text"> 1.4 字符串操作方法（String Manipulation Methods）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-formatter-%E8%A7%84%E5%88%99%E8%AF%A6%E8%A7%A3"><span class="nav-number"></span> <span class="nav-text"> Java Formatter 规则详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%90%84%E9%83%A8%E5%88%86%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text"> 1. 各部分详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-argument-index"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.1 Argument Index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-flags"><span class="nav-number">1.2.</span> <span class="nav-text"> 1.2 Flags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-width"><span class="nav-number">1.3.</span> <span class="nav-text"> 1.3 Width</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-precision"><span class="nav-number">1.4.</span> <span class="nav-text"> 1.4 Precision</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-conversion"><span class="nav-number">1.5.</span> <span class="nav-text"> 1.5 Conversion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%BC%E5%90%88%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text"> 2. 综合示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-formatter-%E4%B8%8E-stringformat"><span class="nav-number">3.</span> <span class="nav-text"> 3. Formatter 与 String.format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text"> 总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
