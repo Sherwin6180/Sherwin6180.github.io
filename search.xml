@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OS Security and Access Control</title>
+    <url>/os-security-and-access-control/index.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>security</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Exact Match</title>
+    <url>/exact-match/index.html</url>
+    <content><![CDATA[<blockquote>
+<p>[!NOTE] Definition<br />
+Assume a database with a set of tuples; each tuple consists of a unique fixed-length key together with some state information. A query specifies a key K. The goal is to return the state information associated with the tuple whose key is K.</p>
+</blockquote>
+<p>routers = interconnect devices</p>
+<h1 id="why-do-we-learn-exact-match"><a class="markdownIt-Anchor" href="#why-do-we-learn-exact-match"></a> Why do we learn Exact Match?</h1>
+<ul>
+<li>In the context of networking
+<ul>
+<li>We measure the speed in terms of memory accesses, instead of processing</li>
+<li>We have a strict deadline (under 10 ns)</li>
+</ul>
+</li>
+<li>Crucial for bridging, which is often integrated within a router</li>
+</ul>
+<h1 id="bridging"><a class="markdownIt-Anchor" href="#bridging"></a> Bridging</h1>
+<ul>
+<li>3 challenges: Ethernet, Wire Speed Forwarding, and Scaling Lookups to Higher Speeds
+<ul>
+<li>802.1 spanning tree bridges</li>
+</ul>
+</li>
+</ul>
+<h2 id="challenge-1-ethernet-under-fire"><a class="markdownIt-Anchor" href="#challenge-1-ethernet-under-fire"></a> Challenge 1: Ethernet under fire</h2>
+<ul>
+<li>Problems: poor performance at large loads (retransmission) and long distance</li>
+<li>Routers interconnect links using information in the routing header, while repeaters interconnect links based on physical-layer information, such as bits.</li>
+<li>Bridge (Data Link Layer Relay)
+<ul>
+<li>based only on the data link layer</li>
+<li>Packet Repeater
+<ul>
+<li>Buffers packet, even for packets that don’t cross different Ethernets</li>
+</ul>
+</li>
+<li>Filtered Repeater
+<ul>
+<li>has a table that maps station addresses to Ethernets (A and B are in the same network)</li>
+<li>Define p: fraction of traffic on each Ethernet is to destinations on the same Ethernet. Then the overall bandwidth of the two Ethernet systems becomes (1 + p) times the bandwidth of a single Ethernet.</li>
+<li>This follows because the fraction p can be simultaneously sent on both Ethernets, increasing overall bandwidth by this fraction. Hence both bandwidth and distance increase.</li>
+</ul>
+</li>
+<li>Filtering Repeater With Learning</li>
+</ul>
+</li>
+</ul>
+<h2 id="challenge-2-wire-speed-forwarding"><a class="markdownIt-Anchor" href="#challenge-2-wire-speed-forwarding"></a> challenge 2: wire speed forwarding</h2>
+<ul>
+<li>If the bridge takes more time to forward a packet than the minimum packet arrival time, there are always scenarios in which packets to be forwarded will be dropped because the buffers are filled with packets that will be discarded.</li>
+<li>The solution: the bridge would look up the destination address in the table (for forwarding) and the source address (for learning) in the time it took <strong>a minimum-size packet to arrive</strong> on an Ethernet
+<ul>
+<li>64-byte minimum packet: 51.2 microsecond to forward a packet.</li>
+<li>Two-port bridge could receive a minimum-size packet on each of its Ethernets every 51.2 microsecond: two lookups (destination and source) every 25.6 microsecond.</li>
+<li>The new design will process each packet, determining whether or not to discard the packet</li>
+<li>use <strong>binary search</strong> lookups</li>
+</ul>
+</li>
+</ul>
+<h2 id="challenge-3-scaling-lookups-to-higher-speeds"><a class="markdownIt-Anchor" href="#challenge-3-scaling-lookups-to-higher-speeds"></a> Challenge 3: scaling lookups to higher speeds</h2>
+<ul>
+<li>Bridge database size increases to 64K. Binary search lookups don’t suffice</li>
+<li>Gigaswitch: <strong>hashing</strong>-based lookups. Each bridge lookup makes at most four reads from memory.</li>
+</ul>
+<h3 id="perfect-hashing"><a class="markdownIt-Anchor" href="#perfect-hashing"></a> Perfect Hashing</h3>
+<ul>
+<li>hashing
+<ul>
+<li>key: ethernet address</li>
+<li>value: port number?</li>
+</ul>
+</li>
+<li>A hashed address is obtained by the equation <code>A(X) ∗ M(X) mod G(X)</code>
+<ul>
+<li>A(X): address expressed as a 47-degree polynomial</li>
+<li>M(X): nonzero, 47-degree programmable hash multiplier</li>
+<li>G(X): irreducible polynomial <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mn>48</mn></msup><mo>+</mo><msup><mi>X</mi><mn>36</mn></msup><mo>+</mo><msup><mi>X</mi><mn>25</mn></msup><mo>+</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">X^{48} + X^{36} + X^{25} + X^{10} + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
+</ul>
+</li>
+<li>Hashed Address
+<ul>
+<li>48-bit: size of Ethernet address</li>
+<li><code>[15:0]</code>: index into a 64K-entry hash table</li>
+<li>Each entry points to a balanced binary tree of height at most 3</li>
+<li><code>[47:16]</code>: distinguish collided keys
+<ul>
+<li>The binary tree is sorted based on these values</li>
+</ul>
+</li>
+<li>at most 4 memory accesses: 1 for hash table lookup, 3 for the height-3 tree</li>
+</ul>
+</li>
+<li>CAM (Content Addressable Memory): a small hardware lookup database. Aimed to deal with 7 conflicts (size of the heigh-3 complete binary tree)</li>
+</ul>
+<h3 id="using-hardware-parallelism"><a class="markdownIt-Anchor" href="#using-hardware-parallelism"></a> Using hardware parallelism</h3>
+<ul>
+<li>pipeline binary search</li>
+<li>logarithmic number of processing stages, each with its own memory array
+<ul>
+<li>Each level of the binary tree has its own stage</li>
+</ul>
+</li>
+<li>Search keys enter from the left and progress from stage to stage, carrying a pointer (points to a “child” key) that identifies which <strong>key</strong> in the corresponding stage memory must be compared to the search key.</li>
+<li>The lookup throughput is nearly one per memory access</li>
+<li>still <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span></span></span></span> lookups in total, but the throughput is improved</li>
+</ul>
+<h3 id="d-left"><a class="markdownIt-Anchor" href="#d-left"></a> d-left</h3>
+<ul>
+<li>when n objects are hashed into n buckets, the expectation of this maximum is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>o</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{(1 + o(1))\log n}{\log\log n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.491108em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">o</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mclose mtight">)</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> (high probability) when a random hash function is used</li>
+<li>Goal: reduce this maximum to a small number (say 2 or 3) so that every bucket can fit into a memory block</li>
+<li>d-random
+<ul>
+<li>use d &gt; 1 random hash functions (h1, h2, ···, hd) instead of 1. Given a hash key x, there are <strong>d</strong> candidate hash buckets into which x can be inserted: buckets indexed by h1(x), h2(x), ···, hd(x) respectively.
+<ul>
+<li>x is inserted into the bucket that is least occupied</li>
+</ul>
+</li>
+<li>The expectation of the maximum value is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo fence="true">(</mo><mfrac><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>d</mi></mrow></mfrac><mo fence="true">)</mo></mrow><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\left( \frac{\log \log n}{\log d} \right) + O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+</li>
+<li>d-left
+<ul>
+<li>variation of d-random</li>
+<li>Hash table is partitioned into logically independent subsets of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>n</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. d-random doesn’t have such partition</li>
+<li>if there are more than one least occupied buckets among the d buckets where an object x should be inserted into, then x will be inserted into the leftmost one among them</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>networking</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java Enhanced Switch</title>
     <url>/java-enhanced-switch/index.html</url>
     <content><![CDATA[<p>在Java中，<strong>增强的Switch</strong>（Enhanced Switch）是从Java 14开始引入，并在Java 17中正式成为标准功能的一项特性。它对传统的<code>switch</code>语句进行了改进，使其更简洁、更具表达力，并支持作为表达式使用。下面将详细介绍Java中的增强Switch，包括其定义、特点、语法、使用示例以及与传统Switch的对比。</p>
@@ -156,147 +299,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Exact Match</title>
-    <url>/exact-match/index.html</url>
-    <content><![CDATA[<blockquote>
-<p>[!NOTE] Definition<br />
-Assume a database with a set of tuples; each tuple consists of a unique fixed-length key together with some state information. A query specifies a key K. The goal is to return the state information associated with the tuple whose key is K.</p>
-</blockquote>
-<p>routers = interconnect devices</p>
-<h1 id="why-do-we-learn-exact-match"><a class="markdownIt-Anchor" href="#why-do-we-learn-exact-match"></a> Why do we learn Exact Match?</h1>
-<ul>
-<li>In the context of networking
-<ul>
-<li>We measure the speed in terms of memory accesses, instead of processing</li>
-<li>We have a strict deadline (under 10 ns)</li>
-</ul>
-</li>
-<li>Crucial for bridging, which is often integrated within a router</li>
-</ul>
-<h1 id="bridging"><a class="markdownIt-Anchor" href="#bridging"></a> Bridging</h1>
-<ul>
-<li>3 challenges: Ethernet, Wire Speed Forwarding, and Scaling Lookups to Higher Speeds
-<ul>
-<li>802.1 spanning tree bridges</li>
-</ul>
-</li>
-</ul>
-<h2 id="challenge-1-ethernet-under-fire"><a class="markdownIt-Anchor" href="#challenge-1-ethernet-under-fire"></a> Challenge 1: Ethernet under fire</h2>
-<ul>
-<li>Problems: poor performance at large loads (retransmission) and long distance</li>
-<li>Routers interconnect links using information in the routing header, while repeaters interconnect links based on physical-layer information, such as bits.</li>
-<li>Bridge (Data Link Layer Relay)
-<ul>
-<li>based only on the data link layer</li>
-<li>Packet Repeater
-<ul>
-<li>Buffers packet, even for packets that don’t cross different Ethernets</li>
-</ul>
-</li>
-<li>Filtered Repeater
-<ul>
-<li>has a table that maps station addresses to Ethernets (A and B are in the same network)</li>
-<li>Define p: fraction of traffic on each Ethernet is to destinations on the same Ethernet. Then the overall bandwidth of the two Ethernet systems becomes (1 + p) times the bandwidth of a single Ethernet.</li>
-<li>This follows because the fraction p can be simultaneously sent on both Ethernets, increasing overall bandwidth by this fraction. Hence both bandwidth and distance increase.</li>
-</ul>
-</li>
-<li>Filtering Repeater With Learning</li>
-</ul>
-</li>
-</ul>
-<h2 id="challenge-2-wire-speed-forwarding"><a class="markdownIt-Anchor" href="#challenge-2-wire-speed-forwarding"></a> challenge 2: wire speed forwarding</h2>
-<ul>
-<li>If the bridge takes more time to forward a packet than the minimum packet arrival time, there are always scenarios in which packets to be forwarded will be dropped because the buffers are filled with packets that will be discarded.</li>
-<li>The solution: the bridge would look up the destination address in the table (for forwarding) and the source address (for learning) in the time it took <strong>a minimum-size packet to arrive</strong> on an Ethernet
-<ul>
-<li>64-byte minimum packet: 51.2 microsecond to forward a packet.</li>
-<li>Two-port bridge could receive a minimum-size packet on each of its Ethernets every 51.2 microsecond: two lookups (destination and source) every 25.6 microsecond.</li>
-<li>The new design will process each packet, determining whether or not to discard the packet</li>
-<li>use <strong>binary search</strong> lookups</li>
-</ul>
-</li>
-</ul>
-<h2 id="challenge-3-scaling-lookups-to-higher-speeds"><a class="markdownIt-Anchor" href="#challenge-3-scaling-lookups-to-higher-speeds"></a> Challenge 3: scaling lookups to higher speeds</h2>
-<ul>
-<li>Bridge database size increases to 64K. Binary search lookups don’t suffice</li>
-<li>Gigaswitch: <strong>hashing</strong>-based lookups. Each bridge lookup makes at most four reads from memory.</li>
-</ul>
-<h3 id="perfect-hashing"><a class="markdownIt-Anchor" href="#perfect-hashing"></a> Perfect Hashing</h3>
-<ul>
-<li>hashing
-<ul>
-<li>key: ethernet address</li>
-<li>value: port number?</li>
-</ul>
-</li>
-<li>A hashed address is obtained by the equation <code>A(X) ∗ M(X) mod G(X)</code>
-<ul>
-<li>A(X): address expressed as a 47-degree polynomial</li>
-<li>M(X): nonzero, 47-degree programmable hash multiplier</li>
-<li>G(X): irreducible polynomial <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mn>48</mn></msup><mo>+</mo><msup><mi>X</mi><mn>36</mn></msup><mo>+</mo><msup><mi>X</mi><mn>25</mn></msup><mo>+</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">X^{48} + X^{36} + X^{25} + X^{10} + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
-</ul>
-</li>
-<li>Hashed Address
-<ul>
-<li>48-bit: size of Ethernet address</li>
-<li><code>[15:0]</code>: index into a 64K-entry hash table</li>
-<li>Each entry points to a balanced binary tree of height at most 3</li>
-<li><code>[47:16]</code>: distinguish collided keys
-<ul>
-<li>The binary tree is sorted based on these values</li>
-</ul>
-</li>
-<li>at most 4 memory accesses: 1 for hash table lookup, 3 for the height-3 tree</li>
-</ul>
-</li>
-<li>CAM (Content Addressable Memory): a small hardware lookup database. Aimed to deal with 7 conflicts (size of the heigh-3 complete binary tree)</li>
-</ul>
-<h3 id="using-hardware-parallelism"><a class="markdownIt-Anchor" href="#using-hardware-parallelism"></a> Using hardware parallelism</h3>
-<ul>
-<li>pipeline binary search</li>
-<li>logarithmic number of processing stages, each with its own memory array
-<ul>
-<li>Each level of the binary tree has its own stage</li>
-</ul>
-</li>
-<li>Search keys enter from the left and progress from stage to stage, carrying a pointer (points to a “child” key) that identifies which <strong>key</strong> in the corresponding stage memory must be compared to the search key.</li>
-<li>The lookup throughput is nearly one per memory access</li>
-<li>still <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span></span></span></span> lookups in total, but the throughput is improved</li>
-</ul>
-<h3 id="d-left"><a class="markdownIt-Anchor" href="#d-left"></a> d-left</h3>
-<ul>
-<li>when n objects are hashed into n buckets, the expectation of this maximum is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>o</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{(1 + o(1))\log n}{\log\log n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.491108em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">o</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mclose mtight">)</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> (high probability) when a random hash function is used</li>
-<li>Goal: reduce this maximum to a small number (say 2 or 3) so that every bucket can fit into a memory block</li>
-<li>d-random
-<ul>
-<li>use d &gt; 1 random hash functions (h1, h2, ···, hd) instead of 1. Given a hash key x, there are <strong>d</strong> candidate hash buckets into which x can be inserted: buckets indexed by h1(x), h2(x), ···, hd(x) respectively.
-<ul>
-<li>x is inserted into the bucket that is least occupied</li>
-</ul>
-</li>
-<li>The expectation of the maximum value is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo fence="true">(</mo><mfrac><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>d</mi></mrow></mfrac><mo fence="true">)</mo></mrow><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\left( \frac{\log \log n}{\log d} \right) + O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
-</ul>
-</li>
-<li>d-left
-<ul>
-<li>variation of d-random</li>
-<li>Hash table is partitioned into logically independent subsets of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>n</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. d-random doesn’t have such partition</li>
-<li>if there are more than one least occupied buckets among the d buckets where an object x should be inserted into, then x will be inserted into the leftmost one among them</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>networking</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java String methods and Formatter</title>
     <url>/java-string-methods-and-formatter/index.html</url>
-    <content><![CDATA[<h3 id="全面解析-java-string-方法及-formatter-的使用"><a class="markdownIt-Anchor" href="#全面解析-java-string-方法及-formatter-的使用"></a> 全面解析 Java String 方法及 Formatter 的使用</h3>
-<p>在 Java 中，<code>String</code> 是一个不可变对象（Immutable Object），提供了丰富的方法来操作和处理字符串。本文将对常见的 String 方法进行分类，并配合示例进行详细解析。此外，还将介绍 Java <code>Formatter</code> 的使用，为格式化字符串提供高效解决方案。</p>
-<hr />
-<h2 id="1-string-方法分类及示例"><a class="markdownIt-Anchor" href="#1-string-方法分类及示例"></a> 1. String 方法分类及示例</h2>
+    <content><![CDATA[<h2 id="1-string-方法分类及示例"><a class="markdownIt-Anchor" href="#1-string-方法分类及示例"></a> 1. String 方法分类及示例</h2>
 <h3 id="11-字符串检查方法string-inspection-methods"><a class="markdownIt-Anchor" href="#11-字符串检查方法string-inspection-methods"></a> <strong>1.1 字符串检查方法（String Inspection Methods）</strong></h3>
 <p>这些方法用于检查字符串的特性或内容。</p>
 <table>
@@ -449,7 +454,7 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <p><strong>示例</strong>：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringManipulation</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;Concat: &quot;</span> + str.concat(<span class="string">&quot; World&quot;</span>));        <span class="comment">// 输出: Hello World</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Repeat: &quot;</span> + str.repeat(<span class="number">3</span>));              <span class="comment">// 输出: HelloHelloHello</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Substring: &quot;</span> + str.substring(<span class="number">0</span>, <span class="number">3</span>));     <span class="comment">// 输出: Hel</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Replace: &quot;</span> + str.replace(<span class="string">&quot;l&quot;</span>, <span class="string">&quot;p&quot;</span>));     <span class="comment">// 输出: Heppo</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr />
-<h2 id="java-formatter-规则详解"><a class="markdownIt-Anchor" href="#java-formatter-规则详解"></a> Java Formatter 规则详解</h2>
+<h2 id="2-java-formatter-规则详解"><a class="markdownIt-Anchor" href="#2-java-formatter-规则详解"></a> 2. Java Formatter 规则详解</h2>
 <p>在 Java 中，<code>Formatter</code> 的规则以以下结构为基础：</p>
 <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">%[argument_index$][flags][width][.precision]<span class="keyword">conversion</span></span><br></pre></td></tr></table></figure>
 <p>每个部分的含义和用法如下：</p>
@@ -575,6 +580,140 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <hr />
 <h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
 <p>通过掌握 <code>Formatter</code> 的规则，开发者可以实现复杂的字符串格式化功能，无论是对齐、填充还是小数精度，都能精准控制输出效果。这种工具特别适合用于日志、报告和用户界面开发！</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Overloading vs Overriding</title>
+    <url>/overloading-vs-overriding/index.html</url>
+    <content><![CDATA[<h3 id="方法重载与方法重写的全面解析"><a class="markdownIt-Anchor" href="#方法重载与方法重写的全面解析"></a> 方法重载与方法重写的全面解析</h3>
+<p>在面向对象编程中，<strong>方法重载（Overloading）</strong> 和 <strong>方法重写（Overriding）</strong> 是两个关键概念。它们看似相似，但在实际应用中差别显著。通过理解它们的规则和应用场景，我们可以更好地编写高效、可扩展的代码。本文将详细讲解这两个概念及其核心规则。</p>
+<hr />
+<h3 id="方法重载overloading"><a class="markdownIt-Anchor" href="#方法重载overloading"></a> 方法重载（Overloading）</h3>
+<p>方法重载是指在同一个类中定义多个具有相同名称但参数列表不同的方法。它可以通过不同的参数类型或数量实现方法的多态性。</p>
+<h4 id="特性"><a class="markdownIt-Anchor" href="#特性"></a> 特性</h4>
+<ol>
+<li><strong>参数不同</strong>：方法必须有不同的参数列表（参数数量或类型）。</li>
+<li><strong>返回类型可以不同</strong>：重载方法的返回值类型可以不同。</li>
+<li><strong>访问修饰符可以不同</strong>：可以使用 <code>public</code>、<code>protected</code> 或 <code>private</code> 等修饰符。</li>
+<li><strong>异常类型可以不同</strong>：允许抛出不同的异常。</li>
+<li><strong>类限制</strong>：方法重载通常发生在同一个类中，但也可以在子类中使用。</li>
+</ol>
+<h4 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="comment">// 重载方法：参数不同</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">add</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b + c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="应用场景"><a class="markdownIt-Anchor" href="#应用场景"></a> 应用场景</h4>
+<ul>
+<li>在工具类中提供多种参数形式的支持。</li>
+<li>在构造函数中允许不同的初始化方式。</li>
+<li>提高代码的可读性和灵活性。</li>
+</ul>
+<hr />
+<h3 id="方法重写overriding"><a class="markdownIt-Anchor" href="#方法重写overriding"></a> 方法重写（Overriding）</h3>
+<p>方法重写是子类对父类方法的重新定义，用于实现不同的行为。它是多态性的核心，是继承的重要特性。</p>
+<h4 id="特性-2"><a class="markdownIt-Anchor" href="#特性-2"></a> 特性</h4>
+<ol>
+<li><strong>参数完全相同</strong>：子类方法的参数列表必须与父类方法一致。</li>
+<li><strong>返回类型相同或协变类型</strong>：子类方法的返回类型可以是父类返回类型的子类型（协变返回类型）。</li>
+<li><strong>访问修饰符限制</strong>：子类方法不能使用比父类更严格的访问修饰符。例如，父类方法为 <code>protected</code>，子类不能改为 <code>private</code>，但可以改为 <code>public</code>。</li>
+<li><strong>异常限制</strong>：子类方法不能抛出比父类方法更广泛的受检异常。</li>
+<li><strong>继承关系</strong>：方法重写必须发生在父类和子类之间。</li>
+</ol>
+<h4 id="示例-2"><a class="markdownIt-Anchor" href="#示例-2"></a> 示例</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Animal makes a sound&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Dog barks&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Animal</span> <span class="variable">animal</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">        animal.makeSound(); <span class="comment">// 输出：Dog barks</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="方法重载与方法重写的区别"><a class="markdownIt-Anchor" href="#方法重载与方法重写的区别"></a> 方法重载与方法重写的区别</h3>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>方法重载（Overloading）</strong></th>
+<th><strong>方法重写（Overriding）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>功能</strong></td>
+<td>提供不同参数组合的方法调用方式。</td>
+<td>修改父类方法的行为以适应子类的需求。</td>
+</tr>
+<tr>
+<td><strong>类关系</strong></td>
+<td>发生在同一个类中，也可以在子类中实现。</td>
+<td>必须发生在父类和子类之间。</td>
+</tr>
+<tr>
+<td><strong>参数</strong></td>
+<td>必须不同（数量或类型）。</td>
+<td>必须完全相同。</td>
+</tr>
+<tr>
+<td><strong>返回类型</strong></td>
+<td>可以不同。</td>
+<td>必须相同或为协变返回类型（子类类型）。</td>
+</tr>
+<tr>
+<td><strong>访问修饰符</strong></td>
+<td>可以不同。</td>
+<td>不能更严格，可以更宽松（如 <code>protected -&gt; public</code>）。</td>
+</tr>
+<tr>
+<td><strong>异常</strong></td>
+<td>可以抛出不同的异常。</td>
+<td>不能抛出新的或更广泛的受检异常。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="方法重写的重要补充"><a class="markdownIt-Anchor" href="#方法重写的重要补充"></a> 方法重写的重要补充</h3>
+<p>在方法重写中，有一些特别需要注意的规则：</p>
+<h4 id="1-只能重写继承的方法"><a class="markdownIt-Anchor" href="#1-只能重写继承的方法"></a> 1. <strong>只能重写继承的方法</strong></h4>
+<ul>
+<li>只有从父类继承的方法可以被重写，静态方法、构造函数、私有方法无法重写。</li>
+<li><strong>注意</strong>：静态方法无法被重写，只能被隐藏。</li>
+</ul>
+<h4 id="2-构造函数和私有方法不能被重写"><a class="markdownIt-Anchor" href="#2-构造函数和私有方法不能被重写"></a> 2. <strong>构造函数和私有方法不能被重写</strong></h4>
+<ul>
+<li><strong>构造函数</strong>是用来初始化类的，不能继承，自然也无法重写。</li>
+<li><strong>私有方法</strong>在子类中不可见，因此也不能被重写。</li>
+</ul>
+<h4 id="3-final-修饰的方法不能被重写"><a class="markdownIt-Anchor" href="#3-final-修饰的方法不能被重写"></a> 3. <strong><code>final</code> 修饰的方法不能被重写</strong></h4>
+<ul>
+<li>被 <code>final</code> 修饰的方法禁止修改，因此不能被重写。</li>
+</ul>
+<h4 id="4-通过-super-调用父类方法"><a class="markdownIt-Anchor" href="#4-通过-super-调用父类方法"></a> 4. <strong>通过 <code>super</code> 调用父类方法</strong></h4>
+<ul>
+<li>子类中可以通过 <code>super.methodName()</code> 调用父类的方法。</li>
+<li>这通常用于保留父类的部分逻辑，同时在子类中扩展功能。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is a parent method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is a child method.&quot;</span>);</span><br><span class="line">        <span class="built_in">super</span>.display(); <span class="comment">// 调用父类方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>输出</strong>：</p>
+<figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">This <span class="built_in">is</span> a child <span class="built_in">method</span>.</span><br><span class="line">This <span class="built_in">is</span> a parent <span class="built_in">method</span>.</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="协变返回类型covariant-return-type"><a class="markdownIt-Anchor" href="#协变返回类型covariant-return-type"></a> 协变返回类型（Covariant Return Type）</h3>
+<p>方法重写支持协变返回类型，即子类方法的返回类型可以是父类返回类型的子类型。这种设计提高了类型安全性，常用于复杂的继承关系中。</p>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Animal <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Animal</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Dog <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="应用场景总结"><a class="markdownIt-Anchor" href="#应用场景总结"></a> 应用场景总结</h3>
+<h4 id="方法重载"><a class="markdownIt-Anchor" href="#方法重载"></a> 方法重载</h4>
+<ul>
+<li><strong>工具类</strong>：提供多种输入支持（如不同数据类型）。</li>
+<li><strong>构造函数</strong>：提供灵活的初始化方式。</li>
+</ul>
+<h4 id="方法重写"><a class="markdownIt-Anchor" href="#方法重写"></a> 方法重写</h4>
+<ul>
+<li><strong>继承与多态</strong>：通过子类重写实现特定行为。</li>
+<li><strong>框架与扩展</strong>：子类重写框架提供的方法，定制具体逻辑。</li>
+</ul>
+<hr />
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li><strong>方法重载</strong>：增强灵活性，通过不同参数实现多样化调用。</li>
+<li><strong>方法重写</strong>：实现继承和多态，子类重写父类方法以适应具体需求。</li>
+</ul>
 ]]></content>
       <tags>
         <tag>Java</tag>
@@ -749,255 +888,6 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 </li>
 </ul>
 <p>根据项目需求和设计考虑，选择合适的方式来定义数据模型。如果需要简单的数据存储并希望减少样板代码，<strong>Record</strong> 是一个理想的选择；如果需要更多的灵活性和可变性，或需要继承其他类，则应使用 <strong>POJO</strong>。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Overloading vs Overriding</title>
-    <url>/overloading-vs-overriding/index.html</url>
-    <content><![CDATA[<h3 id="方法重载与方法重写的全面解析"><a class="markdownIt-Anchor" href="#方法重载与方法重写的全面解析"></a> 方法重载与方法重写的全面解析</h3>
-<p>在面向对象编程中，<strong>方法重载（Overloading）</strong> 和 <strong>方法重写（Overriding）</strong> 是两个关键概念。它们看似相似，但在实际应用中差别显著。通过理解它们的规则和应用场景，我们可以更好地编写高效、可扩展的代码。本文将详细讲解这两个概念及其核心规则。</p>
-<hr />
-<h3 id="方法重载overloading"><a class="markdownIt-Anchor" href="#方法重载overloading"></a> 方法重载（Overloading）</h3>
-<p>方法重载是指在同一个类中定义多个具有相同名称但参数列表不同的方法。它可以通过不同的参数类型或数量实现方法的多态性。</p>
-<h4 id="特性"><a class="markdownIt-Anchor" href="#特性"></a> 特性</h4>
-<ol>
-<li><strong>参数不同</strong>：方法必须有不同的参数列表（参数数量或类型）。</li>
-<li><strong>返回类型可以不同</strong>：重载方法的返回值类型可以不同。</li>
-<li><strong>访问修饰符可以不同</strong>：可以使用 <code>public</code>、<code>protected</code> 或 <code>private</code> 等修饰符。</li>
-<li><strong>异常类型可以不同</strong>：允许抛出不同的异常。</li>
-<li><strong>类限制</strong>：方法重载通常发生在同一个类中，但也可以在子类中使用。</li>
-</ol>
-<h4 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="comment">// 重载方法：参数不同</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">add</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a + b + c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="应用场景"><a class="markdownIt-Anchor" href="#应用场景"></a> 应用场景</h4>
-<ul>
-<li>在工具类中提供多种参数形式的支持。</li>
-<li>在构造函数中允许不同的初始化方式。</li>
-<li>提高代码的可读性和灵活性。</li>
-</ul>
-<hr />
-<h3 id="方法重写overriding"><a class="markdownIt-Anchor" href="#方法重写overriding"></a> 方法重写（Overriding）</h3>
-<p>方法重写是子类对父类方法的重新定义，用于实现不同的行为。它是多态性的核心，是继承的重要特性。</p>
-<h4 id="特性-2"><a class="markdownIt-Anchor" href="#特性-2"></a> 特性</h4>
-<ol>
-<li><strong>参数完全相同</strong>：子类方法的参数列表必须与父类方法一致。</li>
-<li><strong>返回类型相同或协变类型</strong>：子类方法的返回类型可以是父类返回类型的子类型（协变返回类型）。</li>
-<li><strong>访问修饰符限制</strong>：子类方法不能使用比父类更严格的访问修饰符。例如，父类方法为 <code>protected</code>，子类不能改为 <code>private</code>，但可以改为 <code>public</code>。</li>
-<li><strong>异常限制</strong>：子类方法不能抛出比父类方法更广泛的受检异常。</li>
-<li><strong>继承关系</strong>：方法重写必须发生在父类和子类之间。</li>
-</ol>
-<h4 id="示例-2"><a class="markdownIt-Anchor" href="#示例-2"></a> 示例</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Animal makes a sound&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">makeSound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Dog barks&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Animal</span> <span class="variable">animal</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">        animal.makeSound(); <span class="comment">// 输出：Dog barks</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr />
-<h3 id="方法重载与方法重写的区别"><a class="markdownIt-Anchor" href="#方法重载与方法重写的区别"></a> 方法重载与方法重写的区别</h3>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>方法重载（Overloading）</strong></th>
-<th><strong>方法重写（Overriding）</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>功能</strong></td>
-<td>提供不同参数组合的方法调用方式。</td>
-<td>修改父类方法的行为以适应子类的需求。</td>
-</tr>
-<tr>
-<td><strong>类关系</strong></td>
-<td>发生在同一个类中，也可以在子类中实现。</td>
-<td>必须发生在父类和子类之间。</td>
-</tr>
-<tr>
-<td><strong>参数</strong></td>
-<td>必须不同（数量或类型）。</td>
-<td>必须完全相同。</td>
-</tr>
-<tr>
-<td><strong>返回类型</strong></td>
-<td>可以不同。</td>
-<td>必须相同或为协变返回类型（子类类型）。</td>
-</tr>
-<tr>
-<td><strong>访问修饰符</strong></td>
-<td>可以不同。</td>
-<td>不能更严格，可以更宽松（如 <code>protected -&gt; public</code>）。</td>
-</tr>
-<tr>
-<td><strong>异常</strong></td>
-<td>可以抛出不同的异常。</td>
-<td>不能抛出新的或更广泛的受检异常。</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="方法重写的重要补充"><a class="markdownIt-Anchor" href="#方法重写的重要补充"></a> 方法重写的重要补充</h3>
-<p>在方法重写中，有一些特别需要注意的规则：</p>
-<h4 id="1-只能重写继承的方法"><a class="markdownIt-Anchor" href="#1-只能重写继承的方法"></a> 1. <strong>只能重写继承的方法</strong></h4>
-<ul>
-<li>只有从父类继承的方法可以被重写，静态方法、构造函数、私有方法无法重写。</li>
-<li><strong>注意</strong>：静态方法无法被重写，只能被隐藏。</li>
-</ul>
-<h4 id="2-构造函数和私有方法不能被重写"><a class="markdownIt-Anchor" href="#2-构造函数和私有方法不能被重写"></a> 2. <strong>构造函数和私有方法不能被重写</strong></h4>
-<ul>
-<li><strong>构造函数</strong>是用来初始化类的，不能继承，自然也无法重写。</li>
-<li><strong>私有方法</strong>在子类中不可见，因此也不能被重写。</li>
-</ul>
-<h4 id="3-final-修饰的方法不能被重写"><a class="markdownIt-Anchor" href="#3-final-修饰的方法不能被重写"></a> 3. <strong><code>final</code> 修饰的方法不能被重写</strong></h4>
-<ul>
-<li>被 <code>final</code> 修饰的方法禁止修改，因此不能被重写。</li>
-</ul>
-<h4 id="4-通过-super-调用父类方法"><a class="markdownIt-Anchor" href="#4-通过-super-调用父类方法"></a> 4. <strong>通过 <code>super</code> 调用父类方法</strong></h4>
-<ul>
-<li>子类中可以通过 <code>super.methodName()</code> 调用父类的方法。</li>
-<li>这通常用于保留父类的部分逻辑，同时在子类中扩展功能。</li>
-</ul>
-<p><strong>示例</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is a parent method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is a child method.&quot;</span>);</span><br><span class="line">        <span class="built_in">super</span>.display(); <span class="comment">// 调用父类方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>输出</strong>：</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">This <span class="built_in">is</span> a child <span class="built_in">method</span>.</span><br><span class="line">This <span class="built_in">is</span> a parent <span class="built_in">method</span>.</span><br></pre></td></tr></table></figure>
-<hr />
-<h3 id="协变返回类型covariant-return-type"><a class="markdownIt-Anchor" href="#协变返回类型covariant-return-type"></a> 协变返回类型（Covariant Return Type）</h3>
-<p>方法重写支持协变返回类型，即子类方法的返回类型可以是父类返回类型的子类型。这种设计提高了类型安全性，常用于复杂的继承关系中。</p>
-<p><strong>示例</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Animal <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Animal</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Dog <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr />
-<h3 id="应用场景总结"><a class="markdownIt-Anchor" href="#应用场景总结"></a> 应用场景总结</h3>
-<h4 id="方法重载"><a class="markdownIt-Anchor" href="#方法重载"></a> 方法重载</h4>
-<ul>
-<li><strong>工具类</strong>：提供多种输入支持（如不同数据类型）。</li>
-<li><strong>构造函数</strong>：提供灵活的初始化方式。</li>
-</ul>
-<h4 id="方法重写"><a class="markdownIt-Anchor" href="#方法重写"></a> 方法重写</h4>
-<ul>
-<li><strong>继承与多态</strong>：通过子类重写实现特定行为。</li>
-<li><strong>框架与扩展</strong>：子类重写框架提供的方法，定制具体逻辑。</li>
-</ul>
-<hr />
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<ul>
-<li><strong>方法重载</strong>：增强灵活性，通过不同参数实现多样化调用。</li>
-<li><strong>方法重写</strong>：实现继承和多态，子类重写父类方法以适应具体需求。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Verilog Basics</title>
-    <url>/verilog-basics/index.html</url>
-    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
-<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
-<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
-<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
-<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
-<ul>
-<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
-<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
-<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
-</ul>
-<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
-<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
-<ul>
-<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
-<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
-</ul>
-<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
-<p>Let’s start with the basics of Verilog syntax:</p>
-<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
-<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
-<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
-<p>Verilog provides several data types for representing signals:</p>
-<ul>
-<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
-<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
-</ul>
-<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
-<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
-<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
-<p>Let’s write a simple Verilog program that implements an AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
-<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
-<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
-<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
-<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
-<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
-<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
-<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
-<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
-<p>As you start coding in Verilog, keep the following best practices in mind:</p>
-<ul>
-<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
-<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
-<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
-<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
-</ul>
-<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
-<p>Here are some resources to help you continue your Verilog learning journey:</p>
-<ul>
-<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
-<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
-<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
-</ul>
-<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
-<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
-<p>Happy coding!</p>
-<hr />
-<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>OS Security and Access Control</title>
-    <url>/os-security-and-access-control/index.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>security</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>super() in Java</title>
-    <url>/super-in-java/index.html</url>
-    <content><![CDATA[<ol>
-<li>
-<p><strong>默认调用 <code>super()</code></strong>：</p>
-<ul>
-<li>当你在子类的构造方法中没有显式调用 <code>super()</code> 时，Java编译器会自动在子类构造方法的第一行插入一个对父类默认构造方法 <code>super()</code> 的调用。</li>
-<li>这意味着父类必须有一个无参的（默认的）构造方法，否则编译器会报错。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 父类的默认构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 编译器自动插入 super();</span></span><br><span class="line">        <span class="comment">// 这里不需要显式调用父类构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>父类没有默认构造方法</strong>：</p>
-<ul>
-<li>如果父类没有无参的构造方法，而是只有带参数的构造方法，那么子类的每个构造方法都必须<strong>显式</strong>调用父类的构造方法，并传递适当的参数。</li>
-<li>这是因为编译器无法自动插入 <code>super()</code>，因为父类没有无参构造方法可调用。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="comment">// 父类只有一个带参数的构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(<span class="string">&quot;默认名称&quot;</span>); <span class="comment">// 必须显式调用父类的构造方法，并传递参数</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name); <span class="comment">// 根据需要传递不同的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>总结</strong>：</p>
-<ul>
-<li>如果父类有无参构造方法，子类的构造方法可以选择性地调用 <code>super()</code>，或者让编译器自动插入。</li>
-<li>如果父类没有无参构造方法，子类的每个构造方法都必须显式调用父类的构造方法，并提供必要的参数。</li>
-</ul>
-</li>
-</ol>
-<p>这样做的原因是确保在创建子类对象时，父类的部分能够被正确初始化。如果不遵守这一规则，编译器将无法确定如何初始化父类，从而导致编译错误。</p>
 ]]></content>
       <tags>
         <tag>Java</tag>
@@ -1275,6 +1165,113 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <li><strong>阅读官方文档与最佳实践</strong>：熟悉各语言的官方文档，了解最佳实践和常见陷阱。</li>
 </ol>
 <p>通过系统地学习和比较C++、Java、Python、JavaScript的常用语法，结合实际编程练习，您将在面试中更具竞争力，并能够灵活应对不同语言的相关问题。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>super() in Java</title>
+    <url>/super-in-java/index.html</url>
+    <content><![CDATA[<ol>
+<li>
+<p><strong>默认调用 <code>super()</code></strong>：</p>
+<ul>
+<li>当你在子类的构造方法中没有显式调用 <code>super()</code> 时，Java编译器会自动在子类构造方法的第一行插入一个对父类默认构造方法 <code>super()</code> 的调用。</li>
+<li>这意味着父类必须有一个无参的（默认的）构造方法，否则编译器会报错。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 父类的默认构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 编译器自动插入 super();</span></span><br><span class="line">        <span class="comment">// 这里不需要显式调用父类构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>父类没有默认构造方法</strong>：</p>
+<ul>
+<li>如果父类没有无参的构造方法，而是只有带参数的构造方法，那么子类的每个构造方法都必须<strong>显式</strong>调用父类的构造方法，并传递适当的参数。</li>
+<li>这是因为编译器无法自动插入 <code>super()</code>，因为父类没有无参构造方法可调用。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="comment">// 父类只有一个带参数的构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(<span class="string">&quot;默认名称&quot;</span>); <span class="comment">// 必须显式调用父类的构造方法，并传递参数</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name); <span class="comment">// 根据需要传递不同的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>如果父类有无参构造方法，子类的构造方法可以选择性地调用 <code>super()</code>，或者让编译器自动插入。</li>
+<li>如果父类没有无参构造方法，子类的每个构造方法都必须显式调用父类的构造方法，并提供必要的参数。</li>
+</ul>
+</li>
+</ol>
+<p>这样做的原因是确保在创建子类对象时，父类的部分能够被正确初始化。如果不遵守这一规则，编译器将无法确定如何初始化父类，从而导致编译错误。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Verilog Basics</title>
+    <url>/verilog-basics/index.html</url>
+    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
+<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
+<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
+<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
+<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
+<ul>
+<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
+<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
+<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
+</ul>
+<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
+<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
+<ul>
+<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
+<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
+</ul>
+<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
+<p>Let’s start with the basics of Verilog syntax:</p>
+<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
+<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
+<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
+<p>Verilog provides several data types for representing signals:</p>
+<ul>
+<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
+<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
+</ul>
+<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
+<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
+<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
+<p>Let’s write a simple Verilog program that implements an AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
+<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
+<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
+<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
+<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
+<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
+<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
+<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
+<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
+<p>As you start coding in Verilog, keep the following best practices in mind:</p>
+<ul>
+<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
+<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
+<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
+<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
+</ul>
+<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
+<p>Here are some resources to help you continue your Verilog learning journey:</p>
+<ul>
+<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
+<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
+<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
+</ul>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
+<p>Happy coding!</p>
+<hr />
+<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
 ]]></content>
   </entry>
   <entry>
