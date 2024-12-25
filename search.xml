@@ -136,6 +136,187 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
+    <title>LeetCode 3218. 切蛋糕的最小总开销 I</title>
+    <url>/leetcode-3218-%E5%88%87%E8%9B%8B%E7%B3%95%E7%9A%84%E6%9C%80%E5%B0%8F%E6%80%BB%E5%BC%80%E9%94%80-i/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/minimum-cost-for-cutting-cake-i/description/" >LeetCode 3218. 切蛋糕的最小总开销 I<i class="fas fa-external-link-alt"></i></a><br />
+12/25/2024 每日一题<br />
+<strong>注意：</strong> 此题和<a class="link"   href="https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/" >LeetCode 3219. 切蛋糕的最小总开销 II<i class="fas fa-external-link-alt"></i></a>解法一样。</p>
+<h3 id="题解将切割蛋糕问题转化为最小生成树问题"><a class="markdownIt-Anchor" href="#题解将切割蛋糕问题转化为最小生成树问题"></a> 题解：将切割蛋糕问题转化为最小生成树问题</h3>
+<p>取自<a class="link"   href="https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/solutions/2843063/tan-xin-ji-qi-zheng-ming-jiao-huan-lun-z-ivtn/" >灵神题解<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="问题背景"><a class="markdownIt-Anchor" href="#问题背景"></a> 问题背景</h4>
+<p>这道切割蛋糕问题可以通过 <strong>逆向思维</strong> 转化为最小生成树（MST）问题：</p>
+<ul>
+<li><strong>逆向思维</strong>：将 1 x 1 的小蛋糕“合并”成一个大的矩形蛋糕。</li>
+<li>在合并过程中，我们每次选择代价最小的边进行“连接”，直到所有小蛋糕合并成一个完整的大蛋糕。</li>
+</ul>
+<p>最终的合并过程实际上是一棵最小生成树，而最小生成树的代价就是蛋糕切割的最小总开销。通过这一转化，我们可以利用最小生成树的算法（如 Kruskal 算法）来解决这个问题。</p>
+<p><a href="https://postimg.cc/GHhWdSnY"><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://i.postimg.cc/CLjSCWvv/image.png"
+                        alt="image.png" 
+                 ></a></p>
+<hr />
+<h4 id="转化与解决方案"><a class="markdownIt-Anchor" href="#转化与解决方案"></a> 转化与解决方案</h4>
+<ol>
+<li>
+<p><strong>问题转化</strong>：</p>
+<ul>
+<li>水平切割线（<code>horizontalCut</code>）和垂直切割线（<code>verticalCut</code>）分别是 MST 的边，边的权重为切割的开销。</li>
+<li>在合并蛋糕的过程中，优先选择代价最小的切割线连接矩形区域，确保总开销最小。</li>
+</ul>
+</li>
+<li>
+<p><strong>解决思路</strong>：</p>
+<ul>
+<li>使用 <strong>Kruskal 算法</strong>：每次选择权重最小的边，连接矩形区域，确保不形成环。</li>
+<li>实现过程：
+<ol>
+<li>将水平切割线和垂直切割线存储为一个边数组，并按权重从小到大排序。</li>
+<li>初始化两个索引 (hcut_index) 和 (vcut_index) 分别指向水平和垂直切割线的开头。</li>
+<li>每次选择当前两个数组中的最小元素，计算新增矩形的影响，并更新总开销。</li>
+<li>停止条件是当所有边都被处理。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="kruskal-算法实现步骤"><a class="markdownIt-Anchor" href="#kruskal-算法实现步骤"></a> Kruskal 算法实现步骤</h4>
+<ol>
+<li><strong>排序</strong>：将水平和垂直切割线分别按权重从小到大排序。</li>
+<li><strong>初始化索引</strong>：设置 (hcut_index = 0), (vcut_index = 0)，表示当前处理的水平和垂直切割线。</li>
+<li><strong>合并矩形</strong>：
+<ul>
+<li>比较 <code>horizontalCut[hcut_index]</code> 和 <code>verticalCut[vcut_index]</code>：
+<ul>
+<li>如果水平切割权重小，则选择水平切割，并更新水平的索引 (hcut_index)。</li>
+<li>如果垂直切割权重小，则选择垂直切割，并更新垂直的索引 (vcut_index)。</li>
+</ul>
+</li>
+<li>每次更新的开销为当前切割线权重乘以受影响的矩形数量（水平方向影响列数，垂直方向影响行数）。
+<ul>
+<li>hcut_index每增加 1，就有两个row的节点被合并，需要纵向合并的节点就减少1</li>
+<li>vcut_index每增加 1，就有两个column的节点被合并，需要横向合并的节点就减少1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>停止条件</strong>：
+<ul>
+<li>当 (hcut_index = m-1) 并且 (vcut_index = n-1) 时，所有切割线都已处理完成。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h4>
+<p>以下是 C++ 实现代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumCost</span><span class="params">(<span class="type">int</span> m, <span class="type">int</span> n, vector&lt;<span class="type">int</span>&gt;&amp; horizontalCut, vector&lt;<span class="type">int</span>&gt;&amp; verticalCut)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 从小到大排序</span></span><br><span class="line">        <span class="built_in">sort</span>(horizontalCut.<span class="built_in">begin</span>(), horizontalCut.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">sort</span>(verticalCut.<span class="built_in">begin</span>(), verticalCut.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> hcut_index = <span class="number">0</span>, vcut_index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (hcut_index &lt; m - <span class="number">1</span> || vcut_index &lt; n - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vcut_index == n - <span class="number">1</span> || hcut_index &lt; m - <span class="number">1</span> &amp;&amp; horizontalCut[hcut_index] &lt; verticalCut[vcut_index]) &#123;</span><br><span class="line">                ans += horizontalCut[hcut_index] * (n - vcut_index);</span><br><span class="line">                hcut_index++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans += verticalCut[vcut_index] * (m - hcut_index);</span><br><span class="line">                vcut_index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="核心思想与贪心的正确性"><a class="markdownIt-Anchor" href="#核心思想与贪心的正确性"></a> 核心思想与贪心的正确性</h4>
+<ol>
+<li>
+<p><strong>逆向合并的正确性</strong>：</p>
+<ul>
+<li>通过逆向合并的思想，将选择最小的切割边看作 MST 的贪心策略。</li>
+<li>每次选择当前代价最小的边，确保以最小的代价合并矩形，等价于以最小代价切割蛋糕。</li>
+</ul>
+</li>
+<li>
+<p><strong>贪心策略的正确性</strong>：</p>
+<ul>
+<li>切割代价是矩形数量的乘积（边权 x 受影响的矩形数），通过从小到大的顺序切割保证每一步代价最优。</li>
+<li>排序的过程确保了选择顺序的正确性。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li>本题通过逆向思维，将蛋糕切割问题转化为最小生成树问题，并利用 Kruskal 算法的贪心策略解决。</li>
+<li>通过排序和动态更新影响的矩形数量，能够在 O(mlogm + nlogn)时间内(即排序)找到最优解，简单高效。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 1705. 吃苹果的最大数目</title>
+    <url>/leetcode-1705-%E5%90%83%E8%8B%B9%E6%9E%9C%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-eaten-apples/description/" >LeetCode 1705. 吃苹果的最大数目<i class="fas fa-external-link-alt"></i></a><br />
+12/24/2024 每日一题</p>
+<h3 id="如何解决苹果腐烂问题贪心-最小堆"><a class="markdownIt-Anchor" href="#如何解决苹果腐烂问题贪心-最小堆"></a> 如何解决苹果腐烂问题：贪心 + 最小堆</h3>
+<p>在这篇文章中，我们将讨论如何用 <strong>贪心算法</strong> 和 <strong>最小堆</strong> 来解决一个经典问题：每天从一棵苹果树中选择苹果食用，以保证吃到的苹果数量最大化。</p>
+<h4 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h4>
+<p>给定两个数组 <code>apples</code> 和 <code>days</code>：</p>
+<ul>
+<li><code>apples[i]</code> 表示第 i 天长出的苹果数量。</li>
+<li><code>days[i]</code> 表示这些苹果从第 i 天起可以存放的天数。</li>
+</ul>
+<p>每天你最多只能吃一个苹果，且优先吃最早腐烂的苹果。问题是：<strong>你最多可以吃掉多少个苹果？</strong></p>
+<h4 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h4>
+<ol>
+<li>
+<p><strong>贪心选择</strong>：<br />
+每天优先吃掉<strong>最早腐烂</strong>的苹果，以避免浪费。过期日相同时，我们只需按照默认规则（先吃一个）继续操作即可，剩余的苹果会在之后的天数继续处理。</p>
+</li>
+<li>
+<p><strong>数据结构：最小堆</strong>：<br />
+使用一个最小堆来动态存储未腐烂的苹果，每个元素包含两部分：</p>
+<ul>
+<li>过期日期：<code>i + days[i]</code>。</li>
+<li>剩余苹果数量：<code>apples[i]</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>操作流程</strong>：</p>
+<ul>
+<li>每天加入当天新长出的苹果（如果有）。</li>
+<li>移除堆中已经腐烂的苹果（过期日期小于等于当前日期）。</li>
+<li>从堆顶取出一个苹果吃（因为堆顶是最早腐烂的苹果），并更新其剩余数量。</li>
+</ul>
+</li>
+<li>
+<p><strong>处理延续天数</strong>：<br />
+当所有天数都处理完后，如果堆中仍有未腐烂的苹果，继续每天吃一个，直到堆为空或苹果全部腐烂。</p>
+</li>
+</ol>
+<hr />
+<h4 id="代码实现c"><a class="markdownIt-Anchor" href="#代码实现c"></a> 代码实现（C++）</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">eatenApples</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; apples, vector&lt;<span class="type">int</span>&gt;&amp; days)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> day = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = days.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// &#123;expire, amount&#125;</span></span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;, greater&lt;&gt;&gt; minHeap;</span><br><span class="line">        <span class="keyword">while</span> (day &lt; n) &#123;</span><br><span class="line">            <span class="comment">// add new apples</span></span><br><span class="line">            minHeap.<span class="built_in">push</span>(&#123;day + days[day], apples[day]&#125;);</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// consume fresh apple</span></span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                ans++;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (amount &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                    minHeap.<span class="built_in">push</span>(&#123;expire, amount - <span class="number">1</span>&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            day++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// no new apples coming in, consume all fresh apples</span></span><br><span class="line">        <span class="keyword">while</span>(!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="type">int</span> canEat = <span class="built_in">min</span>(amount, expire - day);</span><br><span class="line">                ans += canEat;</span><br><span class="line">                day += canEat;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
+<ol>
+<li>
+<p><strong>字典序比较规则</strong>：<br />
+使用 <code>priority_queue</code> 的 <code>greater&lt;&gt;</code> 实现最小堆时，<code>std::pair</code> 会按字典序比较，即优先比较 <code>first</code>，再比较 <code>second</code>。</p>
+</li>
+<li>
+<p><strong>腐烂的苹果清理</strong>：<br />
+每天都需要检查堆顶元素是否已腐烂，避免误吃腐烂的苹果。</p>
+</li>
+<li>
+<p><strong>处理堆为空的情况</strong>：<br />
+在某些天数中可能没有苹果可吃，此时跳过即可。</p>
+</li>
+<li>
+<p><strong>时间复杂度</strong>：</p>
+<ul>
+<li>插入和移除操作的复杂度为 (O(\log k))，其中 (k) 是堆的大小。</li>
+<li>整体复杂度为 (O(n \log n))，适合大规模数据处理。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h4>
+<p>通过贪心策略和最小堆的结合，我们可以高效地解决这个问题。这种方法充分利用了堆的动态性，确保每一天都尽量选择最优的苹果进行食用，是贪心算法的典型应用场景之一。</p>
+]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java POJO and Record</title>
     <url>/java-pojo-and-record/index.html</url>
     <content><![CDATA[<p>在Java编程中，<strong>POJO</strong> 和 <strong>Record</strong> 是两种用于定义数据模型的不同概念。它们各自有不同的用途和特性，适用于不同的场景。下面详细介绍这两者的定义、特点以及如何使用<code>record</code>。</p>
@@ -310,78 +491,158 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 1705. 吃苹果的最大数目</title>
-    <url>/leetcode-1705-%E5%90%83%E8%8B%B9%E6%9E%9C%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-eaten-apples/description/" >LeetCode 1705. 吃苹果的最大数目<i class="fas fa-external-link-alt"></i></a><br />
-12/24/2024 每日一题</p>
-<h3 id="如何解决苹果腐烂问题贪心-最小堆"><a class="markdownIt-Anchor" href="#如何解决苹果腐烂问题贪心-最小堆"></a> 如何解决苹果腐烂问题：贪心 + 最小堆</h3>
-<p>在这篇文章中，我们将讨论如何用 <strong>贪心算法</strong> 和 <strong>最小堆</strong> 来解决一个经典问题：每天从一棵苹果树中选择苹果食用，以保证吃到的苹果数量最大化。</p>
-<h4 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h4>
-<p>给定两个数组 <code>apples</code> 和 <code>days</code>：</p>
-<ul>
-<li><code>apples[i]</code> 表示第 i 天长出的苹果数量。</li>
-<li><code>days[i]</code> 表示这些苹果从第 i 天起可以存放的天数。</li>
-</ul>
-<p>每天你最多只能吃一个苹果，且优先吃最早腐烂的苹果。问题是：<strong>你最多可以吃掉多少个苹果？</strong></p>
-<h4 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h4>
+    <title>Java Enhanced Switch</title>
+    <url>/java-enhanced-switch/index.html</url>
+    <content><![CDATA[<p>在Java中，<strong>增强的Switch</strong>（Enhanced Switch）是从Java 14开始引入，并在Java 17中正式成为标准功能的一项特性。它对传统的<code>switch</code>语句进行了改进，使其更简洁、更具表达力，并支持作为表达式使用。下面将详细介绍Java中的增强Switch，包括其定义、特点、语法、使用示例以及与传统Switch的对比。</p>
+<h2 id="什么是增强的switch"><a class="markdownIt-Anchor" href="#什么是增强的switch"></a> 什么是增强的Switch？</h2>
+<p><strong>增强的Switch</strong>（Enhanced Switch）是对Java中传统<code>switch</code>语句的升级，提供了更简洁的语法和更多的功能。它不仅可以作为语句使用，还可以作为表达式返回值，从而简化代码并减少错误。</p>
+<h3 id="传统switch的局限性"><a class="markdownIt-Anchor" href="#传统switch的局限性"></a> 传统Switch的局限性</h3>
+<p>在增强Switch引入之前，传统的<code>switch</code>语句存在以下一些局限性：</p>
 <ol>
-<li>
-<p><strong>贪心选择</strong>：<br />
-每天优先吃掉<strong>最早腐烂</strong>的苹果，以避免浪费。过期日相同时，我们只需按照默认规则（先吃一个）继续操作即可，剩余的苹果会在之后的天数继续处理。</p>
-</li>
-<li>
-<p><strong>数据结构：最小堆</strong>：<br />
-使用一个最小堆来动态存储未腐烂的苹果，每个元素包含两部分：</p>
-<ul>
-<li>过期日期：<code>i + days[i]</code>。</li>
-<li>剩余苹果数量：<code>apples[i]</code>。</li>
-</ul>
-</li>
-<li>
-<p><strong>操作流程</strong>：</p>
-<ul>
-<li>每天加入当天新长出的苹果（如果有）。</li>
-<li>移除堆中已经腐烂的苹果（过期日期小于等于当前日期）。</li>
-<li>从堆顶取出一个苹果吃（因为堆顶是最早腐烂的苹果），并更新其剩余数量。</li>
-</ul>
-</li>
-<li>
-<p><strong>处理延续天数</strong>：<br />
-当所有天数都处理完后，如果堆中仍有未腐烂的苹果，继续每天吃一个，直到堆为空或苹果全部腐烂。</p>
-</li>
+<li><strong>样板代码多</strong>：需要手动编写<code>break</code>语句以防止fall-through（贯穿）。</li>
+<li><strong>可读性差</strong>：多个<code>case</code>标签通常需要重复编写相似的代码。</li>
+<li><strong>不支持作为表达式</strong>：传统<code>switch</code>不能直接返回值，需要额外的变量来存储结果。</li>
 </ol>
-<hr />
-<h4 id="代码实现c"><a class="markdownIt-Anchor" href="#代码实现c"></a> 代码实现（C++）</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">eatenApples</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; apples, vector&lt;<span class="type">int</span>&gt;&amp; days)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> day = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = days.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// &#123;expire, amount&#125;</span></span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;, greater&lt;&gt;&gt; minHeap;</span><br><span class="line">        <span class="keyword">while</span> (day &lt; n) &#123;</span><br><span class="line">            <span class="comment">// add new apples</span></span><br><span class="line">            minHeap.<span class="built_in">push</span>(&#123;day + days[day], apples[day]&#125;);</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// consume fresh apple</span></span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                ans++;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (amount &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                    minHeap.<span class="built_in">push</span>(&#123;expire, amount - <span class="number">1</span>&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            day++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// no new apples coming in, consume all fresh apples</span></span><br><span class="line">        <span class="keyword">while</span>(!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="type">int</span> canEat = <span class="built_in">min</span>(amount, expire - day);</span><br><span class="line">                ans += canEat;</span><br><span class="line">                day += canEat;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr />
-<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
+<h2 id="增强switch的主要特性"><a class="markdownIt-Anchor" href="#增强switch的主要特性"></a> 增强Switch的主要特性</h2>
 <ol>
 <li>
-<p><strong>字典序比较规则</strong>：<br />
-使用 <code>priority_queue</code> 的 <code>greater&lt;&gt;</code> 实现最小堆时，<code>std::pair</code> 会按字典序比较，即优先比较 <code>first</code>，再比较 <code>second</code>。</p>
-</li>
-<li>
-<p><strong>腐烂的苹果清理</strong>：<br />
-每天都需要检查堆顶元素是否已腐烂，避免误吃腐烂的苹果。</p>
-</li>
-<li>
-<p><strong>处理堆为空的情况</strong>：<br />
-在某些天数中可能没有苹果可吃，此时跳过即可。</p>
-</li>
-<li>
-<p><strong>时间复杂度</strong>：</p>
+<p><strong>Switch作为表达式</strong>：</p>
 <ul>
-<li>插入和移除操作的复杂度为 (O(\log k))，其中 (k) 是堆的大小。</li>
-<li>整体复杂度为 (O(n \log n))，适合大规模数据处理。</li>
+<li>可以直接返回值，简化赋值操作。</li>
+</ul>
+</li>
+<li>
+<p><strong>箭头语法（Arrow Syntax）</strong>：</p>
+<ul>
+<li>使用<code>-&gt;</code>代替<code>:</code>和<code>break</code>，减少样板代码。</li>
+</ul>
+</li>
+<li>
+<p><strong>多标签匹配（Multiple Labels）</strong>：</p>
+<ul>
+<li>一个<code>case</code>可以匹配多个标签，语法更简洁。</li>
+</ul>
+</li>
+<li>
+<p><strong>自动阻止fall-through</strong>：</p>
+<ul>
+<li>不需要显式的<code>break</code>语句，防止意外的代码贯穿。</li>
+</ul>
+</li>
+<li>
+<p><strong>Yield语句</strong>：</p>
+<ul>
+<li>在需要返回值的代码块中使用<code>yield</code>返回结果。</li>
+</ul>
+</li>
+<li>
+<p><strong>代码块支持</strong>：</p>
+<ul>
+<li>在箭头语法中，可以使用代码块执行复杂逻辑，并通过<code>yield</code>返回值。</li>
 </ul>
 </li>
 </ol>
-<hr />
-<h4 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h4>
-<p>通过贪心策略和最小堆的结合，我们可以高效地解决这个问题。这种方法充分利用了堆的动态性，确保每一天都尽量选择最优的苹果进行食用，是贪心算法的典型应用场景之一。</p>
+<h2 id="增强switch的语法和使用方式"><a class="markdownIt-Anchor" href="#增强switch的语法和使用方式"></a> 增强Switch的语法和使用方式</h2>
+<h3 id="1-switch作为表达式"><a class="markdownIt-Anchor" href="#1-switch作为表达式"></a> 1. Switch作为表达式</h3>
+<p>增强Switch可以作为表达式使用，直接返回值。这使得代码更加简洁。</p>
+<p><strong>传统Switch作为语句</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<p><strong>增强Switch作为表达式</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-使用箭头语法和多标签"><a class="markdownIt-Anchor" href="#2-使用箭头语法和多标签"></a> 2. 使用箭头语法和多标签</h3>
+<p>增强Switch允许在一个<code>case</code>中匹配多个标签，并使用箭头语法代替传统的<code>:</code>和<code>break</code>。</p>
+<p><strong>传统Switch的多标签</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> numLetters;</span><br><span class="line"><span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;FRIDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SUNDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SATURDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">9</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
+<p><strong>增强Switch的多标签</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">numLetters</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>, <span class="string">&quot;FRIDAY&quot;</span>, <span class="string">&quot;SUNDAY&quot;</span> -&gt; <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span> -&gt; <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>, <span class="string">&quot;SATURDAY&quot;</span> -&gt; <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span> -&gt; <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-使用代码块和yield"><a class="markdownIt-Anchor" href="#3-使用代码块和yield"></a> 3. 使用代码块和yield</h3>
+<p>当需要在<code>case</code>中执行多行代码或复杂逻辑时，可以使用代码块，并通过<code>yield</code>返回值。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="comment">// 执行一些额外的操作</span></span><br><span class="line">        <span class="keyword">yield</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-switch与枚举的结合使用"><a class="markdownIt-Anchor" href="#4-switch与枚举的结合使用"></a> 4. Switch与枚举的结合使用</h3>
+<p>增强Switch在处理枚举类型时非常简洁和强大。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Day</span> &#123;</span><br><span class="line">    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Day</span> <span class="variable">day</span> <span class="operator">=</span> Day.MONDAY;</span><br><span class="line"><span class="type">String</span> <span class="variable">typeOfDay</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> MONDAY, FRIDAY, SUNDAY -&gt; <span class="string">&quot;Six letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> TUESDAY -&gt; <span class="string">&quot;Seven letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> THURSDAY, SATURDAY -&gt; <span class="string">&quot;Eight letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> WEDNESDAY -&gt; <span class="string">&quot;Nine letters&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(typeOfDay); <span class="comment">// 输出: Six letters</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-增强switch与类型模式匹配java-17及以上"><a class="markdownIt-Anchor" href="#5-增强switch与类型模式匹配java-17及以上"></a> 5. 增强Switch与类型模式匹配（Java 17及以上）</h3>
+<p>在Java 17中，增强Switch还支持类型模式匹配，使得switch表达式更加灵活。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (obj) &#123;</span><br><span class="line">    <span class="keyword">case</span> String s -&gt; <span class="string">&quot;It&#x27;s a string of length &quot;</span> + s.length();</span><br><span class="line">    <span class="keyword">case</span> Integer i -&gt; <span class="string">&quot;It&#x27;s an integer: &quot;</span> + i;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown type&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: It&#x27;s a string of length 5</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-带有默认值的switch表达式"><a class="markdownIt-Anchor" href="#6-带有默认值的switch表达式"></a> 6. 带有默认值的Switch表达式</h3>
+<p>确保所有可能的情况都被覆盖，避免遗漏<code>default</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Unknown</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-switch表达式的复合类型"><a class="markdownIt-Anchor" href="#7-switch表达式的复合类型"></a> 7. Switch表达式的复合类型</h3>
+<p>Switch表达式不仅可以返回单一类型的值，还可以返回更复杂的对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        System.out.println(result); <span class="comment">// 输出: 15.0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="增强switch与传统switch的对比"><a class="markdownIt-Anchor" href="#增强switch与传统switch的对比"></a> 增强Switch与传统Switch的对比</h2>
+<h3 id="传统switch"><a class="markdownIt-Anchor" href="#传统switch"></a> 传统Switch</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
+<h3 id="增强switch"><a class="markdownIt-Anchor" href="#增强switch"></a> 增强Switch</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
+<h3 id="对比总结"><a class="markdownIt-Anchor" href="#对比总结"></a> 对比总结</h3>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>传统Switch</strong></th>
+<th><strong>增强Switch</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>语法简洁性</strong></td>
+<td>需要编写<code>case</code>、<code>break</code>、<code>default</code>等，样板代码较多</td>
+<td>使用箭头语法，省略<code>break</code>，代码更简洁</td>
+</tr>
+<tr>
+<td><strong>作为表达式使用</strong></td>
+<td>不能直接返回值，需要额外变量存储结果</td>
+<td>可以直接作为表达式返回值，赋值更直接</td>
+</tr>
+<tr>
+<td><strong>多标签匹配</strong></td>
+<td>需要多个<code>case</code>标签并重复编写代码</td>
+<td>一个<code>case</code>可以匹配多个标签，使用逗号分隔</td>
+</tr>
+<tr>
+<td><strong>代码块支持</strong></td>
+<td>只能在单行执行代码，复杂逻辑需要手动管理<code>break</code></td>
+<td>可以在<code>case</code>中使用代码块，并通过<code>yield</code>返回值</td>
+</tr>
+<tr>
+<td><strong>防止fall-through</strong></td>
+<td>需要手动添加<code>break</code>，容易忘记导致逻辑错误</td>
+<td>自动阻止fall-through，减少错误</td>
+</tr>
+<tr>
+<td><strong>类型模式匹配</strong></td>
+<td>不支持</td>
+<td>支持（Java 17及以上），可以根据类型匹配并处理不同的对象</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用增强switch的优势"><a class="markdownIt-Anchor" href="#使用增强switch的优势"></a> 使用增强Switch的优势</h2>
+<ol>
+<li><strong>减少样板代码</strong>：不需要编写<code>break</code>语句，减少了重复代码，提高了代码的简洁性。</li>
+<li><strong>提高可读性</strong>：箭头语法使得<code>switch</code>结构更加清晰，容易理解。</li>
+<li><strong>防止错误</strong>：自动阻止fall-through，避免了因忘记<code>break</code>导致的逻辑错误。</li>
+<li><strong>灵活性</strong>：可以作为表达式使用，直接返回值，赋值更方便。</li>
+<li><strong>增强功能</strong>：支持代码块和<code>yield</code>语句，能够处理复杂的逻辑需求。</li>
+</ol>
+<h2 id="使用增强switch的注意事项"><a class="markdownIt-Anchor" href="#使用增强switch的注意事项"></a> 使用增强Switch的注意事项</h2>
+<ol>
+<li><strong>Java版本</strong>：增强Switch在Java 14中作为预览功能引入，在Java 17中正式发布。确保使用的Java版本支持增强Switch。</li>
+<li><strong>兼容性</strong>：如果项目需要兼容较低版本的Java，不能使用增强Switch。</li>
+<li><strong>代码风格</strong>：在团队协作中，确保所有成员都熟悉增强Switch的用法，以保持代码的一致性和可读性。</li>
+<li><strong>复杂逻辑</strong>：虽然增强Switch支持代码块，但对于非常复杂的逻辑，可能仍需使用传统的<code>switch</code>或其他控制结构以保持代码的清晰度。</li>
+</ol>
+<h2 id="完整示例"><a class="markdownIt-Anchor" href="#完整示例"></a> 完整示例</h2>
+<p>以下是一个更复杂的示例，展示如何在一个实际应用中使用增强Switch。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">TrafficLight</span> &#123;</span><br><span class="line">    RED, YELLOW, GREEN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TrafficController</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getAction</span><span class="params">(TrafficLight light)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (light) &#123;</span><br><span class="line">            <span class="keyword">case</span> RED -&gt; <span class="string">&quot;Stop&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> YELLOW -&gt; <span class="string">&quot;Caution&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> GREEN -&gt; <span class="string">&quot;Go&quot;</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">TrafficLight</span> <span class="variable">currentLight</span> <span class="operator">=</span> TrafficLight.GREEN;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> getAction(currentLight);</span><br><span class="line">        System.out.println(<span class="string">&quot;Traffic Light is &quot;</span> + currentLight + <span class="string">&quot;: &quot;</span> + action);</span><br><span class="line">        <span class="comment">// 输出: Traffic Light is GREEN: Go</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂逻辑示例计算数学运算"><a class="markdownIt-Anchor" href="#复杂逻辑示例计算数学运算"></a> 复杂逻辑示例：计算数学运算</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result1</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        <span class="type">double</span> <span class="variable">result2</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">0</span>, Operation.DIVIDE);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;10 + 5 = &quot;</span> + result1); <span class="comment">// 输出: 10 + 5 = 15.0</span></span><br><span class="line">        System.out.println(<span class="string">&quot;10 / 0 = &quot;</span> + result2); <span class="comment">// 输出: 10 / 0 = NaN</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>Java中的增强Switch大大改进了传统<code>switch</code>语句，使其更加简洁、易读且功能更强大。通过箭头语法、多标签匹配、作为表达式使用以及代码块支持，增强Switch能够有效减少样板代码，提高代码质量和可维护性。</p>
+<p>掌握增强Switch的使用，可以让您的Java代码更加现代化和高效。在编写条件分支逻辑时，优先考虑使用增强Switch，以充分利用其带来的优势。</p>
 ]]></content>
       <tags>
-        <tag>LeetCode</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -688,266 +949,6 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 3218. 切蛋糕的最小总开销 I</title>
-    <url>/leetcode-3218-%E5%88%87%E8%9B%8B%E7%B3%95%E7%9A%84%E6%9C%80%E5%B0%8F%E6%80%BB%E5%BC%80%E9%94%80-i/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/minimum-cost-for-cutting-cake-i/description/" >LeetCode 3218. 吃苹果的最大数目<i class="fas fa-external-link-alt"></i></a><br />
-12/25/2024 每日一题<br />
-<strong>注意：</strong> 此题和<a class="link"   href="https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/" >LeetCode 3219. 切蛋糕的最小总开销 II<i class="fas fa-external-link-alt"></i></a>解法一样。</p>
-<h3 id="题解将切割蛋糕问题转化为最小生成树问题"><a class="markdownIt-Anchor" href="#题解将切割蛋糕问题转化为最小生成树问题"></a> 题解：将切割蛋糕问题转化为最小生成树问题</h3>
-<h4 id="问题背景"><a class="markdownIt-Anchor" href="#问题背景"></a> 问题背景</h4>
-<p>这道切割蛋糕问题可以通过 <strong>逆向思维</strong> 转化为最小生成树（MST）问题：</p>
-<ul>
-<li><strong>逆向思维</strong>：将 (1 \times 1) 的小蛋糕“合并”成一个大的矩形蛋糕。</li>
-<li>在合并过程中，我们每次选择代价最小的边进行“连接”，直到所有小蛋糕合并成一个完整的大蛋糕。</li>
-</ul>
-<p>最终的合并过程实际上是一棵最小生成树，而最小生成树的代价就是蛋糕切割的最小总开销。通过这一转化，我们可以利用最小生成树的算法（如 Kruskal 算法）来解决这个问题。</p>
-<p><a href="https://postimg.cc/GHhWdSnY"><img  
-                       lazyload
-                       alt="image"
-                       data-src="https://i.postimg.cc/CLjSCWvv/image.png"
-                        alt="image.png" 
-                 ></a></p>
-<hr />
-<h4 id="转化与解决方案"><a class="markdownIt-Anchor" href="#转化与解决方案"></a> 转化与解决方案</h4>
-<ol>
-<li>
-<p><strong>问题转化</strong>：</p>
-<ul>
-<li>水平切割线（<code>horizontalCut</code>）和垂直切割线（<code>verticalCut</code>）分别是 MST 的边，边的权重为切割的开销。</li>
-<li>在合并蛋糕的过程中，优先选择代价最小的切割线连接矩形区域，确保总开销最小。</li>
-</ul>
-</li>
-<li>
-<p><strong>解决思路</strong>：</p>
-<ul>
-<li>使用 <strong>Kruskal 算法</strong>：每次选择权重最小的边，连接矩形区域，确保不形成环。</li>
-<li>实现过程：
-<ol>
-<li>将水平切割线和垂直切割线存储为一个边数组，并按权重从小到大排序。</li>
-<li>初始化两个索引 (hcut_index) 和 (vcut_index) 分别指向水平和垂直切割线的开头。</li>
-<li>每次选择当前两个数组中的最小元素，计算新增矩形的影响，并更新总开销。</li>
-<li>停止条件是当所有边都被处理。</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h4 id="kruskal-算法实现步骤"><a class="markdownIt-Anchor" href="#kruskal-算法实现步骤"></a> Kruskal 算法实现步骤</h4>
-<ol>
-<li><strong>排序</strong>：将水平和垂直切割线分别按权重从小到大排序。</li>
-<li><strong>初始化索引</strong>：设置 (hcut_index = 0), (vcut_index = 0)，表示当前处理的水平和垂直切割线。</li>
-<li><strong>合并矩形</strong>：
-<ul>
-<li>比较 <code>horizontalCut[hcut_index]</code> 和 <code>verticalCut[vcut_index]</code>：
-<ul>
-<li>如果水平切割权重小，则选择水平切割，并更新水平的索引 (hcut_index)。</li>
-<li>如果垂直切割权重小，则选择垂直切割，并更新垂直的索引 (vcut_index)。</li>
-</ul>
-</li>
-<li>每次更新的开销为当前切割线权重乘以受影响的矩形数量（水平方向影响列数，垂直方向影响行数）。
-<ul>
-<li>hcut_index每增加 1，就有两个row的节点被合并，需要纵向合并的节点就减少1</li>
-<li>vcut_index每增加 1，就有两个column的节点被合并，需要横向合并的节点就减少1</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>停止条件</strong>：
-<ul>
-<li>当 (hcut_index = m-1) 并且 (vcut_index = n-1) 时，所有切割线都已处理完成。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h4 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h4>
-<p>以下是 C++ 实现代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumCost</span><span class="params">(<span class="type">int</span> m, <span class="type">int</span> n, vector&lt;<span class="type">int</span>&gt;&amp; horizontalCut, vector&lt;<span class="type">int</span>&gt;&amp; verticalCut)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 从小到大排序</span></span><br><span class="line">        <span class="built_in">sort</span>(horizontalCut.<span class="built_in">begin</span>(), horizontalCut.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">sort</span>(verticalCut.<span class="built_in">begin</span>(), verticalCut.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> hcut_index = <span class="number">0</span>, vcut_index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (hcut_index &lt; m - <span class="number">1</span> || vcut_index &lt; n - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vcut_index == n - <span class="number">1</span> || hcut_index &lt; m - <span class="number">1</span> &amp;&amp; horizontalCut[hcut_index] &lt; verticalCut[vcut_index]) &#123;</span><br><span class="line">                ans += horizontalCut[hcut_index] * (n - vcut_index);</span><br><span class="line">                hcut_index++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans += verticalCut[vcut_index] * (m - hcut_index);</span><br><span class="line">                vcut_index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr />
-<h4 id="核心思想与贪心的正确性"><a class="markdownIt-Anchor" href="#核心思想与贪心的正确性"></a> 核心思想与贪心的正确性</h4>
-<ol>
-<li>
-<p><strong>逆向合并的正确性</strong>：</p>
-<ul>
-<li>通过逆向合并的思想，将选择最小的切割边看作 MST 的贪心策略。</li>
-<li>每次选择当前代价最小的边，确保以最小的代价合并矩形，等价于以最小代价切割蛋糕。</li>
-</ul>
-</li>
-<li>
-<p><strong>贪心策略的正确性</strong>：</p>
-<ul>
-<li>切割代价是矩形数量的乘积（边权 (\times) 受影响的矩形数），通过从小到大的顺序切割保证每一步代价最优。</li>
-<li>排序的过程确保了选择顺序的正确性。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<ul>
-<li>本题通过逆向思维，将蛋糕切割问题转化为最小生成树问题，并利用 Kruskal 算法的贪心策略解决。</li>
-<li>通过排序和动态更新影响的矩形数量，能够在 O(mlogm + nlogn)时间内(即排序)找到最优解，简单高效。</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java Enhanced Switch</title>
-    <url>/java-enhanced-switch/index.html</url>
-    <content><![CDATA[<p>在Java中，<strong>增强的Switch</strong>（Enhanced Switch）是从Java 14开始引入，并在Java 17中正式成为标准功能的一项特性。它对传统的<code>switch</code>语句进行了改进，使其更简洁、更具表达力，并支持作为表达式使用。下面将详细介绍Java中的增强Switch，包括其定义、特点、语法、使用示例以及与传统Switch的对比。</p>
-<h2 id="什么是增强的switch"><a class="markdownIt-Anchor" href="#什么是增强的switch"></a> 什么是增强的Switch？</h2>
-<p><strong>增强的Switch</strong>（Enhanced Switch）是对Java中传统<code>switch</code>语句的升级，提供了更简洁的语法和更多的功能。它不仅可以作为语句使用，还可以作为表达式返回值，从而简化代码并减少错误。</p>
-<h3 id="传统switch的局限性"><a class="markdownIt-Anchor" href="#传统switch的局限性"></a> 传统Switch的局限性</h3>
-<p>在增强Switch引入之前，传统的<code>switch</code>语句存在以下一些局限性：</p>
-<ol>
-<li><strong>样板代码多</strong>：需要手动编写<code>break</code>语句以防止fall-through（贯穿）。</li>
-<li><strong>可读性差</strong>：多个<code>case</code>标签通常需要重复编写相似的代码。</li>
-<li><strong>不支持作为表达式</strong>：传统<code>switch</code>不能直接返回值，需要额外的变量来存储结果。</li>
-</ol>
-<h2 id="增强switch的主要特性"><a class="markdownIt-Anchor" href="#增强switch的主要特性"></a> 增强Switch的主要特性</h2>
-<ol>
-<li>
-<p><strong>Switch作为表达式</strong>：</p>
-<ul>
-<li>可以直接返回值，简化赋值操作。</li>
-</ul>
-</li>
-<li>
-<p><strong>箭头语法（Arrow Syntax）</strong>：</p>
-<ul>
-<li>使用<code>-&gt;</code>代替<code>:</code>和<code>break</code>，减少样板代码。</li>
-</ul>
-</li>
-<li>
-<p><strong>多标签匹配（Multiple Labels）</strong>：</p>
-<ul>
-<li>一个<code>case</code>可以匹配多个标签，语法更简洁。</li>
-</ul>
-</li>
-<li>
-<p><strong>自动阻止fall-through</strong>：</p>
-<ul>
-<li>不需要显式的<code>break</code>语句，防止意外的代码贯穿。</li>
-</ul>
-</li>
-<li>
-<p><strong>Yield语句</strong>：</p>
-<ul>
-<li>在需要返回值的代码块中使用<code>yield</code>返回结果。</li>
-</ul>
-</li>
-<li>
-<p><strong>代码块支持</strong>：</p>
-<ul>
-<li>在箭头语法中，可以使用代码块执行复杂逻辑，并通过<code>yield</code>返回值。</li>
-</ul>
-</li>
-</ol>
-<h2 id="增强switch的语法和使用方式"><a class="markdownIt-Anchor" href="#增强switch的语法和使用方式"></a> 增强Switch的语法和使用方式</h2>
-<h3 id="1-switch作为表达式"><a class="markdownIt-Anchor" href="#1-switch作为表达式"></a> 1. Switch作为表达式</h3>
-<p>增强Switch可以作为表达式使用，直接返回值。这使得代码更加简洁。</p>
-<p><strong>传统Switch作为语句</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
-<p><strong>增强Switch作为表达式</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-使用箭头语法和多标签"><a class="markdownIt-Anchor" href="#2-使用箭头语法和多标签"></a> 2. 使用箭头语法和多标签</h3>
-<p>增强Switch允许在一个<code>case</code>中匹配多个标签，并使用箭头语法代替传统的<code>:</code>和<code>break</code>。</p>
-<p><strong>传统Switch的多标签</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> numLetters;</span><br><span class="line"><span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;FRIDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SUNDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SATURDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">9</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
-<p><strong>增强Switch的多标签</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">numLetters</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>, <span class="string">&quot;FRIDAY&quot;</span>, <span class="string">&quot;SUNDAY&quot;</span> -&gt; <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span> -&gt; <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>, <span class="string">&quot;SATURDAY&quot;</span> -&gt; <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span> -&gt; <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-使用代码块和yield"><a class="markdownIt-Anchor" href="#3-使用代码块和yield"></a> 3. 使用代码块和yield</h3>
-<p>当需要在<code>case</code>中执行多行代码或复杂逻辑时，可以使用代码块，并通过<code>yield</code>返回值。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="comment">// 执行一些额外的操作</span></span><br><span class="line">        <span class="keyword">yield</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-switch与枚举的结合使用"><a class="markdownIt-Anchor" href="#4-switch与枚举的结合使用"></a> 4. Switch与枚举的结合使用</h3>
-<p>增强Switch在处理枚举类型时非常简洁和强大。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Day</span> &#123;</span><br><span class="line">    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Day</span> <span class="variable">day</span> <span class="operator">=</span> Day.MONDAY;</span><br><span class="line"><span class="type">String</span> <span class="variable">typeOfDay</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> MONDAY, FRIDAY, SUNDAY -&gt; <span class="string">&quot;Six letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> TUESDAY -&gt; <span class="string">&quot;Seven letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> THURSDAY, SATURDAY -&gt; <span class="string">&quot;Eight letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> WEDNESDAY -&gt; <span class="string">&quot;Nine letters&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(typeOfDay); <span class="comment">// 输出: Six letters</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-增强switch与类型模式匹配java-17及以上"><a class="markdownIt-Anchor" href="#5-增强switch与类型模式匹配java-17及以上"></a> 5. 增强Switch与类型模式匹配（Java 17及以上）</h3>
-<p>在Java 17中，增强Switch还支持类型模式匹配，使得switch表达式更加灵活。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (obj) &#123;</span><br><span class="line">    <span class="keyword">case</span> String s -&gt; <span class="string">&quot;It&#x27;s a string of length &quot;</span> + s.length();</span><br><span class="line">    <span class="keyword">case</span> Integer i -&gt; <span class="string">&quot;It&#x27;s an integer: &quot;</span> + i;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown type&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: It&#x27;s a string of length 5</span></span><br></pre></td></tr></table></figure>
-<h3 id="6-带有默认值的switch表达式"><a class="markdownIt-Anchor" href="#6-带有默认值的switch表达式"></a> 6. 带有默认值的Switch表达式</h3>
-<p>确保所有可能的情况都被覆盖，避免遗漏<code>default</code>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Unknown</span></span><br></pre></td></tr></table></figure>
-<h3 id="7-switch表达式的复合类型"><a class="markdownIt-Anchor" href="#7-switch表达式的复合类型"></a> 7. Switch表达式的复合类型</h3>
-<p>Switch表达式不仅可以返回单一类型的值，还可以返回更复杂的对象。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        System.out.println(result); <span class="comment">// 输出: 15.0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="增强switch与传统switch的对比"><a class="markdownIt-Anchor" href="#增强switch与传统switch的对比"></a> 增强Switch与传统Switch的对比</h2>
-<h3 id="传统switch"><a class="markdownIt-Anchor" href="#传统switch"></a> 传统Switch</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
-<h3 id="增强switch"><a class="markdownIt-Anchor" href="#增强switch"></a> 增强Switch</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
-<h3 id="对比总结"><a class="markdownIt-Anchor" href="#对比总结"></a> 对比总结</h3>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>传统Switch</strong></th>
-<th><strong>增强Switch</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>语法简洁性</strong></td>
-<td>需要编写<code>case</code>、<code>break</code>、<code>default</code>等，样板代码较多</td>
-<td>使用箭头语法，省略<code>break</code>，代码更简洁</td>
-</tr>
-<tr>
-<td><strong>作为表达式使用</strong></td>
-<td>不能直接返回值，需要额外变量存储结果</td>
-<td>可以直接作为表达式返回值，赋值更直接</td>
-</tr>
-<tr>
-<td><strong>多标签匹配</strong></td>
-<td>需要多个<code>case</code>标签并重复编写代码</td>
-<td>一个<code>case</code>可以匹配多个标签，使用逗号分隔</td>
-</tr>
-<tr>
-<td><strong>代码块支持</strong></td>
-<td>只能在单行执行代码，复杂逻辑需要手动管理<code>break</code></td>
-<td>可以在<code>case</code>中使用代码块，并通过<code>yield</code>返回值</td>
-</tr>
-<tr>
-<td><strong>防止fall-through</strong></td>
-<td>需要手动添加<code>break</code>，容易忘记导致逻辑错误</td>
-<td>自动阻止fall-through，减少错误</td>
-</tr>
-<tr>
-<td><strong>类型模式匹配</strong></td>
-<td>不支持</td>
-<td>支持（Java 17及以上），可以根据类型匹配并处理不同的对象</td>
-</tr>
-</tbody>
-</table>
-<h2 id="使用增强switch的优势"><a class="markdownIt-Anchor" href="#使用增强switch的优势"></a> 使用增强Switch的优势</h2>
-<ol>
-<li><strong>减少样板代码</strong>：不需要编写<code>break</code>语句，减少了重复代码，提高了代码的简洁性。</li>
-<li><strong>提高可读性</strong>：箭头语法使得<code>switch</code>结构更加清晰，容易理解。</li>
-<li><strong>防止错误</strong>：自动阻止fall-through，避免了因忘记<code>break</code>导致的逻辑错误。</li>
-<li><strong>灵活性</strong>：可以作为表达式使用，直接返回值，赋值更方便。</li>
-<li><strong>增强功能</strong>：支持代码块和<code>yield</code>语句，能够处理复杂的逻辑需求。</li>
-</ol>
-<h2 id="使用增强switch的注意事项"><a class="markdownIt-Anchor" href="#使用增强switch的注意事项"></a> 使用增强Switch的注意事项</h2>
-<ol>
-<li><strong>Java版本</strong>：增强Switch在Java 14中作为预览功能引入，在Java 17中正式发布。确保使用的Java版本支持增强Switch。</li>
-<li><strong>兼容性</strong>：如果项目需要兼容较低版本的Java，不能使用增强Switch。</li>
-<li><strong>代码风格</strong>：在团队协作中，确保所有成员都熟悉增强Switch的用法，以保持代码的一致性和可读性。</li>
-<li><strong>复杂逻辑</strong>：虽然增强Switch支持代码块，但对于非常复杂的逻辑，可能仍需使用传统的<code>switch</code>或其他控制结构以保持代码的清晰度。</li>
-</ol>
-<h2 id="完整示例"><a class="markdownIt-Anchor" href="#完整示例"></a> 完整示例</h2>
-<p>以下是一个更复杂的示例，展示如何在一个实际应用中使用增强Switch。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">TrafficLight</span> &#123;</span><br><span class="line">    RED, YELLOW, GREEN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TrafficController</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getAction</span><span class="params">(TrafficLight light)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (light) &#123;</span><br><span class="line">            <span class="keyword">case</span> RED -&gt; <span class="string">&quot;Stop&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> YELLOW -&gt; <span class="string">&quot;Caution&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> GREEN -&gt; <span class="string">&quot;Go&quot;</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">TrafficLight</span> <span class="variable">currentLight</span> <span class="operator">=</span> TrafficLight.GREEN;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> getAction(currentLight);</span><br><span class="line">        System.out.println(<span class="string">&quot;Traffic Light is &quot;</span> + currentLight + <span class="string">&quot;: &quot;</span> + action);</span><br><span class="line">        <span class="comment">// 输出: Traffic Light is GREEN: Go</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="复杂逻辑示例计算数学运算"><a class="markdownIt-Anchor" href="#复杂逻辑示例计算数学运算"></a> 复杂逻辑示例：计算数学运算</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result1</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        <span class="type">double</span> <span class="variable">result2</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">0</span>, Operation.DIVIDE);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;10 + 5 = &quot;</span> + result1); <span class="comment">// 输出: 10 + 5 = 15.0</span></span><br><span class="line">        System.out.println(<span class="string">&quot;10 / 0 = &quot;</span> + result2); <span class="comment">// 输出: 10 / 0 = NaN</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<p>Java中的增强Switch大大改进了传统<code>switch</code>语句，使其更加简洁、易读且功能更强大。通过箭头语法、多标签匹配、作为表达式使用以及代码块支持，增强Switch能够有效减少样板代码，提高代码质量和可维护性。</p>
-<p>掌握增强Switch的使用，可以让您的Java代码更加现代化和高效。在编写条件分支逻辑时，优先考虑使用增强Switch，以充分利用其带来的优势。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OS Security and Access Control</title>
     <url>/os-security-and-access-control/index.html</url>
     <content><![CDATA[]]></content>
@@ -1084,113 +1085,6 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <li><strong>方法重载</strong>：增强灵活性，通过不同参数实现多样化调用。</li>
 <li><strong>方法重写</strong>：实现继承和多态，子类重写父类方法以适应具体需求。</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Verilog Basics</title>
-    <url>/verilog-basics/index.html</url>
-    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
-<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
-<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
-<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
-<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
-<ul>
-<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
-<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
-<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
-</ul>
-<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
-<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
-<ul>
-<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
-<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
-</ul>
-<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
-<p>Let’s start with the basics of Verilog syntax:</p>
-<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
-<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
-<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
-<p>Verilog provides several data types for representing signals:</p>
-<ul>
-<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
-<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
-</ul>
-<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
-<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
-<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
-<p>Let’s write a simple Verilog program that implements an AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
-<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
-<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
-<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
-<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
-<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
-<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
-<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
-<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
-<p>As you start coding in Verilog, keep the following best practices in mind:</p>
-<ul>
-<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
-<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
-<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
-<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
-</ul>
-<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
-<p>Here are some resources to help you continue your Verilog learning journey:</p>
-<ul>
-<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
-<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
-<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
-</ul>
-<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
-<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
-<p>Happy coding!</p>
-<hr />
-<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>super() in Java</title>
-    <url>/super-in-java/index.html</url>
-    <content><![CDATA[<ol>
-<li>
-<p><strong>默认调用 <code>super()</code></strong>：</p>
-<ul>
-<li>当你在子类的构造方法中没有显式调用 <code>super()</code> 时，Java编译器会自动在子类构造方法的第一行插入一个对父类默认构造方法 <code>super()</code> 的调用。</li>
-<li>这意味着父类必须有一个无参的（默认的）构造方法，否则编译器会报错。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 父类的默认构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 编译器自动插入 super();</span></span><br><span class="line">        <span class="comment">// 这里不需要显式调用父类构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>父类没有默认构造方法</strong>：</p>
-<ul>
-<li>如果父类没有无参的构造方法，而是只有带参数的构造方法，那么子类的每个构造方法都必须<strong>显式</strong>调用父类的构造方法，并传递适当的参数。</li>
-<li>这是因为编译器无法自动插入 <code>super()</code>，因为父类没有无参构造方法可调用。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="comment">// 父类只有一个带参数的构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(<span class="string">&quot;默认名称&quot;</span>); <span class="comment">// 必须显式调用父类的构造方法，并传递参数</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name); <span class="comment">// 根据需要传递不同的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>总结</strong>：</p>
-<ul>
-<li>如果父类有无参构造方法，子类的构造方法可以选择性地调用 <code>super()</code>，或者让编译器自动插入。</li>
-<li>如果父类没有无参构造方法，子类的每个构造方法都必须显式调用父类的构造方法，并提供必要的参数。</li>
-</ul>
-</li>
-</ol>
-<p>这样做的原因是确保在创建子类对象时，父类的部分能够被正确初始化。如果不遵守这一规则，编译器将无法确定如何初始化父类，从而导致编译错误。</p>
 ]]></content>
       <tags>
         <tag>Java</tag>
@@ -1471,152 +1365,75 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 ]]></content>
   </entry>
   <entry>
-    <title>protected vs default</title>
-    <url>/protected-vs-default/index.html</url>
-    <content><![CDATA[<p>在Java中，**访问修饰符（Access Modifiers）**用于控制类、方法、变量等的可见性和访问权限。Java提供了四种访问修饰符：</p>
-<ol>
-<li><strong><code>public</code></strong>：公共的，所有类都可以访问。</li>
-<li><strong><code>protected</code></strong>：受保护的，同一包中的类和不同包中的子类可以访问。</li>
-<li><strong>默认访问级别（包私有，Package-Private）</strong>：当没有显式指定访问修饰符时，默认为包私有，仅同一包中的类可以访问。</li>
-<li><strong><code>private</code></strong>：私有的，仅在定义它的类内部可见。</li>
-</ol>
-<h3 id="重点关注protected-与-默认访问级别省略访问修饰符"><a class="markdownIt-Anchor" href="#重点关注protected-与-默认访问级别省略访问修饰符"></a> 重点关注：<code>protected</code> 与 默认访问级别（省略访问修饰符）</h3>
-<p>下面详细解释 <code>protected</code> 和默认访问级别之间的区别：</p>
-<h4 id="1-定义与语法"><a class="markdownIt-Anchor" href="#1-定义与语法"></a> 1. 定义与语法</h4>
+    <title>Verilog Basics</title>
+    <url>/verilog-basics/index.html</url>
+    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
+<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
+<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
+<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
+<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
 <ul>
-<li>
-<p><strong><code>protected</code> 修饰符</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> protectedVar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">protectedMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 受保护的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>默认访问级别（省略修饰符）</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="type">int</span> defaultVar; <span class="comment">// 默认访问级别</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">defaultMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 默认访问级别的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
+<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
+<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
 </ul>
-<h4 id="2-可见性范围"><a class="markdownIt-Anchor" href="#2-可见性范围"></a> 2. 可见性范围</h4>
-<table>
-<thead>
-<tr>
-<th><strong>访问修饰符</strong></th>
-<th><strong>同一类中</strong></th>
-<th><strong>同一包中</strong></th>
-<th><strong>不同包的子类</strong></th>
-<th><strong>不同包的非子类</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>public</code></td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-</tr>
-<tr>
-<td><code>protected</code></td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>默认（包私有）</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td><code>private</code></td>
-<td>✔️</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-</tbody>
-</table>
+<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
+<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
 <ul>
-<li>
-<p><strong><code>protected</code></strong></p>
+<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
+<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
+</ul>
+<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
+<p>Let’s start with the basics of Verilog syntax:</p>
+<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
+<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
+<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
+<p>Verilog provides several data types for representing signals:</p>
 <ul>
-<li><strong>同一类中</strong>：可访问。</li>
-<li><strong>同一包中</strong>：可访问。</li>
-<li><strong>不同包的子类中</strong>：可访问（通过继承）。</li>
-<li><strong>不同包的非子类中</strong>：不可访问。</li>
+<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
+<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
 </ul>
-</li>
-<li>
-<p><strong>默认访问级别（省略修饰符）</strong></p>
+<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
+<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
+<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
+<p>Let’s write a simple Verilog program that implements an AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
+<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
+<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
+<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
+<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
+<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
+<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
+<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
+<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
+<p>As you start coding in Verilog, keep the following best practices in mind:</p>
 <ul>
-<li><strong>同一类中</strong>：可访问。</li>
-<li><strong>同一包中</strong>：可访问。</li>
-<li><strong>不同包的子类中</strong>：不可访问。</li>
-<li><strong>不同包的非子类中</strong>：不可访问。</li>
+<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
+<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
+<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
+<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
 </ul>
-</li>
-</ul>
-<h4 id="3-示例解析"><a class="markdownIt-Anchor" href="#3-示例解析"></a> 3. 示例解析</h4>
-<h5 id="同一包中的类"><a class="markdownIt-Anchor" href="#同一包中的类"></a> 同一包中的类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> <span class="variable">protectedVar</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">defaultVar</span> <span class="operator">=</span> <span class="number">20</span>; <span class="comment">// 默认访问级别</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SamePackageClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 可访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
+<p>Here are some resources to help you continue your Verilog learning journey:</p>
 <ul>
-<li>在 <strong>同一包</strong> 中，<code>protected</code> 和默认访问级别的成员都可以被访问。</li>
+<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
+<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
+<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
 </ul>
-<h5 id="不同包中的子类"><a class="markdownIt-Anchor" href="#不同包中的子类"></a> 不同包中的子类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="built_in">this</span>.protectedVar); <span class="comment">// 可访问，因为是子类</span></span><br><span class="line">        <span class="comment">// System.out.println(this.defaultVar); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>不同包</strong> 中，<code>protected</code> 成员可以通过继承（即子类）访问。</li>
-<li>默认访问级别的成员在不同包的子类中不可访问。</li>
-</ul>
-<h5 id="不同包中的非子类"><a class="markdownIt-Anchor" href="#不同包中的非子类"></a> 不同包中的非子类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 编译错误，非子类不同包无法访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>不同包</strong> 的 <strong>非子类</strong> 中，<code>protected</code> 和默认访问级别的成员都不可访问。</li>
-</ul>
-<h4 id="4-设计意图与使用场景"><a class="markdownIt-Anchor" href="#4-设计意图与使用场景"></a> 4. 设计意图与使用场景</h4>
-<ul>
-<li>
-<p><strong><code>protected</code></strong>：</p>
-<ul>
-<li><strong>设计意图</strong>：允许子类继承和访问父类的某些成员，同时限制外部类的直接访问。</li>
-<li><strong>使用场景</strong>：当你希望子类能够访问和修改父类的某些成员，但不希望其他非相关类访问这些成员时，使用 <code>protected</code>。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（包私有）</strong>：</p>
-<ul>
-<li><strong>设计意图</strong>：限制成员仅在同一包内可见，增强封装性。</li>
-<li><strong>使用场景</strong>：当你希望在同一包内的类之间共享成员，但不希望包外的类访问时，使用默认访问级别。</li>
-</ul>
-</li>
-</ul>
-<h4 id="5-实际应用示例"><a class="markdownIt-Anchor" href="#5-实际应用示例"></a> 5. 实际应用示例</h4>
-<h5 id="使用-protected"><a class="markdownIt-Anchor" href="#使用-protected"></a> 使用 <code>protected</code></h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Protected method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        show(); <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display(); <span class="comment">// 输出: Protected method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="使用默认访问级别"><a class="markdownIt-Anchor" href="#使用默认访问级别"></a> 使用默认访问级别</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Default access method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/example/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        display(); <span class="comment">// 可访问，因为在同一包</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.show(); <span class="comment">// 输出: Default access method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">access</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        <span class="comment">// parent.display(); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<ul>
-<li>
-<p><strong><code>protected</code></strong>：</p>
-<ul>
-<li>允许在 <strong>同一包</strong> 中访问。</li>
-<li>允许 <strong>不同包的子类</strong> 访问。</li>
-<li>不允许 <strong>不同包的非子类</strong> 访问。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（省略访问修饰符）</strong>：</p>
-<ul>
-<li>仅允许在 <strong>同一包</strong> 中访问。</li>
-<li>不允许在 <strong>不同包</strong> 中的任何类访问，无论是否为子类。</li>
-</ul>
-</li>
-</ul>
-<p>选择使用 <code>protected</code> 还是默认访问级别取决于你希望如何控制成员的可见性。<code>protected</code> 提供了更灵活的访问权限，尤其是在需要通过继承关系进行访问时，而默认访问级别则更严格，仅限于包内使用。</p>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
+<p>Happy coding!</p>
+<hr />
+<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
 ]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
     <title>career fair</title>
@@ -2365,6 +2182,190 @@ Atlanta Technology Consulting Intern<br />
 <h2 id="wsp-in-the-us-b2"><a class="markdownIt-Anchor" href="#wsp-in-the-us-b2"></a> WSP in the U.S. (B2)</h2>
 <p><strong>WSP in the U.S.</strong> is an engineering consulting firm that integrates smart infrastructure solutions and IoT for urban development projects</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>super() in Java</title>
+    <url>/super-in-java/index.html</url>
+    <content><![CDATA[<ol>
+<li>
+<p><strong>默认调用 <code>super()</code></strong>：</p>
+<ul>
+<li>当你在子类的构造方法中没有显式调用 <code>super()</code> 时，Java编译器会自动在子类构造方法的第一行插入一个对父类默认构造方法 <code>super()</code> 的调用。</li>
+<li>这意味着父类必须有一个无参的（默认的）构造方法，否则编译器会报错。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 父类的默认构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 编译器自动插入 super();</span></span><br><span class="line">        <span class="comment">// 这里不需要显式调用父类构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>父类没有默认构造方法</strong>：</p>
+<ul>
+<li>如果父类没有无参的构造方法，而是只有带参数的构造方法，那么子类的每个构造方法都必须<strong>显式</strong>调用父类的构造方法，并传递适当的参数。</li>
+<li>这是因为编译器无法自动插入 <code>super()</code>，因为父类没有无参构造方法可调用。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Parent</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="comment">// 父类只有一个带参数的构造方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(<span class="string">&quot;默认名称&quot;</span>); <span class="comment">// 必须显式调用父类的构造方法，并传递参数</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Child</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(name); <span class="comment">// 根据需要传递不同的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>如果父类有无参构造方法，子类的构造方法可以选择性地调用 <code>super()</code>，或者让编译器自动插入。</li>
+<li>如果父类没有无参构造方法，子类的每个构造方法都必须显式调用父类的构造方法，并提供必要的参数。</li>
+</ul>
+</li>
+</ol>
+<p>这样做的原因是确保在创建子类对象时，父类的部分能够被正确初始化。如果不遵守这一规则，编译器将无法确定如何初始化父类，从而导致编译错误。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>protected vs default</title>
+    <url>/protected-vs-default/index.html</url>
+    <content><![CDATA[<p>在Java中，**访问修饰符（Access Modifiers）**用于控制类、方法、变量等的可见性和访问权限。Java提供了四种访问修饰符：</p>
+<ol>
+<li><strong><code>public</code></strong>：公共的，所有类都可以访问。</li>
+<li><strong><code>protected</code></strong>：受保护的，同一包中的类和不同包中的子类可以访问。</li>
+<li><strong>默认访问级别（包私有，Package-Private）</strong>：当没有显式指定访问修饰符时，默认为包私有，仅同一包中的类可以访问。</li>
+<li><strong><code>private</code></strong>：私有的，仅在定义它的类内部可见。</li>
+</ol>
+<h3 id="重点关注protected-与-默认访问级别省略访问修饰符"><a class="markdownIt-Anchor" href="#重点关注protected-与-默认访问级别省略访问修饰符"></a> 重点关注：<code>protected</code> 与 默认访问级别（省略访问修饰符）</h3>
+<p>下面详细解释 <code>protected</code> 和默认访问级别之间的区别：</p>
+<h4 id="1-定义与语法"><a class="markdownIt-Anchor" href="#1-定义与语法"></a> 1. 定义与语法</h4>
+<ul>
+<li>
+<p><strong><code>protected</code> 修饰符</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> protectedVar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">protectedMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 受保护的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>默认访问级别（省略修饰符）</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="type">int</span> defaultVar; <span class="comment">// 默认访问级别</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">defaultMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 默认访问级别的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-可见性范围"><a class="markdownIt-Anchor" href="#2-可见性范围"></a> 2. 可见性范围</h4>
+<table>
+<thead>
+<tr>
+<th><strong>访问修饰符</strong></th>
+<th><strong>同一类中</strong></th>
+<th><strong>同一包中</strong></th>
+<th><strong>不同包的子类</strong></th>
+<th><strong>不同包的非子类</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>默认（包私有）</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>private</code></td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong><code>protected</code></strong></p>
+<ul>
+<li><strong>同一类中</strong>：可访问。</li>
+<li><strong>同一包中</strong>：可访问。</li>
+<li><strong>不同包的子类中</strong>：可访问（通过继承）。</li>
+<li><strong>不同包的非子类中</strong>：不可访问。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（省略修饰符）</strong></p>
+<ul>
+<li><strong>同一类中</strong>：可访问。</li>
+<li><strong>同一包中</strong>：可访问。</li>
+<li><strong>不同包的子类中</strong>：不可访问。</li>
+<li><strong>不同包的非子类中</strong>：不可访问。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-示例解析"><a class="markdownIt-Anchor" href="#3-示例解析"></a> 3. 示例解析</h4>
+<h5 id="同一包中的类"><a class="markdownIt-Anchor" href="#同一包中的类"></a> 同一包中的类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> <span class="variable">protectedVar</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">defaultVar</span> <span class="operator">=</span> <span class="number">20</span>; <span class="comment">// 默认访问级别</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SamePackageClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 可访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>同一包</strong> 中，<code>protected</code> 和默认访问级别的成员都可以被访问。</li>
+</ul>
+<h5 id="不同包中的子类"><a class="markdownIt-Anchor" href="#不同包中的子类"></a> 不同包中的子类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="built_in">this</span>.protectedVar); <span class="comment">// 可访问，因为是子类</span></span><br><span class="line">        <span class="comment">// System.out.println(this.defaultVar); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>不同包</strong> 中，<code>protected</code> 成员可以通过继承（即子类）访问。</li>
+<li>默认访问级别的成员在不同包的子类中不可访问。</li>
+</ul>
+<h5 id="不同包中的非子类"><a class="markdownIt-Anchor" href="#不同包中的非子类"></a> 不同包中的非子类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 编译错误，非子类不同包无法访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>不同包</strong> 的 <strong>非子类</strong> 中，<code>protected</code> 和默认访问级别的成员都不可访问。</li>
+</ul>
+<h4 id="4-设计意图与使用场景"><a class="markdownIt-Anchor" href="#4-设计意图与使用场景"></a> 4. 设计意图与使用场景</h4>
+<ul>
+<li>
+<p><strong><code>protected</code></strong>：</p>
+<ul>
+<li><strong>设计意图</strong>：允许子类继承和访问父类的某些成员，同时限制外部类的直接访问。</li>
+<li><strong>使用场景</strong>：当你希望子类能够访问和修改父类的某些成员，但不希望其他非相关类访问这些成员时，使用 <code>protected</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（包私有）</strong>：</p>
+<ul>
+<li><strong>设计意图</strong>：限制成员仅在同一包内可见，增强封装性。</li>
+<li><strong>使用场景</strong>：当你希望在同一包内的类之间共享成员，但不希望包外的类访问时，使用默认访问级别。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-实际应用示例"><a class="markdownIt-Anchor" href="#5-实际应用示例"></a> 5. 实际应用示例</h4>
+<h5 id="使用-protected"><a class="markdownIt-Anchor" href="#使用-protected"></a> 使用 <code>protected</code></h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Protected method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        show(); <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display(); <span class="comment">// 输出: Protected method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="使用默认访问级别"><a class="markdownIt-Anchor" href="#使用默认访问级别"></a> 使用默认访问级别</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Default access method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/example/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        display(); <span class="comment">// 可访问，因为在同一包</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.show(); <span class="comment">// 输出: Default access method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">access</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        <span class="comment">// parent.display(); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li>
+<p><strong><code>protected</code></strong>：</p>
+<ul>
+<li>允许在 <strong>同一包</strong> 中访问。</li>
+<li>允许 <strong>不同包的子类</strong> 访问。</li>
+<li>不允许 <strong>不同包的非子类</strong> 访问。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（省略访问修饰符）</strong>：</p>
+<ul>
+<li>仅允许在 <strong>同一包</strong> 中访问。</li>
+<li>不允许在 <strong>不同包</strong> 中的任何类访问，无论是否为子类。</li>
+</ul>
+</li>
+</ul>
+<p>选择使用 <code>protected</code> 还是默认访问级别取决于你希望如何控制成员的可见性。<code>protected</code> 提供了更灵活的访问权限，尤其是在需要通过继承关系进行访问时，而默认访问级别则更严格，仅限于包内使用。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>An Overview of Cryptography</title>
