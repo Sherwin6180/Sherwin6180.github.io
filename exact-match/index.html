@@ -263,7 +263,7 @@
         
         
             <span class="meta-info-item post-wordcount">
-                <i class="icon fas fa-file-word"></i>&nbsp;<span>859 Words</span>
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>861 Words</span>
             </span>
         
         
@@ -322,7 +322,7 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <li>based only on the data link layer</li>
 <li>Packet Repeater
 <ul>
-<li>Buffers packet, even for packets that don’t cross different Ethernets</li>
+<li>Buffers packet, even for packets that don't cross different Ethernets</li>
 </ul>
 </li>
 <li>Filtered Repeater
@@ -350,7 +350,7 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 </ul>
 <h2 id="challenge-3-scaling-lookups-to-higher-speeds"><a class="markdownIt-Anchor" href="#challenge-3-scaling-lookups-to-higher-speeds"></a> Challenge 3: scaling lookups to higher speeds</h2>
 <ul>
-<li>Bridge database size increases to 64K. Binary search lookups don’t suffice</li>
+<li>Bridge database size increases to 64K. Binary search lookups don't suffice</li>
 <li>Gigaswitch: <strong>hashing</strong>-based lookups. Each bridge lookup makes at most four reads from memory.</li>
 </ul>
 <h3 id="perfect-hashing"><a class="markdownIt-Anchor" href="#perfect-hashing"></a> Perfect Hashing</h3>
@@ -391,7 +391,7 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <li>Each level of the binary tree has its own stage</li>
 </ul>
 </li>
-<li>Search keys enter from the left and progress from stage to stage, carrying a pointer (points to a “child” key) that identifies which <strong>key</strong> in the corresponding stage memory must be compared to the search key.</li>
+<li>Search keys enter from the left and progress from stage to stage, carrying a pointer (points to a &quot;child&quot; key) that identifies which <strong>key</strong> in the corresponding stage memory must be compared to the search key.</li>
 <li>The lookup throughput is nearly one per memory access</li>
 <li>still <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span></span></span></span> lookups in total, but the throughput is improved</li>
 </ul>
@@ -412,7 +412,7 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <li>d-left
 <ul>
 <li>variation of d-random</li>
-<li>Hash table is partitioned into logically independent subsets of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>n</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. d-random doesn’t have such partition</li>
+<li>Hash table is partitioned into logically independent subsets of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>n</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. d-random doesn't have such partition</li>
 <li>if there are more than one least occupied buckets among the d buckets where an object x should be inserted into, then x will be inserted into the leftmost one among them</li>
 </ul>
 </li>
