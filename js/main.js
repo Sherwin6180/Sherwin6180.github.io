@@ -1,4 +1,11 @@
 /* global KEEP */
+window.onload = function() {
+  var katexElements = document.querySelectorAll('.katex-html');
+  katexElements.forEach(function(element) {
+    element.style.display = 'none';
+  });
+};
+
 
 window.addEventListener('DOMContentLoaded', () => {
   const { version, local_search, lazyload } = KEEP.theme_config
