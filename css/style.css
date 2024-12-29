@@ -884,7 +884,7 @@ img[lazyload]::after {
 }
 .keep-markdown-body em,
 .keep-markdown-body > .post em {
-  color: var(--text-color-3);
+  color: #f00;
 }
 .keep-markdown-body ul li,
 .keep-markdown-body > .post ul li,
@@ -4097,7 +4097,7 @@ figure.highlight .shrink-line:hover::before {
   margin-top: calc(var(--component-gap) * 0.8);
   padding-bottom: calc(var(--component-gap) * 0.8);
   color: var(--text-color-3);
-  text-align: justify;
+  text-align: left;
   word-wrap: break-word;
 }
 @media (max-width: 800px) {

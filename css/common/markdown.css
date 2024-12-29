@@ -86,7 +86,7 @@
 }
 .keep-markdown-body em,
 .keep-markdown-body > .post em {
-  color: var(--text-color-3);
+  color: #f00;
 }
 .keep-markdown-body ul li,
 .keep-markdown-body > .post ul li,
