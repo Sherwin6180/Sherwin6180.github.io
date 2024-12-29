@@ -1,79 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Interview Questions SWE 2025 (1)</title>
-    <url>/interview-questions-swe-2025-1/index.html</url>
-    <content><![CDATA[<h3 id="第一题power-of-2-check"><a class="markdownIt-Anchor" href="#第一题power-of-2-check"></a> 第一题：Power of 2 Check</h3>
-<h4 id="problem-原题"><a class="markdownIt-Anchor" href="#problem-原题"></a> Problem (原题)</h4>
-<p>Given an array of integers, determine whether each is a power of 2, where powers of 2 are <code>[1, 2, 4, 8, 16, 32, 64...]</code>.<br />
-For each integer evaluated, append to an array a value of <code>1</code> if the number is a power of 2 or <code>0</code> otherwise.</p>
-<p>Example:<br />
-Input: <code>arr = [1, 3, 8, 12, 16]</code><br />
-Output: <code>[1, 0, 1, 0, 1]</code></p>
-<hr />
-<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
-<p>判断一个数是否是 2 的幂次有一个简单的方法：<br />
-一个数如果是 2 的幂，那么它在二进制表示中只有 1 个 <code>1</code>。我们可以通过以下条件判断：</p>
-<ul>
-<li><code>(num &gt; 0 &amp;&amp; (num &amp; (num - 1)) == 0)</code></li>
-<li><code>num &amp; (num - 1)</code> 的结果是将二进制最低位的 <code>1</code> 去掉。如果结果为 0，说明原数字是 2 的幂。</li>
-</ul>
-<p>算法的核心是遍历数组，逐一判断每个数字是否符合条件，并将结果存入输出数组中。</p>
-<hr />
-<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title function_">isPower</span><span class="params">(List&lt;Integer&gt; arr)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; <span class="number">0</span> &amp;&amp; (num &amp; (num - <span class="number">1</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">                result.add(<span class="number">1</span>); <span class="comment">// 是 2 的幂次</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result.add(<span class="number">0</span>); <span class="comment">// 不是 2 的幂次</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr />
-<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 是数组的大小。我们需要遍历每个元素，并对每个元素进行一次位运算。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，用于存储结果数组。</li>
-</ul>
-<hr />
-<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
-<ol>
-<li>输入数组可能包含 0 或负数，判断条件中 <code>num &gt; 0</code> 非常关键。</li>
-<li>位运算的优先级较低，建议添加括号以确保逻辑清晰。</li>
-</ol>
-<hr />
-<h3 id="第二题equalize-power-levels"><a class="markdownIt-Anchor" href="#第二题equalize-power-levels"></a> 第二题：Equalize Power Levels</h3>
-<h4 id="problem-原题-2"><a class="markdownIt-Anchor" href="#problem-原题-2"></a> Problem (原题)</h4>
-<p>Researchers are studying the logistics of robot swarms. In one experiment, they need to make sure that the initial power of each robot is the same before the swarm is released.<br />
-At their disposal is a charging instrument that can increase or decrease the power of one robot at a time by 1 unit in 1 minute. Find the minimum number of minutes required to make equal the power of a swarm of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> robots.</p>
-<p>Example:<br />
-Input: <code>n = 6, power = [2, 5, 3, 6, 7, 1]</code><br />
-Output: <code>12</code></p>
-<p>Explanation:<br />
-If all robots are adjusted to 4 units of power, the time required is:<br />
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>5</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>3</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>6</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>7</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">(4 - 2) + (5 - 4) + (4 - 3) + (6 - 4) + (7 - 4) + (4 - 1) = 12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span>.</p>
-<hr />
-<h4 id="思路-2"><a class="markdownIt-Anchor" href="#思路-2"></a> 思路</h4>
-<p>调整所有数到相等的最优解是选择 <strong>中位数</strong> 作为目标值。这是因为中位数能够最小化绝对差值之和。</p>
-<ul>
-<li>我们需要先对数组进行排序，找到中位数。</li>
-<li>然后计算每个数字与中位数的绝对差值的总和。</li>
-</ul>
-<hr />
-<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">long</span> <span class="title function_">equalize</span><span class="params">(List&lt;Long&gt; power)</span> &#123;</span><br><span class="line">        <span class="comment">// 找到中位数</span></span><br><span class="line">        Collections.sort(power);</span><br><span class="line">        <span class="type">long</span> <span class="variable">median</span> <span class="operator">=</span> power.get(power.size() / <span class="number">2</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 计算调整到中位数的总时间</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">totalMinutes</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">long</span> p : power) &#123;</span><br><span class="line">            totalMinutes += Math.abs(p - median);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> totalMinutes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr />
-<h4 id="复杂度分析-2"><a class="markdownIt-Anchor" href="#复杂度分析-2"></a> 复杂度分析</h4>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，主要由排序的复杂度决定。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> ，不需要额外的空间（排序可以在原数组上完成）。</li>
-</ul>
-<hr />
-<h4 id="注意事项-2"><a class="markdownIt-Anchor" href="#注意事项-2"></a> 注意事项</h4>
-<ol>
-<li>中位数的定义：在排序后的数组中，位置 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\lceil n / 2 \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathnormal">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> 的数即为中位数。</li>
-<li>如果数组长度是偶数，中位数可以选择中间任意一个数，结果一样。</li>
-<li>排序的时间复杂度是这道题的瓶颈，无法进一步优化。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>interview</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>An Overview of Cryptography</title>
     <url>/an-overview-of-cryptography/index.html</url>
     <content><![CDATA[<h3 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> INTRODUCTION</h3>
@@ -2087,6 +2014,82 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
+    <title>Interview Questions SWE 2025 (1)</title>
+    <url>/interview-questions-swe-2025-1/index.html</url>
+    <content><![CDATA[<h3 id="第一题power-of-2-check"><a class="markdownIt-Anchor" href="#第一题power-of-2-check"></a> 第一题：Power of 2 Check</h3>
+<h4 id="problem-原题"><a class="markdownIt-Anchor" href="#problem-原题"></a> Problem (原题)</h4>
+<p>Given an array of integers, determine whether each is a power of 2, where powers of 2 are <code>[1, 2, 4, 8, 16, 32, 64...]</code>.<br />
+For each integer evaluated, append to an array a value of <code>1</code> if the number is a power of 2 or <code>0</code> otherwise.</p>
+<p>Example:<br />
+Input: <code>arr = [1, 3, 8, 12, 16]</code><br />
+Output: <code>[1, 0, 1, 0, 1]</code></p>
+<hr />
+<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
+<p>判断一个数是否是 2 的幂次有一个简单的方法：<br />
+一个数如果是 2 的幂，那么它在二进制表示中只有 1 个 <code>1</code>。我们可以通过以下条件判断：</p>
+<ul>
+<li><code>(num &gt; 0 &amp;&amp; (num &amp; (num - 1)) == 0)</code></li>
+<li><code>num &amp; (num - 1)</code> 的结果是将二进制最低位的 <code>1</code> 去掉。如果结果为 0，说明原数字是 2 的幂。</li>
+</ul>
+<p>算法的核心是遍历数组，逐一判断每个数字是否符合条件，并将结果存入输出数组中。</p>
+<hr />
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title function_">isPower</span><span class="params">(List&lt;Integer&gt; arr)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; <span class="number">0</span> &amp;&amp; (num &amp; (num - <span class="number">1</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">                result.add(<span class="number">1</span>); <span class="comment">// 是 2 的幂次</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result.add(<span class="number">0</span>); <span class="comment">// 不是 2 的幂次</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 是数组的大小。我们需要遍历每个元素，并对每个元素进行一次位运算。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，用于存储结果数组。</li>
+</ul>
+<hr />
+<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
+<ol>
+<li>输入数组可能包含 0 或负数，判断条件中 <code>num &gt; 0</code> 非常关键。</li>
+<li>位运算的优先级较低，建议添加括号以确保逻辑清晰。</li>
+</ol>
+<hr />
+<h3 id="第二题equalize-power-levels"><a class="markdownIt-Anchor" href="#第二题equalize-power-levels"></a> 第二题：Equalize Power Levels</h3>
+<h4 id="problem-原题-2"><a class="markdownIt-Anchor" href="#problem-原题-2"></a> Problem (原题)</h4>
+<p>Researchers are studying the logistics of robot swarms. In one experiment, they need to make sure that the initial power of each robot is the same before the swarm is released.<br />
+At their disposal is a charging instrument that can increase or decrease the power of one robot at a time by 1 unit in 1 minute. Find the minimum number of minutes required to make equal the power of a swarm of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> robots.</p>
+<p>Example:<br />
+Input: <code>n = 6, power = [2, 5, 3, 6, 7, 1]</code><br />
+Output: <code>12</code></p>
+<p>Explanation:<br />
+If all robots are adjusted to 4 units of power, the time required is:<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>5</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>3</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>6</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>7</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">(4 - 2) + (5 - 4) + (4 - 3) + (6 - 4) + (7 - 4) + (4 - 1) = 12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span>.</p>
+<hr />
+<h4 id="思路-2"><a class="markdownIt-Anchor" href="#思路-2"></a> 思路</h4>
+<p>调整所有数到相等的最优解是选择 <strong>中位数</strong> 作为目标值。这是因为中位数能够最小化绝对差值之和。</p>
+<ul>
+<li>我们需要先对数组进行排序，找到中位数。</li>
+<li>然后计算每个数字与中位数的绝对差值的总和。</li>
+</ul>
+<hr />
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">long</span> <span class="title function_">equalize</span><span class="params">(List&lt;Long&gt; power)</span> &#123;</span><br><span class="line">        <span class="comment">// 找到中位数</span></span><br><span class="line">        Collections.sort(power);</span><br><span class="line">        <span class="type">long</span> <span class="variable">median</span> <span class="operator">=</span> power.get(power.size() / <span class="number">2</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 计算调整到中位数的总时间</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">totalMinutes</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">long</span> p : power) &#123;</span><br><span class="line">            totalMinutes += Math.abs(p - median);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> totalMinutes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="复杂度分析-2"><a class="markdownIt-Anchor" href="#复杂度分析-2"></a> 复杂度分析</h4>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，主要由排序的复杂度决定。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> ，不需要额外的空间（排序可以在原数组上完成）。</li>
+</ul>
+<hr />
+<h4 id="注意事项-2"><a class="markdownIt-Anchor" href="#注意事项-2"></a> 注意事项</h4>
+<ol>
+<li>中位数的定义：在排序后的数组中，位置 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\lceil n / 2 \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathnormal">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> 的数即为中位数。</li>
+<li>如果数组长度是偶数，中位数可以选择中间任意一个数，结果一样。</li>
+<li>排序的时间复杂度是这道题的瓶颈，无法进一步优化。</li>
+<li>此题和<a href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/">LeetCode 462. 最小操作次数使数组元素相等 II<br />
+</a>思路一模一样。</li>
+<li><a class="link"   href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/solutions/1504085/by-fuxuemingzhu-13z3" >这篇题解<i class="fas fa-external-link-alt"></i></a>看起来不错。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>interview</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java Enhanced Switch</title>
     <url>/java-enhanced-switch/index.html</url>
     <content><![CDATA[<p>在Java中，<strong>增强的Switch</strong>（Enhanced Switch）是从Java 14开始引入，并在Java 17中正式成为标准功能的一项特性。它对传统的<code>switch</code>语句进行了改进，使其更简洁、更具表达力，并支持作为表达式使用。下面将详细介绍Java中的增强Switch，包括其定义、特点、语法、使用示例以及与传统Switch的对比。</p>
@@ -2239,6 +2242,418 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 ]]></content>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java POJO and Record</title>
+    <url>/java-pojo-and-record/index.html</url>
+    <content><![CDATA[<p>在Java编程中，<strong>POJO</strong> 和 <strong>Record</strong> 是两种用于定义数据模型的不同概念。它们各自有不同的用途和特性，适用于不同的场景。下面详细介绍这两者的定义、特点以及如何使用<code>record</code>。</p>
+<h2 id="什么是-pojo"><a class="markdownIt-Anchor" href="#什么是-pojo"></a> 什么是 POJO？</h2>
+<h3 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h3>
+<p><strong>POJO</strong>（Plain Old Java Object，简单的Java对象）是一种没有依赖任何特定框架或库的普通Java对象。POJO通常用于封装数据，具有简单的属性和相应的访问器（getter）和修改器（setter）方法。</p>
+<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
+<ul>
+<li><strong>简单性</strong>：POJO没有继承或依赖任何特殊的类或接口，易于理解和使用。</li>
+<li><strong>封装性</strong>：通过私有字段和公共的getter/setter方法实现数据的封装。</li>
+<li><strong>可重用性</strong>：由于其简单性，POJO可以在不同的上下文中重复使用。</li>
+<li><strong>灵活性</strong>：POJO可以根据需求自由地添加方法和属性。</li>
+</ul>
+<h3 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h3>
+<p>以下是一个典型的POJO类示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 无参构造函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 带参构造函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Getter 和 Setter 方法</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写 toString 方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;name=&#x27;&quot;</span> + name + <span class="string">&quot;&#x27;, age=&quot;</span> + age + <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写 equals 和 hashCode 方法（可选）</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> (Person) o;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (age != person.age) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> name != <span class="literal">null</span> ? name.equals(person.name) : person.name == <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> name != <span class="literal">null</span> ? name.hashCode() : <span class="number">0</span>;</span><br><span class="line">        result = <span class="number">31</span> * result + age;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用场景"><a class="markdownIt-Anchor" href="#使用场景"></a> 使用场景</h3>
+<ul>
+<li><strong>数据传输对象（DTO）</strong>：在不同层（如控制层和服务层）之间传递数据。</li>
+<li><strong>持久化实体</strong>：与ORM框架（如Hibernate）结合使用，表示数据库中的表记录。</li>
+<li><strong>配置对象</strong>：封装配置信息，如应用程序配置文件中的设置。</li>
+</ul>
+<h2 id="什么是-record"><a class="markdownIt-Anchor" href="#什么是-record"></a> 什么是 Record？</h2>
+<h3 id="定义-2"><a class="markdownIt-Anchor" href="#定义-2"></a> 定义</h3>
+<p><strong>Record</strong> 是Java 14引入的一个新特性，作为预览功能在Java 16中正式发布。Record是一种特殊的类，用于简化不可变数据的声明。它们主要用于存储数据，无需编写繁琐的样板代码（如getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法）。</p>
+<h3 id="特点-2"><a class="markdownIt-Anchor" href="#特点-2"></a> 特点</h3>
+<ul>
+<li><strong>简洁性</strong>：使用简单的语法定义数据类，自动生成必要的方法。</li>
+<li><strong>不可变性</strong>：Record中的字段是最终的（<code>final</code>），一旦创建，无法修改。</li>
+<li><strong>自动生成方法</strong>：编译器自动为Record生成<code>equals</code>、<code>hashCode</code>、<code>toString</code>以及访问器方法。</li>
+<li><strong>透明性</strong>：Record的所有字段在类声明中明确列出，增强了代码的可读性。</li>
+</ul>
+<h3 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h3>
+<p>定义Record的基本语法如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">RecordName</span><span class="params">(FieldType1 field1, FieldType2 field2, ...)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="示例-2"><a class="markdownIt-Anchor" href="#示例-2"></a> 示例</h3>
+<p>以下是将前面提到的<code>Person</code>类转换为Record的示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译器会自动生成以下内容：</p>
+<ul>
+<li>私有的、最终的字段 <code>name</code> 和 <code>age</code>。</li>
+<li>公共的访问器方法 <code>name()</code> 和 <code>age()</code>。</li>
+<li>构造函数。</li>
+<li>重写的 <code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</li>
+</ul>
+<h3 id="使用-record-的优势"><a class="markdownIt-Anchor" href="#使用-record-的优势"></a> 使用 Record 的优势</h3>
+<ol>
+<li><strong>减少样板代码</strong>：无需手动编写getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</li>
+<li><strong>增强可读性</strong>：类的声明直接展示了它包含的字段。</li>
+<li><strong>确保不可变性</strong>：默认情况下，Record的字段是不可变的，减少了不必要的状态变化。</li>
+<li><strong>简化代码维护</strong>：自动生成的方法减少了人为错误，提高了代码的一致性。</li>
+</ol>
+<h3 id="示例使用"><a class="markdownIt-Anchor" href="#示例使用"></a> 示例使用</h3>
+<p>以下是一个使用Record的完整示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可以添加自定义方法或覆盖自动生成的方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义构造函数</span></span><br><span class="line">    <span class="keyword">public</span> Person &#123;</span><br><span class="line">        <span class="keyword">if</span> (age &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Age cannot be negative&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义方法</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, my name is &quot;</span> + name + <span class="string">&quot; and I am &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Alice&quot;</span>, <span class="number">30</span>);</span><br><span class="line">        System.out.println(person); <span class="comment">// 输出: Person[name=Alice, age=30]</span></span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, my name is Alice and I am 30 years old.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 访问字段</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> person.name();</span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> person.age();</span><br><span class="line">        System.out.println(name + <span class="string">&quot; is &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h3>
+<ul>
+<li><strong>不可继承</strong>：Record 是隐式 <code>final</code>，无法被继承。</li>
+<li><strong>构造函数限制</strong>：Record 的所有字段必须在声明中定义，且构造函数必须初始化所有字段。</li>
+<li><strong>继承限制</strong>：Record 不能继承其他类（除了隐式继承自 <code>java.lang.Record</code>），但可以实现接口。</li>
+<li><strong>可变字段</strong>：虽然Record的字段是不可变的，但如果字段引用的是可变对象（如列表），则该对象本身仍然可以被修改。为了确保完全不可变，需要使用不可变的对象类型作为字段。</li>
+</ul>
+<h2 id="pojo-与-record-的对比"><a class="markdownIt-Anchor" href="#pojo-与-record-的对比"></a> POJO 与 Record 的对比</h2>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>POJO</strong></th>
+<th><strong>Record</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>语法简洁性</strong></td>
+<td>需要手动编写getter、setter、<code>equals</code>、<code>hashCode</code>等方法</td>
+<td>简洁的语法，自动生成所有必要的方法</td>
+</tr>
+<tr>
+<td><strong>可变性</strong></td>
+<td>通常是可变的，通过setter方法修改字段值</td>
+<td>默认不可变，字段是 <code>final</code> 的，不提供setter方法</td>
+</tr>
+<tr>
+<td><strong>样板代码</strong></td>
+<td>较多，需要编写大量的样板代码</td>
+<td>几乎无需样板代码，减少代码冗余</td>
+</tr>
+<tr>
+<td><strong>继承性</strong></td>
+<td>可以继承其他类，实现接口</td>
+<td>不能继承其他类，只能实现接口</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>广泛用于各种场景，如数据传输对象（DTO）、持久化实体等</td>
+<td>主要用于不可变的数据表示，如值对象（Value Object）</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>由于可变性和样板代码，可能在某些情况下略逊于Record</td>
+<td>更高的性能，特别是在需要大量不可变对象时</td>
+</tr>
+<tr>
+<td><strong>构造函数</strong></td>
+<td>可以有多个构造函数，灵活性更高</td>
+<td>构造函数必须初始化所有字段，限制更严格</td>
+</tr>
+<tr>
+<td><strong>方法覆盖</strong></td>
+<td>可以自由地覆盖和添加方法</td>
+<td>可以添加自定义方法和覆盖生成的方法，但整体结构固定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="何时使用-pojo-和-record"><a class="markdownIt-Anchor" href="#何时使用-pojo-和-record"></a> 何时使用 POJO 和 Record</h3>
+<ul>
+<li>
+<p><strong>使用 POJO</strong>：</p>
+<ul>
+<li>需要可变对象时。</li>
+<li>需要继承其他类或进行复杂的继承层次结构时。</li>
+<li>需要灵活地添加和修改方法时。</li>
+</ul>
+</li>
+<li>
+<p><strong>使用 Record</strong>：</p>
+<ul>
+<li>需要不可变对象时。</li>
+<li>主要用于数据传输或存储，不需要复杂的业务逻辑。</li>
+<li>希望减少样板代码，提高代码的可读性和维护性时。</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何使用-record"><a class="markdownIt-Anchor" href="#如何使用-record"></a> 如何使用 Record</h2>
+<h3 id="1-定义-record"><a class="markdownIt-Anchor" href="#1-定义-record"></a> 1. 定义 Record</h3>
+<p>定义一个Record非常简单，只需使用 <code>record</code> 关键字并列出所有字段。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-创建-record-实例"><a class="markdownIt-Anchor" href="#2-创建-record-实例"></a> 2. 创建 Record 实例</h3>
+<p>与普通类类似，通过构造函数创建Record的实例。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Bob&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        System.out.println(person); <span class="comment">// 输出: Person[name=Bob, age=25]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-访问-record-字段"><a class="markdownIt-Anchor" href="#3-访问-record-字段"></a> 3. 访问 Record 字段</h3>
+<p>Record自动生成访问器方法，方法名与字段名相同。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Bob&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> person.name(); <span class="comment">// 访问name字段</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> person.age();       <span class="comment">// 访问age字段</span></span><br><span class="line">        System.out.println(name + <span class="string">&quot; is &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-添加自定义构造函数"><a class="markdownIt-Anchor" href="#4-添加自定义构造函数"></a> 4. 添加自定义构造函数</h3>
+<p>可以添加自定义构造函数，以添加验证或修改输入参数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Person &#123;</span><br><span class="line">        <span class="keyword">if</span> (age &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Age cannot be negative&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (name == <span class="literal">null</span> || name.isBlank()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Name cannot be null or blank&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-添加自定义方法"><a class="markdownIt-Anchor" href="#5-添加自定义方法"></a> 5. 添加自定义方法</h3>
+<p>可以在Record中添加自定义方法，以提供额外的功能。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, my name is &quot;</span> + name + <span class="string">&quot; and I am &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Charlie&quot;</span>, <span class="number">28</span>);</span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, my name is Charlie and I am 28 years old.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-重写自动生成的方法"><a class="markdownIt-Anchor" href="#6-重写自动生成的方法"></a> 6. 重写自动生成的方法</h3>
+<p>可以根据需要重写Record自动生成的<code>toString</code>、<code>equals</code>和<code>hashCode</code>方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;name=&#x27;&quot;</span> + name + <span class="string">&quot;&#x27;, age=&quot;</span> + age + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Dana&quot;</span>, <span class="number">32</span>);</span><br><span class="line">        System.out.println(person.toString()); <span class="comment">// 输出: Person&#123;name=&#x27;Dana&#x27;, age=32&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-使用-record-进行模式匹配java-16"><a class="markdownIt-Anchor" href="#7-使用-record-进行模式匹配java-16"></a> 7. 使用 Record 进行模式匹配（Java 16+）</h3>
+<p>Java 16引入了Record的模式匹配功能，使得在 <code>instanceof</code> 检查中更方便地解构Record。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Eve&quot;</span>, <span class="number">29</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Person p) &#123;</span><br><span class="line">            System.out.println(p.name() + <span class="string">&quot; is &quot;</span> + p.age() + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-record-继承和接口实现"><a class="markdownIt-Anchor" href="#8-record-继承和接口实现"></a> 8. Record 继承和接口实现</h3>
+<p>虽然Record不能继承其他类，但可以实现接口。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Greetable</span> &#123;</span><br><span class="line">    String <span class="title function_">greet</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> <span class="keyword">implements</span> <span class="title class_">Greetable</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, I&#x27;m &quot;</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Frank&quot;</span>, <span class="number">40</span>);</span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, I&#x27;m Frank</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<ul>
+<li>
+<p><strong>POJO（Plain Old Java Object）</strong> 是一种简单的Java对象，用于封装数据，具有灵活性和可变性。它需要编写大量的样板代码，如getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</p>
+</li>
+<li>
+<p><strong>Record</strong> 是Java 16引入的一种新特性，旨在简化不可变数据的声明。Record通过简洁的语法自动生成必要的方法，减少了样板代码，增强了代码的可读性和维护性。Record适用于需要不可变对象和数据传输的场景。</p>
+</li>
+</ul>
+<p>根据项目需求和设计考虑，选择合适的方式来定义数据模型。如果需要简单的数据存储并希望减少样板代码，<strong>Record</strong> 是一个理想的选择；如果需要更多的灵活性和可变性，或需要继承其他类，则应使用 <strong>POJO</strong>。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 1456. 定长子串中元音的最大数目</title>
+    <url>/leetcode-1456-%E5%AE%9A%E9%95%BF%E5%AD%90%E4%B8%B2%E4%B8%AD%E5%85%83%E9%9F%B3%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/" >LeetCode 1456. 定长子串中元音的最大数目<i class="fas fa-external-link-alt"></i></a><br />
+滑动窗口问题</p>
+<h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
+<h4 id="定长滑窗套路"><a class="markdownIt-Anchor" href="#定长滑窗套路"></a> 定长滑窗套路</h4>
+<ol>
+<li>入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。</li>
+<li>更新：更新答案。一般是更新最大值/最小值。</li>
+<li>出：下标为 i−k+1 的元素离开窗口，更新相关统计量。<br />
+详见<a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/solutions/2809359/tao-lu-jiao-ni-jie-jue-ding-chang-hua-ch-fzfo" >灵神题解<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
+<h4 id="实现c"><a class="markdownIt-Anchor" href="#实现c"></a> 实现(C++)</h4>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxVowels</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>, count = <span class="number">0</span>;</span><br><span class="line">        unordered_set&lt;<span class="type">char</span>&gt; table = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;u&#x27;</span>&#125;; <span class="comment">//也可直接用or</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(s[i])) count++;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; k - <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, count);</span><br><span class="line">            <span class="type">char</span> out = s[i + <span class="number">1</span> - k];</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(out)) count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
+<p>时间复杂度：O(n)，其中 n 是 s 的长度。<br />
+空间复杂度：O(1)。仅用到若干额外变量。</p>
+]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 1705. 吃苹果的最大数目</title>
+    <url>/leetcode-1705-%E5%90%83%E8%8B%B9%E6%9E%9C%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-eaten-apples/description/" >LeetCode 1705. 吃苹果的最大数目<i class="fas fa-external-link-alt"></i></a><br />
+12/24/2024 每日一题</p>
+<h3 id="如何解决苹果腐烂问题贪心-最小堆"><a class="markdownIt-Anchor" href="#如何解决苹果腐烂问题贪心-最小堆"></a> 如何解决苹果腐烂问题：贪心 + 最小堆</h3>
+<p>在这篇文章中，我们将讨论如何用 <strong>贪心算法</strong> 和 <strong>最小堆</strong> 来解决一个经典问题：每天从一棵苹果树中选择苹果食用，以保证吃到的苹果数量最大化。</p>
+<h4 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h4>
+<p>给定两个数组 <code>apples</code> 和 <code>days</code>：</p>
+<ul>
+<li><code>apples[i]</code> 表示第 i 天长出的苹果数量。</li>
+<li><code>days[i]</code> 表示这些苹果从第 i 天起可以存放的天数。</li>
+</ul>
+<p>每天你最多只能吃一个苹果，且优先吃最早腐烂的苹果。问题是：<strong>你最多可以吃掉多少个苹果？</strong></p>
+<h4 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h4>
+<ol>
+<li>
+<p><strong>贪心选择</strong>：<br />
+每天优先吃掉<strong>最早腐烂</strong>的苹果，以避免浪费。过期日相同时，我们只需按照默认规则（先吃一个）继续操作即可，剩余的苹果会在之后的天数继续处理。</p>
+</li>
+<li>
+<p><strong>数据结构：最小堆</strong>：<br />
+使用一个最小堆来动态存储未腐烂的苹果，每个元素包含两部分：</p>
+<ul>
+<li>过期日期：<code>i + days[i]</code>。</li>
+<li>剩余苹果数量：<code>apples[i]</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>操作流程</strong>：</p>
+<ul>
+<li>每天加入当天新长出的苹果（如果有）。</li>
+<li>移除堆中已经腐烂的苹果（过期日期小于等于当前日期）。</li>
+<li>从堆顶取出一个苹果吃（因为堆顶是最早腐烂的苹果），并更新其剩余数量。</li>
+</ul>
+</li>
+<li>
+<p><strong>处理延续天数</strong>：<br />
+当所有天数都处理完后，如果堆中仍有未腐烂的苹果，继续每天吃一个，直到堆为空或苹果全部腐烂。</p>
+</li>
+</ol>
+<hr />
+<h4 id="代码实现c"><a class="markdownIt-Anchor" href="#代码实现c"></a> 代码实现（C++）</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">eatenApples</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; apples, vector&lt;<span class="type">int</span>&gt;&amp; days)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> day = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = days.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// &#123;expire, amount&#125;</span></span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;, greater&lt;&gt;&gt; minHeap;</span><br><span class="line">        <span class="keyword">while</span> (day &lt; n) &#123;</span><br><span class="line">            <span class="comment">// add new apples</span></span><br><span class="line">            minHeap.<span class="built_in">push</span>(&#123;day + days[day], apples[day]&#125;);</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// consume fresh apple</span></span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                ans++;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (amount &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                    minHeap.<span class="built_in">push</span>(&#123;expire, amount - <span class="number">1</span>&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            day++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// no new apples coming in, consume all fresh apples</span></span><br><span class="line">        <span class="keyword">while</span>(!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="type">int</span> canEat = <span class="built_in">min</span>(amount, expire - day);</span><br><span class="line">                ans += canEat;</span><br><span class="line">                day += canEat;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
+<ol>
+<li>
+<p><strong>字典序比较规则</strong>：<br />
+使用 <code>priority_queue</code> 的 <code>greater&lt;&gt;</code> 实现最小堆时，<code>std::pair</code> 会按字典序比较，即优先比较 <code>first</code>，再比较 <code>second</code>。</p>
+</li>
+<li>
+<p><strong>腐烂的苹果清理</strong>：<br />
+每天都需要检查堆顶元素是否已腐烂，避免误吃腐烂的苹果。</p>
+</li>
+<li>
+<p><strong>处理堆为空的情况</strong>：<br />
+在某些天数中可能没有苹果可吃，此时跳过即可。</p>
+</li>
+<li>
+<p><strong>时间复杂度</strong>：</p>
+<ul>
+<li>插入和移除操作的复杂度为 (O(\log k))，其中 (k) 是堆的大小。</li>
+<li>整体复杂度为 (O(n \log n))，适合大规模数据处理。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h4>
+<p>通过贪心策略和最小堆的结合，我们可以高效地解决这个问题。这种方法充分利用了堆的动态性，确保每一天都尽量选择最优的苹果进行食用，是贪心算法的典型应用场景之一。</p>
+]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 3159. 查询数组中元素的出现位置</title>
+    <url>/leetcode-3159-%E6%9F%A5%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/find-occurrences-of-an-element-in-an-array/description/" >LeetCode 3159. 查询数组中元素的出现位置<i class="fas fa-external-link-alt"></i></a><br />
+12/27/2024 每日一题</p>
+<h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">occurrencesOfElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, vector&lt;<span class="type">int</span>&gt;&amp; queries, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == x) &#123;</span><br><span class="line">                table.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> n = table.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(queries.size())</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; queries.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (queries[i] &lt;= n) &#123;</span><br><span class="line">                ans[i] = table[queries[i] - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans[i] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 3083. 字符串及其反转中是否存在同一子字符串</title>
+    <url>/leetcode-3083-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8A%E5%85%B6%E5%8F%8D%E8%BD%AC%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%90%8C%E4%B8%80%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/existence-of-a-substring-in-a-string-and-its-reverse/description/" >LeetCode 3083. 字符串及其反转中是否存在同一子字符串<i class="fas fa-external-link-alt"></i></a><br />
+12/26/2024 每日一题</p>
+<h3 id="题解字符串及其反转中是否存在同一子字符串"><a class="markdownIt-Anchor" href="#题解字符串及其反转中是否存在同一子字符串"></a> 题解：字符串及其反转中是否存在同一子字符串</h3>
+<p>取自<a class="link"   href="https://leetcode.cn/problems/existence-of-a-substring-in-a-string-and-its-reverse/solutions/2692152/yi-ci-bian-li-wei-yun-suan-you-hua-pytho-ijj7" >灵神题解<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h4>
+<p>给定一个字符串 <code>s</code>，请判断是否存在一个长度为 2 的子字符串，在其反转字符串中也出现。如果存在，返回 <code>true</code>；否则，返回 <code>false</code>。</p>
+<hr />
+<h3 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h3>
+<p>这道题的关键是利用 <strong>反转字符串的对称性</strong>。<br />
+具体来说：</p>
+<ul>
+<li>如果子串 <code>x+y</code> 出现在字符串 <code>s</code> 中，则反转后的字符串 <code>reverse(s)</code> 中一定包含子串 <code>y+x</code>。</li>
+<li>因此，我们可以在遍历字符串时记录所有遇到的子串 <code>x+y</code>，并动态检查其反转子串 <code>y+x</code> 是否已经出现过。</li>
+</ul>
+<p>为了高效实现，我们使用一个固定大小的二维布尔数组 <code>table[26][26]</code>，其中：</p>
+<ul>
+<li><code>table[x][y] = true</code> 表示子串 <code>x+y</code> 已经出现过。</li>
+<li>当检查到 <code>table[y][x] = true</code> 时，说明反转的子串 <code>y+x</code> 已经出现，立即返回 <code>true</code>。</li>
+</ul>
+<p>这种方法可以避免显式地构造反转字符串，降低时间复杂度。</p>
+<hr />
+<h3 id="算法步骤"><a class="markdownIt-Anchor" href="#算法步骤"></a> 算法步骤</h3>
+<ol>
+<li>初始化一个二维布尔数组 <code>table[26][26]</code>，大小为 26 x 26（表示字母 <code>'a'</code> 到 <code>'z'</code> 的所有可能组合）。</li>
+<li>遍历字符串，从第二个字符开始，对于每对字符 <code>x = s[i-1]</code> 和 <code>y = s[i]</code>：
+<ul>
+<li>标记当前子串 <code>x+y</code>：<code>table[x][y] = true</code>。</li>
+<li>检查反转子串 <code>y+x</code> 是否已经存在：如果 <code>table[y][x] = true</code>，则返回 <code>true</code>。</li>
+</ul>
+</li>
+<li>如果遍历完成后仍未找到符合条件的子串，返回 <code>false</code>。</li>
+</ol>
+<hr />
+<h3 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h3>
+<p>以下是 C++ 的实现代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSubstringPresent</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">bool</span> table[<span class="number">26</span>][<span class="number">26</span>] = &#123;&#125;; <span class="comment">// 初始化一个 26x26 的布尔数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = s[i - <span class="number">1</span>] - <span class="string">&#x27;a&#x27;</span>; <span class="comment">// 前一个字符的索引</span></span><br><span class="line">            <span class="type">int</span> y = s[i] - <span class="string">&#x27;a&#x27;</span>;     <span class="comment">// 当前字符的索引</span></span><br><span class="line">            table[x][y] = <span class="literal">true</span>;     <span class="comment">// 标记当前子串 x+y</span></span><br><span class="line">            <span class="keyword">if</span> (table[y][x]) &#123;      <span class="comment">// 检查反转的子串 y+x 是否存在</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 遍历完成，没有找到符合条件的子串</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="示例讲解"><a class="markdownIt-Anchor" href="#示例讲解"></a> 示例讲解</h3>
+<p>假设输入字符串为 <code>s = &quot;abcba&quot;</code>，我们按以下步骤操作：</p>
+<ol>
+<li>初始化一个二维布尔数组 <code>table[26][26]</code>，其中 <code>table[x][y]</code> 用于记录子串 <code>x+y</code> 是否出现过。</li>
+</ol>
+<p><strong>第一步：</strong></p>
+<ul>
+<li><code>i = 1</code>，前一个字符 <code>x = s[0] = 'a'</code>，当前字符 <code>y = s[1] = 'b'</code>。</li>
+<li>检查 <code>table[y][x]</code> 是否为 <code>true</code>，即 <code>table['b'-'a']['a'-'a'] = table[1][0]</code>：
+<ul>
+<li>此时 <code>table[1][0] = false</code>，说明反转的子串 <code>b+a</code> 未出现过。</li>
+</ul>
+</li>
+<li>将当前子串 <code>x+y = 'a+b'</code> 标记为已访问，即设置 <code>table[0][1] = true</code>。</li>
+</ul>
+<p><strong>第二步：</strong></p>
+<ul>
+<li><code>i = 2</code>，前一个字符 <code>x = s[1] = 'b'</code>，当前字符 <code>y = s[2] = 'c'</code>。</li>
+<li>检查 <code>table[y][x]</code> 是否为 <code>true</code>，即 <code>table['c'-'a']['b'-'a'] = table[2][1]</code>：
+<ul>
+<li>此时 <code>table[2][1] = false</code>，说明反转的子串 <code>c+b</code> 未出现过。</li>
+</ul>
+</li>
+<li>将当前子串 <code>x+y = 'b+c'</code> 标记为已访问，即设置 <code>table[1][2] = true</code>。</li>
+</ul>
+<p><strong>第三步：</strong></p>
+<ul>
+<li><code>i = 3</code>，前一个字符 <code>x = s[2] = 'c'</code>，当前字符 <code>y = s[3] = 'b'</code>。</li>
+<li>检查 <code>table[y][x]</code> 是否为 <code>true</code>，即 <code>table['b'-'a']['c'-'a'] = table[1][2]</code>：
+<ul>
+<li>此时 <code>table[1][2] = true</code>，说明反转的子串 <code>b+c</code> 已经出现过。</li>
+</ul>
+</li>
+<li>返回 <code>true</code>，因为找到了一组满足条件的子串。</li>
+</ul>
+<hr />
+<h3 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h3>
+<ol>
+<li>
+<p><strong>标记顺序问题</strong>：</p>
+<ul>
+<li>必须先标记当前子串，再检查反转子串是否存在。</li>
+<li>如果标记顺序错误（例如先检查再标记），可能会漏掉一些特殊情况，如子串 <code>&quot;aa&quot;</code>。</li>
+</ul>
+<p><strong>错误示例：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (table[y][x]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">table[x][y] = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>正确示例：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">table[x][y] = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span> (table[y][x]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>字符范围假设</strong>：</p>
+<ul>
+<li>题目保证字符串只包含小写字母，因此可以直接使用固定大小的二维数组 <code>table[26][26]</code>。</li>
+<li>如果字符范围更大（如包含 Unicode），需要换成哈希表或动态数组。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="时间复杂度和空间复杂度"><a class="markdownIt-Anchor" href="#时间复杂度和空间复杂度"></a> 时间复杂度和空间复杂度</h3>
+<ol>
+<li>
+<p><strong>时间复杂度</strong>：</p>
+<ul>
+<li>遍历字符串一次：O(n)，其中 n 是字符串的长度。</li>
+<li>访问和更新 <code>table</code> 的时间复杂度为 O(1)（常数时间）。</li>
+<li><strong>总时间复杂度：O(n)</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>空间复杂度</strong>：</p>
+<ul>
+<li>固定大小的二维数组 <code>table[26][26]</code>，占用 O(1) 的空间（常数级）。</li>
+<li><strong>总空间复杂度：O(1)</strong>。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<p>这是一道典型的利用对称性和哈希思想优化暴力解法的问题：</p>
+<ol>
+<li>将所有长度为 2 的子串与其反转关系映射到固定大小的二维数组中。</li>
+<li>通过一次遍历实现高效解决，时间复杂度从暴力解法的 O(n^2) 降至 O(n)。</li>
+</ol>
+<p>此方法简单高效，特别适用于字符范围有限的场景。</p>
+]]></content>
+      <tags>
+        <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -2545,425 +2960,6 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 1456. 定长子串中元音的最大数目</title>
-    <url>/leetcode-1456-%E5%AE%9A%E9%95%BF%E5%AD%90%E4%B8%B2%E4%B8%AD%E5%85%83%E9%9F%B3%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/" >LeetCode 1456. 定长子串中元音的最大数目<i class="fas fa-external-link-alt"></i></a><br />
-滑动窗口问题</p>
-<h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
-<h4 id="定长滑窗套路"><a class="markdownIt-Anchor" href="#定长滑窗套路"></a> 定长滑窗套路</h4>
-<ol>
-<li>入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。</li>
-<li>更新：更新答案。一般是更新最大值/最小值。</li>
-<li>出：下标为 i−k+1 的元素离开窗口，更新相关统计量。<br />
-详见<a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/solutions/2809359/tao-lu-jiao-ni-jie-jue-ding-chang-hua-ch-fzfo" >灵神题解<i class="fas fa-external-link-alt"></i></a></li>
-</ol>
-<h4 id="实现c"><a class="markdownIt-Anchor" href="#实现c"></a> 实现(C++)</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxVowels</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>, count = <span class="number">0</span>;</span><br><span class="line">        unordered_set&lt;<span class="type">char</span>&gt; table = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;u&#x27;</span>&#125;; <span class="comment">//也可直接用or</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(s[i])) count++;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; k - <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, count);</span><br><span class="line">            <span class="type">char</span> out = s[i + <span class="number">1</span> - k];</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(out)) count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
-<p>时间复杂度：O(n)，其中 n 是 s 的长度。<br />
-空间复杂度：O(1)。仅用到若干额外变量。</p>
-]]></content>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java POJO and Record</title>
-    <url>/java-pojo-and-record/index.html</url>
-    <content><![CDATA[<p>在Java编程中，<strong>POJO</strong> 和 <strong>Record</strong> 是两种用于定义数据模型的不同概念。它们各自有不同的用途和特性，适用于不同的场景。下面详细介绍这两者的定义、特点以及如何使用<code>record</code>。</p>
-<h2 id="什么是-pojo"><a class="markdownIt-Anchor" href="#什么是-pojo"></a> 什么是 POJO？</h2>
-<h3 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h3>
-<p><strong>POJO</strong>（Plain Old Java Object，简单的Java对象）是一种没有依赖任何特定框架或库的普通Java对象。POJO通常用于封装数据，具有简单的属性和相应的访问器（getter）和修改器（setter）方法。</p>
-<h3 id="特点"><a class="markdownIt-Anchor" href="#特点"></a> 特点</h3>
-<ul>
-<li><strong>简单性</strong>：POJO没有继承或依赖任何特殊的类或接口，易于理解和使用。</li>
-<li><strong>封装性</strong>：通过私有字段和公共的getter/setter方法实现数据的封装。</li>
-<li><strong>可重用性</strong>：由于其简单性，POJO可以在不同的上下文中重复使用。</li>
-<li><strong>灵活性</strong>：POJO可以根据需求自由地添加方法和属性。</li>
-</ul>
-<h3 id="示例"><a class="markdownIt-Anchor" href="#示例"></a> 示例</h3>
-<p>以下是一个典型的POJO类示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 无参构造函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 带参构造函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Getter 和 Setter 方法</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写 toString 方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;name=&#x27;&quot;</span> + name + <span class="string">&quot;&#x27;, age=&quot;</span> + age + <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重写 equals 和 hashCode 方法（可选）</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> (Person) o;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (age != person.age) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> name != <span class="literal">null</span> ? name.equals(person.name) : person.name == <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> name != <span class="literal">null</span> ? name.hashCode() : <span class="number">0</span>;</span><br><span class="line">        result = <span class="number">31</span> * result + age;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用场景"><a class="markdownIt-Anchor" href="#使用场景"></a> 使用场景</h3>
-<ul>
-<li><strong>数据传输对象（DTO）</strong>：在不同层（如控制层和服务层）之间传递数据。</li>
-<li><strong>持久化实体</strong>：与ORM框架（如Hibernate）结合使用，表示数据库中的表记录。</li>
-<li><strong>配置对象</strong>：封装配置信息，如应用程序配置文件中的设置。</li>
-</ul>
-<h2 id="什么是-record"><a class="markdownIt-Anchor" href="#什么是-record"></a> 什么是 Record？</h2>
-<h3 id="定义-2"><a class="markdownIt-Anchor" href="#定义-2"></a> 定义</h3>
-<p><strong>Record</strong> 是Java 14引入的一个新特性，作为预览功能在Java 16中正式发布。Record是一种特殊的类，用于简化不可变数据的声明。它们主要用于存储数据，无需编写繁琐的样板代码（如getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法）。</p>
-<h3 id="特点-2"><a class="markdownIt-Anchor" href="#特点-2"></a> 特点</h3>
-<ul>
-<li><strong>简洁性</strong>：使用简单的语法定义数据类，自动生成必要的方法。</li>
-<li><strong>不可变性</strong>：Record中的字段是最终的（<code>final</code>），一旦创建，无法修改。</li>
-<li><strong>自动生成方法</strong>：编译器自动为Record生成<code>equals</code>、<code>hashCode</code>、<code>toString</code>以及访问器方法。</li>
-<li><strong>透明性</strong>：Record的所有字段在类声明中明确列出，增强了代码的可读性。</li>
-</ul>
-<h3 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h3>
-<p>定义Record的基本语法如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">RecordName</span><span class="params">(FieldType1 field1, FieldType2 field2, ...)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="示例-2"><a class="markdownIt-Anchor" href="#示例-2"></a> 示例</h3>
-<p>以下是将前面提到的<code>Person</code>类转换为Record的示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译器会自动生成以下内容：</p>
-<ul>
-<li>私有的、最终的字段 <code>name</code> 和 <code>age</code>。</li>
-<li>公共的访问器方法 <code>name()</code> 和 <code>age()</code>。</li>
-<li>构造函数。</li>
-<li>重写的 <code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</li>
-</ul>
-<h3 id="使用-record-的优势"><a class="markdownIt-Anchor" href="#使用-record-的优势"></a> 使用 Record 的优势</h3>
-<ol>
-<li><strong>减少样板代码</strong>：无需手动编写getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</li>
-<li><strong>增强可读性</strong>：类的声明直接展示了它包含的字段。</li>
-<li><strong>确保不可变性</strong>：默认情况下，Record的字段是不可变的，减少了不必要的状态变化。</li>
-<li><strong>简化代码维护</strong>：自动生成的方法减少了人为错误，提高了代码的一致性。</li>
-</ol>
-<h3 id="示例使用"><a class="markdownIt-Anchor" href="#示例使用"></a> 示例使用</h3>
-<p>以下是一个使用Record的完整示例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可以添加自定义方法或覆盖自动生成的方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义构造函数</span></span><br><span class="line">    <span class="keyword">public</span> Person &#123;</span><br><span class="line">        <span class="keyword">if</span> (age &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Age cannot be negative&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义方法</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, my name is &quot;</span> + name + <span class="string">&quot; and I am &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Alice&quot;</span>, <span class="number">30</span>);</span><br><span class="line">        System.out.println(person); <span class="comment">// 输出: Person[name=Alice, age=30]</span></span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, my name is Alice and I am 30 years old.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 访问字段</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> person.name();</span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> person.age();</span><br><span class="line">        System.out.println(name + <span class="string">&quot; is &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h3>
-<ul>
-<li><strong>不可继承</strong>：Record 是隐式 <code>final</code>，无法被继承。</li>
-<li><strong>构造函数限制</strong>：Record 的所有字段必须在声明中定义，且构造函数必须初始化所有字段。</li>
-<li><strong>继承限制</strong>：Record 不能继承其他类（除了隐式继承自 <code>java.lang.Record</code>），但可以实现接口。</li>
-<li><strong>可变字段</strong>：虽然Record的字段是不可变的，但如果字段引用的是可变对象（如列表），则该对象本身仍然可以被修改。为了确保完全不可变，需要使用不可变的对象类型作为字段。</li>
-</ul>
-<h2 id="pojo-与-record-的对比"><a class="markdownIt-Anchor" href="#pojo-与-record-的对比"></a> POJO 与 Record 的对比</h2>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>POJO</strong></th>
-<th><strong>Record</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>语法简洁性</strong></td>
-<td>需要手动编写getter、setter、<code>equals</code>、<code>hashCode</code>等方法</td>
-<td>简洁的语法，自动生成所有必要的方法</td>
-</tr>
-<tr>
-<td><strong>可变性</strong></td>
-<td>通常是可变的，通过setter方法修改字段值</td>
-<td>默认不可变，字段是 <code>final</code> 的，不提供setter方法</td>
-</tr>
-<tr>
-<td><strong>样板代码</strong></td>
-<td>较多，需要编写大量的样板代码</td>
-<td>几乎无需样板代码，减少代码冗余</td>
-</tr>
-<tr>
-<td><strong>继承性</strong></td>
-<td>可以继承其他类，实现接口</td>
-<td>不能继承其他类，只能实现接口</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>广泛用于各种场景，如数据传输对象（DTO）、持久化实体等</td>
-<td>主要用于不可变的数据表示，如值对象（Value Object）</td>
-</tr>
-<tr>
-<td><strong>性能</strong></td>
-<td>由于可变性和样板代码，可能在某些情况下略逊于Record</td>
-<td>更高的性能，特别是在需要大量不可变对象时</td>
-</tr>
-<tr>
-<td><strong>构造函数</strong></td>
-<td>可以有多个构造函数，灵活性更高</td>
-<td>构造函数必须初始化所有字段，限制更严格</td>
-</tr>
-<tr>
-<td><strong>方法覆盖</strong></td>
-<td>可以自由地覆盖和添加方法</td>
-<td>可以添加自定义方法和覆盖生成的方法，但整体结构固定</td>
-</tr>
-</tbody>
-</table>
-<h3 id="何时使用-pojo-和-record"><a class="markdownIt-Anchor" href="#何时使用-pojo-和-record"></a> 何时使用 POJO 和 Record</h3>
-<ul>
-<li>
-<p><strong>使用 POJO</strong>：</p>
-<ul>
-<li>需要可变对象时。</li>
-<li>需要继承其他类或进行复杂的继承层次结构时。</li>
-<li>需要灵活地添加和修改方法时。</li>
-</ul>
-</li>
-<li>
-<p><strong>使用 Record</strong>：</p>
-<ul>
-<li>需要不可变对象时。</li>
-<li>主要用于数据传输或存储，不需要复杂的业务逻辑。</li>
-<li>希望减少样板代码，提高代码的可读性和维护性时。</li>
-</ul>
-</li>
-</ul>
-<h2 id="如何使用-record"><a class="markdownIt-Anchor" href="#如何使用-record"></a> 如何使用 Record</h2>
-<h3 id="1-定义-record"><a class="markdownIt-Anchor" href="#1-定义-record"></a> 1. 定义 Record</h3>
-<p>定义一个Record非常简单，只需使用 <code>record</code> 关键字并列出所有字段。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="comment">// 可选的自定义方法和构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-创建-record-实例"><a class="markdownIt-Anchor" href="#2-创建-record-实例"></a> 2. 创建 Record 实例</h3>
-<p>与普通类类似，通过构造函数创建Record的实例。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Bob&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        System.out.println(person); <span class="comment">// 输出: Person[name=Bob, age=25]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-访问-record-字段"><a class="markdownIt-Anchor" href="#3-访问-record-字段"></a> 3. 访问 Record 字段</h3>
-<p>Record自动生成访问器方法，方法名与字段名相同。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Bob&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> person.name(); <span class="comment">// 访问name字段</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> person.age();       <span class="comment">// 访问age字段</span></span><br><span class="line">        System.out.println(name + <span class="string">&quot; is &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="4-添加自定义构造函数"><a class="markdownIt-Anchor" href="#4-添加自定义构造函数"></a> 4. 添加自定义构造函数</h3>
-<p>可以添加自定义构造函数，以添加验证或修改输入参数。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Person &#123;</span><br><span class="line">        <span class="keyword">if</span> (age &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Age cannot be negative&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (name == <span class="literal">null</span> || name.isBlank()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Name cannot be null or blank&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5-添加自定义方法"><a class="markdownIt-Anchor" href="#5-添加自定义方法"></a> 5. 添加自定义方法</h3>
-<p>可以在Record中添加自定义方法，以提供额外的功能。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, my name is &quot;</span> + name + <span class="string">&quot; and I am &quot;</span> + age + <span class="string">&quot; years old.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Charlie&quot;</span>, <span class="number">28</span>);</span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, my name is Charlie and I am 28 years old.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-重写自动生成的方法"><a class="markdownIt-Anchor" href="#6-重写自动生成的方法"></a> 6. 重写自动生成的方法</h3>
-<p>可以根据需要重写Record自动生成的<code>toString</code>、<code>equals</code>和<code>hashCode</code>方法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;name=&#x27;&quot;</span> + name + <span class="string">&quot;&#x27;, age=&quot;</span> + age + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Dana&quot;</span>, <span class="number">32</span>);</span><br><span class="line">        System.out.println(person.toString()); <span class="comment">// 输出: Person&#123;name=&#x27;Dana&#x27;, age=32&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="7-使用-record-进行模式匹配java-16"><a class="markdownIt-Anchor" href="#7-使用-record-进行模式匹配java-16"></a> 7. 使用 Record 进行模式匹配（Java 16+）</h3>
-<p>Java 16引入了Record的模式匹配功能，使得在 <code>instanceof</code> 检查中更方便地解构Record。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Eve&quot;</span>, <span class="number">29</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Person p) &#123;</span><br><span class="line">            System.out.println(p.name() + <span class="string">&quot; is &quot;</span> + p.age() + <span class="string">&quot; years old.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="8-record-继承和接口实现"><a class="markdownIt-Anchor" href="#8-record-继承和接口实现"></a> 8. Record 继承和接口实现</h3>
-<p>虽然Record不能继承其他类，但可以实现接口。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Greetable</span> &#123;</span><br><span class="line">    String <span class="title function_">greet</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">record</span> <span class="title class_">Person</span><span class="params">(String name, <span class="type">int</span> age)</span> <span class="keyword">implements</span> <span class="title class_">Greetable</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">greet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello, I&#x27;m &quot;</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Frank&quot;</span>, <span class="number">40</span>);</span><br><span class="line">        System.out.println(person.greet()); <span class="comment">// 输出: Hello, I&#x27;m Frank</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<ul>
-<li>
-<p><strong>POJO（Plain Old Java Object）</strong> 是一种简单的Java对象，用于封装数据，具有灵活性和可变性。它需要编写大量的样板代码，如getter、setter、<code>equals</code>、<code>hashCode</code> 和 <code>toString</code> 方法。</p>
-</li>
-<li>
-<p><strong>Record</strong> 是Java 16引入的一种新特性，旨在简化不可变数据的声明。Record通过简洁的语法自动生成必要的方法，减少了样板代码，增强了代码的可读性和维护性。Record适用于需要不可变对象和数据传输的场景。</p>
-</li>
-</ul>
-<p>根据项目需求和设计考虑，选择合适的方式来定义数据模型。如果需要简单的数据存储并希望减少样板代码，<strong>Record</strong> 是一个理想的选择；如果需要更多的灵活性和可变性，或需要继承其他类，则应使用 <strong>POJO</strong>。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 3046. 分割数组</title>
-    <url>/leetcode-3046-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/split-the-array/description/" >LeetCode 3046. 分割数组<i class="fas fa-external-link-alt"></i></a><br />
-12/28/2024 每日一题</p>
-<h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
-<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
-<p>用哈希表统计每个元素的个数，如果某个元素的个数超过2，则无法分割，因为根据鸽巢原理，至少有1个数组有2个相同的该元素。</p>
-<h4 id="实现c"><a class="markdownIt-Anchor" href="#实现c"></a> 实现(C++)</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isPossibleToSplit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            table[num]++;</span><br><span class="line">            <span class="keyword">if</span> (table[num] &gt;= <span class="number">3</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
-<p>时间复杂度：O(n)<br />
-空间复杂度：O(n)</p>
-]]></content>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 1705. 吃苹果的最大数目</title>
-    <url>/leetcode-1705-%E5%90%83%E8%8B%B9%E6%9E%9C%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-eaten-apples/description/" >LeetCode 1705. 吃苹果的最大数目<i class="fas fa-external-link-alt"></i></a><br />
-12/24/2024 每日一题</p>
-<h3 id="如何解决苹果腐烂问题贪心-最小堆"><a class="markdownIt-Anchor" href="#如何解决苹果腐烂问题贪心-最小堆"></a> 如何解决苹果腐烂问题：贪心 + 最小堆</h3>
-<p>在这篇文章中，我们将讨论如何用 <strong>贪心算法</strong> 和 <strong>最小堆</strong> 来解决一个经典问题：每天从一棵苹果树中选择苹果食用，以保证吃到的苹果数量最大化。</p>
-<h4 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h4>
-<p>给定两个数组 <code>apples</code> 和 <code>days</code>：</p>
-<ul>
-<li><code>apples[i]</code> 表示第 i 天长出的苹果数量。</li>
-<li><code>days[i]</code> 表示这些苹果从第 i 天起可以存放的天数。</li>
-</ul>
-<p>每天你最多只能吃一个苹果，且优先吃最早腐烂的苹果。问题是：<strong>你最多可以吃掉多少个苹果？</strong></p>
-<h4 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h4>
-<ol>
-<li>
-<p><strong>贪心选择</strong>：<br />
-每天优先吃掉<strong>最早腐烂</strong>的苹果，以避免浪费。过期日相同时，我们只需按照默认规则（先吃一个）继续操作即可，剩余的苹果会在之后的天数继续处理。</p>
-</li>
-<li>
-<p><strong>数据结构：最小堆</strong>：<br />
-使用一个最小堆来动态存储未腐烂的苹果，每个元素包含两部分：</p>
-<ul>
-<li>过期日期：<code>i + days[i]</code>。</li>
-<li>剩余苹果数量：<code>apples[i]</code>。</li>
-</ul>
-</li>
-<li>
-<p><strong>操作流程</strong>：</p>
-<ul>
-<li>每天加入当天新长出的苹果（如果有）。</li>
-<li>移除堆中已经腐烂的苹果（过期日期小于等于当前日期）。</li>
-<li>从堆顶取出一个苹果吃（因为堆顶是最早腐烂的苹果），并更新其剩余数量。</li>
-</ul>
-</li>
-<li>
-<p><strong>处理延续天数</strong>：<br />
-当所有天数都处理完后，如果堆中仍有未腐烂的苹果，继续每天吃一个，直到堆为空或苹果全部腐烂。</p>
-</li>
-</ol>
-<hr />
-<h4 id="代码实现c"><a class="markdownIt-Anchor" href="#代码实现c"></a> 代码实现（C++）</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">eatenApples</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; apples, vector&lt;<span class="type">int</span>&gt;&amp; days)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> day = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = days.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// &#123;expire, amount&#125;</span></span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;, vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;, greater&lt;&gt;&gt; minHeap;</span><br><span class="line">        <span class="keyword">while</span> (day &lt; n) &#123;</span><br><span class="line">            <span class="comment">// add new apples</span></span><br><span class="line">            minHeap.<span class="built_in">push</span>(&#123;day + days[day], apples[day]&#125;);</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// consume fresh apple</span></span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                ans++;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (amount &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                    minHeap.<span class="built_in">push</span>(&#123;expire, amount - <span class="number">1</span>&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            day++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// no new apples coming in, consume all fresh apples</span></span><br><span class="line">        <span class="keyword">while</span>(!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="comment">// discard rotten apples</span></span><br><span class="line">            <span class="keyword">while</span> (!minHeap.<span class="built_in">empty</span>() &amp;&amp; day &gt;= minHeap.<span class="built_in">top</span>().first) &#123;</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!minHeap.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">                <span class="keyword">auto</span> [expire, amount] = minHeap.<span class="built_in">top</span>();</span><br><span class="line">                minHeap.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="type">int</span> canEat = <span class="built_in">min</span>(amount, expire - day);</span><br><span class="line">                ans += canEat;</span><br><span class="line">                day += canEat;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr />
-<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
-<ol>
-<li>
-<p><strong>字典序比较规则</strong>：<br />
-使用 <code>priority_queue</code> 的 <code>greater&lt;&gt;</code> 实现最小堆时，<code>std::pair</code> 会按字典序比较，即优先比较 <code>first</code>，再比较 <code>second</code>。</p>
-</li>
-<li>
-<p><strong>腐烂的苹果清理</strong>：<br />
-每天都需要检查堆顶元素是否已腐烂，避免误吃腐烂的苹果。</p>
-</li>
-<li>
-<p><strong>处理堆为空的情况</strong>：<br />
-在某些天数中可能没有苹果可吃，此时跳过即可。</p>
-</li>
-<li>
-<p><strong>时间复杂度</strong>：</p>
-<ul>
-<li>插入和移除操作的复杂度为 (O(\log k))，其中 (k) 是堆的大小。</li>
-<li>整体复杂度为 (O(n \log n))，适合大规模数据处理。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h4 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h4>
-<p>通过贪心策略和最小堆的结合，我们可以高效地解决这个问题。这种方法充分利用了堆的动态性，确保每一天都尽量选择最优的苹果进行食用，是贪心算法的典型应用场景之一。</p>
-]]></content>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 3083. 字符串及其反转中是否存在同一子字符串</title>
-    <url>/leetcode-3083-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8A%E5%85%B6%E5%8F%8D%E8%BD%AC%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%90%8C%E4%B8%80%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/existence-of-a-substring-in-a-string-and-its-reverse/description/" >LeetCode 3083. 字符串及其反转中是否存在同一子字符串<i class="fas fa-external-link-alt"></i></a><br />
-12/26/2024 每日一题</p>
-<h3 id="题解字符串及其反转中是否存在同一子字符串"><a class="markdownIt-Anchor" href="#题解字符串及其反转中是否存在同一子字符串"></a> 题解：字符串及其反转中是否存在同一子字符串</h3>
-<p>取自<a class="link"   href="https://leetcode.cn/problems/existence-of-a-substring-in-a-string-and-its-reverse/solutions/2692152/yi-ci-bian-li-wei-yun-suan-you-hua-pytho-ijj7" >灵神题解<i class="fas fa-external-link-alt"></i></a></p>
-<h4 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h4>
-<p>给定一个字符串 <code>s</code>，请判断是否存在一个长度为 2 的子字符串，在其反转字符串中也出现。如果存在，返回 <code>true</code>；否则，返回 <code>false</code>。</p>
-<hr />
-<h3 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h3>
-<p>这道题的关键是利用 <strong>反转字符串的对称性</strong>。<br />
-具体来说：</p>
-<ul>
-<li>如果子串 <code>x+y</code> 出现在字符串 <code>s</code> 中，则反转后的字符串 <code>reverse(s)</code> 中一定包含子串 <code>y+x</code>。</li>
-<li>因此，我们可以在遍历字符串时记录所有遇到的子串 <code>x+y</code>，并动态检查其反转子串 <code>y+x</code> 是否已经出现过。</li>
-</ul>
-<p>为了高效实现，我们使用一个固定大小的二维布尔数组 <code>table[26][26]</code>，其中：</p>
-<ul>
-<li><code>table[x][y] = true</code> 表示子串 <code>x+y</code> 已经出现过。</li>
-<li>当检查到 <code>table[y][x] = true</code> 时，说明反转的子串 <code>y+x</code> 已经出现，立即返回 <code>true</code>。</li>
-</ul>
-<p>这种方法可以避免显式地构造反转字符串，降低时间复杂度。</p>
-<hr />
-<h3 id="算法步骤"><a class="markdownIt-Anchor" href="#算法步骤"></a> 算法步骤</h3>
-<ol>
-<li>初始化一个二维布尔数组 <code>table[26][26]</code>，大小为 26 x 26（表示字母 <code>'a'</code> 到 <code>'z'</code> 的所有可能组合）。</li>
-<li>遍历字符串，从第二个字符开始，对于每对字符 <code>x = s[i-1]</code> 和 <code>y = s[i]</code>：
-<ul>
-<li>标记当前子串 <code>x+y</code>：<code>table[x][y] = true</code>。</li>
-<li>检查反转子串 <code>y+x</code> 是否已经存在：如果 <code>table[y][x] = true</code>，则返回 <code>true</code>。</li>
-</ul>
-</li>
-<li>如果遍历完成后仍未找到符合条件的子串，返回 <code>false</code>。</li>
-</ol>
-<hr />
-<h3 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h3>
-<p>以下是 C++ 的实现代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSubstringPresent</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">bool</span> table[<span class="number">26</span>][<span class="number">26</span>] = &#123;&#125;; <span class="comment">// 初始化一个 26x26 的布尔数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = s[i - <span class="number">1</span>] - <span class="string">&#x27;a&#x27;</span>; <span class="comment">// 前一个字符的索引</span></span><br><span class="line">            <span class="type">int</span> y = s[i] - <span class="string">&#x27;a&#x27;</span>;     <span class="comment">// 当前字符的索引</span></span><br><span class="line">            table[x][y] = <span class="literal">true</span>;     <span class="comment">// 标记当前子串 x+y</span></span><br><span class="line">            <span class="keyword">if</span> (table[y][x]) &#123;      <span class="comment">// 检查反转的子串 y+x 是否存在</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 遍历完成，没有找到符合条件的子串</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<hr />
-<h3 id="示例讲解"><a class="markdownIt-Anchor" href="#示例讲解"></a> 示例讲解</h3>
-<p>假设输入字符串为 <code>s = &quot;abcba&quot;</code>，我们按以下步骤操作：</p>
-<ol>
-<li>初始化一个二维布尔数组 <code>table[26][26]</code>，其中 <code>table[x][y]</code> 用于记录子串 <code>x+y</code> 是否出现过。</li>
-</ol>
-<p><strong>第一步：</strong></p>
-<ul>
-<li><code>i = 1</code>，前一个字符 <code>x = s[0] = 'a'</code>，当前字符 <code>y = s[1] = 'b'</code>。</li>
-<li>检查 <code>table[y][x]</code> 是否为 <code>true</code>，即 <code>table['b'-'a']['a'-'a'] = table[1][0]</code>：
-<ul>
-<li>此时 <code>table[1][0] = false</code>，说明反转的子串 <code>b+a</code> 未出现过。</li>
-</ul>
-</li>
-<li>将当前子串 <code>x+y = 'a+b'</code> 标记为已访问，即设置 <code>table[0][1] = true</code>。</li>
-</ul>
-<p><strong>第二步：</strong></p>
-<ul>
-<li><code>i = 2</code>，前一个字符 <code>x = s[1] = 'b'</code>，当前字符 <code>y = s[2] = 'c'</code>。</li>
-<li>检查 <code>table[y][x]</code> 是否为 <code>true</code>，即 <code>table['c'-'a']['b'-'a'] = table[2][1]</code>：
-<ul>
-<li>此时 <code>table[2][1] = false</code>，说明反转的子串 <code>c+b</code> 未出现过。</li>
-</ul>
-</li>
-<li>将当前子串 <code>x+y = 'b+c'</code> 标记为已访问，即设置 <code>table[1][2] = true</code>。</li>
-</ul>
-<p><strong>第三步：</strong></p>
-<ul>
-<li><code>i = 3</code>，前一个字符 <code>x = s[2] = 'c'</code>，当前字符 <code>y = s[3] = 'b'</code>。</li>
-<li>检查 <code>table[y][x]</code> 是否为 <code>true</code>，即 <code>table['b'-'a']['c'-'a'] = table[1][2]</code>：
-<ul>
-<li>此时 <code>table[1][2] = true</code>，说明反转的子串 <code>b+c</code> 已经出现过。</li>
-</ul>
-</li>
-<li>返回 <code>true</code>，因为找到了一组满足条件的子串。</li>
-</ul>
-<hr />
-<h3 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h3>
-<ol>
-<li>
-<p><strong>标记顺序问题</strong>：</p>
-<ul>
-<li>必须先标记当前子串，再检查反转子串是否存在。</li>
-<li>如果标记顺序错误（例如先检查再标记），可能会漏掉一些特殊情况，如子串 <code>&quot;aa&quot;</code>。</li>
-</ul>
-<p><strong>错误示例：</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (table[y][x]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">table[x][y] = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
-<p><strong>正确示例：</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">table[x][y] = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span> (table[y][x]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>字符范围假设</strong>：</p>
-<ul>
-<li>题目保证字符串只包含小写字母，因此可以直接使用固定大小的二维数组 <code>table[26][26]</code>。</li>
-<li>如果字符范围更大（如包含 Unicode），需要换成哈希表或动态数组。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="时间复杂度和空间复杂度"><a class="markdownIt-Anchor" href="#时间复杂度和空间复杂度"></a> 时间复杂度和空间复杂度</h3>
-<ol>
-<li>
-<p><strong>时间复杂度</strong>：</p>
-<ul>
-<li>遍历字符串一次：O(n)，其中 n 是字符串的长度。</li>
-<li>访问和更新 <code>table</code> 的时间复杂度为 O(1)（常数时间）。</li>
-<li><strong>总时间复杂度：O(n)</strong>。</li>
-</ul>
-</li>
-<li>
-<p><strong>空间复杂度</strong>：</p>
-<ul>
-<li>固定大小的二维数组 <code>table[26][26]</code>，占用 O(1) 的空间（常数级）。</li>
-<li><strong>总空间复杂度：O(1)</strong>。</li>
-</ul>
-</li>
-</ol>
-<hr />
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<p>这是一道典型的利用对称性和哈希思想优化暴力解法的问题：</p>
-<ol>
-<li>将所有长度为 2 的子串与其反转关系映射到固定大小的二维数组中。</li>
-<li>通过一次遍历实现高效解决，时间复杂度从暴力解法的 O(n^2) 降至 O(n)。</li>
-</ol>
-<p>此方法简单高效，特别适用于字符范围有限的场景。</p>
-]]></content>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode 3218. 切蛋糕的最小总开销 I</title>
     <url>/leetcode-3218-%E5%88%87%E8%9B%8B%E7%B3%95%E7%9A%84%E6%9C%80%E5%B0%8F%E6%80%BB%E5%BC%80%E9%94%80-i/index.html</url>
     <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/minimum-cost-for-cutting-cake-i/description/" >LeetCode 3218. 切蛋糕的最小总开销 I<i class="fas fa-external-link-alt"></i></a><br />
@@ -3070,12 +3066,19 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 3159. 查询数组中元素的出现位置</title>
-    <url>/leetcode-3159-%E6%9F%A5%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/find-occurrences-of-an-element-in-an-array/description/" >LeetCode 3159. 查询数组中元素的出现位置<i class="fas fa-external-link-alt"></i></a><br />
-12/27/2024 每日一题</p>
+    <title>LeetCode 3046. 分割数组</title>
+    <url>/leetcode-3046-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/split-the-array/description/" >LeetCode 3046. 分割数组<i class="fas fa-external-link-alt"></i></a><br />
+12/28/2024 每日一题</p>
 <h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">occurrencesOfElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, vector&lt;<span class="type">int</span>&gt;&amp; queries, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == x) &#123;</span><br><span class="line">                table.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> n = table.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(queries.size())</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; queries.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (queries[i] &lt;= n) &#123;</span><br><span class="line">                ans[i] = table[queries[i] - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans[i] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
+<p>用哈希表统计每个元素的个数，如果某个元素的个数超过2，则无法分割，因为根据鸽巢原理，至少有1个数组有2个相同的该元素。</p>
+<h4 id="实现c"><a class="markdownIt-Anchor" href="#实现c"></a> 实现(C++)</h4>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isPossibleToSplit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            table[num]++;</span><br><span class="line">            <span class="keyword">if</span> (table[num] &gt;= <span class="number">3</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
+<p>时间复杂度：O(n)<br />
+空间复杂度：O(n)</p>
+]]></content>
       <tags>
         <tag>LeetCode</tag>
       </tags>
@@ -3086,154 +3089,6 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
     <content><![CDATA[]]></content>
       <tags>
         <tag>security</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>protected vs default</title>
-    <url>/protected-vs-default/index.html</url>
-    <content><![CDATA[<p>在Java中，**访问修饰符（Access Modifiers）**用于控制类、方法、变量等的可见性和访问权限。Java提供了四种访问修饰符：</p>
-<ol>
-<li><strong><code>public</code></strong>：公共的，所有类都可以访问。</li>
-<li><strong><code>protected</code></strong>：受保护的，同一包中的类和不同包中的子类可以访问。</li>
-<li><strong>默认访问级别（包私有，Package-Private）</strong>：当没有显式指定访问修饰符时，默认为包私有，仅同一包中的类可以访问。</li>
-<li><strong><code>private</code></strong>：私有的，仅在定义它的类内部可见。</li>
-</ol>
-<h3 id="重点关注protected-与-默认访问级别省略访问修饰符"><a class="markdownIt-Anchor" href="#重点关注protected-与-默认访问级别省略访问修饰符"></a> 重点关注：<code>protected</code> 与 默认访问级别（省略访问修饰符）</h3>
-<p>下面详细解释 <code>protected</code> 和默认访问级别之间的区别：</p>
-<h4 id="1-定义与语法"><a class="markdownIt-Anchor" href="#1-定义与语法"></a> 1. 定义与语法</h4>
-<ul>
-<li>
-<p><strong><code>protected</code> 修饰符</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> protectedVar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">protectedMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 受保护的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>默认访问级别（省略修饰符）</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="type">int</span> defaultVar; <span class="comment">// 默认访问级别</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">defaultMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 默认访问级别的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="2-可见性范围"><a class="markdownIt-Anchor" href="#2-可见性范围"></a> 2. 可见性范围</h4>
-<table>
-<thead>
-<tr>
-<th><strong>访问修饰符</strong></th>
-<th><strong>同一类中</strong></th>
-<th><strong>同一包中</strong></th>
-<th><strong>不同包的子类</strong></th>
-<th><strong>不同包的非子类</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>public</code></td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-</tr>
-<tr>
-<td><code>protected</code></td>
-<td>✔️</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>默认（包私有）</td>
-<td>✔️</td>
-<td>✔️</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td><code>private</code></td>
-<td>✔️</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>
-<p><strong><code>protected</code></strong></p>
-<ul>
-<li><strong>同一类中</strong>：可访问。</li>
-<li><strong>同一包中</strong>：可访问。</li>
-<li><strong>不同包的子类中</strong>：可访问（通过继承）。</li>
-<li><strong>不同包的非子类中</strong>：不可访问。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（省略修饰符）</strong></p>
-<ul>
-<li><strong>同一类中</strong>：可访问。</li>
-<li><strong>同一包中</strong>：可访问。</li>
-<li><strong>不同包的子类中</strong>：不可访问。</li>
-<li><strong>不同包的非子类中</strong>：不可访问。</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-示例解析"><a class="markdownIt-Anchor" href="#3-示例解析"></a> 3. 示例解析</h4>
-<h5 id="同一包中的类"><a class="markdownIt-Anchor" href="#同一包中的类"></a> 同一包中的类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> <span class="variable">protectedVar</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">defaultVar</span> <span class="operator">=</span> <span class="number">20</span>; <span class="comment">// 默认访问级别</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SamePackageClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 可访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>同一包</strong> 中，<code>protected</code> 和默认访问级别的成员都可以被访问。</li>
-</ul>
-<h5 id="不同包中的子类"><a class="markdownIt-Anchor" href="#不同包中的子类"></a> 不同包中的子类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="built_in">this</span>.protectedVar); <span class="comment">// 可访问，因为是子类</span></span><br><span class="line">        <span class="comment">// System.out.println(this.defaultVar); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>不同包</strong> 中，<code>protected</code> 成员可以通过继承（即子类）访问。</li>
-<li>默认访问级别的成员在不同包的子类中不可访问。</li>
-</ul>
-<h5 id="不同包中的非子类"><a class="markdownIt-Anchor" href="#不同包中的非子类"></a> 不同包中的非子类</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 编译错误，非子类不同包无法访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在 <strong>不同包</strong> 的 <strong>非子类</strong> 中，<code>protected</code> 和默认访问级别的成员都不可访问。</li>
-</ul>
-<h4 id="4-设计意图与使用场景"><a class="markdownIt-Anchor" href="#4-设计意图与使用场景"></a> 4. 设计意图与使用场景</h4>
-<ul>
-<li>
-<p><strong><code>protected</code></strong>：</p>
-<ul>
-<li><strong>设计意图</strong>：允许子类继承和访问父类的某些成员，同时限制外部类的直接访问。</li>
-<li><strong>使用场景</strong>：当你希望子类能够访问和修改父类的某些成员，但不希望其他非相关类访问这些成员时，使用 <code>protected</code>。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（包私有）</strong>：</p>
-<ul>
-<li><strong>设计意图</strong>：限制成员仅在同一包内可见，增强封装性。</li>
-<li><strong>使用场景</strong>：当你希望在同一包内的类之间共享成员，但不希望包外的类访问时，使用默认访问级别。</li>
-</ul>
-</li>
-</ul>
-<h4 id="5-实际应用示例"><a class="markdownIt-Anchor" href="#5-实际应用示例"></a> 5. 实际应用示例</h4>
-<h5 id="使用-protected"><a class="markdownIt-Anchor" href="#使用-protected"></a> 使用 <code>protected</code></h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Protected method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        show(); <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display(); <span class="comment">// 输出: Protected method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="使用默认访问级别"><a class="markdownIt-Anchor" href="#使用默认访问级别"></a> 使用默认访问级别</h5>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Default access method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/example/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        display(); <span class="comment">// 可访问，因为在同一包</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.show(); <span class="comment">// 输出: Default access method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">access</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        <span class="comment">// parent.display(); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
-<ul>
-<li>
-<p><strong><code>protected</code></strong>：</p>
-<ul>
-<li>允许在 <strong>同一包</strong> 中访问。</li>
-<li>允许 <strong>不同包的子类</strong> 访问。</li>
-<li>不允许 <strong>不同包的非子类</strong> 访问。</li>
-</ul>
-</li>
-<li>
-<p><strong>默认访问级别（省略访问修饰符）</strong>：</p>
-<ul>
-<li>仅允许在 <strong>同一包</strong> 中访问。</li>
-<li>不允许在 <strong>不同包</strong> 中的任何类访问，无论是否为子类。</li>
-</ul>
-</li>
-</ul>
-<p>选择使用 <code>protected</code> 还是默认访问级别取决于你希望如何控制成员的可见性。<code>protected</code> 提供了更灵活的访问权限，尤其是在需要通过继承关系进行访问时，而默认访问级别则更严格，仅限于包内使用。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -3985,6 +3840,77 @@ Atlanta Technology Consulting Intern<br />
 ]]></content>
   </entry>
   <entry>
+    <title>Verilog Basics</title>
+    <url>/verilog-basics/index.html</url>
+    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
+<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
+<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
+<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
+<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
+<ul>
+<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
+<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
+<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
+</ul>
+<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
+<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
+<ul>
+<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
+<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
+</ul>
+<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
+<p>Let’s start with the basics of Verilog syntax:</p>
+<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
+<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
+<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
+<p>Verilog provides several data types for representing signals:</p>
+<ul>
+<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
+<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
+</ul>
+<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
+<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
+<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
+<p>Let’s write a simple Verilog program that implements an AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
+<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
+<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
+<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
+<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
+<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
+<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
+<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
+<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
+<p>As you start coding in Verilog, keep the following best practices in mind:</p>
+<ul>
+<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
+<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
+<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
+<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
+</ul>
+<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
+<p>Here are some resources to help you continue your Verilog learning journey:</p>
+<ul>
+<li><strong>Books:</strong> &quot;Verilog HDL&quot; by Samir Palnitkar is an excellent book for beginners.</li>
+<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
+<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
+</ul>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
+<p>Happy coding!</p>
+<hr />
+<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience's needs!</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Overloading vs Overriding</title>
     <url>/overloading-vs-overriding/index.html</url>
     <content><![CDATA[<h3 id="方法重载与方法重写的全面解析"><a class="markdownIt-Anchor" href="#方法重载与方法重写的全面解析"></a> 方法重载与方法重写的全面解析</h3>
@@ -4117,77 +4043,6 @@ Atlanta Technology Consulting Intern<br />
       <tags>
         <tag>Java</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Verilog Basics</title>
-    <url>/verilog-basics/index.html</url>
-    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
-<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
-<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
-<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
-<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
-<ul>
-<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
-<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
-<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
-</ul>
-<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
-<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
-<ul>
-<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
-<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
-</ul>
-<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
-<p>Let’s start with the basics of Verilog syntax:</p>
-<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
-<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
-<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
-<p>Verilog provides several data types for representing signals:</p>
-<ul>
-<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
-<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
-</ul>
-<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
-<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
-<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
-<p>Let’s write a simple Verilog program that implements an AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
-<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
-<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
-<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
-<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
-<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
-<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
-<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
-<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
-<p>As you start coding in Verilog, keep the following best practices in mind:</p>
-<ul>
-<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
-<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
-<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
-<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
-</ul>
-<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
-<p>Here are some resources to help you continue your Verilog learning journey:</p>
-<ul>
-<li><strong>Books:</strong> &quot;Verilog HDL&quot; by Samir Palnitkar is an excellent book for beginners.</li>
-<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
-<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
-</ul>
-<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
-<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
-<p>Happy coding!</p>
-<hr />
-<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience's needs!</p>
-]]></content>
   </entry>
   <entry>
     <title>super() in Java</title>
@@ -4498,5 +4353,153 @@ Atlanta Technology Consulting Intern<br />
 </ol>
 <p>通过系统地学习和比较C++、Java、Python、JavaScript的常用语法，结合实际编程练习，您将在面试中更具竞争力，并能够灵活应对不同语言的相关问题。</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>protected vs default</title>
+    <url>/protected-vs-default/index.html</url>
+    <content><![CDATA[<p>在Java中，**访问修饰符（Access Modifiers）**用于控制类、方法、变量等的可见性和访问权限。Java提供了四种访问修饰符：</p>
+<ol>
+<li><strong><code>public</code></strong>：公共的，所有类都可以访问。</li>
+<li><strong><code>protected</code></strong>：受保护的，同一包中的类和不同包中的子类可以访问。</li>
+<li><strong>默认访问级别（包私有，Package-Private）</strong>：当没有显式指定访问修饰符时，默认为包私有，仅同一包中的类可以访问。</li>
+<li><strong><code>private</code></strong>：私有的，仅在定义它的类内部可见。</li>
+</ol>
+<h3 id="重点关注protected-与-默认访问级别省略访问修饰符"><a class="markdownIt-Anchor" href="#重点关注protected-与-默认访问级别省略访问修饰符"></a> 重点关注：<code>protected</code> 与 默认访问级别（省略访问修饰符）</h3>
+<p>下面详细解释 <code>protected</code> 和默认访问级别之间的区别：</p>
+<h4 id="1-定义与语法"><a class="markdownIt-Anchor" href="#1-定义与语法"></a> 1. 定义与语法</h4>
+<ul>
+<li>
+<p><strong><code>protected</code> 修饰符</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> protectedVar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">protectedMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 受保护的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>默认访问级别（省略修饰符）</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="type">int</span> defaultVar; <span class="comment">// 默认访问级别</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">defaultMethod</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 默认访问级别的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-可见性范围"><a class="markdownIt-Anchor" href="#2-可见性范围"></a> 2. 可见性范围</h4>
+<table>
+<thead>
+<tr>
+<th><strong>访问修饰符</strong></th>
+<th><strong>同一类中</strong></th>
+<th><strong>同一包中</strong></th>
+<th><strong>不同包的子类</strong></th>
+<th><strong>不同包的非子类</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>public</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>默认（包私有）</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>private</code></td>
+<td>✔️</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><strong><code>protected</code></strong></p>
+<ul>
+<li><strong>同一类中</strong>：可访问。</li>
+<li><strong>同一包中</strong>：可访问。</li>
+<li><strong>不同包的子类中</strong>：可访问（通过继承）。</li>
+<li><strong>不同包的非子类中</strong>：不可访问。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（省略修饰符）</strong></p>
+<ul>
+<li><strong>同一类中</strong>：可访问。</li>
+<li><strong>同一包中</strong>：可访问。</li>
+<li><strong>不同包的子类中</strong>：不可访问。</li>
+<li><strong>不同包的非子类中</strong>：不可访问。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-示例解析"><a class="markdownIt-Anchor" href="#3-示例解析"></a> 3. 示例解析</h4>
+<h5 id="同一包中的类"><a class="markdownIt-Anchor" href="#同一包中的类"></a> 同一包中的类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> <span class="variable">protectedVar</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">defaultVar</span> <span class="operator">=</span> <span class="number">20</span>; <span class="comment">// 默认访问级别</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SamePackageClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 可访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>同一包</strong> 中，<code>protected</code> 和默认访问级别的成员都可以被访问。</li>
+</ul>
+<h5 id="不同包中的子类"><a class="markdownIt-Anchor" href="#不同包中的子类"></a> 不同包中的子类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="built_in">this</span>.protectedVar); <span class="comment">// 可访问，因为是子类</span></span><br><span class="line">        <span class="comment">// System.out.println(this.defaultVar); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>不同包</strong> 中，<code>protected</code> 成员可以通过继承（即子类）访问。</li>
+<li>默认访问级别的成员在不同包的子类中不可访问。</li>
+</ul>
+<h5 id="不同包中的非子类"><a class="markdownIt-Anchor" href="#不同包中的非子类"></a> 不同包中的非子类</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">accessVariables</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        System.out.println(parent.protectedVar); <span class="comment">// 编译错误，非子类不同包无法访问</span></span><br><span class="line">        System.out.println(parent.defaultVar);    <span class="comment">// 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <strong>不同包</strong> 的 <strong>非子类</strong> 中，<code>protected</code> 和默认访问级别的成员都不可访问。</li>
+</ul>
+<h4 id="4-设计意图与使用场景"><a class="markdownIt-Anchor" href="#4-设计意图与使用场景"></a> 4. 设计意图与使用场景</h4>
+<ul>
+<li>
+<p><strong><code>protected</code></strong>：</p>
+<ul>
+<li><strong>设计意图</strong>：允许子类继承和访问父类的某些成员，同时限制外部类的直接访问。</li>
+<li><strong>使用场景</strong>：当你希望子类能够访问和修改父类的某些成员，但不希望其他非相关类访问这些成员时，使用 <code>protected</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（包私有）</strong>：</p>
+<ul>
+<li><strong>设计意图</strong>：限制成员仅在同一包内可见，增强封装性。</li>
+<li><strong>使用场景</strong>：当你希望在同一包内的类之间共享成员，但不希望包外的类访问时，使用默认访问级别。</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-实际应用示例"><a class="markdownIt-Anchor" href="#5-实际应用示例"></a> 5. 实际应用示例</h4>
+<h5 id="使用-protected"><a class="markdownIt-Anchor" href="#使用-protected"></a> 使用 <code>protected</code></h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Protected method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        show(); <span class="comment">// 可访问</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.display(); <span class="comment">// 输出: Protected method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="使用默认访问级别"><a class="markdownIt-Anchor" href="#使用默认访问级别"></a> 使用默认访问级别</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 文件路径: com/example/Parent.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">display</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Default access method in Parent&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/example/Child.java</span></span><br><span class="line"><span class="keyword">package</span> com.example;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        display(); <span class="comment">// 可访问，因为在同一包</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child.show(); <span class="comment">// 输出: Default access method in Parent</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件路径: com/other/OtherClass.java</span></span><br><span class="line"><span class="keyword">package</span> com.other;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.Parent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OtherClass</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">access</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">parent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Parent</span>();</span><br><span class="line">        <span class="comment">// parent.display(); // 编译错误，默认访问级别不可访问</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li>
+<p><strong><code>protected</code></strong>：</p>
+<ul>
+<li>允许在 <strong>同一包</strong> 中访问。</li>
+<li>允许 <strong>不同包的子类</strong> 访问。</li>
+<li>不允许 <strong>不同包的非子类</strong> 访问。</li>
+</ul>
+</li>
+<li>
+<p><strong>默认访问级别（省略访问修饰符）</strong>：</p>
+<ul>
+<li>仅允许在 <strong>同一包</strong> 中访问。</li>
+<li>不允许在 <strong>不同包</strong> 中的任何类访问，无论是否为子类。</li>
+</ul>
+</li>
+</ul>
+<p>选择使用 <code>protected</code> 还是默认访问级别取决于你希望如何控制成员的可见性。<code>protected</code> 提供了更灵活的访问权限，尤其是在需要通过继承关系进行访问时，而默认访问级别则更严格，仅限于包内使用。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
 </search>
