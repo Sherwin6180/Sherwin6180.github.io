@@ -793,3 +793,6 @@ img[lazyload]::after {
   font-size: 0.9rem;
   text-align: center;
 }
+.katex-html {
+  display: none !important;
+}
