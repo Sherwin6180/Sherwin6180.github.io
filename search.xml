@@ -1,6 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Exact Match</title>
+    <url>/exact-match/index.html</url>
+    <content><![CDATA[<blockquote>
+<p>[!NOTE] Definition<br />
+Assume a database with a set of tuples; each tuple consists of a unique fixed-length key together with some state information. A query specifies a key K. The goal is to return the state information associated with the tuple whose key is K.</p>
+</blockquote>
+<p>routers = interconnect devices</p>
+<h1 id="why-do-we-learn-exact-match"><a class="markdownIt-Anchor" href="#why-do-we-learn-exact-match"></a> Why do we learn Exact Match?</h1>
+<ul>
+<li>In the context of networking
+<ul>
+<li>We measure the speed in terms of memory accesses, instead of processing</li>
+<li>We have a strict deadline (under 10 ns)</li>
+</ul>
+</li>
+<li>Crucial for bridging, which is often integrated within a router</li>
+</ul>
+<h1 id="bridging"><a class="markdownIt-Anchor" href="#bridging"></a> Bridging</h1>
+<ul>
+<li>3 challenges: Ethernet, Wire Speed Forwarding, and Scaling Lookups to Higher Speeds
+<ul>
+<li>802.1 spanning tree bridges</li>
+</ul>
+</li>
+</ul>
+<h2 id="challenge-1-ethernet-under-fire"><a class="markdownIt-Anchor" href="#challenge-1-ethernet-under-fire"></a> Challenge 1: Ethernet under fire</h2>
+<ul>
+<li>Problems: poor performance at large loads (retransmission) and long distance</li>
+<li>Routers interconnect links using information in the routing header, while repeaters interconnect links based on physical-layer information, such as bits.</li>
+<li>Bridge (Data Link Layer Relay)
+<ul>
+<li>based only on the data link layer</li>
+<li>Packet Repeater
+<ul>
+<li>Buffers packet, even for packets that don’t cross different Ethernets</li>
+</ul>
+</li>
+<li>Filtered Repeater
+<ul>
+<li>has a table that maps station addresses to Ethernets (A and B are in the same network)</li>
+<li>Define p: fraction of traffic on each Ethernet is to destinations on the same Ethernet. Then the overall bandwidth of the two Ethernet systems becomes (1 + p) times the bandwidth of a single Ethernet.</li>
+<li>This follows because the fraction p can be simultaneously sent on both Ethernets, increasing overall bandwidth by this fraction. Hence both bandwidth and distance increase.</li>
+</ul>
+</li>
+<li>Filtering Repeater With Learning</li>
+</ul>
+</li>
+</ul>
+<h2 id="challenge-2-wire-speed-forwarding"><a class="markdownIt-Anchor" href="#challenge-2-wire-speed-forwarding"></a> challenge 2: wire speed forwarding</h2>
+<ul>
+<li>If the bridge takes more time to forward a packet than the minimum packet arrival time, there are always scenarios in which packets to be forwarded will be dropped because the buffers are filled with packets that will be discarded.</li>
+<li>The solution: the bridge would look up the destination address in the table (for forwarding) and the source address (for learning) in the time it took <strong>a minimum-size packet to arrive</strong> on an Ethernet
+<ul>
+<li>64-byte minimum packet: 51.2 microsecond to forward a packet.</li>
+<li>Two-port bridge could receive a minimum-size packet on each of its Ethernets every 51.2 microsecond: two lookups (destination and source) every 25.6 microsecond.</li>
+<li>The new design will process each packet, determining whether or not to discard the packet</li>
+<li>use <strong>binary search</strong> lookups</li>
+</ul>
+</li>
+</ul>
+<h2 id="challenge-3-scaling-lookups-to-higher-speeds"><a class="markdownIt-Anchor" href="#challenge-3-scaling-lookups-to-higher-speeds"></a> Challenge 3: scaling lookups to higher speeds</h2>
+<ul>
+<li>Bridge database size increases to 64K. Binary search lookups don’t suffice</li>
+<li>Gigaswitch: <strong>hashing</strong>-based lookups. Each bridge lookup makes at most four reads from memory.</li>
+</ul>
+<h3 id="perfect-hashing"><a class="markdownIt-Anchor" href="#perfect-hashing"></a> Perfect Hashing</h3>
+<ul>
+<li>hashing
+<ul>
+<li>key: ethernet address</li>
+<li>value: port number?</li>
+</ul>
+</li>
+<li>A hashed address is obtained by the equation <code>A(X) ∗ M(X) mod G(X)</code>
+<ul>
+<li>A(X): address expressed as a 47-degree polynomial</li>
+<li>M(X): nonzero, 47-degree programmable hash multiplier</li>
+<li>G(X): irreducible polynomial <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mn>48</mn></msup><mo>+</mo><msup><mi>X</mi><mn>36</mn></msup><mo>+</mo><msup><mi>X</mi><mn>25</mn></msup><mo>+</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">X^{48} + X^{36} + X^{25} + X^{10} + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
+</ul>
+</li>
+<li>Hashed Address
+<ul>
+<li>48-bit: size of Ethernet address</li>
+<li><code>[15:0]</code>: index into a 64K-entry hash table</li>
+<li>Each entry points to a balanced binary tree of height at most 3</li>
+<li><code>[47:16]</code>: distinguish collided keys
+<ul>
+<li>The binary tree is sorted based on these values</li>
+</ul>
+</li>
+<li>at most 4 memory accesses: 1 for hash table lookup, 3 for the height-3 tree</li>
+</ul>
+</li>
+<li>CAM (Content Addressable Memory): a small hardware lookup database. Aimed to deal with 7 conflicts (size of the heigh-3 complete binary tree)</li>
+</ul>
+<h3 id="using-hardware-parallelism"><a class="markdownIt-Anchor" href="#using-hardware-parallelism"></a> Using hardware parallelism</h3>
+<ul>
+<li>pipeline binary search</li>
+<li>logarithmic number of processing stages, each with its own memory array
+<ul>
+<li>Each level of the binary tree has its own stage</li>
+</ul>
+</li>
+<li>Search keys enter from the left and progress from stage to stage, carrying a pointer (points to a “child” key) that identifies which <strong>key</strong> in the corresponding stage memory must be compared to the search key.</li>
+<li>The lookup throughput is nearly one per memory access</li>
+<li>still <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span></span></span></span> lookups in total, but the throughput is improved</li>
+</ul>
+<h3 id="d-left"><a class="markdownIt-Anchor" href="#d-left"></a> d-left</h3>
+<ul>
+<li>when n objects are hashed into n buckets, the expectation of this maximum is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>o</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{(1 + o(1))\log n}{\log\log n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.491108em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">o</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mclose mtight">)</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> (high probability) when a random hash function is used</li>
+<li>Goal: reduce this maximum to a small number (say 2 or 3) so that every bucket can fit into a memory block</li>
+<li>d-random
+<ul>
+<li>use d &gt; 1 random hash functions (h1, h2, ···, hd) instead of 1. Given a hash key x, there are <strong>d</strong> candidate hash buckets into which x can be inserted: buckets indexed by h1(x), h2(x), ···, hd(x) respectively.
+<ul>
+<li>x is inserted into the bucket that is least occupied</li>
+</ul>
+</li>
+<li>The expectation of the maximum value is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo fence="true">(</mo><mfrac><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>d</mi></mrow></mfrac><mo fence="true">)</mo></mrow><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\left( \frac{\log \log n}{\log d} \right) + O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+</li>
+<li>d-left
+<ul>
+<li>variation of d-random</li>
+<li>Hash table is partitioned into logically independent subsets of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>n</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. d-random doesn’t have such partition</li>
+<li>if there are more than one least occupied buckets among the d buckets where an object x should be inserted into, then x will be inserted into the leftmost one among them</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>networking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Interview Questions SWE 2025 (1)</title>
+    <url>/interview-questions-swe-2025-1/index.html</url>
+    <content><![CDATA[<h3 id="第一题power-of-2-check"><a class="markdownIt-Anchor" href="#第一题power-of-2-check"></a> 第一题：Power of 2 Check</h3>
+<h4 id="problem-原题"><a class="markdownIt-Anchor" href="#problem-原题"></a> Problem (原题)</h4>
+<p>Given an array of integers, determine whether each is a power of 2, where powers of 2 are <code>[1, 2, 4, 8, 16, 32, 64...]</code>.<br />
+For each integer evaluated, append to an array a value of <code>1</code> if the number is a power of 2 or <code>0</code> otherwise.</p>
+<p>Example:<br />
+Input: <code>arr = [1, 3, 8, 12, 16]</code><br />
+Output: <code>[1, 0, 1, 0, 1]</code></p>
+<hr />
+<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
+<p>判断一个数是否是 2 的幂次有一个简单的方法：<br />
+一个数如果是 2 的幂，那么它在二进制表示中只有 1 个 <code>1</code>。我们可以通过以下条件判断：</p>
+<ul>
+<li><code>(num &gt; 0 &amp;&amp; (num &amp; (num - 1)) == 0)</code></li>
+<li><code>num &amp; (num - 1)</code> 的结果是将二进制最低位的 <code>1</code> 去掉。如果结果为 0，说明原数字是 2 的幂。</li>
+</ul>
+<p>算法的核心是遍历数组，逐一判断每个数字是否符合条件，并将结果存入输出数组中。</p>
+<hr />
+<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title function_">isPower</span><span class="params">(List&lt;Integer&gt; arr)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; <span class="number">0</span> &amp;&amp; (num &amp; (num - <span class="number">1</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">                result.add(<span class="number">1</span>); <span class="comment">// 是 2 的幂次</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result.add(<span class="number">0</span>); <span class="comment">// 不是 2 的幂次</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 是数组的大小。我们需要遍历每个元素，并对每个元素进行一次位运算。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，用于存储结果数组。</li>
+</ul>
+<hr />
+<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
+<ol>
+<li>输入数组可能包含 0 或负数，判断条件中 <code>num &gt; 0</code> 非常关键。</li>
+<li>位运算的优先级较低，建议添加括号以确保逻辑清晰。</li>
+</ol>
+<hr />
+<h3 id="第二题equalize-power-levels"><a class="markdownIt-Anchor" href="#第二题equalize-power-levels"></a> 第二题：Equalize Power Levels</h3>
+<h4 id="problem-原题-2"><a class="markdownIt-Anchor" href="#problem-原题-2"></a> Problem (原题)</h4>
+<p>Researchers are studying the logistics of robot swarms. In one experiment, they need to make sure that the initial power of each robot is the same before the swarm is released.<br />
+At their disposal is a charging instrument that can increase or decrease the power of one robot at a time by 1 unit in 1 minute. Find the minimum number of minutes required to make equal the power of a swarm of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> robots.</p>
+<p>Example:<br />
+Input: <code>n = 6, power = [2, 5, 3, 6, 7, 1]</code><br />
+Output: <code>12</code></p>
+<p>Explanation:<br />
+If all robots are adjusted to 4 units of power, the time required is:<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>5</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>3</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>6</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>7</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">(4 - 2) + (5 - 4) + (4 - 3) + (6 - 4) + (7 - 4) + (4 - 1) = 12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span>.</p>
+<hr />
+<h4 id="思路-2"><a class="markdownIt-Anchor" href="#思路-2"></a> 思路</h4>
+<p>调整所有数到相等的最优解是选择 <strong>中位数</strong> 作为目标值。这是因为中位数能够最小化绝对差值之和。</p>
+<ul>
+<li>我们需要先对数组进行排序，找到中位数。</li>
+<li>然后计算每个数字与中位数的绝对差值的总和。</li>
+</ul>
+<hr />
+<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">long</span> <span class="title function_">equalize</span><span class="params">(List&lt;Long&gt; power)</span> &#123;</span><br><span class="line">        <span class="comment">// 找到中位数</span></span><br><span class="line">        Collections.sort(power);</span><br><span class="line">        <span class="type">long</span> <span class="variable">median</span> <span class="operator">=</span> power.get(power.size() / <span class="number">2</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 计算调整到中位数的总时间</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">totalMinutes</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">long</span> p : power) &#123;</span><br><span class="line">            totalMinutes += Math.abs(p - median);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> totalMinutes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="复杂度分析-2"><a class="markdownIt-Anchor" href="#复杂度分析-2"></a> 复杂度分析</h4>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，主要由排序的复杂度决定。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>a</mi><mo>~</mo></mover></mrow><annotation encoding="application/x-tex">\tilde{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6678599999999999em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6678599999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">~</span></span></span></span></span></span></span></span></span></span> ，不需要额外的空间（排序可以在原数组上完成）。</li>
+</ul>
+<hr />
+<h4 id="注意事项-2"><a class="markdownIt-Anchor" href="#注意事项-2"></a> 注意事项</h4>
+<ol>
+<li>中位数的定义：在排序后的数组中，位置 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\lceil n / 2 \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathnormal">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> 的数即为中位数。</li>
+<li>如果数组长度是偶数，中位数可以选择中间任意一个数，结果一样。</li>
+<li>排序的时间复杂度是这道题的瓶颈，无法进一步优化。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java Enhanced Switch</title>
+    <url>/java-enhanced-switch/index.html</url>
+    <content><![CDATA[<p>在Java中，<strong>增强的Switch</strong>（Enhanced Switch）是从Java 14开始引入，并在Java 17中正式成为标准功能的一项特性。它对传统的<code>switch</code>语句进行了改进，使其更简洁、更具表达力，并支持作为表达式使用。下面将详细介绍Java中的增强Switch，包括其定义、特点、语法、使用示例以及与传统Switch的对比。</p>
+<h2 id="什么是增强的switch"><a class="markdownIt-Anchor" href="#什么是增强的switch"></a> 什么是增强的Switch？</h2>
+<p><strong>增强的Switch</strong>（Enhanced Switch）是对Java中传统<code>switch</code>语句的升级，提供了更简洁的语法和更多的功能。它不仅可以作为语句使用，还可以作为表达式返回值，从而简化代码并减少错误。</p>
+<h3 id="传统switch的局限性"><a class="markdownIt-Anchor" href="#传统switch的局限性"></a> 传统Switch的局限性</h3>
+<p>在增强Switch引入之前，传统的<code>switch</code>语句存在以下一些局限性：</p>
+<ol>
+<li><strong>样板代码多</strong>：需要手动编写<code>break</code>语句以防止fall-through（贯穿）。</li>
+<li><strong>可读性差</strong>：多个<code>case</code>标签通常需要重复编写相似的代码。</li>
+<li><strong>不支持作为表达式</strong>：传统<code>switch</code>不能直接返回值，需要额外的变量来存储结果。</li>
+</ol>
+<h2 id="增强switch的主要特性"><a class="markdownIt-Anchor" href="#增强switch的主要特性"></a> 增强Switch的主要特性</h2>
+<ol>
+<li>
+<p><strong>Switch作为表达式</strong>：</p>
+<ul>
+<li>可以直接返回值，简化赋值操作。</li>
+</ul>
+</li>
+<li>
+<p><strong>箭头语法（Arrow Syntax）</strong>：</p>
+<ul>
+<li>使用<code>-&gt;</code>代替<code>:</code>和<code>break</code>，减少样板代码。</li>
+</ul>
+</li>
+<li>
+<p><strong>多标签匹配（Multiple Labels）</strong>：</p>
+<ul>
+<li>一个<code>case</code>可以匹配多个标签，语法更简洁。</li>
+</ul>
+</li>
+<li>
+<p><strong>自动阻止fall-through</strong>：</p>
+<ul>
+<li>不需要显式的<code>break</code>语句，防止意外的代码贯穿。</li>
+</ul>
+</li>
+<li>
+<p><strong>Yield语句</strong>：</p>
+<ul>
+<li>在需要返回值的代码块中使用<code>yield</code>返回结果。</li>
+</ul>
+</li>
+<li>
+<p><strong>代码块支持</strong>：</p>
+<ul>
+<li>在箭头语法中，可以使用代码块执行复杂逻辑，并通过<code>yield</code>返回值。</li>
+</ul>
+</li>
+</ol>
+<h2 id="增强switch的语法和使用方式"><a class="markdownIt-Anchor" href="#增强switch的语法和使用方式"></a> 增强Switch的语法和使用方式</h2>
+<h3 id="1-switch作为表达式"><a class="markdownIt-Anchor" href="#1-switch作为表达式"></a> 1. Switch作为表达式</h3>
+<p>增强Switch可以作为表达式使用，直接返回值。这使得代码更加简洁。</p>
+<p><strong>传统Switch作为语句</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<p><strong>增强Switch作为表达式</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-使用箭头语法和多标签"><a class="markdownIt-Anchor" href="#2-使用箭头语法和多标签"></a> 2. 使用箭头语法和多标签</h3>
+<p>增强Switch允许在一个<code>case</code>中匹配多个标签，并使用箭头语法代替传统的<code>:</code>和<code>break</code>。</p>
+<p><strong>传统Switch的多标签</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> numLetters;</span><br><span class="line"><span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;FRIDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SUNDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SATURDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">9</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
+<p><strong>增强Switch的多标签</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">numLetters</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>, <span class="string">&quot;FRIDAY&quot;</span>, <span class="string">&quot;SUNDAY&quot;</span> -&gt; <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span> -&gt; <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>, <span class="string">&quot;SATURDAY&quot;</span> -&gt; <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span> -&gt; <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-使用代码块和yield"><a class="markdownIt-Anchor" href="#3-使用代码块和yield"></a> 3. 使用代码块和yield</h3>
+<p>当需要在<code>case</code>中执行多行代码或复杂逻辑时，可以使用代码块，并通过<code>yield</code>返回值。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="comment">// 执行一些额外的操作</span></span><br><span class="line">        <span class="keyword">yield</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-switch与枚举的结合使用"><a class="markdownIt-Anchor" href="#4-switch与枚举的结合使用"></a> 4. Switch与枚举的结合使用</h3>
+<p>增强Switch在处理枚举类型时非常简洁和强大。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Day</span> &#123;</span><br><span class="line">    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Day</span> <span class="variable">day</span> <span class="operator">=</span> Day.MONDAY;</span><br><span class="line"><span class="type">String</span> <span class="variable">typeOfDay</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> MONDAY, FRIDAY, SUNDAY -&gt; <span class="string">&quot;Six letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> TUESDAY -&gt; <span class="string">&quot;Seven letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> THURSDAY, SATURDAY -&gt; <span class="string">&quot;Eight letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> WEDNESDAY -&gt; <span class="string">&quot;Nine letters&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(typeOfDay); <span class="comment">// 输出: Six letters</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-增强switch与类型模式匹配java-17及以上"><a class="markdownIt-Anchor" href="#5-增强switch与类型模式匹配java-17及以上"></a> 5. 增强Switch与类型模式匹配（Java 17及以上）</h3>
+<p>在Java 17中，增强Switch还支持类型模式匹配，使得switch表达式更加灵活。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (obj) &#123;</span><br><span class="line">    <span class="keyword">case</span> String s -&gt; <span class="string">&quot;It&#x27;s a string of length &quot;</span> + s.length();</span><br><span class="line">    <span class="keyword">case</span> Integer i -&gt; <span class="string">&quot;It&#x27;s an integer: &quot;</span> + i;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown type&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: It&#x27;s a string of length 5</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-带有默认值的switch表达式"><a class="markdownIt-Anchor" href="#6-带有默认值的switch表达式"></a> 6. 带有默认值的Switch表达式</h3>
+<p>确保所有可能的情况都被覆盖，避免遗漏<code>default</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Unknown</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-switch表达式的复合类型"><a class="markdownIt-Anchor" href="#7-switch表达式的复合类型"></a> 7. Switch表达式的复合类型</h3>
+<p>Switch表达式不仅可以返回单一类型的值，还可以返回更复杂的对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        System.out.println(result); <span class="comment">// 输出: 15.0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="增强switch与传统switch的对比"><a class="markdownIt-Anchor" href="#增强switch与传统switch的对比"></a> 增强Switch与传统Switch的对比</h2>
+<h3 id="传统switch"><a class="markdownIt-Anchor" href="#传统switch"></a> 传统Switch</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
+<h3 id="增强switch"><a class="markdownIt-Anchor" href="#增强switch"></a> 增强Switch</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
+<h3 id="对比总结"><a class="markdownIt-Anchor" href="#对比总结"></a> 对比总结</h3>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>传统Switch</strong></th>
+<th><strong>增强Switch</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>语法简洁性</strong></td>
+<td>需要编写<code>case</code>、<code>break</code>、<code>default</code>等，样板代码较多</td>
+<td>使用箭头语法，省略<code>break</code>，代码更简洁</td>
+</tr>
+<tr>
+<td><strong>作为表达式使用</strong></td>
+<td>不能直接返回值，需要额外变量存储结果</td>
+<td>可以直接作为表达式返回值，赋值更直接</td>
+</tr>
+<tr>
+<td><strong>多标签匹配</strong></td>
+<td>需要多个<code>case</code>标签并重复编写代码</td>
+<td>一个<code>case</code>可以匹配多个标签，使用逗号分隔</td>
+</tr>
+<tr>
+<td><strong>代码块支持</strong></td>
+<td>只能在单行执行代码，复杂逻辑需要手动管理<code>break</code></td>
+<td>可以在<code>case</code>中使用代码块，并通过<code>yield</code>返回值</td>
+</tr>
+<tr>
+<td><strong>防止fall-through</strong></td>
+<td>需要手动添加<code>break</code>，容易忘记导致逻辑错误</td>
+<td>自动阻止fall-through，减少错误</td>
+</tr>
+<tr>
+<td><strong>类型模式匹配</strong></td>
+<td>不支持</td>
+<td>支持（Java 17及以上），可以根据类型匹配并处理不同的对象</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用增强switch的优势"><a class="markdownIt-Anchor" href="#使用增强switch的优势"></a> 使用增强Switch的优势</h2>
+<ol>
+<li><strong>减少样板代码</strong>：不需要编写<code>break</code>语句，减少了重复代码，提高了代码的简洁性。</li>
+<li><strong>提高可读性</strong>：箭头语法使得<code>switch</code>结构更加清晰，容易理解。</li>
+<li><strong>防止错误</strong>：自动阻止fall-through，避免了因忘记<code>break</code>导致的逻辑错误。</li>
+<li><strong>灵活性</strong>：可以作为表达式使用，直接返回值，赋值更方便。</li>
+<li><strong>增强功能</strong>：支持代码块和<code>yield</code>语句，能够处理复杂的逻辑需求。</li>
+</ol>
+<h2 id="使用增强switch的注意事项"><a class="markdownIt-Anchor" href="#使用增强switch的注意事项"></a> 使用增强Switch的注意事项</h2>
+<ol>
+<li><strong>Java版本</strong>：增强Switch在Java 14中作为预览功能引入，在Java 17中正式发布。确保使用的Java版本支持增强Switch。</li>
+<li><strong>兼容性</strong>：如果项目需要兼容较低版本的Java，不能使用增强Switch。</li>
+<li><strong>代码风格</strong>：在团队协作中，确保所有成员都熟悉增强Switch的用法，以保持代码的一致性和可读性。</li>
+<li><strong>复杂逻辑</strong>：虽然增强Switch支持代码块，但对于非常复杂的逻辑，可能仍需使用传统的<code>switch</code>或其他控制结构以保持代码的清晰度。</li>
+</ol>
+<h2 id="完整示例"><a class="markdownIt-Anchor" href="#完整示例"></a> 完整示例</h2>
+<p>以下是一个更复杂的示例，展示如何在一个实际应用中使用增强Switch。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">TrafficLight</span> &#123;</span><br><span class="line">    RED, YELLOW, GREEN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TrafficController</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getAction</span><span class="params">(TrafficLight light)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (light) &#123;</span><br><span class="line">            <span class="keyword">case</span> RED -&gt; <span class="string">&quot;Stop&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> YELLOW -&gt; <span class="string">&quot;Caution&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> GREEN -&gt; <span class="string">&quot;Go&quot;</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">TrafficLight</span> <span class="variable">currentLight</span> <span class="operator">=</span> TrafficLight.GREEN;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> getAction(currentLight);</span><br><span class="line">        System.out.println(<span class="string">&quot;Traffic Light is &quot;</span> + currentLight + <span class="string">&quot;: &quot;</span> + action);</span><br><span class="line">        <span class="comment">// 输出: Traffic Light is GREEN: Go</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂逻辑示例计算数学运算"><a class="markdownIt-Anchor" href="#复杂逻辑示例计算数学运算"></a> 复杂逻辑示例：计算数学运算</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result1</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        <span class="type">double</span> <span class="variable">result2</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">0</span>, Operation.DIVIDE);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;10 + 5 = &quot;</span> + result1); <span class="comment">// 输出: 10 + 5 = 15.0</span></span><br><span class="line">        System.out.println(<span class="string">&quot;10 / 0 = &quot;</span> + result2); <span class="comment">// 输出: 10 / 0 = NaN</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>Java中的增强Switch大大改进了传统<code>switch</code>语句，使其更加简洁、易读且功能更强大。通过箭头语法、多标签匹配、作为表达式使用以及代码块支持，增强Switch能够有效减少样板代码，提高代码质量和可维护性。</p>
+<p>掌握增强Switch的使用，可以让您的Java代码更加现代化和高效。在编写条件分支逻辑时，优先考虑使用增强Switch，以充分利用其带来的优势。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>An Overview of Cryptography</title>
     <url>/an-overview-of-cryptography/index.html</url>
     <content><![CDATA[<h3 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> INTRODUCTION</h3>
@@ -1879,369 +2242,6 @@ SHA1 (“My name is Gary.”) = e41d178d27d53066a7c87f5a422d74156a8c27b4</p>
       </tags>
   </entry>
   <entry>
-    <title>Interview Questions SWE 2025 (1)</title>
-    <url>/interview-questions-swe-2025-1/index.html</url>
-    <content><![CDATA[<h3 id="第一题power-of-2-check"><a class="markdownIt-Anchor" href="#第一题power-of-2-check"></a> 第一题：Power of 2 Check</h3>
-<h4 id="problem-原题"><a class="markdownIt-Anchor" href="#problem-原题"></a> Problem (原题)</h4>
-<p>Given an array of integers, determine whether each is a power of 2, where powers of 2 are <code>[1, 2, 4, 8, 16, 32, 64...]</code>.<br />
-For each integer evaluated, append to an array a value of <code>1</code> if the number is a power of 2 or <code>0</code> otherwise.</p>
-<p>Example:<br />
-Input: <code>arr = [1, 3, 8, 12, 16]</code><br />
-Output: <code>[1, 0, 1, 0, 1]</code></p>
-<hr />
-<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
-<p>判断一个数是否是 2 的幂次有一个简单的方法：<br />
-一个数如果是 2 的幂，那么它在二进制表示中只有 1 个 <code>1</code>。我们可以通过以下条件判断：</p>
-<ul>
-<li><code>(num &gt; 0 &amp;&amp; (num &amp; (num - 1)) == 0)</code></li>
-<li><code>num &amp; (num - 1)</code> 的结果是将二进制最低位的 <code>1</code> 去掉。如果结果为 0，说明原数字是 2 的幂。</li>
-</ul>
-<p>算法的核心是遍历数组，逐一判断每个数字是否符合条件，并将结果存入输出数组中。</p>
-<hr />
-<h4 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title function_">isPower</span><span class="params">(List&lt;Integer&gt; arr)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : arr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt; <span class="number">0</span> &amp;&amp; (num &amp; (num - <span class="number">1</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">                result.add(<span class="number">1</span>); <span class="comment">// 是 2 的幂次</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                result.add(<span class="number">0</span>); <span class="comment">// 不是 2 的幂次</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr />
-<h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 是数组的大小。我们需要遍历每个元素，并对每个元素进行一次位运算。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，用于存储结果数组。</li>
-</ul>
-<hr />
-<h4 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h4>
-<ol>
-<li>输入数组可能包含 0 或负数，判断条件中 <code>num &gt; 0</code> 非常关键。</li>
-<li>位运算的优先级较低，建议添加括号以确保逻辑清晰。</li>
-</ol>
-<hr />
-<h3 id="第二题equalize-power-levels"><a class="markdownIt-Anchor" href="#第二题equalize-power-levels"></a> 第二题：Equalize Power Levels</h3>
-<h4 id="problem-原题-2"><a class="markdownIt-Anchor" href="#problem-原题-2"></a> Problem (原题)</h4>
-<p>Researchers are studying the logistics of robot swarms. In one experiment, they need to make sure that the initial power of each robot is the same before the swarm is released.<br />
-At their disposal is a charging instrument that can increase or decrease the power of one robot at a time by 1 unit in 1 minute. Find the minimum number of minutes required to make equal the power of a swarm of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> robots.</p>
-<p>Example:<br />
-Input: <code>n = 6, power = [2, 5, 3, 6, 7, 1]</code><br />
-Output: <code>12</code></p>
-<p>Explanation:<br />
-If all robots are adjusted to 4 units of power, the time required is:<br />
-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>5</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>3</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>6</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>7</mn><mo>−</mo><mn>4</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>4</mn><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">(4 - 2) + (5 - 4) + (4 - 3) + (6 - 4) + (7 - 4) + (4 - 1) = 12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span></span></span></span>.</p>
-<hr />
-<h4 id="思路-2"><a class="markdownIt-Anchor" href="#思路-2"></a> 思路</h4>
-<p>调整所有数到相等的最优解是选择 <strong>中位数</strong> 作为目标值。这是因为中位数能够最小化绝对差值之和。</p>
-<ul>
-<li>我们需要先对数组进行排序，找到中位数。</li>
-<li>然后计算每个数字与中位数的绝对差值的总和。</li>
-</ul>
-<hr />
-<h4 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">long</span> <span class="title function_">equalize</span><span class="params">(List&lt;Long&gt; power)</span> &#123;</span><br><span class="line">        <span class="comment">// 找到中位数</span></span><br><span class="line">        Collections.sort(power);</span><br><span class="line">        <span class="type">long</span> <span class="variable">median</span> <span class="operator">=</span> power.get(power.size() / <span class="number">2</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 计算调整到中位数的总时间</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">totalMinutes</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">long</span> p : power) &#123;</span><br><span class="line">            totalMinutes += Math.abs(p - median);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> totalMinutes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr />
-<h4 id="复杂度分析-2"><a class="markdownIt-Anchor" href="#复杂度分析-2"></a> 复杂度分析</h4>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，主要由排序的复杂度决定。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>a</mi><mo>~</mo></mover></mrow><annotation encoding="application/x-tex">\tilde{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6678599999999999em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6678599999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">a</span></span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">~</span></span></span></span></span></span></span></span></span></span> ，不需要额外的空间（排序可以在原数组上完成）。</li>
-</ul>
-<hr />
-<h4 id="注意事项-2"><a class="markdownIt-Anchor" href="#注意事项-2"></a> 注意事项</h4>
-<ol>
-<li>中位数的定义：在排序后的数组中，位置 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⌈</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">⌉</mo></mrow><annotation encoding="application/x-tex">\lceil n / 2 \rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathnormal">n</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> 的数即为中位数。</li>
-<li>如果数组长度是偶数，中位数可以选择中间任意一个数，结果一样。</li>
-<li>排序的时间复杂度是这道题的瓶颈，无法进一步优化。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Exact Match</title>
-    <url>/exact-match/index.html</url>
-    <content><![CDATA[<blockquote>
-<p>[!NOTE] Definition<br />
-Assume a database with a set of tuples; each tuple consists of a unique fixed-length key together with some state information. A query specifies a key K. The goal is to return the state information associated with the tuple whose key is K.</p>
-</blockquote>
-<p>routers = interconnect devices</p>
-<h1 id="why-do-we-learn-exact-match"><a class="markdownIt-Anchor" href="#why-do-we-learn-exact-match"></a> Why do we learn Exact Match?</h1>
-<ul>
-<li>In the context of networking
-<ul>
-<li>We measure the speed in terms of memory accesses, instead of processing</li>
-<li>We have a strict deadline (under 10 ns)</li>
-</ul>
-</li>
-<li>Crucial for bridging, which is often integrated within a router</li>
-</ul>
-<h1 id="bridging"><a class="markdownIt-Anchor" href="#bridging"></a> Bridging</h1>
-<ul>
-<li>3 challenges: Ethernet, Wire Speed Forwarding, and Scaling Lookups to Higher Speeds
-<ul>
-<li>802.1 spanning tree bridges</li>
-</ul>
-</li>
-</ul>
-<h2 id="challenge-1-ethernet-under-fire"><a class="markdownIt-Anchor" href="#challenge-1-ethernet-under-fire"></a> Challenge 1: Ethernet under fire</h2>
-<ul>
-<li>Problems: poor performance at large loads (retransmission) and long distance</li>
-<li>Routers interconnect links using information in the routing header, while repeaters interconnect links based on physical-layer information, such as bits.</li>
-<li>Bridge (Data Link Layer Relay)
-<ul>
-<li>based only on the data link layer</li>
-<li>Packet Repeater
-<ul>
-<li>Buffers packet, even for packets that don’t cross different Ethernets</li>
-</ul>
-</li>
-<li>Filtered Repeater
-<ul>
-<li>has a table that maps station addresses to Ethernets (A and B are in the same network)</li>
-<li>Define p: fraction of traffic on each Ethernet is to destinations on the same Ethernet. Then the overall bandwidth of the two Ethernet systems becomes (1 + p) times the bandwidth of a single Ethernet.</li>
-<li>This follows because the fraction p can be simultaneously sent on both Ethernets, increasing overall bandwidth by this fraction. Hence both bandwidth and distance increase.</li>
-</ul>
-</li>
-<li>Filtering Repeater With Learning</li>
-</ul>
-</li>
-</ul>
-<h2 id="challenge-2-wire-speed-forwarding"><a class="markdownIt-Anchor" href="#challenge-2-wire-speed-forwarding"></a> challenge 2: wire speed forwarding</h2>
-<ul>
-<li>If the bridge takes more time to forward a packet than the minimum packet arrival time, there are always scenarios in which packets to be forwarded will be dropped because the buffers are filled with packets that will be discarded.</li>
-<li>The solution: the bridge would look up the destination address in the table (for forwarding) and the source address (for learning) in the time it took <strong>a minimum-size packet to arrive</strong> on an Ethernet
-<ul>
-<li>64-byte minimum packet: 51.2 microsecond to forward a packet.</li>
-<li>Two-port bridge could receive a minimum-size packet on each of its Ethernets every 51.2 microsecond: two lookups (destination and source) every 25.6 microsecond.</li>
-<li>The new design will process each packet, determining whether or not to discard the packet</li>
-<li>use <strong>binary search</strong> lookups</li>
-</ul>
-</li>
-</ul>
-<h2 id="challenge-3-scaling-lookups-to-higher-speeds"><a class="markdownIt-Anchor" href="#challenge-3-scaling-lookups-to-higher-speeds"></a> Challenge 3: scaling lookups to higher speeds</h2>
-<ul>
-<li>Bridge database size increases to 64K. Binary search lookups don’t suffice</li>
-<li>Gigaswitch: <strong>hashing</strong>-based lookups. Each bridge lookup makes at most four reads from memory.</li>
-</ul>
-<h3 id="perfect-hashing"><a class="markdownIt-Anchor" href="#perfect-hashing"></a> Perfect Hashing</h3>
-<ul>
-<li>hashing
-<ul>
-<li>key: ethernet address</li>
-<li>value: port number?</li>
-</ul>
-</li>
-<li>A hashed address is obtained by the equation <code>A(X) ∗ M(X) mod G(X)</code>
-<ul>
-<li>A(X): address expressed as a 47-degree polynomial</li>
-<li>M(X): nonzero, 47-degree programmable hash multiplier</li>
-<li>G(X): irreducible polynomial <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>X</mi><mn>48</mn></msup><mo>+</mo><msup><mi>X</mi><mn>36</mn></msup><mo>+</mo><msup><mi>X</mi><mn>25</mn></msup><mo>+</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">X^{48} + X^{36} + X^{25} + X^{10} + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
-</ul>
-</li>
-<li>Hashed Address
-<ul>
-<li>48-bit: size of Ethernet address</li>
-<li><code>[15:0]</code>: index into a 64K-entry hash table</li>
-<li>Each entry points to a balanced binary tree of height at most 3</li>
-<li><code>[47:16]</code>: distinguish collided keys
-<ul>
-<li>The binary tree is sorted based on these values</li>
-</ul>
-</li>
-<li>at most 4 memory accesses: 1 for hash table lookup, 3 for the height-3 tree</li>
-</ul>
-</li>
-<li>CAM (Content Addressable Memory): a small hardware lookup database. Aimed to deal with 7 conflicts (size of the heigh-3 complete binary tree)</li>
-</ul>
-<h3 id="using-hardware-parallelism"><a class="markdownIt-Anchor" href="#using-hardware-parallelism"></a> Using hardware parallelism</h3>
-<ul>
-<li>pipeline binary search</li>
-<li>logarithmic number of processing stages, each with its own memory array
-<ul>
-<li>Each level of the binary tree has its own stage</li>
-</ul>
-</li>
-<li>Search keys enter from the left and progress from stage to stage, carrying a pointer (points to a “child” key) that identifies which <strong>key</strong> in the corresponding stage memory must be compared to the search key.</li>
-<li>The lookup throughput is nearly one per memory access</li>
-<li>still <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span></span></span></span> lookups in total, but the throughput is improved</li>
-</ul>
-<h3 id="d-left"><a class="markdownIt-Anchor" href="#d-left"></a> d-left</h3>
-<ul>
-<li>when n objects are hashed into n buckets, the expectation of this maximum is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>o</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{(1 + o(1))\log n}{\log\log n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.491108em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">o</span><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mclose mtight">)</span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> (high probability) when a random hash function is used</li>
-<li>Goal: reduce this maximum to a small number (say 2 or 3) so that every bucket can fit into a memory block</li>
-<li>d-random
-<ul>
-<li>use d &gt; 1 random hash functions (h1, h2, ···, hd) instead of 1. Given a hash key x, there are <strong>d</strong> candidate hash buckets into which x can be inserted: buckets indexed by h1(x), h2(x), ···, hd(x) respectively.
-<ul>
-<li>x is inserted into the bucket that is least occupied</li>
-</ul>
-</li>
-<li>The expectation of the maximum value is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo fence="true">(</mo><mfrac><mrow><mi>log</mi><mo>⁡</mo><mi>log</mi><mo>⁡</mo><mi>n</mi></mrow><mrow><mi>log</mi><mo>⁡</mo><mi>d</mi></mrow></mfrac><mo fence="true">)</mo></mrow><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\left( \frac{\log \log n}{\log d} \right) + O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mop mtight"><span class="mtight">l</span><span class="mtight">o</span><span class="mtight" style="margin-right:0.01389em;">g</span></span><span class="mspace mtight" style="margin-right:0.19516666666666668em;"></span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
-</ul>
-</li>
-<li>d-left
-<ul>
-<li>variation of d-random</li>
-<li>Hash table is partitioned into logically independent subsets of size <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>n</mi><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{n}{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.040392em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. d-random doesn’t have such partition</li>
-<li>if there are more than one least occupied buckets among the d buckets where an object x should be inserted into, then x will be inserted into the leftmost one among them</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>networking</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java Enhanced Switch</title>
-    <url>/java-enhanced-switch/index.html</url>
-    <content><![CDATA[<p>在Java中，<strong>增强的Switch</strong>（Enhanced Switch）是从Java 14开始引入，并在Java 17中正式成为标准功能的一项特性。它对传统的<code>switch</code>语句进行了改进，使其更简洁、更具表达力，并支持作为表达式使用。下面将详细介绍Java中的增强Switch，包括其定义、特点、语法、使用示例以及与传统Switch的对比。</p>
-<h2 id="什么是增强的switch"><a class="markdownIt-Anchor" href="#什么是增强的switch"></a> 什么是增强的Switch？</h2>
-<p><strong>增强的Switch</strong>（Enhanced Switch）是对Java中传统<code>switch</code>语句的升级，提供了更简洁的语法和更多的功能。它不仅可以作为语句使用，还可以作为表达式返回值，从而简化代码并减少错误。</p>
-<h3 id="传统switch的局限性"><a class="markdownIt-Anchor" href="#传统switch的局限性"></a> 传统Switch的局限性</h3>
-<p>在增强Switch引入之前，传统的<code>switch</code>语句存在以下一些局限性：</p>
-<ol>
-<li><strong>样板代码多</strong>：需要手动编写<code>break</code>语句以防止fall-through（贯穿）。</li>
-<li><strong>可读性差</strong>：多个<code>case</code>标签通常需要重复编写相似的代码。</li>
-<li><strong>不支持作为表达式</strong>：传统<code>switch</code>不能直接返回值，需要额外的变量来存储结果。</li>
-</ol>
-<h2 id="增强switch的主要特性"><a class="markdownIt-Anchor" href="#增强switch的主要特性"></a> 增强Switch的主要特性</h2>
-<ol>
-<li>
-<p><strong>Switch作为表达式</strong>：</p>
-<ul>
-<li>可以直接返回值，简化赋值操作。</li>
-</ul>
-</li>
-<li>
-<p><strong>箭头语法（Arrow Syntax）</strong>：</p>
-<ul>
-<li>使用<code>-&gt;</code>代替<code>:</code>和<code>break</code>，减少样板代码。</li>
-</ul>
-</li>
-<li>
-<p><strong>多标签匹配（Multiple Labels）</strong>：</p>
-<ul>
-<li>一个<code>case</code>可以匹配多个标签，语法更简洁。</li>
-</ul>
-</li>
-<li>
-<p><strong>自动阻止fall-through</strong>：</p>
-<ul>
-<li>不需要显式的<code>break</code>语句，防止意外的代码贯穿。</li>
-</ul>
-</li>
-<li>
-<p><strong>Yield语句</strong>：</p>
-<ul>
-<li>在需要返回值的代码块中使用<code>yield</code>返回结果。</li>
-</ul>
-</li>
-<li>
-<p><strong>代码块支持</strong>：</p>
-<ul>
-<li>在箭头语法中，可以使用代码块执行复杂逻辑，并通过<code>yield</code>返回值。</li>
-</ul>
-</li>
-</ol>
-<h2 id="增强switch的语法和使用方式"><a class="markdownIt-Anchor" href="#增强switch的语法和使用方式"></a> 增强Switch的语法和使用方式</h2>
-<h3 id="1-switch作为表达式"><a class="markdownIt-Anchor" href="#1-switch作为表达式"></a> 1. Switch作为表达式</h3>
-<p>增强Switch可以作为表达式使用，直接返回值。这使得代码更加简洁。</p>
-<p><strong>传统Switch作为语句</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
-<p><strong>增强Switch作为表达式</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-使用箭头语法和多标签"><a class="markdownIt-Anchor" href="#2-使用箭头语法和多标签"></a> 2. 使用箭头语法和多标签</h3>
-<p>增强Switch允许在一个<code>case</code>中匹配多个标签，并使用箭头语法代替传统的<code>:</code>和<code>break</code>。</p>
-<p><strong>传统Switch的多标签</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> numLetters;</span><br><span class="line"><span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;FRIDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SUNDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;SATURDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span>:</span><br><span class="line">        numLetters = <span class="number">9</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
-<p><strong>增强Switch的多标签</strong>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">day</span> <span class="operator">=</span> <span class="string">&quot;MONDAY&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">numLetters</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;MONDAY&quot;</span>, <span class="string">&quot;FRIDAY&quot;</span>, <span class="string">&quot;SUNDAY&quot;</span> -&gt; <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;TUESDAY&quot;</span> -&gt; <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;THURSDAY&quot;</span>, <span class="string">&quot;SATURDAY&quot;</span> -&gt; <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;WEDNESDAY&quot;</span> -&gt; <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Invalid day: &quot;</span> + day);</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(numLetters); <span class="comment">// 输出: 6</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-使用代码块和yield"><a class="markdownIt-Anchor" href="#3-使用代码块和yield"></a> 3. 使用代码块和yield</h3>
-<p>当需要在<code>case</code>中执行多行代码或复杂逻辑时，可以使用代码块，并通过<code>yield</code>返回值。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="comment">// 执行一些额外的操作</span></span><br><span class="line">        <span class="keyword">yield</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Two</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-switch与枚举的结合使用"><a class="markdownIt-Anchor" href="#4-switch与枚举的结合使用"></a> 4. Switch与枚举的结合使用</h3>
-<p>增强Switch在处理枚举类型时非常简洁和强大。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Day</span> &#123;</span><br><span class="line">    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Day</span> <span class="variable">day</span> <span class="operator">=</span> Day.MONDAY;</span><br><span class="line"><span class="type">String</span> <span class="variable">typeOfDay</span> <span class="operator">=</span> <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> MONDAY, FRIDAY, SUNDAY -&gt; <span class="string">&quot;Six letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> TUESDAY -&gt; <span class="string">&quot;Seven letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> THURSDAY, SATURDAY -&gt; <span class="string">&quot;Eight letters&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> WEDNESDAY -&gt; <span class="string">&quot;Nine letters&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(typeOfDay); <span class="comment">// 输出: Six letters</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-增强switch与类型模式匹配java-17及以上"><a class="markdownIt-Anchor" href="#5-增强switch与类型模式匹配java-17及以上"></a> 5. 增强Switch与类型模式匹配（Java 17及以上）</h3>
-<p>在Java 17中，增强Switch还支持类型模式匹配，使得switch表达式更加灵活。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (obj) &#123;</span><br><span class="line">    <span class="keyword">case</span> String s -&gt; <span class="string">&quot;It&#x27;s a string of length &quot;</span> + s.length();</span><br><span class="line">    <span class="keyword">case</span> Integer i -&gt; <span class="string">&quot;It&#x27;s an integer: &quot;</span> + i;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown type&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: It&#x27;s a string of length 5</span></span><br></pre></td></tr></table></figure>
-<h3 id="6-带有默认值的switch表达式"><a class="markdownIt-Anchor" href="#6-带有默认值的switch表达式"></a> 6. 带有默认值的Switch表达式</h3>
-<p>确保所有可能的情况都被覆盖，避免遗漏<code>default</code>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: Unknown</span></span><br></pre></td></tr></table></figure>
-<h3 id="7-switch表达式的复合类型"><a class="markdownIt-Anchor" href="#7-switch表达式的复合类型"></a> 7. Switch表达式的复合类型</h3>
-<p>Switch表达式不仅可以返回单一类型的值，还可以返回更复杂的对象。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        System.out.println(result); <span class="comment">// 输出: 15.0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="增强switch与传统switch的对比"><a class="markdownIt-Anchor" href="#增强switch与传统switch的对比"></a> 增强Switch与传统Switch的对比</h2>
-<h3 id="传统switch"><a class="markdownIt-Anchor" href="#传统switch"></a> 传统Switch</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">String result;</span><br><span class="line"><span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        result = <span class="string">&quot;One&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        result = <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        result = <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        result = <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
-<h3 id="增强switch"><a class="markdownIt-Anchor" href="#增强switch"></a> 增强Switch</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">switch</span> (num) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> -&gt; <span class="string">&quot;One&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span> -&gt; <span class="string">&quot;Two&quot;</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span> -&gt; <span class="string">&quot;Three&quot;</span>;</span><br><span class="line">    <span class="keyword">default</span> -&gt; <span class="string">&quot;Unknown&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(result); <span class="comment">// 输出: One</span></span><br></pre></td></tr></table></figure>
-<h3 id="对比总结"><a class="markdownIt-Anchor" href="#对比总结"></a> 对比总结</h3>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>传统Switch</strong></th>
-<th><strong>增强Switch</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>语法简洁性</strong></td>
-<td>需要编写<code>case</code>、<code>break</code>、<code>default</code>等，样板代码较多</td>
-<td>使用箭头语法，省略<code>break</code>，代码更简洁</td>
-</tr>
-<tr>
-<td><strong>作为表达式使用</strong></td>
-<td>不能直接返回值，需要额外变量存储结果</td>
-<td>可以直接作为表达式返回值，赋值更直接</td>
-</tr>
-<tr>
-<td><strong>多标签匹配</strong></td>
-<td>需要多个<code>case</code>标签并重复编写代码</td>
-<td>一个<code>case</code>可以匹配多个标签，使用逗号分隔</td>
-</tr>
-<tr>
-<td><strong>代码块支持</strong></td>
-<td>只能在单行执行代码，复杂逻辑需要手动管理<code>break</code></td>
-<td>可以在<code>case</code>中使用代码块，并通过<code>yield</code>返回值</td>
-</tr>
-<tr>
-<td><strong>防止fall-through</strong></td>
-<td>需要手动添加<code>break</code>，容易忘记导致逻辑错误</td>
-<td>自动阻止fall-through，减少错误</td>
-</tr>
-<tr>
-<td><strong>类型模式匹配</strong></td>
-<td>不支持</td>
-<td>支持（Java 17及以上），可以根据类型匹配并处理不同的对象</td>
-</tr>
-</tbody>
-</table>
-<h2 id="使用增强switch的优势"><a class="markdownIt-Anchor" href="#使用增强switch的优势"></a> 使用增强Switch的优势</h2>
-<ol>
-<li><strong>减少样板代码</strong>：不需要编写<code>break</code>语句，减少了重复代码，提高了代码的简洁性。</li>
-<li><strong>提高可读性</strong>：箭头语法使得<code>switch</code>结构更加清晰，容易理解。</li>
-<li><strong>防止错误</strong>：自动阻止fall-through，避免了因忘记<code>break</code>导致的逻辑错误。</li>
-<li><strong>灵活性</strong>：可以作为表达式使用，直接返回值，赋值更方便。</li>
-<li><strong>增强功能</strong>：支持代码块和<code>yield</code>语句，能够处理复杂的逻辑需求。</li>
-</ol>
-<h2 id="使用增强switch的注意事项"><a class="markdownIt-Anchor" href="#使用增强switch的注意事项"></a> 使用增强Switch的注意事项</h2>
-<ol>
-<li><strong>Java版本</strong>：增强Switch在Java 14中作为预览功能引入，在Java 17中正式发布。确保使用的Java版本支持增强Switch。</li>
-<li><strong>兼容性</strong>：如果项目需要兼容较低版本的Java，不能使用增强Switch。</li>
-<li><strong>代码风格</strong>：在团队协作中，确保所有成员都熟悉增强Switch的用法，以保持代码的一致性和可读性。</li>
-<li><strong>复杂逻辑</strong>：虽然增强Switch支持代码块，但对于非常复杂的逻辑，可能仍需使用传统的<code>switch</code>或其他控制结构以保持代码的清晰度。</li>
-</ol>
-<h2 id="完整示例"><a class="markdownIt-Anchor" href="#完整示例"></a> 完整示例</h2>
-<p>以下是一个更复杂的示例，展示如何在一个实际应用中使用增强Switch。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">TrafficLight</span> &#123;</span><br><span class="line">    RED, YELLOW, GREEN</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TrafficController</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getAction</span><span class="params">(TrafficLight light)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (light) &#123;</span><br><span class="line">            <span class="keyword">case</span> RED -&gt; <span class="string">&quot;Stop&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> YELLOW -&gt; <span class="string">&quot;Caution&quot;</span>;</span><br><span class="line">            <span class="keyword">case</span> GREEN -&gt; <span class="string">&quot;Go&quot;</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">TrafficLight</span> <span class="variable">currentLight</span> <span class="operator">=</span> TrafficLight.GREEN;</span><br><span class="line">        <span class="type">String</span> <span class="variable">action</span> <span class="operator">=</span> getAction(currentLight);</span><br><span class="line">        System.out.println(<span class="string">&quot;Traffic Light is &quot;</span> + currentLight + <span class="string">&quot;: &quot;</span> + action);</span><br><span class="line">        <span class="comment">// 输出: Traffic Light is GREEN: Go</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="复杂逻辑示例计算数学运算"><a class="markdownIt-Anchor" href="#复杂逻辑示例计算数学运算"></a> 复杂逻辑示例：计算数学运算</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Operation</span> &#123;</span><br><span class="line">    ADD, SUBTRACT, MULTIPLY, DIVIDE</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b, Operation op)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">switch</span> (op) &#123;</span><br><span class="line">            <span class="keyword">case</span> ADD -&gt; a + b;</span><br><span class="line">            <span class="keyword">case</span> SUBTRACT -&gt; a - b;</span><br><span class="line">            <span class="keyword">case</span> MULTIPLY -&gt; a * b;</span><br><span class="line">            <span class="keyword">case</span> DIVIDE -&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">yield</span> Double.NaN;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">yield</span> a / b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">double</span> <span class="variable">result1</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">5</span>, Operation.ADD);</span><br><span class="line">        <span class="type">double</span> <span class="variable">result2</span> <span class="operator">=</span> calculate(<span class="number">10</span>, <span class="number">0</span>, Operation.DIVIDE);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;10 + 5 = &quot;</span> + result1); <span class="comment">// 输出: 10 + 5 = 15.0</span></span><br><span class="line">        System.out.println(<span class="string">&quot;10 / 0 = &quot;</span> + result2); <span class="comment">// 输出: 10 / 0 = NaN</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<p>Java中的增强Switch大大改进了传统<code>switch</code>语句，使其更加简洁、易读且功能更强大。通过箭头语法、多标签匹配、作为表达式使用以及代码块支持，增强Switch能够有效减少样板代码，提高代码质量和可维护性。</p>
-<p>掌握增强Switch的使用，可以让您的Java代码更加现代化和高效。在编写条件分支逻辑时，优先考虑使用增强Switch，以充分利用其带来的优势。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java POJO and Record</title>
     <url>/java-pojo-and-record/index.html</url>
     <content><![CDATA[<p>在Java编程中，<strong>POJO</strong> 和 <strong>Record</strong> 是两种用于定义数据模型的不同概念。它们各自有不同的用途和特性，适用于不同的场景。下面详细介绍这两者的定义、特点以及如何使用<code>record</code>。</p>
@@ -2719,23 +2719,18 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 1456. 定长子串中元音的最大数目</title>
-    <url>/leetcode-1456-%E5%AE%9A%E9%95%BF%E5%AD%90%E4%B8%B2%E4%B8%AD%E5%85%83%E9%9F%B3%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/" >LeetCode 1456. 定长子串中元音的最大数目<i class="fas fa-external-link-alt"></i></a><br />
-滑动窗口问题</p>
+    <title>LeetCode 3046. 分割数组</title>
+    <url>/leetcode-3046-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/split-the-array/description/" >LeetCode 3046. 分割数组<i class="fas fa-external-link-alt"></i></a><br />
+12/28/2024 每日一题</p>
 <h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
-<h4 id="定长滑窗套路"><a class="markdownIt-Anchor" href="#定长滑窗套路"></a> 定长滑窗套路</h4>
-<ol>
-<li>入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。</li>
-<li>更新：更新答案。一般是更新最大值/最小值。</li>
-<li>出：下标为 i−k+1 的元素离开窗口，更新相关统计量。<br />
-详见<a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/solutions/2809359/tao-lu-jiao-ni-jie-jue-ding-chang-hua-ch-fzfo" >灵神题解<i class="fas fa-external-link-alt"></i></a></li>
-</ol>
+<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
+<p>用哈希表统计每个元素的个数，如果某个元素的个数超过2，则无法分割，因为根据鸽巢原理，至少有1个数组有2个相同的该元素。</p>
 <h4 id="实现c"><a class="markdownIt-Anchor" href="#实现c"></a> 实现(C++)</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxVowels</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>, count = <span class="number">0</span>;</span><br><span class="line">        unordered_set&lt;<span class="type">char</span>&gt; table = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;u&#x27;</span>&#125;; <span class="comment">//也可直接用or</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(s[i])) count++;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; k - <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, count);</span><br><span class="line">            <span class="type">char</span> out = s[i + <span class="number">1</span> - k];</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(out)) count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isPossibleToSplit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            table[num]++;</span><br><span class="line">            <span class="keyword">if</span> (table[num] &gt;= <span class="number">3</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
-<p>时间复杂度：O(n)，其中 n 是 s 的长度。<br />
-空间复杂度：O(1)。仅用到若干额外变量。</p>
+<p>时间复杂度：O(n)<br />
+空间复杂度：O(n)</p>
 ]]></content>
       <tags>
         <tag>LeetCode</tag>
@@ -2817,19 +2812,35 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
-    <title>LeetCode 3046. 分割数组</title>
-    <url>/leetcode-3046-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/split-the-array/description/" >LeetCode 3046. 分割数组<i class="fas fa-external-link-alt"></i></a><br />
-12/28/2024 每日一题</p>
+    <title>LeetCode 1456. 定长子串中元音的最大数目</title>
+    <url>/leetcode-1456-%E5%AE%9A%E9%95%BF%E5%AD%90%E4%B8%B2%E4%B8%AD%E5%85%83%E9%9F%B3%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E7%9B%AE/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/" >LeetCode 1456. 定长子串中元音的最大数目<i class="fas fa-external-link-alt"></i></a><br />
+滑动窗口问题</p>
 <h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
-<h4 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h4>
-<p>用哈希表统计每个元素的个数，如果某个元素的个数超过2，则无法分割，因为根据鸽巢原理，至少有1个数组有2个相同的该元素。</p>
+<h4 id="定长滑窗套路"><a class="markdownIt-Anchor" href="#定长滑窗套路"></a> 定长滑窗套路</h4>
+<ol>
+<li>入：下标为 i 的元素进入窗口，更新相关统计量。如果 i&lt;k−1 则重复第一步。</li>
+<li>更新：更新答案。一般是更新最大值/最小值。</li>
+<li>出：下标为 i−k+1 的元素离开窗口，更新相关统计量。<br />
+详见<a class="link"   href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/solutions/2809359/tao-lu-jiao-ni-jie-jue-ding-chang-hua-ch-fzfo" >灵神题解<i class="fas fa-external-link-alt"></i></a></li>
+</ol>
 <h4 id="实现c"><a class="markdownIt-Anchor" href="#实现c"></a> 实现(C++)</h4>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isPossibleToSplit</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : nums) &#123;</span><br><span class="line">            table[num]++;</span><br><span class="line">            <span class="keyword">if</span> (table[num] &gt;= <span class="number">3</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxVowels</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>, count = <span class="number">0</span>;</span><br><span class="line">        unordered_set&lt;<span class="type">char</span>&gt; table = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;u&#x27;</span>&#125;; <span class="comment">//也可直接用or</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(s[i])) count++;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; k - <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, count);</span><br><span class="line">            <span class="type">char</span> out = s[i + <span class="number">1</span> - k];</span><br><span class="line">            <span class="keyword">if</span> (table.<span class="built_in">count</span>(out)) count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h4>
-<p>时间复杂度：O(n)<br />
-空间复杂度：O(n)</p>
+<p>时间复杂度：O(n)，其中 n 是 s 的长度。<br />
+空间复杂度：O(1)。仅用到若干额外变量。</p>
 ]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode 3159. 查询数组中元素的出现位置</title>
+    <url>/leetcode-3159-%E6%9F%A5%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE/index.html</url>
+    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/find-occurrences-of-an-element-in-an-array/description/" >LeetCode 3159. 查询数组中元素的出现位置<i class="fas fa-external-link-alt"></i></a><br />
+12/27/2024 每日一题</p>
+<h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">occurrencesOfElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, vector&lt;<span class="type">int</span>&gt;&amp; queries, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == x) &#123;</span><br><span class="line">                table.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> n = table.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(queries.size())</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; queries.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (queries[i] &lt;= n) &#123;</span><br><span class="line">                ans[i] = table[queries[i] - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans[i] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>LeetCode</tag>
       </tags>
@@ -2961,25 +2972,6 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 ]]></content>
       <tags>
         <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode 3159. 查询数组中元素的出现位置</title>
-    <url>/leetcode-3159-%E6%9F%A5%E8%AF%A2%E6%95%B0%E7%BB%84%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E5%87%BA%E7%8E%B0%E4%BD%8D%E7%BD%AE/index.html</url>
-    <content><![CDATA[<p><a class="link"   href="https://leetcode.cn/problems/find-occurrences-of-an-element-in-an-array/description/" >LeetCode 3159. 查询数组中元素的出现位置<i class="fas fa-external-link-alt"></i></a><br />
-12/27/2024 每日一题</p>
-<h3 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h3>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">occurrencesOfElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, vector&lt;<span class="type">int</span>&gt;&amp; queries, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; table;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == x) &#123;</span><br><span class="line">                table.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> n = table.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(queries.size())</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; queries.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (queries[i] &lt;= n) &#123;</span><br><span class="line">                ans[i] = table[queries[i] - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans[i] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OS Security and Access Control</title>
-    <url>/os-security-and-access-control/index.html</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>security</tag>
       </tags>
   </entry>
   <entry>
@@ -3223,75 +3215,12 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
       </tags>
   </entry>
   <entry>
-    <title>Verilog Basics</title>
-    <url>/verilog-basics/index.html</url>
-    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
-<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
-<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
-<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
-<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
-<ul>
-<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
-<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
-<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
-</ul>
-<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
-<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
-<ul>
-<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
-<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
-</ul>
-<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
-<p>Let’s start with the basics of Verilog syntax:</p>
-<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
-<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
-<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
-<p>Verilog provides several data types for representing signals:</p>
-<ul>
-<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
-<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
-</ul>
-<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
-<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
-<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
-<p>Let’s write a simple Verilog program that implements an AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
-<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
-<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
-<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
-<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
-<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
-<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
-<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
-<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
-<p>As you start coding in Verilog, keep the following best practices in mind:</p>
-<ul>
-<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
-<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
-<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
-<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
-</ul>
-<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
-<p>Here are some resources to help you continue your Verilog learning journey:</p>
-<ul>
-<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
-<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
-<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
-</ul>
-<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
-<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
-<p>Happy coding!</p>
-<hr />
-<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
-]]></content>
+    <title>OS Security and Access Control</title>
+    <url>/os-security-and-access-control/index.html</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>security</tag>
+      </tags>
   </entry>
   <entry>
     <title>common syntax</title>
@@ -3565,6 +3494,77 @@ Assume a database with a set of tuples; each tuple consists of a unique fixed-le
 <li><strong>阅读官方文档与最佳实践</strong>：熟悉各语言的官方文档，了解最佳实践和常见陷阱。</li>
 </ol>
 <p>通过系统地学习和比较C++、Java、Python、JavaScript的常用语法，结合实际编程练习，您将在面试中更具竞争力，并能够灵活应对不同语言的相关问题。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Verilog Basics</title>
+    <url>/verilog-basics/index.html</url>
+    <content><![CDATA[<p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
+<h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
+<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
+<h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
+<p>Verilog is a powerful tool for digital designers, enabling you to:</p>
+<ul>
+<li><strong>Design and simulate digital circuits:</strong> Before physically building a circuit, you can simulate its behavior using Verilog to ensure it works as expected.</li>
+<li><strong>Work with FPGAs and ASICs:</strong> Verilog is commonly used in designing hardware that runs on FPGAs and ASICs, which are crucial in industries ranging from consumer electronics to aerospace.</li>
+<li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
+</ul>
+<h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
+<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
+<ul>
+<li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
+<li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
+</ul>
+<h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
+<p>Let’s start with the basics of Verilog syntax:</p>
+<h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
+<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
+<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
+<p>Verilog provides several data types for representing signals:</p>
+<ul>
+<li><strong><code>wire</code>:</strong> Represents a physical connection between components.</li>
+<li><strong><code>reg</code>:</strong> Used to store values and is typically used in sequential logic.</li>
+</ul>
+<h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
+<p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
+<h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
+<p>Let’s write a simple Verilog program that implements an AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
+<h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
+<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
+<h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
+<h3 id="combinational-logic"><a class="markdownIt-Anchor" href="#combinational-logic"></a> Combinational Logic</h3>
+<p>Combinational logic is logic where the output is a direct function of the current inputs, without any memory of previous inputs. In Verilog, combinational logic is often implemented using <code>assign</code> statements:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">assign</span> y = a &amp; b;</span><br></pre></td></tr></table></figure>
+<h3 id="sequential-logic"><a class="markdownIt-Anchor" href="#sequential-logic"></a> Sequential Logic</h3>
+<p>Sequential logic, on the other hand, depends on both current inputs and past states. This type of logic requires memory elements like flip-flops, which are described using <code>always</code> blocks:</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This code represents a simple D flip-flop, where the output <code>q</code> changes on the rising edge of the clock signal (<code>clk</code>).</p>
+<h2 id="best-practices-in-verilog-coding"><a class="markdownIt-Anchor" href="#best-practices-in-verilog-coding"></a> Best Practices in Verilog Coding</h2>
+<p>As you start coding in Verilog, keep the following best practices in mind:</p>
+<ul>
+<li><strong>Modularity:</strong> Break down your design into smaller modules that are easy to understand and debug.</li>
+<li><strong>Clear naming conventions:</strong> Use descriptive names for signals and modules to make your code more readable.</li>
+<li><strong>Comment your code:</strong> Add comments to explain your design logic and important parts of your code.</li>
+<li><strong>Test thoroughly:</strong> Always simulate your design under various conditions to ensure correctness before synthesis.</li>
+</ul>
+<h2 id="resources-for-further-learning"><a class="markdownIt-Anchor" href="#resources-for-further-learning"></a> Resources for Further Learning</h2>
+<p>Here are some resources to help you continue your Verilog learning journey:</p>
+<ul>
+<li><strong>Books:</strong> “Verilog HDL” by Samir Palnitkar is an excellent book for beginners.</li>
+<li><strong>Online Courses:</strong> Websites like Coursera and edX offer comprehensive courses on digital design and Verilog.</li>
+<li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
+</ul>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
+<p>Happy coding!</p>
+<hr />
+<p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience’s needs!</p>
 ]]></content>
   </entry>
   <entry>
