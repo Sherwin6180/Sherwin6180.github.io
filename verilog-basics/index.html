@@ -243,7 +243,7 @@
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Mon Sep 02 2024 13:38:54 GMT-0400">2024-09-02 13:38:54</span>
+                <span class="datetime" data-updated="Sun Dec 29 2024 07:42:35 GMT-0500">2024-12-29 07:42:35</span>
             </span>
         
 
@@ -281,9 +281,9 @@
                     
 
                     
-                         <p>If you’re new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we’ll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
+                         <p>If you're new to digital design and want to explore the world of hardware description languages (HDL), Verilog is an excellent place to start. Verilog is widely used in the design and verification of digital circuits, and learning it can open the door to exciting opportunities in fields like ASIC design, FPGA development, and embedded systems. In this post, we'll take you through the basics of Verilog, helping you build a strong foundation to start your journey.</p>
 <h2 id="what-is-verilog"><a class="markdownIt-Anchor" href="#what-is-verilog"></a> What is Verilog?</h2>
-<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you’re working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
+<p>Verilog is a hardware description language used to model electronic systems. Unlike traditional programming languages like C or Python, Verilog is specifically designed for describing the behavior and structure of digital circuits. Whether you're working on a small digital circuit or a complex system-on-chip (SoC), Verilog allows you to simulate, verify, and eventually synthesize your design into actual hardware.</p>
 <h2 id="why-learn-verilog"><a class="markdownIt-Anchor" href="#why-learn-verilog"></a> Why Learn Verilog?</h2>
 <p>Verilog is a powerful tool for digital designers, enabling you to:</p>
 <ul>
@@ -292,15 +292,15 @@
 <li><strong>Improve career prospects:</strong> Knowledge of Verilog is highly valued in industries related to hardware design, making it a great skill to have on your resume.</li>
 </ul>
 <h2 id="prerequisites"><a class="markdownIt-Anchor" href="#prerequisites"></a> Prerequisites</h2>
-<p>Before diving into Verilog, it’s helpful to have a basic understanding of:</p>
+<p>Before diving into Verilog, it's helpful to have a basic understanding of:</p>
 <ul>
 <li><strong>Digital logic:</strong> Concepts like logic gates, combinational logic, and sequential logic are fundamental to understanding how to design circuits in Verilog.</li>
 <li><strong>Basic programming concepts:</strong> Although Verilog is not a traditional programming language, familiarity with concepts like variables, conditional statements, and loops can make learning Verilog easier.</li>
 </ul>
 <h2 id="basic-verilog-syntax"><a class="markdownIt-Anchor" href="#basic-verilog-syntax"></a> Basic Verilog Syntax</h2>
-<p>Let’s start with the basics of Verilog syntax:</p>
+<p>Let's start with the basics of Verilog syntax:</p>
 <h3 id="modules"><a class="markdownIt-Anchor" href="#modules"></a> Modules</h3>
-<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here’s an example of a simple module:</p>
+<p>In Verilog, the design is broken down into modules, which are the building blocks of a Verilog program. Each module represents a specific function or a part of the circuit. Here's an example of a simple module:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 <p>In this example, <code>and_gate</code> is a module that implements a simple AND gate. It has two inputs (<code>a</code> and <code>b</code>) and one output (<code>y</code>). The <code>assign</code> statement is used to define the logic.</p>
 <h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data Types</h3>
@@ -312,11 +312,11 @@
 <h3 id="ports"><a class="markdownIt-Anchor" href="#ports"></a> Ports</h3>
 <p>Ports are the inputs and outputs of a module. They are defined inside the module definition using keywords like <code>input</code>, <code>output</code>, and <code>inout</code>.</p>
 <h2 id="writing-your-first-verilog-program"><a class="markdownIt-Anchor" href="#writing-your-first-verilog-program"></a> Writing Your First Verilog Program</h2>
-<p>Let’s write a simple Verilog program that implements an AND gate:</p>
+<p>Let's write a simple Verilog program that implements an AND gate:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> and_gate (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> a,</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> b,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> y</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">assign</span> y = a &amp; b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 <p>This code describes a basic AND gate with two inputs and one output. The <code>assign</code> statement continuously drives the output <code>y</code> based on the AND operation of inputs <code>a</code> and <code>b</code>.</p>
 <h3 id="simulating-the-design"><a class="markdownIt-Anchor" href="#simulating-the-design"></a> Simulating the Design</h3>
-<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here’s a simple testbench to simulate our AND gate:</p>
+<p>To verify that your Verilog code works correctly, you can simulate it using a Verilog simulator such as ModelSim or Icarus Verilog. Here's a simple testbench to simulate our AND gate:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> tb_and_gate;</span><br><span class="line">    <span class="keyword">reg</span> a;</span><br><span class="line">    <span class="keyword">reg</span> b;</span><br><span class="line">    <span class="keyword">wire</span> y;</span><br><span class="line"></span><br><span class="line">    and_gate uut (</span><br><span class="line">        <span class="variable">.a</span>(a),</span><br><span class="line">        <span class="variable">.b</span>(b),</span><br><span class="line">        <span class="variable">.y</span>(y)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">0</span>; #<span class="number">10</span>;</span><br><span class="line">        a = <span class="number">1</span>; b = <span class="number">1</span>; #<span class="number">10</span>;</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 <p>In this testbench, we simulate different input combinations for the AND gate and observe the output. The <code>#10</code> is a time delay, allowing us to simulate the passage of time in the digital circuit.</p>
 <h2 id="combinational-and-sequential-logic"><a class="markdownIt-Anchor" href="#combinational-and-sequential-logic"></a> Combinational and Sequential Logic</h2>
@@ -343,7 +343,7 @@
 <li><strong>Communities:</strong> Engage with online communities like Stack Overflow or the Verilog subreddit to get help and share knowledge.</li>
 </ul>
 <h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
-<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you’ll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
+<p>Learning Verilog is a valuable skill that can help you design and verify digital circuits effectively. By understanding the basics, practicing with simple designs, and following best practices, you'll be well on your way to mastering this powerful hardware description language. So start coding, simulate your designs, and have fun exploring the world of digital logic!</p>
 <p>Happy coding!</p>
 <hr />
 <p>This blog post should give beginners a solid starting point to learn Verilog and understand its core concepts. Feel free to adjust or expand on any sections to suit your audience's needs!</p>
