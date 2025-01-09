@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            CS 6210 Lecture 2 Notes 1/8/2025 |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        CS 6210 Lecture 2 Notes 1/8/2025
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-01-08 23:56:02</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Jan 09 2025 00:15:49 GMT-0500">2025-01-09 00:15:49</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/notes/">notes</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.7k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>Here’s a detailed breakdown and explanation of the concepts you covered, along with the additional information you requested:</p>
+<hr />
+<h3 id="what-does-an-os-do"><a class="markdownIt-Anchor" href="#what-does-an-os-do"></a> <strong>What Does an OS Do?</strong></h3>
+<ol>
+<li>
+<p><strong>Resource Management:</strong><br />
+The operating system manages hardware resources such as CPU, memory, disk, and I/O devices, ensuring they are allocated efficiently among running applications.</p>
+</li>
+<li>
+<p><strong>Providing Services to Applications:</strong><br />
+The OS acts as a mediator, offering APIs and system calls that applications use to perform tasks like file handling, networking, or accessing hardware.</p>
+</li>
+<li>
+<p><strong>Establishing User Interfaces:</strong><br />
+The OS provides user interfaces such as GUIs (Graphical User Interfaces) or CLIs (Command Line Interfaces) to allow users to interact with the system.</p>
+</li>
+</ol>
+<hr />
+<h3 id="if-we-only-have-one-application-do-we-still-need-an-os"><a class="markdownIt-Anchor" href="#if-we-only-have-one-application-do-we-still-need-an-os"></a> <strong>If We Only Have One Application, Do We Still Need an OS?</strong></h3>
+<p><strong>Answer: Maybe.</strong><br />
+It depends on the use case:</p>
+<ul>
+<li><strong>Example of No OS Needed:</strong> Embedded systems, like a microwave or a simple IoT device, often run a single application directly on the hardware. In such cases, the application can handle its own logic for interacting with the hardware without an OS.</li>
+<li><strong>Example of OS Needed:</strong> Even with a single application, if the hardware environment is complex or the application requires security, abstraction, or modularity (e.g., in flight control systems), an OS might still be essential.</li>
+</ul>
+<hr />
+<h3 id="does-an-os-allow-applications-to-access-resources-directly"><a class="markdownIt-Anchor" href="#does-an-os-allow-applications-to-access-resources-directly"></a> <strong>Does an OS Allow Applications to Access Resources Directly?</strong></h3>
+<p><strong>Answer: No.</strong></p>
+<ul>
+<li>The OS provides a controlled and abstract interface to hardware resources.</li>
+<li>It ensures <strong>logic for resource interaction</strong>, <strong>protection</strong>, and <strong>isolation</strong>, preventing applications from interfering with each other or the system itself.</li>
+<li>Direct resource access is avoided to ensure stability and security.</li>
+</ul>
+<hr />
+<h3 id="how-does-the-os-protect-itself"><a class="markdownIt-Anchor" href="#how-does-the-os-protect-itself"></a> <strong>How Does the OS Protect Itself?</strong></h3>
+<ol>
+<li>
+<p><strong>Address Space:</strong><br />
+Each process operates within its own virtual address space, isolating it from other processes and the OS. The OS ensures that processes cannot directly access the memory of other processes.</p>
+</li>
+<li>
+<p><strong>Hardware Protection Mechanisms:</strong></p>
+<ul>
+<li><strong>Privileged Instructions:</strong> Certain operations (e.g., direct I/O, memory management) are restricted to the OS kernel.</li>
+<li><strong>Modes:</strong> Hardware supports two modes: <strong>user mode</strong> (limited privileges) and <strong>kernel mode</strong> (full privileges).</li>
+<li><strong>Interrupts:</strong> A mechanism that safely transitions the CPU from user mode to kernel mode when needed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Isolation Levels:</strong><br />
+Processes are isolated from each other and from the OS to ensure security and fault tolerance.</p>
+</li>
+<li>
+<p><strong>Rings:</strong><br />
+Many modern systems implement a <strong>ring-based security model</strong>:</p>
+<ul>
+<li><strong>Ring 0:</strong> Kernel (highest privilege).</li>
+<li><strong>Ring 3:</strong> User applications (lowest privilege).</li>
+<li>Rings in between can be used for other trusted components like device drivers.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="processes-the-fundamental-unit-of-isolation"><a class="markdownIt-Anchor" href="#processes-the-fundamental-unit-of-isolation"></a> <strong>Processes: The Fundamental Unit of Isolation</strong></h3>
+<ul>
+<li>A <strong>process</strong> is the abstraction used to provide isolation and resource management.</li>
+<li>The OS tracks processes through a <strong>Process Control Block (PCB)</strong>, which stores metadata such as:
+<ul>
+<li>Process ID.</li>
+<li>Process state (running, waiting, etc.).</li>
+<li>Memory allocation.</li>
+<li>Open files.</li>
+<li>CPU registers and scheduling information.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="are-processes-enough"><a class="markdownIt-Anchor" href="#are-processes-enough"></a> <strong>Are Processes Enough?</strong></h3>
+<p><strong>Answer: No.</strong><br />
+Processes are expensive to create and manage, especially with <strong>context switches</strong> (saving and restoring process states). For efficient <strong>concurrency</strong>, threads are introduced.</p>
+<hr />
+<h3 id="what-are-threads"><a class="markdownIt-Anchor" href="#what-are-threads"></a> <strong>What Are Threads?</strong></h3>
+<ul>
+<li>Threads are the <strong>smallest unit of scheduling</strong> and enable <strong>concurrency</strong> within a process.</li>
+<li>Threads share resources (heap, data, code) with other threads in the same process but have their own <strong>stack</strong>.</li>
+</ul>
+<hr />
+<h3 id="how-are-threads-managed"><a class="markdownIt-Anchor" href="#how-are-threads-managed"></a> <strong>How Are Threads Managed?</strong></h3>
+<ul>
+<li>Threads are tracked using <strong>Thread Control Blocks (TCBs)</strong>, which store:
+<ul>
+<li>Thread ID.</li>
+<li>Stack pointer.</li>
+<li>Program counter.</li>
+<li>Registers.</li>
+<li>Scheduling information.</li>
+</ul>
+</li>
+<li>The OS or a user-level library provides a <strong>thread scheduler</strong> to manage thread execution.</li>
+</ul>
+<hr />
+<h3 id="threads-in-linux"><a class="markdownIt-Anchor" href="#threads-in-linux"></a> <strong>Threads in Linux</strong></h3>
+<p>In Linux, threads are treated similarly to processes. They are implemented as <strong>lightweight processes</strong>, where threads share the same address space but are scheduled like independent processes.</p>
+<hr />
+<h3 id="kernel-vs-user-threading-modes"><a class="markdownIt-Anchor" href="#kernel-vs-user-threading-modes"></a> <strong>Kernel vs. User Threading Modes</strong></h3>
+<h4 id="kernel-threading-mode"><a class="markdownIt-Anchor" href="#kernel-threading-mode"></a> <strong>Kernel Threading Mode:</strong></h4>
+<ol>
+<li>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Real Parallelism:</strong> Multiple threads can run on different CPU cores simultaneously because the kernel has full visibility.</li>
+<li><strong>Preemption:</strong> The kernel can interrupt threads to enforce fair scheduling.</li>
+<li><strong>Resource Utilization Control:</strong> The kernel can manage CPU and memory allocation effectively.</li>
+</ul>
+</li>
+<li>
+<p><strong>Drawbacks:</strong></p>
+<ul>
+<li><strong>High Overhead:</strong> Context switches between threads are expensive.</li>
+<li><strong>Portability Issues:</strong> Kernel threading is platform-dependent.</li>
+<li><strong>Heavyweight:</strong> Thread creation and management involve system calls, adding overhead.</li>
+</ul>
+</li>
+</ol>
+<h4 id="user-threading-mode"><a class="markdownIt-Anchor" href="#user-threading-mode"></a> <strong>User Threading Mode:</strong></h4>
+<ol>
+<li>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Semantic Awareness:</strong> The application knows the logic of its threads and can optimize scheduling.</li>
+<li><strong>Low Overhead:</strong> Switching threads does not involve system calls.</li>
+<li><strong>Lightweight:</strong> Thread creation and management are fast.</li>
+<li><strong>Customizable:</strong> Applications can define their own threading logic.</li>
+<li><strong>OS Independence:</strong> No dependency on the kernel threading implementation.</li>
+</ul>
+</li>
+<li>
+<p><strong>Drawbacks:</strong></p>
+<ul>
+<li><strong>No Real Parallelism:</strong> All threads run on the same core unless combined with kernel threads.</li>
+<li><strong>No Kernel Multiplexing Support:</strong> Blocking a single user thread can block the entire process.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="scheduler-activations-sosp-1991"><a class="markdownIt-Anchor" href="#scheduler-activations-sosp-1991"></a> <strong>Scheduler Activations (SOSP 1991)</strong></h3>
+<p>Scheduler activations combine the benefits of kernel and user threading modes.</p>
+<ul>
+<li>The kernel notifies the user-level threading library about events like preemption or blocking using <strong>upcalls</strong>.</li>
+<li>The user-level library can then adjust its thread scheduling accordingly.</li>
+<li><strong>Mechanism:</strong> The kernel and user library work together via an interface that maps kernel-level threads to user-level threads dynamically.</li>
+<li>This enables better parallelism without the high overhead of kernel threading.</li>
+</ul>
+<p>Here’s an enhanced and corrected version of your lecture, with gaps filled and additional context added for clarity:</p>
+<h3 id="is-the-os-the-kernel"><a class="markdownIt-Anchor" href="#is-the-os-the-kernel"></a> <strong>Is the OS the Kernel?</strong></h3>
+<h4 id="why-is-this-question-important"><a class="markdownIt-Anchor" href="#why-is-this-question-important"></a> <strong>Why is this Question Important?</strong></h4>
+<p>The relationship between the operating system (OS) and the kernel has been a decades-old debate. The kernel is the core component of the OS, managing hardware and providing essential services. Deciding what goes inside the kernel is crucial because <strong>crossing the boundary between user space and kernel space (context switch) is expensive</strong>. The design of the kernel directly impacts performance, safety, and flexibility.</p>
+<hr />
+<h3 id="kernel-design-approaches"><a class="markdownIt-Anchor" href="#kernel-design-approaches"></a> <strong>Kernel Design Approaches</strong></h3>
+<h4 id="1-monolithic-kernel"><a class="markdownIt-Anchor" href="#1-monolithic-kernel"></a> <strong>1. Monolithic Kernel</strong></h4>
+<p>In a <strong>monolithic structure</strong>, there is a clear division between:</p>
+<ul>
+<li><strong>User Space:</strong> Applications that make system calls to access kernel services.</li>
+<li><strong>Kernel Space:</strong> Core system functionalities tightly integrated into a single unit.</li>
+</ul>
+<h5 id="components-of-a-monolithic-kernel"><a class="markdownIt-Anchor" href="#components-of-a-monolithic-kernel"></a> <strong>Components of a Monolithic Kernel</strong></h5>
+<p>The kernel includes the following core components:</p>
+<ol>
+<li><strong>FS (File System):</strong> Handles file storage, retrieval, and management.</li>
+<li><strong>SCHED (Scheduler):</strong> Manages CPU scheduling and multitasking.</li>
+<li><strong>PROC (Process Management):</strong> Tracks and manages process states and metadata.</li>
+<li><strong>MAM (Memory Management):</strong> Handles virtual memory, paging, and physical memory allocation.</li>
+</ol>
+<h5 id="example-linux-command-pipeline"><a class="markdownIt-Anchor" href="#example-linux-command-pipeline"></a> <strong>Example: Linux Command Pipeline</strong></h5>
+<p>Command: <code>echo hello | cat</code></p>
+<ol>
+<li>The <code>echo</code> command writes &quot;hello&quot; to a pipe (managed by the kernel).</li>
+<li>The kernel passes the data through the pipe to the <code>cat</code> command.</li>
+<li>The <code>cat</code> command reads the data and outputs it.</li>
+</ol>
+<h5 id="advantages-of-a-monolithic-kernel"><a class="markdownIt-Anchor" href="#advantages-of-a-monolithic-kernel"></a> <strong>Advantages of a Monolithic Kernel</strong></h5>
+<ul>
+<li><strong>Performance:</strong> Because everything is within the kernel, there are fewer border crossings between user and kernel space.</li>
+<li><strong>Integration:</strong> All core functionalities interact efficiently within the kernel.</li>
+</ul>
+<h5 id="drawbacks-of-a-monolithic-kernel"><a class="markdownIt-Anchor" href="#drawbacks-of-a-monolithic-kernel"></a> <strong>Drawbacks of a Monolithic Kernel</strong></h5>
+<ul>
+<li><strong>Complexity:</strong> A large kernel is difficult to maintain, debug, and secure.</li>
+<li><strong>Error Propagation:</strong> A bug in any kernel component can crash the entire system.</li>
+</ul>
+<hr />
+<h4 id="2-microkernel"><a class="markdownIt-Anchor" href="#2-microkernel"></a> <strong>2. Microkernel</strong></h4>
+<p>In a <strong>microkernel structure</strong>, the kernel includes only minimal essential logic:</p>
+<ol>
+<li><strong>Isolation:</strong> Handles process management and isolation.</li>
+<li><strong>Protection:</strong> Facilitates <strong>Inter-Process Communication (IPC)</strong>, enabling processes to communicate securely.</li>
+</ol>
+<h5 id="features-of-a-microkernel"><a class="markdownIt-Anchor" href="#features-of-a-microkernel"></a> <strong>Features of a Microkernel</strong></h5>
+<ul>
+<li>System functionalities (file systems, device drivers, network protocols) are moved to <strong>user space</strong> as separate services.</li>
+<li>The kernel only focuses on managing isolation and providing IPC mechanisms.</li>
+</ul>
+<h5 id="example-linux-command-pipeline-2"><a class="markdownIt-Anchor" href="#example-linux-command-pipeline-2"></a> <strong>Example: Linux Command Pipeline</strong></h5>
+<p>Command: <code>echo hello | cat</code></p>
+<ol>
+<li>The <code>echo</code> command sends data to the user-space file system service.</li>
+<li>The file system service uses IPC to pass data to the <code>cat</code> command.</li>
+<li>The <code>cat</code> command reads the data and outputs it.</li>
+</ol>
+<h5 id="advantages-of-a-microkernel"><a class="markdownIt-Anchor" href="#advantages-of-a-microkernel"></a> <strong>Advantages of a Microkernel</strong></h5>
+<ul>
+<li><strong>Safety and Reliability:</strong> By minimizing the kernel's size, fewer bugs exist at the kernel level.</li>
+<li><strong>Fault Tolerance:</strong> Since most services run in user space, a crash in one service does not affect the kernel.</li>
+</ul>
+<h5 id="drawbacks-of-a-microkernel"><a class="markdownIt-Anchor" href="#drawbacks-of-a-microkernel"></a> <strong>Drawbacks of a Microkernel</strong></h5>
+<ul>
+<li><strong>Performance Overhead:</strong> Frequent border crossings between user space and kernel space slow down execution.</li>
+<li><strong>Complex System Design:</strong> Splitting services into user space introduces additional design complexity.</li>
+</ul>
+<h5 id="safety-vs-performance-tradeoff"><a class="markdownIt-Anchor" href="#safety-vs-performance-tradeoff"></a> <strong>Safety vs. Performance Tradeoff</strong></h5>
+<ul>
+<li><strong>Microkernel:</strong> Strong safety but poor performance (<strong>Top-Left of Safety-Performance graph</strong>).</li>
+<li><strong>Monolithic Kernel:</strong> High performance but weaker safety (<strong>Bottom-Right of Safety-Performance graph</strong>).</li>
+</ul>
+<hr />
+<h4 id="3-dos-like-structure"><a class="markdownIt-Anchor" href="#3-dos-like-structure"></a> <strong>3. DOS-like Structure</strong></h4>
+<p>In the <strong>DOS structure</strong>, there is <strong>no clear separation</strong> between applications and the operating system.</p>
+<ul>
+<li>Applications interact directly with the hardware with minimal OS intervention.</li>
+</ul>
+<h5 id="advantages"><a class="markdownIt-Anchor" href="#advantages"></a> <strong>Advantages:</strong></h5>
+<ul>
+<li><strong>High Performance:</strong> Minimal abstraction layers reduce overhead.</li>
+</ul>
+<h5 id="drawbacks"><a class="markdownIt-Anchor" href="#drawbacks"></a> <strong>Drawbacks:</strong></h5>
+<ul>
+<li><strong>Poor Protection:</strong> Lack of isolation leads to security vulnerabilities.</li>
+</ul>
+<h5 id="historical-context"><a class="markdownIt-Anchor" href="#historical-context"></a> <strong>Historical Context:</strong></h5>
+<ul>
+<li><strong>UNIX (1969):</strong> Introduced safety and isolation through clear kernel-user space separation.</li>
+<li><strong>DOS (1980s):</strong> Prioritized simplicity and performance over safety.</li>
+</ul>
+<hr />
+<h3 id="hybrid-kernels-a-modern-compromise"><a class="markdownIt-Anchor" href="#hybrid-kernels-a-modern-compromise"></a> <strong>Hybrid Kernels: A Modern Compromise</strong></h3>
+<p>Modern operating systems often use <strong>hybrid kernels</strong>, combining aspects of both monolithic and microkernels:</p>
+<ul>
+<li><strong>Monolithic Core:</strong> Core system functionalities reside in the kernel.</li>
+<li><strong>User Space Services:</strong> Some components, like device drivers, run in user space for safety.</li>
+</ul>
+<h5 id="examples"><a class="markdownIt-Anchor" href="#examples"></a> <strong>Examples:</strong></h5>
+<ol>
+<li><strong>Windows:</strong> A primarily monolithic kernel with user-space subsystems.</li>
+<li><strong>macOS:</strong> Based on Mach (a microkernel) but incorporates many monolithic kernel features for performance.</li>
+</ol>
+<p>Hybrid kernels aim to balance performance, safety, and flexibility.</p>
+<hr />
+<h3 id="specialized-kernel-designs"><a class="markdownIt-Anchor" href="#specialized-kernel-designs"></a> <strong>Specialized Kernel Designs</strong></h3>
+<h4 id="spin-kernel"><a class="markdownIt-Anchor" href="#spin-kernel"></a> <strong>Spin Kernel</strong></h4>
+<ul>
+<li>Designed for specialized systems where <strong>applications define their own safety policies</strong>.</li>
+<li>Lightweight and efficient but lacks the flexibility of general-purpose OS kernels.</li>
+</ul>
+<h4 id="exokernel"><a class="markdownIt-Anchor" href="#exokernel"></a> <strong>Exokernel</strong></h4>
+<ul>
+<li>A minimalist kernel that <strong>exposes hardware resources directly</strong> to applications.</li>
+<li>Applications implement their own abstractions for memory management, scheduling, and more.</li>
+<li>Focused on <strong>maximum flexibility</strong> and performance at the cost of increased application complexity.</li>
+</ul>
+<hr />
+<h3 id="microkernel-history-and-modern-developments"><a class="markdownIt-Anchor" href="#microkernel-history-and-modern-developments"></a> <strong>Microkernel History and Modern Developments</strong></h3>
+<ul>
+<li><strong>1980s:</strong> Rick Rashid and his team at CMU developed <strong>Mach</strong>, the first true microkernel.</li>
+<li><strong>1990s:</strong> Microkernel research peaked, with significant efforts to improve performance and scalability.</li>
+<li><strong>Present Day:</strong>
+<ul>
+<li>Pure microkernels have mostly failed in general-purpose OS due to performance issues.</li>
+<li><strong>Fuchsia (Google):</strong> A modern microkernel-based OS. It is not derived from Linux or UNIX and focuses on isolation, security, and scalability.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="flexibility-vs-specialization-debate"><a class="markdownIt-Anchor" href="#flexibility-vs-specialization-debate"></a> <strong>Flexibility vs. Specialization Debate</strong></h3>
+<p>Modern OS design must also balance general-purpose and specialized needs:</p>
+<ol>
+<li><strong>Flexibility:</strong> Systems should adapt to diverse use cases, ranging from embedded systems to cloud computing.</li>
+<li><strong>Specialization:</strong> Optimizing for specific use cases (e.g., real-time systems) can improve performance but reduces general-purpose usability.</li>
+</ol>
+<hr />
+<h3 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> <strong>Conclusion</strong></h3>
+<p>The debate over kernel design highlights the trade-offs between performance, safety, and flexibility.</p>
+<ul>
+<li><strong>Monolithic Kernels:</strong> Prioritize performance with tightly integrated components.</li>
+<li><strong>Microkernels:</strong> Focus on safety and modularity by minimizing the kernel's responsibilities.</li>
+<li><strong>Hybrid Kernels:</strong> Strike a balance, combining the strengths of both approaches.</li>
+</ul>
+<p>Specialized kernels like Spin and Exokernel explore innovative ways to push the boundaries of performance and flexibility. Meanwhile, hybrid kernels dominate modern systems, adapting to the complex demands of contemporary computing environments.</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/notes/">notes</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/leetcode-3297-%E7%BB%9F%E8%AE%A1%E9%87%8D%E6%96%B0%E6%8E%92%E5%88%97%E5%90%8E%E5%8C%85%E5%90%AB%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%9B%AE-i/index.html"
+                                   title="LeetCode 3297. 统计重新排列后包含另一个字符串的子字符串数目 I"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">LeetCode 3297. 统计重新排列后包含另一个字符串的子字符串数目 I</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/cs-4440-lecture-2-notes-1-8-2025/index.html"
+                                   title="CS 4440 Lecture 2 Notes 1/8/2025"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">CS 4440 Lecture 2 Notes 1/8/2025</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-does-an-os-do"><span class="nav-number">1.</span> <span class="nav-text"> What Does an OS Do?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-we-only-have-one-application-do-we-still-need-an-os"><span class="nav-number">2.</span> <span class="nav-text"> If We Only Have One Application, Do We Still Need an OS?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#does-an-os-allow-applications-to-access-resources-directly"><span class="nav-number">3.</span> <span class="nav-text"> Does an OS Allow Applications to Access Resources Directly?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-does-the-os-protect-itself"><span class="nav-number">4.</span> <span class="nav-text"> How Does the OS Protect Itself?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#processes-the-fundamental-unit-of-isolation"><span class="nav-number">5.</span> <span class="nav-text"> Processes: The Fundamental Unit of Isolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#are-processes-enough"><span class="nav-number">6.</span> <span class="nav-text"> Are Processes Enough?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#what-are-threads"><span class="nav-number">7.</span> <span class="nav-text"> What Are Threads?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-are-threads-managed"><span class="nav-number">8.</span> <span class="nav-text"> How Are Threads Managed?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#threads-in-linux"><span class="nav-number">9.</span> <span class="nav-text"> Threads in Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kernel-vs-user-threading-modes"><span class="nav-number">10.</span> <span class="nav-text"> Kernel vs. User Threading Modes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kernel-threading-mode"><span class="nav-number">10.1.</span> <span class="nav-text"> Kernel Threading Mode:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-threading-mode"><span class="nav-number">10.2.</span> <span class="nav-text"> User Threading Mode:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scheduler-activations-sosp-1991"><span class="nav-number">11.</span> <span class="nav-text"> Scheduler Activations (SOSP 1991)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#is-the-os-the-kernel"><span class="nav-number">12.</span> <span class="nav-text"> Is the OS the Kernel?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#why-is-this-question-important"><span class="nav-number">12.1.</span> <span class="nav-text"> Why is this Question Important?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kernel-design-approaches"><span class="nav-number">13.</span> <span class="nav-text"> Kernel Design Approaches</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-monolithic-kernel"><span class="nav-number">13.1.</span> <span class="nav-text"> 1. Monolithic Kernel</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#components-of-a-monolithic-kernel"><span class="nav-number">13.1.1.</span> <span class="nav-text"> Components of a Monolithic Kernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#example-linux-command-pipeline"><span class="nav-number">13.1.2.</span> <span class="nav-text"> Example: Linux Command Pipeline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#advantages-of-a-monolithic-kernel"><span class="nav-number">13.1.3.</span> <span class="nav-text"> Advantages of a Monolithic Kernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#drawbacks-of-a-monolithic-kernel"><span class="nav-number">13.1.4.</span> <span class="nav-text"> Drawbacks of a Monolithic Kernel</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-microkernel"><span class="nav-number">13.2.</span> <span class="nav-text"> 2. Microkernel</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#features-of-a-microkernel"><span class="nav-number">13.2.1.</span> <span class="nav-text"> Features of a Microkernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#example-linux-command-pipeline-2"><span class="nav-number">13.2.2.</span> <span class="nav-text"> Example: Linux Command Pipeline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#advantages-of-a-microkernel"><span class="nav-number">13.2.3.</span> <span class="nav-text"> Advantages of a Microkernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#drawbacks-of-a-microkernel"><span class="nav-number">13.2.4.</span> <span class="nav-text"> Drawbacks of a Microkernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#safety-vs-performance-tradeoff"><span class="nav-number">13.2.5.</span> <span class="nav-text"> Safety vs. Performance Tradeoff</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-dos-like-structure"><span class="nav-number">13.3.</span> <span class="nav-text"> 3. DOS-like Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#advantages"><span class="nav-number">13.3.1.</span> <span class="nav-text"> Advantages:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#drawbacks"><span class="nav-number">13.3.2.</span> <span class="nav-text"> Drawbacks:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#historical-context"><span class="nav-number">13.3.3.</span> <span class="nav-text"> Historical Context:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hybrid-kernels-a-modern-compromise"><span class="nav-number">14.</span> <span class="nav-text"> Hybrid Kernels: A Modern Compromise</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#examples"><span class="nav-number">14.0.1.</span> <span class="nav-text"> Examples:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#specialized-kernel-designs"><span class="nav-number">15.</span> <span class="nav-text"> Specialized Kernel Designs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-kernel"><span class="nav-number">15.1.</span> <span class="nav-text"> Spin Kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel"><span class="nav-number">15.2.</span> <span class="nav-text"> Exokernel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#microkernel-history-and-modern-developments"><span class="nav-number">16.</span> <span class="nav-text"> Microkernel History and Modern Developments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flexibility-vs-specialization-debate"><span class="nav-number">17.</span> <span class="nav-text"> Flexibility vs. Specialization Debate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-number">18.</span> <span class="nav-text"> Conclusion</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2025
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-does-an-os-do"><span class="nav-number">1.</span> <span class="nav-text"> What Does an OS Do?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-we-only-have-one-application-do-we-still-need-an-os"><span class="nav-number">2.</span> <span class="nav-text"> If We Only Have One Application, Do We Still Need an OS?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#does-an-os-allow-applications-to-access-resources-directly"><span class="nav-number">3.</span> <span class="nav-text"> Does an OS Allow Applications to Access Resources Directly?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-does-the-os-protect-itself"><span class="nav-number">4.</span> <span class="nav-text"> How Does the OS Protect Itself?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#processes-the-fundamental-unit-of-isolation"><span class="nav-number">5.</span> <span class="nav-text"> Processes: The Fundamental Unit of Isolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#are-processes-enough"><span class="nav-number">6.</span> <span class="nav-text"> Are Processes Enough?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#what-are-threads"><span class="nav-number">7.</span> <span class="nav-text"> What Are Threads?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-are-threads-managed"><span class="nav-number">8.</span> <span class="nav-text"> How Are Threads Managed?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#threads-in-linux"><span class="nav-number">9.</span> <span class="nav-text"> Threads in Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kernel-vs-user-threading-modes"><span class="nav-number">10.</span> <span class="nav-text"> Kernel vs. User Threading Modes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kernel-threading-mode"><span class="nav-number">10.1.</span> <span class="nav-text"> Kernel Threading Mode:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#user-threading-mode"><span class="nav-number">10.2.</span> <span class="nav-text"> User Threading Mode:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scheduler-activations-sosp-1991"><span class="nav-number">11.</span> <span class="nav-text"> Scheduler Activations (SOSP 1991)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#is-the-os-the-kernel"><span class="nav-number">12.</span> <span class="nav-text"> Is the OS the Kernel?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#why-is-this-question-important"><span class="nav-number">12.1.</span> <span class="nav-text"> Why is this Question Important?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kernel-design-approaches"><span class="nav-number">13.</span> <span class="nav-text"> Kernel Design Approaches</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-monolithic-kernel"><span class="nav-number">13.1.</span> <span class="nav-text"> 1. Monolithic Kernel</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#components-of-a-monolithic-kernel"><span class="nav-number">13.1.1.</span> <span class="nav-text"> Components of a Monolithic Kernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#example-linux-command-pipeline"><span class="nav-number">13.1.2.</span> <span class="nav-text"> Example: Linux Command Pipeline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#advantages-of-a-monolithic-kernel"><span class="nav-number">13.1.3.</span> <span class="nav-text"> Advantages of a Monolithic Kernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#drawbacks-of-a-monolithic-kernel"><span class="nav-number">13.1.4.</span> <span class="nav-text"> Drawbacks of a Monolithic Kernel</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-microkernel"><span class="nav-number">13.2.</span> <span class="nav-text"> 2. Microkernel</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#features-of-a-microkernel"><span class="nav-number">13.2.1.</span> <span class="nav-text"> Features of a Microkernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#example-linux-command-pipeline-2"><span class="nav-number">13.2.2.</span> <span class="nav-text"> Example: Linux Command Pipeline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#advantages-of-a-microkernel"><span class="nav-number">13.2.3.</span> <span class="nav-text"> Advantages of a Microkernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#drawbacks-of-a-microkernel"><span class="nav-number">13.2.4.</span> <span class="nav-text"> Drawbacks of a Microkernel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#safety-vs-performance-tradeoff"><span class="nav-number">13.2.5.</span> <span class="nav-text"> Safety vs. Performance Tradeoff</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-dos-like-structure"><span class="nav-number">13.3.</span> <span class="nav-text"> 3. DOS-like Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#advantages"><span class="nav-number">13.3.1.</span> <span class="nav-text"> Advantages:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#drawbacks"><span class="nav-number">13.3.2.</span> <span class="nav-text"> Drawbacks:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#historical-context"><span class="nav-number">13.3.3.</span> <span class="nav-text"> Historical Context:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hybrid-kernels-a-modern-compromise"><span class="nav-number">14.</span> <span class="nav-text"> Hybrid Kernels: A Modern Compromise</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#examples"><span class="nav-number">14.0.1.</span> <span class="nav-text"> Examples:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#specialized-kernel-designs"><span class="nav-number">15.</span> <span class="nav-text"> Specialized Kernel Designs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-kernel"><span class="nav-number">15.1.</span> <span class="nav-text"> Spin Kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel"><span class="nav-number">15.2.</span> <span class="nav-text"> Exokernel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#microkernel-history-and-modern-developments"><span class="nav-number">16.</span> <span class="nav-text"> Microkernel History and Modern Developments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flexibility-vs-specialization-debate"><span class="nav-number">17.</span> <span class="nav-text"> Flexibility vs. Specialization Debate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-number">18.</span> <span class="nav-text"> Conclusion</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
