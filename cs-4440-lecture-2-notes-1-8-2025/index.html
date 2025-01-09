@@ -243,7 +243,7 @@
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="datetime" data-updated="Wed Jan 08 2025 23:01:00 GMT-0500">2025-01-08 23:01:00</span>
+                <span class="datetime" data-updated="Wed Jan 08 2025 23:20:08 GMT-0500">2025-01-08 23:20:08</span>
             </span>
         
 
@@ -263,12 +263,12 @@
         
         
             <span class="meta-info-item post-wordcount">
-                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.5k Words</span>
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.6k Words</span>
             </span>
         
         
             <span class="meta-info-item post-min2read">
-                <i class="icon fas fa-clock"></i>&nbsp;<span>15 Mins</span>
+                <i class="icon fas fa-clock"></i>&nbsp;<span>16 Mins</span>
             </span>
         
         
@@ -885,40 +885,185 @@
 </li>
 </ol>
 <hr />
-<h4 id="key-differences-between-operators"><a class="markdownIt-Anchor" href="#key-differences-between-operators"></a> <strong>Key Differences Between Operators</strong></h4>
+<h4 id="a-concrete-example-of-derivation-of-natural-join"><a class="markdownIt-Anchor" href="#a-concrete-example-of-derivation-of-natural-join"></a> A Concrete Example of Derivation of Natural Join</h4>
+<p>Given the tables:</p>
+<p><strong>Students (S):</strong></p>
 <table>
 <thead>
 <tr>
-<th><strong>Operator</strong></th>
-<th><strong>Condition</strong></th>
-<th><strong>Result</strong></th>
+<th>sid</th>
+<th><a class="link"   target="_blank" rel="noopener" href="http://S.name" >S.name<i class="fas fa-external-link-alt"></i></a></th>
+<th>gpa</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Natural Join</strong></td>
-<td>Equality of all shared attributes.</td>
-<td>Combines only matching rows from both relations.</td>
+<td>001</td>
+<td>John</td>
+<td>3.4</td>
 </tr>
 <tr>
-<td><strong>Theta Join</strong></td>
-<td>Any condition (e.g., <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>&gt;</mo><mi>B</mi><mo separator="true">,</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo>+</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">A &gt; B, A = B + 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>).</td>
-<td>More flexible; allows non-equality conditions.</td>
+<td>002</td>
+<td>Bob</td>
+<td>1.3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>People (P):</strong></p>
+<table>
+<thead>
+<tr>
+<th>ssn</th>
+<th><a class="link"   target="_blank" rel="noopener" href="http://P.name" >P.name<i class="fas fa-external-link-alt"></i></a></th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1234545</td>
+<td>John</td>
+<td>216 Rosse</td>
 </tr>
 <tr>
-<td><strong>Union (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∪</mo></mrow><annotation encoding="application/x-tex">\cup</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">∪</span></span></span></span>)</strong></td>
-<td>None (tuples from both relations).</td>
-<td>Combines all tuples from both relations, removes duplicates.</td>
+<td>5423341</td>
+<td>Bob</td>
+<td>217 Rosse</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Step 1: Rename (ρ\rho)</strong></p>
+<p>Rename <code>S.name</code> to a temporary name (e.g., <code>C</code>) in R1R_1 (Students S).</p>
+<table>
+<thead>
+<tr>
+<th>sid</th>
+<th>C</th>
+<th>gpa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>John</td>
+<td>3.4</td>
 </tr>
 <tr>
-<td><strong>Difference (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span></span></span></span>)</strong></td>
-<td>None (tuples in one relation but not the other).</td>
-<td>Filters tuples in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> that are not in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</td>
+<td>002</td>
+<td>Bob</td>
+<td>1.3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Step 2: Cartesian Product (×\times)</strong></p>
+<p>Perform the Cartesian product of ρS.name→C(S)\rho_{<a class="link"   target="_blank" rel="noopener" href="http://S.name" >S.name<i class="fas fa-external-link-alt"></i></a> \to C}(S) and PP (People P).</p>
+<table>
+<thead>
+<tr>
+<th>sid</th>
+<th>C</th>
+<th>gpa</th>
+<th>ssn</th>
+<th><a class="link"   target="_blank" rel="noopener" href="http://P.name" >P.name<i class="fas fa-external-link-alt"></i></a></th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>John</td>
+<td>3.4</td>
+<td>1234545</td>
+<td>John</td>
+<td>216 Rosse</td>
 </tr>
 <tr>
-<td><strong>Intersection (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∩</mo></mrow><annotation encoding="application/x-tex">\cap</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">∩</span></span></span></span>)</strong></td>
-<td>None (tuples common to both relations).</td>
-<td>Returns only the tuples present in both relations.</td>
+<td>001</td>
+<td>John</td>
+<td>3.4</td>
+<td>5423341</td>
+<td>Bob</td>
+<td>217 Rosse</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Bob</td>
+<td>1.3</td>
+<td>1234545</td>
+<td>John</td>
+<td>216 Rosse</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Bob</td>
+<td>1.3</td>
+<td>5423341</td>
+<td>Bob</td>
+<td>217 Rosse</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Step 3: Selection (<a class="link"   target="_blank" rel="noopener" href="http://%CF%83C=P.name" >σC=P.name<i class="fas fa-external-link-alt"></i></a>\sigma_{C = <a class="link"   target="_blank" rel="noopener" href="http://P.name" >P.name<i class="fas fa-external-link-alt"></i></a>})</strong></p>
+<p>Filter the rows where <code>C</code> (from Students S) equals <code>P.name</code> (from People P).</p>
+<table>
+<thead>
+<tr>
+<th>sid</th>
+<th>C</th>
+<th>gpa</th>
+<th>ssn</th>
+<th><a class="link"   target="_blank" rel="noopener" href="http://P.name" >P.name<i class="fas fa-external-link-alt"></i></a></th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>John</td>
+<td>3.4</td>
+<td>1234545</td>
+<td>John</td>
+<td>216 Rosse</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Bob</td>
+<td>1.3</td>
+<td>5423341</td>
+<td>Bob</td>
+<td>217 Rosse</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Step 4: Projection (πA∪B\pi_{A \cup B})</strong></p>
+<p>Project only the relevant attributes. Here, A∪BA \cup B includes <code>sid</code>, <code>S.name</code>, <code>gpa</code>, <code>ssn</code>, and <code>address</code>.</p>
+<table>
+<thead>
+<tr>
+<th>sid</th>
+<th><a class="link"   target="_blank" rel="noopener" href="http://S.name" >S.name<i class="fas fa-external-link-alt"></i></a></th>
+<th>gpa</th>
+<th>ssn</th>
+<th>address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>John</td>
+<td>3.4</td>
+<td>1234545</td>
+<td>216 Rosse</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Bob</td>
+<td>1.3</td>
+<td>5423341</td>
+<td>217 Rosse</td>
 </tr>
 </tbody>
 </table>
@@ -986,7 +1131,7 @@
             <div class="pc-post-toc left-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#history-of-dbms-continued"><span class="nav-number">1.</span> <span class="nav-text"> History of DBMS continued</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2000s-rise-of-nosql-databases"><span class="nav-number">1.1.</span> <span class="nav-text"> 2000s: Rise of NoSQL Databases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2010s-diversification-and-hybrid-systems"><span class="nav-number">1.2.</span> <span class="nav-text"> 2010s: Diversification and Hybrid Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020s-further-specialization-and-innovation"><span class="nav-number">1.3.</span> <span class="nav-text"> 2020s: Further Specialization and Innovation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corrections-clarifications"><span class="nav-number">1.4.</span> <span class="nav-text"> Corrections &amp; Clarifications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-model-relational-algebra"><span class="nav-number">2.</span> <span class="nav-text"> Data Model &amp; Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-models"><span class="nav-number">2.1.</span> <span class="nav-text"> Data Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-data"><span class="nav-number">2.2.</span> <span class="nav-text"> Structure of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operations-on-data-and-relational-algebra"><span class="nav-number">2.3.</span> <span class="nav-text"> Operations on Data and Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-and-sql"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Relational Algebra and SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-model-vs-key-value-model"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Relational Model vs. Key-Value Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#types-of-constraints-in-the-relational-model"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Types of Constraints in the Relational Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql-engine-workflow"><span class="nav-number">2.3.4.</span> <span class="nav-text"> SQL Engine Workflow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#relational-algebra-operators"><span class="nav-number">2.4.</span> <span class="nav-text"> Relational Algebra Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-operators"><span class="nav-number">2.4.1.</span> <span class="nav-text"> Basic Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-query-example"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Relational Algebra Query Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#derived-operators"><span class="nav-number">2.4.3.</span> <span class="nav-text"> Derived Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key-differences-between-operators"><span class="nav-number">2.4.4.</span> <span class="nav-text"> Key Differences Between Operators</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#history-of-dbms-continued"><span class="nav-number">1.</span> <span class="nav-text"> History of DBMS continued</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2000s-rise-of-nosql-databases"><span class="nav-number">1.1.</span> <span class="nav-text"> 2000s: Rise of NoSQL Databases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2010s-diversification-and-hybrid-systems"><span class="nav-number">1.2.</span> <span class="nav-text"> 2010s: Diversification and Hybrid Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020s-further-specialization-and-innovation"><span class="nav-number">1.3.</span> <span class="nav-text"> 2020s: Further Specialization and Innovation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corrections-clarifications"><span class="nav-number">1.4.</span> <span class="nav-text"> Corrections &amp; Clarifications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-model-relational-algebra"><span class="nav-number">2.</span> <span class="nav-text"> Data Model &amp; Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-models"><span class="nav-number">2.1.</span> <span class="nav-text"> Data Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-data"><span class="nav-number">2.2.</span> <span class="nav-text"> Structure of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operations-on-data-and-relational-algebra"><span class="nav-number">2.3.</span> <span class="nav-text"> Operations on Data and Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-and-sql"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Relational Algebra and SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-model-vs-key-value-model"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Relational Model vs. Key-Value Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#types-of-constraints-in-the-relational-model"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Types of Constraints in the Relational Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql-engine-workflow"><span class="nav-number">2.3.4.</span> <span class="nav-text"> SQL Engine Workflow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#relational-algebra-operators"><span class="nav-number">2.4.</span> <span class="nav-text"> Relational Algebra Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-operators"><span class="nav-number">2.4.1.</span> <span class="nav-text"> Basic Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-query-example"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Relational Algebra Query Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#derived-operators"><span class="nav-number">2.4.3.</span> <span class="nav-text"> Derived Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#a-concrete-example-of-derivation-of-natural-join"><span class="nav-number">2.4.4.</span> <span class="nav-text"> A Concrete Example of Derivation of Natural Join</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
 
@@ -1164,7 +1309,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#history-of-dbms-continued"><span class="nav-number">1.</span> <span class="nav-text"> History of DBMS continued</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2000s-rise-of-nosql-databases"><span class="nav-number">1.1.</span> <span class="nav-text"> 2000s: Rise of NoSQL Databases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2010s-diversification-and-hybrid-systems"><span class="nav-number">1.2.</span> <span class="nav-text"> 2010s: Diversification and Hybrid Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020s-further-specialization-and-innovation"><span class="nav-number">1.3.</span> <span class="nav-text"> 2020s: Further Specialization and Innovation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corrections-clarifications"><span class="nav-number">1.4.</span> <span class="nav-text"> Corrections &amp; Clarifications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-model-relational-algebra"><span class="nav-number">2.</span> <span class="nav-text"> Data Model &amp; Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-models"><span class="nav-number">2.1.</span> <span class="nav-text"> Data Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-data"><span class="nav-number">2.2.</span> <span class="nav-text"> Structure of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operations-on-data-and-relational-algebra"><span class="nav-number">2.3.</span> <span class="nav-text"> Operations on Data and Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-and-sql"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Relational Algebra and SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-model-vs-key-value-model"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Relational Model vs. Key-Value Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#types-of-constraints-in-the-relational-model"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Types of Constraints in the Relational Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql-engine-workflow"><span class="nav-number">2.3.4.</span> <span class="nav-text"> SQL Engine Workflow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#relational-algebra-operators"><span class="nav-number">2.4.</span> <span class="nav-text"> Relational Algebra Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-operators"><span class="nav-number">2.4.1.</span> <span class="nav-text"> Basic Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-query-example"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Relational Algebra Query Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#derived-operators"><span class="nav-number">2.4.3.</span> <span class="nav-text"> Derived Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key-differences-between-operators"><span class="nav-number">2.4.4.</span> <span class="nav-text"> Key Differences Between Operators</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#history-of-dbms-continued"><span class="nav-number">1.</span> <span class="nav-text"> History of DBMS continued</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2000s-rise-of-nosql-databases"><span class="nav-number">1.1.</span> <span class="nav-text"> 2000s: Rise of NoSQL Databases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2010s-diversification-and-hybrid-systems"><span class="nav-number">1.2.</span> <span class="nav-text"> 2010s: Diversification and Hybrid Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020s-further-specialization-and-innovation"><span class="nav-number">1.3.</span> <span class="nav-text"> 2020s: Further Specialization and Innovation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corrections-clarifications"><span class="nav-number">1.4.</span> <span class="nav-text"> Corrections &amp; Clarifications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-model-relational-algebra"><span class="nav-number">2.</span> <span class="nav-text"> Data Model &amp; Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-models"><span class="nav-number">2.1.</span> <span class="nav-text"> Data Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-data"><span class="nav-number">2.2.</span> <span class="nav-text"> Structure of Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operations-on-data-and-relational-algebra"><span class="nav-number">2.3.</span> <span class="nav-text"> Operations on Data and Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-and-sql"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Relational Algebra and SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-model-vs-key-value-model"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Relational Model vs. Key-Value Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#types-of-constraints-in-the-relational-model"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Types of Constraints in the Relational Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql-engine-workflow"><span class="nav-number">2.3.4.</span> <span class="nav-text"> SQL Engine Workflow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#relational-algebra-operators"><span class="nav-number">2.4.</span> <span class="nav-text"> Relational Algebra Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-operators"><span class="nav-number">2.4.1.</span> <span class="nav-text"> Basic Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-query-example"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Relational Algebra Query Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#derived-operators"><span class="nav-number">2.4.3.</span> <span class="nav-text"> Derived Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#a-concrete-example-of-derivation-of-natural-join"><span class="nav-number">2.4.4.</span> <span class="nav-text"> A Concrete Example of Derivation of Natural Join</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
 
