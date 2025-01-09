@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            CS 4440 Lecture 2 Notes 1/8/2025 |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        CS 4440 Lecture 2 Notes 1/8/2025
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-01-08 21:43:55</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Jan 08 2025 22:05:21 GMT-0500">2025-01-08 22:05:21</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/notes/">notes</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.2k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>13 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="history-of-dbms-continued"><a class="markdownIt-Anchor" href="#history-of-dbms-continued"></a> History of DBMS continued</h2>
+<h3 id="2000s-rise-of-nosql-databases"><a class="markdownIt-Anchor" href="#2000s-rise-of-nosql-databases"></a> 2000s: Rise of NoSQL Databases</h3>
+<ul>
+<li>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li><strong>Schemaless:</strong> Flexible data models without rigid predefined schemas.</li>
+<li><strong>No ACID Transactions:</strong> Focused on eventual consistency rather than strict ACID properties.</li>
+<li><strong>Designed For:</strong> High availability, high scalability, and distributed environments.</li>
+<li><strong>APIs:</strong> Utilize custom, often simple, APIs instead of standard SQL.</li>
+</ul>
+</li>
+<li>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><strong>MongoDB, Cassandra, CouchDB, Redis:</strong> Popular systems each with unique data models (document, wide-column, key-value, etc.).</li>
+<li><strong>Redis Exception:</strong> Although originally non-relational and schemaless, Redis has evolved to support some ACID-like features and can now interface with SQL-like queries through extensions.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="2010s-diversification-and-hybrid-systems"><a class="markdownIt-Anchor" href="#2010s-diversification-and-hybrid-systems"></a> 2010s: Diversification and Hybrid Systems</h3>
+<p>During this decade, several new types emerged, blending features of traditional RDBMS with modern distributed and scalable architectures.</p>
+<ol>
+<li>
+<p><strong>NewSQL Databases:</strong></p>
+<ul>
+<li><strong>Goal:</strong> Combine the consistency and transaction support of relational databases (ACID, SQL) with the scalability of NoSQL systems.</li>
+<li><strong>Technologies:</strong>
+<ul>
+<li><strong>Google Spanner:</strong> A globally-distributed NewSQL database that offers strong consistency, SQL support, and horizontal scalability using advanced clock synchronization (TrueTime API).</li>
+<li>Other examples include <strong>CockroachDB</strong> and <strong>TiDB</strong>, which aim for similar goals.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cloud Systems (DBaaS):</strong></p>
+<ul>
+<li><strong>Early DBaaS:</strong> Containerized versions of existing databases for deployment ease.</li>
+<li><strong>Cloud-Native DBaaS:</strong>
+<ul>
+<li>Designed from scratch for the cloud environment.</li>
+<li>Focus on elasticity, managed services, and pay-as-you-go models.</li>
+<li><strong>Snowflake:</strong> A cloud-native data warehouse built for scalability, separation of compute and storage, and ease of integration with data lakes.</li>
+<li>Other offerings include <strong>Amazon RDS/Aurora</strong>, <strong>Google Cloud Spanner</strong>, <strong>Azure SQL Database</strong>, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Shared Disk Engines / Data Lakes:</strong></p>
+<ul>
+<li><strong>Architecture:</strong>
+<ul>
+<li>Separation of compute and storage layers.</li>
+<li>Shared storage layer allows independent scaling of compute resources.</li>
+</ul>
+</li>
+<li><strong>Use Case:</strong> Large-scale analytics, storing diverse data types from various sources.</li>
+<li><strong>Snowflake Note:</strong> Snowflake uses a similar architecture, separating compute clusters from a central storage layer to serve multiple concurrent queries efficiently.</li>
+<li>Often associated with <strong>data lake</strong> architectures that aggregate raw data for processing and analysis.</li>
+</ul>
+</li>
+<li>
+<p><strong>Graph Systems:</strong></p>
+<ul>
+<li><strong>Purpose:</strong> Specialized for storing and querying graph-structured data (networks, relationships).</li>
+<li><strong>Features:</strong>
+<ul>
+<li><strong>Graph-centric Query APIs:</strong> Languages like Cypher (Neo4j) or Gremlin (Apache TinkerPop).</li>
+<li>Emphasize traversals, pattern matching, and relationship-oriented queries.</li>
+</ul>
+</li>
+<li><strong>Relation to Historical Models:</strong> Similar in spirit to the network data model (e.g., CODASYL), but with modern abstractions and optimizations.</li>
+<li><strong>Examples:</strong> Neo4j, Amazon Neptune, JanusGraph.</li>
+</ul>
+</li>
+<li>
+<p><strong>Time Series Systems:</strong></p>
+<ul>
+<li><strong>Specialization:</strong> Designed to efficiently handle time-stamped (temporal) data, such as metrics, events, IoT sensor data.</li>
+<li><strong>Key Features:</strong>
+<ul>
+<li>Optimized for high ingestion rates, retention policies, time-based queries, and aggregations.</li>
+</ul>
+</li>
+<li><strong>Examples:</strong>
+<ul>
+<li><strong>InfluxDB:</strong> A popular time series database.</li>
+<li>Others: <strong>TimescaleDB</strong> (built on PostgreSQL), Prometheus (for monitoring), etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3 id="2020s-further-specialization-and-innovation"><a class="markdownIt-Anchor" href="#2020s-further-specialization-and-innovation"></a> 2020s: Further Specialization and Innovation</h3>
+<ul>
+<li>
+<p><strong>Emerging Trends:</strong></p>
+<ul>
+<li><strong>Embedded DBMS:</strong> Lightweight databases that run within applications (e.g., SQLite, Realm).</li>
+<li><strong>Multi-Model DBMS:</strong> Systems supporting multiple data models (e.g., document, graph, key-value) under one engine.</li>
+<li><strong>Hardware Acceleration:</strong> Use of specialized hardware (GPUs, FPGAs, NVMe drives) to accelerate database operations.</li>
+<li><strong>Blockchain DBMS:</strong> Decentralized, tamper-resistant ledgers that blend blockchain technology with database features.</li>
+</ul>
+</li>
+<li>
+<p><strong>Convergence of SQL and NoSQL:</strong></p>
+<ul>
+<li>Modern NoSQL databases increasingly offer SQL interfaces or SQL-like query languages.</li>
+<li>This trend reduces friction for users familiar with SQL while maintaining the benefits of NoSQL systems (scalability, flexibility).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="corrections-clarifications"><a class="markdownIt-Anchor" href="#corrections-clarifications"></a> Corrections &amp; Clarifications</h3>
+<ul>
+<li><strong>Google Spanner:</strong>
+<ul>
+<li>While initially mentioned as a NoSQL example, it is better categorized under NewSQL because it provides strong consistency, SQL support, and ACID transactions in a distributed setting.</li>
+</ul>
+</li>
+<li><strong>Redis Specificity:</strong>
+<ul>
+<li>Redis, once a pure in-memory NoSQL key-value store without schema or ACID, has evolved. Many modern NoSQL systems, unlike Redis, now support SQL or SQL-like queries, but Redis remains somewhat unique with its specific feature set (e.g., in-memory data structures, optional persistence).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Emerging Database Systems Lecture Notes (Continued): Data Models &amp; Relational Algebra</strong></p>
+<h2 id="data-model-relational-algebra"><a class="markdownIt-Anchor" href="#data-model-relational-algebra"></a> Data Model &amp; Relational Algebra</h2>
+<h3 id="what-is-a-data-model"><a class="markdownIt-Anchor" href="#what-is-a-data-model"></a> What is a Data Model?</h3>
+<p>A <strong>data model</strong> defines how data is structured, the operations that can be performed on it, and the constraints that govern the data. Common data models include:</p>
+<ul>
+<li><strong>Relational:</strong> Uses tables (relations); basis of RDBMS.</li>
+<li><strong>Key-Value, Graph, Document, Column Family:</strong> Common NoSQL models.</li>
+<li><strong>Array/Matrix:</strong> Often used in machine learning contexts.</li>
+<li><strong>Hierarchical, Network:</strong> Older models, largely considered obsolete.</li>
+</ul>
+<p>The three main aspects of a data model:</p>
+<ol>
+<li><strong>Structure of the Data</strong></li>
+<li><strong>Operations on the Data</strong></li>
+<li><strong>Constraints on the Data</strong></li>
+</ol>
+<hr />
+<h3 id="structure-of-the-data"><a class="markdownIt-Anchor" href="#structure-of-the-data"></a> Structure of the Data</h3>
+<p><strong>Conceptual structure</strong> refers to the high-level organization of data, independent of implementation details.</p>
+<h4 id="relational-schema"><a class="markdownIt-Anchor" href="#relational-schema"></a> Relational Schema</h4>
+<ul>
+<li><strong>Definition:</strong> A blueprint for a relation (table) specifying its name, attributes, and associated domains.
+<ul>
+<li><strong>Example:</strong> A relation <code>Students(SID: string, Name: string, GPA: float)</code>.
+<ul>
+<li><em>Relation name:</em> <code>Students</code></li>
+<li><em>Attributes:</em> <code>SID</code>, <code>Name</code>, <code>GPA</code></li>
+<li><em>Domains:</em> Types associated with each attribute (e.g., <code>string</code>, <code>float</code>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="relation-vs-relational-schema"><a class="markdownIt-Anchor" href="#relation-vs-relational-schema"></a> Relation vs. Relational Schema</h4>
+<ul>
+<li><strong>Relational Schema:</strong> The definition or blueprint of a relation, specifying the set of attributes and their domains.</li>
+<li><strong>Relation (or Table):</strong> A specific set of tuples (rows) that conform to a given relational schema at a point in time. It is an instance of the schema.</li>
+</ul>
+<h4 id="terms-for-data-and-structure"><a class="markdownIt-Anchor" href="#terms-for-data-and-structure"></a> Terms for Data and Structure</h4>
+<ul>
+<li><strong>Tuple/Row/Record:</strong> All refer to a single entry in a table.</li>
+<li><strong>Attribute/Column:</strong> Refer to a specific field in the schema and its corresponding column in the table.</li>
+<li><strong>Cardinality:</strong> Number of tuples/rows in a relation.</li>
+<li><strong>Arity:</strong> Number of attributes/columns in a relation.</li>
+</ul>
+<h4 id="relational-instance"><a class="markdownIt-Anchor" href="#relational-instance"></a> Relational Instance</h4>
+<ul>
+<li><strong>Definition:</strong> A set (or more precisely a multi-set allowing duplicates) of tuples that conform to a relational schema.
+<ul>
+<li><strong>Key Point:</strong> It’s a multi-set, meaning duplicate tuples are allowed at the instance level even though the theoretical set concept doesn’t allow duplicates.</li>
+<li><strong>Order Irrelevance:</strong>
+<ul>
+<li>The order of rows and columns in a table does not affect the relational instance.</li>
+<li>For a table with four rows and three columns, different orderings of rows and columns represent the same logical relation.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="mathematical-view"><a class="markdownIt-Anchor" href="#mathematical-view"></a> Mathematical View</h4>
+<ul>
+<li>
+<p><strong>Relation Instance:</strong> A subset (multi-set) of the Cartesian product of the domains of the attributes.</p>
+<ul>
+<li>If a relation has attributes A₁, A₂, ..., Aₙ with domains D₁, D₂, ..., Dₙ respectively, then an instance <code>r</code> of the relation is a subset of<br />
+<strong>D₁ × D₂ × ... × Dₙ</strong> that satisfies all defined constraints.</li>
+</ul>
+</li>
+<li>
+<p><strong>Relational Database Instance:</strong> A collection of relation instances corresponding to the database's relational schemas.</p>
+</li>
+<li>
+<p><strong>Validity:</strong> Each relation instance must satisfy domain constraints (e.g., type constraints, value ranges).</p>
+</li>
+</ul>
+<h3 id="operations-on-data-and-relational-algebra"><a class="markdownIt-Anchor" href="#operations-on-data-and-relational-algebra"></a> Operations on Data and Relational Algebra</h3>
+<h4 id="relational-algebra-and-sql"><a class="markdownIt-Anchor" href="#relational-algebra-and-sql"></a> Relational Algebra and SQL</h4>
+<ul>
+<li>
+<p><strong>SQL</strong>:</p>
+<ul>
+<li><strong>Declarative Query Language</strong>: Specifies <strong>what</strong> the user wants but not <strong>how</strong> to achieve it.</li>
+<li>Example: <code>SELECT name FROM Students WHERE GPA &gt; 3.5;</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Relational Algebra</strong>:</p>
+<ul>
+<li>Acts as the <strong>intermediate language</strong> between SQL queries and their execution.</li>
+<li>Translates declarative SQL queries into a sequence of <strong>operators</strong> that the system can execute.</li>
+<li>Provides a <strong>formal foundation</strong> for query processing and optimization.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h4 id="relational-model-vs-key-value-model"><a class="markdownIt-Anchor" href="#relational-model-vs-key-value-model"></a> Relational Model vs. Key-Value Model</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Aspect</strong></th>
+<th><strong>Relational Model</strong></th>
+<th><strong>Key-Value Model</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Structure</strong></td>
+<td>Relations (tables)</td>
+<td>Key-value pairs</td>
+</tr>
+<tr>
+<td><strong>Operations</strong></td>
+<td>Relational algebra (e.g., selection, projection, join)</td>
+<td><code>GET</code>, <code>PUT</code>, <code>DELETE</code></td>
+</tr>
+<tr>
+<td><strong>Constraints</strong></td>
+<td>Various constraints (listed below)</td>
+<td>Key must be unique; value must not be null</td>
+</tr>
+<tr>
+<td><strong>Flexibility</strong></td>
+<td>Less flexible (data types and schema are defined)</td>
+<td>More flexible (can store arbitrary values)</td>
+</tr>
+<tr>
+<td><strong>Queryability</strong></td>
+<td>More queryable (data is structured and relationships exist)</td>
+<td>Less queryable (data inside the key is opaque)</td>
+</tr>
+<tr>
+<td><strong>Performance</strong></td>
+<td>Optimizable (knowledge of data types aids optimization)</td>
+<td>Limited optimization due to less data knowledge</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="types-of-constraints-in-the-relational-model"><a class="markdownIt-Anchor" href="#types-of-constraints-in-the-relational-model"></a> Types of Constraints in the Relational Model</h4>
+<ol>
+<li>
+<p><strong>Key Constraints</strong>:</p>
+<ul>
+<li>Each relation must have a <strong>primary key</strong> (e.g., <code>SID</code> in <code>Students</code>).</li>
+<li>Ensures uniqueness for each tuple.</li>
+</ul>
+</li>
+<li>
+<p><strong>Domain Constraints</strong>:</p>
+<ul>
+<li>Attribute values must conform to their specified domain (e.g., <code>GPA</code> must be a float).</li>
+</ul>
+</li>
+<li>
+<p><strong>Referential Integrity Constraints</strong>:</p>
+<ul>
+<li>Foreign keys must match primary keys in referenced tables.</li>
+<li>Ensures consistency between related tables.</li>
+</ul>
+</li>
+<li>
+<p><strong>Not Null Constraints</strong>:</p>
+<ul>
+<li>Certain attributes cannot have null values (e.g., <code>Name</code> cannot be null).</li>
+</ul>
+</li>
+<li>
+<p><strong>Unique Constraints</strong>:</p>
+<ul>
+<li>Certain attributes must have unique values (e.g., <code>Email</code> in a <code>Users</code> table).</li>
+</ul>
+</li>
+<li>
+<p><strong>Check Constraints</strong>:</p>
+<ul>
+<li>Custom rules for values in attributes (e.g., <code>GPA &gt;= 0 AND GPA &lt;= 4</code>).</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="sql-engine-workflow"><a class="markdownIt-Anchor" href="#sql-engine-workflow"></a> SQL Engine Workflow</h4>
+<ol>
+<li>
+<p><strong>SQL Query (Declarative Query)</strong>:</p>
+<ul>
+<li>User specifies <strong>what to retrieve or update</strong>, not the execution process.</li>
+<li>Example: <code>SELECT GPA FROM Students WHERE Name = 'Alice';</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Relational Algebra Plan (RA Expression)</strong>:</p>
+<ul>
+<li>SQL query is translated into a <strong>sequence of relational algebra operations</strong>.</li>
+<li>Example RA Expression for the query above:
+<ul>
+<li><strong>Selection</strong>: Filter tuples where <code>Name = 'Alice'</code>.</li>
+<li><strong>Projection</strong>: Extract the <code>GPA</code> attribute.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Optimized Relational Algebra Plan</strong>:</p>
+<ul>
+<li><strong>Logical Optimization</strong>:
+<ul>
+<li>Reorganize or rewrite the RA plan for better performance.</li>
+<li>Techniques include:
+<ul>
+<li><strong>Pushing down selections</strong>: Apply filters as early as possible.</li>
+<li><strong>Eliminating redundant operations</strong>: Remove unnecessary projections or joins.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Physical Optimization</strong>:
+<ul>
+<li>Convert logical plan into a <strong>physical plan</strong> by choosing specific algorithms for each operator (e.g., hash join vs. nested loop join).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Execution Phase</strong>:</p>
+<ul>
+<li>Each operator in the optimized plan is executed in sequence.</li>
+<li>Execution strategies depend on:
+<ul>
+<li>Available indexes (e.g., B-trees, hash indexes).</li>
+<li>Size of the data.</li>
+<li>Query requirements (e.g., sorting or grouping).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="relational-algebra-operators"><a class="markdownIt-Anchor" href="#relational-algebra-operators"></a> Relational Algebra Operators</h3>
+<h4 id="basic-operators"><a class="markdownIt-Anchor" href="#basic-operators"></a> <strong>Basic Operators</strong></h4>
+<ol>
+<li>
+<p><strong>Selection (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span></span>)</strong></p>
+<ul>
+<li><strong>Definition</strong>: Filters tuples from a relation based on a condition.</li>
+<li><strong>Symbol</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>C</mi></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{C}(R)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> is the condition and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> is the relation.</li>
+<li><strong>Example</strong>:
+<ul>
+<li>Query: Select employees with a salary greater than 40,000.<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mrow><mtext>salary</mtext><mo>&gt;</mo><mn>40000</mn></mrow></msub><mo stretchy="false">(</mo><mtext>Employee</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{\text{salary} &gt; 40000}(\text{Employee})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">salary</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">4</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">Employee</span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li><strong>Condition Examples</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mo separator="true">,</mo><mo>&lt;</mo><mo separator="true">,</mo><mo>≤</mo><mo separator="true">,</mo><mo>&gt;</mo><mo separator="true">,</mo><mo>≥</mo><mo separator="true">,</mo><mo mathvariant="normal">≠</mo></mrow><annotation encoding="application/x-tex">=, &lt;, \leq, &gt;, \geq, \neq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span></span></span></span>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Projection (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span></span></span></span>)</strong></p>
+<ul>
+<li><strong>Definition</strong>: Selects specific attributes (columns) from a relation and removes duplicates (as relational algebra works with sets).</li>
+<li><strong>Symbol</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mrow><mi>A</mi><mn>1</mn><mo separator="true">,</mo><mi>A</mi><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mi>A</mi><mi>n</mi></mrow></msub><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{A1, A2, ..., An}(R)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">A</span><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mtight">.</span><span class="mord mtight">.</span><span class="mord mtight">.</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mn>1</mn><mo separator="true">,</mo><mi>A</mi><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mi>A</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">A1, A2, ..., An</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">A</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">A</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">n</span></span></span></span> are the attributes and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> is the relation.</li>
+<li><strong>Example</strong>:
+<ul>
+<li>Query: Select distinct student names and GPAs from <code>Students</code>.<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>π</mi><mtext>SName, GPA</mtext></msub><mo stretchy="false">(</mo><mtext>Students</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{\text{SName, GPA}}(\text{Students})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">SName, GPA</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">Students</span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li>Combined Example:
+<ul>
+<li>Query: Select names and GPAs of students with GPA &gt; 3.5.<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>π</mi><mtext>SName, GPA</mtext></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mtext>GPA</mtext><mo>&gt;</mo><mn>3.5</mn></mrow></msub><mo stretchy="false">(</mo><mtext>Students</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi_{\text{SName, GPA}}(\sigma_{\text{GPA} &gt; 3.5}(\text{Students}))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">SName, GPA</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">GPA</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">3</span><span class="mord mtight">.</span><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.17737em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">Students</span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li>Equivalent to:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mrow><mtext>GPA</mtext><mo>&gt;</mo><mn>3.5</mn></mrow></msub><mo stretchy="false">(</mo><msub><mi>π</mi><mtext>SName, GPA</mtext></msub><mo stretchy="false">(</mo><mtext>Students</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{\text{GPA} &gt; 3.5}(\pi_{\text{SName, GPA}}(\text{Students}))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">GPA</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">3</span><span class="mord mtight">.</span><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.17737em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">SName, GPA</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">Students</span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cartesian Product (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">×</span></span></span></span>)</strong></p>
+<ul>
+<li><strong>Definition</strong>: Combines every tuple in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> with every tuple in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+<li><strong>Symbol</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn><mo>×</mo><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R1 \times R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+<li><strong>Result</strong>: If <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> has <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">m</span></span></span></span> tuples and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span> has <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> tuples, the result has <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">m \times n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> tuples.</li>
+<li><strong>Example</strong>:
+<ul>
+<li>Query: Combine all tuples from <code>Students</code> and <code>Courses</code>.<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Students</mtext><mo>×</mo><mtext>Courses</mtext></mrow><annotation encoding="application/x-tex">\text{Students} \times \text{Courses}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord">Students</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Courses</span></span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Union (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∪</mo></mrow><annotation encoding="application/x-tex">\cup</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">∪</span></span></span></span>)</strong></p>
+<ul>
+<li><strong>Definition</strong>: Combines tuples from two relations, removing duplicates.</li>
+<li><strong>Example</strong>:
+<ul>
+<li>Query: Get all students from two campuses.<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mtext>Students</mtext><mn>1</mn></msub><mo>∪</mo><msub><mtext>Students</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{Students}_1 \cup \text{Students}_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">Students</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">Students</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Set Difference (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span></span></span></span>)</strong></p>
+<ul>
+<li><strong>Definition</strong>: Returns tuples in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> but not in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+<li><strong>Example</strong>:
+<ul>
+<li>Query: Students enrolled in <code>Math</code> but not <code>Science</code>.<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mtext>Students</mtext><mtext>Math</mtext></msub><mo>−</mo><msub><mtext>Students</mtext><mtext>Science</mtext></msub></mrow><annotation encoding="application/x-tex">\text{Students}_\text{Math} - \text{Students}_\text{Science}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">Students</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">Math</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord">Students</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">Science</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="relational-algebra-query-example"><a class="markdownIt-Anchor" href="#relational-algebra-query-example"></a> <strong>Relational Algebra Query Example</strong></h4>
+<p>Query:</p>
+<pre class="highlight"><code class="sql"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> gpa, address 
+<span class="keyword">FROM</span> students s, people p 
+<span class="keyword">WHERE</span> gpa <span class="operator">&gt;</span> <span class="number">3.5</span> <span class="keyword">AND</span> s.name <span class="operator">=</span> p.name;
+</code></pre>
+<p>Relational Algebra:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>π</mi><mtext>GPA, Address</mtext></msub><mrow><mo fence="true">(</mo><msub><mi>σ</mi><mrow><mtext>GPA</mtext><mo>&gt;</mo><mn>3.5</mn><mo>∧</mo><mtext>s.Name</mtext><mo>=</mo><mtext>p.Name</mtext></mrow></msub><mrow><mo fence="true">(</mo><mtext>Students</mtext><mo>×</mo><mtext>People</mtext><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\pi_{\text{GPA, Address}} \left( \sigma_{\text{GPA} &gt; 3.5 \land \text{s.Name} = \text{p.Name}} \left( \text{Students} \times \text{People} \right) \right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">GPA, Address</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">GPA</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">3</span><span class="mord mtight">.</span><span class="mord mtight">5</span><span class="mbin mtight">∧</span><span class="mord text mtight"><span class="mord mtight">s.Name</span></span><span class="mrel mtight">=</span><span class="mord text mtight"><span class="mord mtight">p.Name</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord text"><span class="mord">Students</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord text"><span class="mord">People</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></span></p>
+<p>Steps:</p>
+<ol>
+<li>Perform a <strong>Cartesian product</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Students</mtext><mo>×</mo><mtext>People</mtext></mrow><annotation encoding="application/x-tex">\text{Students} \times \text{People}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord">Students</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">People</span></span></span></span></span>.</li>
+<li>Apply <strong>selection</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><mtext>GPA</mtext><mo>&gt;</mo><mn>3.5</mn><mo>∧</mo><mtext>s.Name</mtext><mo>=</mo><mtext>p.Name</mtext></mrow></msub></mrow><annotation encoding="application/x-tex">\sigma_{\text{GPA} &gt; 3.5 \land \text{s.Name} = \text{p.Name}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">GPA</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">3</span><span class="mord mtight">.</span><span class="mord mtight">5</span><span class="mbin mtight">∧</span><span class="mord text mtight"><span class="mord mtight">s.Name</span></span><span class="mrel mtight">=</span><span class="mord text mtight"><span class="mord mtight">p.Name</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+<li>Apply <strong>projection</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mtext>GPA, Address</mtext></msub></mrow><annotation encoding="application/x-tex">\pi_{\text{GPA, Address}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">GPA, Address</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+<li>Remove duplicates (implicit in relational algebra).</li>
+</ol>
+<hr />
+<h4 id="derived-operators"><a class="markdownIt-Anchor" href="#derived-operators"></a> <strong>Derived Operators</strong></h4>
+<ol>
+<li>
+<p><strong>Union (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∪</mo></mrow><annotation encoding="application/x-tex">\cup</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">∪</span></span></span></span>)</strong>:</p>
+<ul>
+<li>Combines tuples from two relations, removing duplicates.</li>
+<li><strong>Relational Algebra</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn><mo>∪</mo><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R1 \cup R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Difference (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span></span></span></span>)</strong>:</p>
+<ul>
+<li>Returns tuples in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> but not in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+<li><strong>Relational Algebra</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn><mo>−</mo><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R1 - R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Intersection (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∩</mo></mrow><annotation encoding="application/x-tex">\cap</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">∩</span></span></span></span>)</strong>:</p>
+<ul>
+<li>Returns tuples common to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+<li><strong>Derived From</strong>:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mn>1</mn><mo>∩</mo><mi>R</mi><mn>2</mn><mo>=</mo><mi>R</mi><mn>1</mn><mo>−</mo><mo stretchy="false">(</mo><mi>R</mi><mn>1</mn><mo>−</mo><mi>R</mi><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R1 \cap R2 = R1 - (R1 - R2)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Natural Join (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋈</mo></mrow><annotation encoding="application/x-tex">\bowtie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.51em;vertical-align:-0.005em;"></span><span class="mrel">⋈</span></span></span></span>)</strong>:</p>
+<ul>
+<li>Joins two relations by matching values in all shared attributes.</li>
+<li><strong>Relational Algebra</strong>:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mn>1</mn><mo>⋈</mo><mi>R</mi><mn>2</mn><mo>=</mo><msub><mi>π</mi><mtext>all attributes</mtext></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mtext>equality conditions</mtext></msub><mo stretchy="false">(</mo><mi>R</mi><mn>1</mn><mo>×</mo><mi>R</mi><mn>2</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R1 \bowtie R2 = \pi_{\text{all attributes}}(\sigma_{\text{equality conditions}}(R1 \times R2))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68833em;vertical-align:-0.005em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⋈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">all attributes</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">equality conditions</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li><strong>Example</strong>:
+<ul>
+<li>Query: Join <code>Students</code> and <code>People</code> on <code>Name</code>:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Students</mtext><msub><mo>⋈</mo><mrow><mtext>S.Name</mtext><mo>=</mo><mtext>P.Name</mtext></mrow></msub><mtext>People</mtext></mrow><annotation encoding="application/x-tex">\text{Students} \bowtie_{\text{S.Name} = \text{P.Name}} \text{People}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord text"><span class="mord">Students</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⋈</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">S.Name</span></span><span class="mrel mtight">=</span><span class="mord text mtight"><span class="mord mtight">P.Name</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">People</span></span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+<li><strong>Degenerate Case</strong>: If <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span> have no shared attributes, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋈</mo></mrow><annotation encoding="application/x-tex">\bowtie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.51em;vertical-align:-0.005em;"></span><span class="mrel">⋈</span></span></span></span> degenerates to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn><mo>×</mo><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R1 \times R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Theta Join (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>⋈</mo><mi mathvariant="normal">Θ</mi></msub></mrow><annotation encoding="application/x-tex">\bowtie_\Theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.655em;vertical-align:-0.15em;"></span><span class="mrel"><span class="mrel">⋈</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">Θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)</strong>:</p>
+<ul>
+<li>Joins two relations based on a predicate <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi></mrow><annotation encoding="application/x-tex">\Theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Θ</span></span></span></span>.</li>
+<li><strong>Relational Algebra</strong>:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mn>1</mn><msub><mo>⋈</mo><mi mathvariant="normal">Θ</mi></msub><mi>R</mi><mn>2</mn><mo>=</mo><msub><mi>σ</mi><mi mathvariant="normal">Θ</mi></msub><mo stretchy="false">(</mo><mi>R</mi><mn>1</mn><mo>×</mo><mi>R</mi><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R1 \bowtie_\Theta R2 = \sigma_\Theta(R1 \times R2)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⋈</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">Θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">Θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+<li><strong>Example</strong>:
+<ul>
+<li>Query: Join <code>Students</code> and <code>Courses</code> where GPA &gt; 3.5:<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>σ</mi><mrow><mtext>GPA</mtext><mo>&gt;</mo><mn>3.5</mn></mrow></msub><mo stretchy="false">(</mo><mtext>Students</mtext><mo>×</mo><mtext>Courses</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sigma_{\text{GPA} &gt; 3.5}(\text{Students} \times \text{Courses})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">GPA</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">3</span><span class="mord mtight">.</span><span class="mord mtight">5</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.17737em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">Students</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Courses</span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="key-differences-between-operators"><a class="markdownIt-Anchor" href="#key-differences-between-operators"></a> <strong>Key Differences Between Operators</strong></h4>
+<table>
+<thead>
+<tr>
+<th><strong>Operator</strong></th>
+<th><strong>Condition</strong></th>
+<th><strong>Result</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Natural Join</strong></td>
+<td>Equality of all shared attributes.</td>
+<td>Combines only matching rows from both relations.</td>
+</tr>
+<tr>
+<td><strong>Theta Join</strong></td>
+<td>Any condition (e.g., <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>&gt;</mo><mi>B</mi><mo separator="true">,</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo>+</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">A &gt; B, A = B + 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span>).</td>
+<td>More flexible; allows non-equality conditions.</td>
+</tr>
+<tr>
+<td><strong>Union (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∪</mo></mrow><annotation encoding="application/x-tex">\cup</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">∪</span></span></span></span>)</strong></td>
+<td>None (tuples from both relations).</td>
+<td>Combines all tuples from both relations, removes duplicates.</td>
+</tr>
+<tr>
+<td><strong>Difference (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span></span></span></span>)</strong></td>
+<td>None (tuples in one relation but not the other).</td>
+<td>Filters tuples in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">R1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">1</span></span></span></span> that are not in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">R2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord">2</span></span></span></span>.</td>
+</tr>
+<tr>
+<td><strong>Intersection (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∩</mo></mrow><annotation encoding="application/x-tex">\cap</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord">∩</span></span></span></span>)</strong></td>
+<td>None (tuples common to both relations).</td>
+<td>Returns only the tuples present in both relations.</td>
+</tr>
+</tbody>
+</table>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/notes/">notes</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/leetcode-2264-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84-3-%E4%BD%8D%E7%9B%B8%E5%90%8C%E6%95%B0%E5%AD%97/index.html"
+                                   title="LeetCode 2264. 字符串中最大的 3 位相同数字"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">LeetCode 2264. 字符串中最大的 3 位相同数字</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#history-of-dbms-continued"><span class="nav-number">1.</span> <span class="nav-text"> History of DBMS continued</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2000s-rise-of-nosql-databases"><span class="nav-number">1.1.</span> <span class="nav-text"> 2000s: Rise of NoSQL Databases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2010s-diversification-and-hybrid-systems"><span class="nav-number">1.2.</span> <span class="nav-text"> 2010s: Diversification and Hybrid Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020s-further-specialization-and-innovation"><span class="nav-number">1.3.</span> <span class="nav-text"> 2020s: Further Specialization and Innovation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corrections-clarifications"><span class="nav-number">1.4.</span> <span class="nav-text"> Corrections &amp; Clarifications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-model-relational-algebra"><span class="nav-number">2.</span> <span class="nav-text"> Data Model &amp; Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-is-a-data-model"><span class="nav-number">2.1.</span> <span class="nav-text"> What is a Data Model?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-the-data"><span class="nav-number">2.2.</span> <span class="nav-text"> Structure of the Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-schema"><span class="nav-number">2.2.1.</span> <span class="nav-text"> Relational Schema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relation-vs-relational-schema"><span class="nav-number">2.2.2.</span> <span class="nav-text"> Relation vs. Relational Schema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#terms-for-data-and-structure"><span class="nav-number">2.2.3.</span> <span class="nav-text"> Terms for Data and Structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-instance"><span class="nav-number">2.2.4.</span> <span class="nav-text"> Relational Instance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mathematical-view"><span class="nav-number">2.2.5.</span> <span class="nav-text"> Mathematical View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operations-on-data-and-relational-algebra"><span class="nav-number">2.3.</span> <span class="nav-text"> Operations on Data and Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-and-sql"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Relational Algebra and SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-model-vs-key-value-model"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Relational Model vs. Key-Value Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#types-of-constraints-in-the-relational-model"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Types of Constraints in the Relational Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql-engine-workflow"><span class="nav-number">2.3.4.</span> <span class="nav-text"> SQL Engine Workflow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#relational-algebra-operators"><span class="nav-number">2.4.</span> <span class="nav-text"> Relational Algebra Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-operators"><span class="nav-number">2.4.1.</span> <span class="nav-text"> Basic Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-query-example"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Relational Algebra Query Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#derived-operators"><span class="nav-number">2.4.3.</span> <span class="nav-text"> Derived Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key-differences-between-operators"><span class="nav-number">2.4.4.</span> <span class="nav-text"> Key Differences Between Operators</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2025
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#history-of-dbms-continued"><span class="nav-number">1.</span> <span class="nav-text"> History of DBMS continued</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2000s-rise-of-nosql-databases"><span class="nav-number">1.1.</span> <span class="nav-text"> 2000s: Rise of NoSQL Databases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2010s-diversification-and-hybrid-systems"><span class="nav-number">1.2.</span> <span class="nav-text"> 2010s: Diversification and Hybrid Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020s-further-specialization-and-innovation"><span class="nav-number">1.3.</span> <span class="nav-text"> 2020s: Further Specialization and Innovation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corrections-clarifications"><span class="nav-number">1.4.</span> <span class="nav-text"> Corrections &amp; Clarifications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-model-relational-algebra"><span class="nav-number">2.</span> <span class="nav-text"> Data Model &amp; Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-is-a-data-model"><span class="nav-number">2.1.</span> <span class="nav-text"> What is a Data Model?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#structure-of-the-data"><span class="nav-number">2.2.</span> <span class="nav-text"> Structure of the Data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-schema"><span class="nav-number">2.2.1.</span> <span class="nav-text"> Relational Schema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relation-vs-relational-schema"><span class="nav-number">2.2.2.</span> <span class="nav-text"> Relation vs. Relational Schema</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#terms-for-data-and-structure"><span class="nav-number">2.2.3.</span> <span class="nav-text"> Terms for Data and Structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-instance"><span class="nav-number">2.2.4.</span> <span class="nav-text"> Relational Instance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mathematical-view"><span class="nav-number">2.2.5.</span> <span class="nav-text"> Mathematical View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#operations-on-data-and-relational-algebra"><span class="nav-number">2.3.</span> <span class="nav-text"> Operations on Data and Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-and-sql"><span class="nav-number">2.3.1.</span> <span class="nav-text"> Relational Algebra and SQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-model-vs-key-value-model"><span class="nav-number">2.3.2.</span> <span class="nav-text"> Relational Model vs. Key-Value Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#types-of-constraints-in-the-relational-model"><span class="nav-number">2.3.3.</span> <span class="nav-text"> Types of Constraints in the Relational Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql-engine-workflow"><span class="nav-number">2.3.4.</span> <span class="nav-text"> SQL Engine Workflow</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#relational-algebra-operators"><span class="nav-number">2.4.</span> <span class="nav-text"> Relational Algebra Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-operators"><span class="nav-number">2.4.1.</span> <span class="nav-text"> Basic Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#relational-algebra-query-example"><span class="nav-number">2.4.2.</span> <span class="nav-text"> Relational Algebra Query Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#derived-operators"><span class="nav-number">2.4.3.</span> <span class="nav-text"> Derived Operators</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#key-differences-between-operators"><span class="nav-number">2.4.4.</span> <span class="nav-text"> Key Differences Between Operators</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
