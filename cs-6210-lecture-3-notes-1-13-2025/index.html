@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            CS 6210 Lecture 3 Notes 1/13/2025 |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        CS 6210 Lecture 3 Notes 1/13/2025
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-01-13 23:42:45</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Jan 13 2025 23:45:16 GMT-0500">2025-01-13 23:45:16</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/notes/">notes</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>7.8k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>26 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h3 id="讲稿"><a class="markdownIt-Anchor" href="#讲稿"></a> 讲稿</h3>
+<p>好吧，早上好，早上好，早上好。好了，我们开始吧。今天我们将讨论这门课中的几篇论文，对吧？我们会从第一篇论文开始，看看今天能走多远，希望我们能讲完。然后下一节课我们会讲其他两篇论文，今天我们会讲完，然后下一节课会讲其他两篇。我会在这节课结束时谈到这个。</p>
+<p>所以在我们开始之前，像往常一样，有一些公告。第一个是作业0和项目0在今晚截止，对吧？今晚11点59分截止。到今天早上，我看到提交的数量是这样，这可能变化不大，也许稍微增加了一点，但不多。这大约是班级的40%，甚至不到40%。希望你们所有人都能提交，但如果你还没有尝试提交，请尽快提交，对吧？这可能比较简单，但当其他项目出来时，我建议你尽早开始。</p>
+<p>另一件事是，我发了邮件，但我已经把从40到10的所有空余位置，转到了从16到10的部分。所以希望在不增加容量的情况下，所有在等待名单上的人都能进入。</p>
+<p>我们在增加容量时面临的问题之一是这个教室无法容纳更多人。我们不得不找一个不同的教室，这变得非常困难。所以这就是我们所做的，希望这解决了所有问题。</p>
+<p>好吧，第三个公告是，我们的办公室时间已经在网站上公布了。所以如果你去我们的课程网站，进入教职工页面，你会看到我们所有的办公室时间。这些会从本周开始。如果你想和我们见面，请参加办公室时间，或者发邮件给我，我们可以找时间交谈。</p>
+<p>至于我的本科操作系统课的幻灯片，它们都可以在Canvas上找到。所以如果你去Canvas，进入文件，你会看到这些幻灯片都在那。如果你想参考幻灯片，你可以这样做。</p>
+<p>我在获得课程视频时遇到了一些困难，因为它在一个不同的系统上，我遇到了一些问题。我正在尝试解决这个问题。当我解决后，我会更新。但与此同时，你可以观看这门课的在线版本视频，我已经在Canvas上放了链接。所以你可以去注册，去看这些视频。它们基本是相同的，但那个是由Kishore教授讲的，他比我有更多经验，希望那些视频对你有帮助。</p>
+<p>好吧，那么在我们开始讲高级操作系统之前，有关于公告的任何问题吗？好，那么我们开始吧。我想先回顾一下我们上次课的内容，对吧？然后开始讨论我们应该讨论的内容。</p>
+<p>上次课我们开始讨论了操作系统的结构。我们讨论了不同种类的组织方式，谈到了单体内核、微内核和混合内核，我们谈到了一些我们想要在操作系统结构中实现的理想目标。我们发现，许多我们想要在操作系统结构中实现的目标是相互冲突的，对吧？</p>
+<p>例如，我们想要保护，对吧？在操作系统中，我们想要在进程之间，以及进程和操作系统之间提供保护。我们可以通过最小化我们拥有的内核代码来实现这一点，对吧？但同时我们也需要性能，对吧？性能我们可以通过将所有东西放进内核中来实现，对吧？通过这样做我们可以提高性能，但这与第一个目标相冲突，对吧？</p>
+<p>我们想要灵活性，对吧？我们希望操作系统是可扩展的，支持许多应用程序，对吧？但同时我们需要它具有可扩展性，对吧？这与另一个目标有些冲突，因为我们希望它能够扩展到大量的应用程序，但同时我们也想支持许多不同类型的应用程序。我们还希望它能适应应用程序的变化。我们希望操作系统拥有一切，对吧？但很多目标是冲突的，我们不得不选择一些优先目标，这带来了权衡。</p>
+<p>如果我们希望操作系统非常轻量化，对吧？比如微内核，我们谈到了微内核，我们希望操作系统结构是轻量化的，对吧？所以当我们谈到轻量化时，我们说我们只想提供机制，而不是包含任何策略。我们可以通过避免边界跨越使操作系统更快。所以记住，保护域之间存在边界跨越，如果你想从用户空间进入内核空间，你必须付出代价。我们今天会详细谈论这一点，对吧？我们希望尽可能避免边界跨越，一种避免方式是将所有东西放入内核中。</p>
+<p>我们希望它运行得像微内核一样，但我们也希望它像单体内核一样。我们说过，通用性和专用性之间存在紧张关系。这是我们上节课的结束点。我们结束时说，这是一种张力，而这种张力已经存在了很久。</p>
+<p>好的，所以我们今天开始讨论这个问题。我想从思考一些关于灵活性的需求开始讨论。我们应该讨论的一个问题是，当一个页面错误发生时，操作系统会发生什么？有没有关于页面错误的任何想法？</p>
+<p>假设你构建了一个操作系统，在操作系统中有一个分页机制，你们都学过虚拟内存子系统等等。页面错误发生了，对吧？那么当页面错误发生时，操作系统应该做什么呢？不需要非常详细，但从总体上看，操作系统需要做什么？是做什么都不做还是需要做点什么？</p>
+<p>好吧，进程当前尝试访问一些不存在的内容，这就是页面错误发生的原因，对吧？所以当前的进程需要去找到那个内容。那么，为了找到它，操作系统需要做什么？它发现内容不存在，接下来应该做什么？操作系统会做什么事情吗？还是它什么都不做？</p>
+<p>是的，操作系统需要查看页面表，然后找出缺失的页面在哪里。这是否意味着需要进入页面表并找出接下来会发生什么？当页面错误发生时，是否有任何事情会发生？控制权会去往哪里？</p>
+<p>是的，会发生一个陷阱，对吧？会触发一个陷阱，表示有一个缺失的页面。那么接下来会发生什么？是的，是的，所以你需要找到一个空闲的页面框架，对吧？如果没有可用的页面框架，你需要分配一个空闲的页面框架，然后需要将缺失页面的内容带入内存，并恢复进程的执行。这是一个高层次的概述，对吧？不需要很详细。所以我们需要找到一个空闲的页面框架。那么我们如何找到呢？你们应该已经学过许多种页面置换算法，比如时钟算法、LRU算法，还有许多不同的算法，对吧？所以我们找到一个空闲的页面框架，更新页面表。</p>
+<p>还有进程控制块（PCB）。进程控制块包含了许多信息，比如页面表信息和与进程相关的其他所有信息。每次有进程进入，都会有一些寄存器，比如你可能学过的CR3寄存器，以及其他地方可以查找页面目录起始位置的寄存器。</p>
+<p>你有页面表，对吧？然后你恢复进程。在x86架构中，当发生页面错误并触发陷阱时，操作系统会重新运行指令，对吧？它会处理错误，然后继续检查并恢复进程。大家对这个过程明白了吗？很好。</p>
+<p>那么，当一个进程进入睡眠状态时会发生什么？操作系统会做什么？还是它什么都不做？任何时候。非常好，非常好。对吧？所以假设有一个进程P1，然后它进入了睡眠状态。记住，睡眠是一个系统调用，然后会发生什么？如果它处于睡眠状态，没有做任何事情，操作系统可以切换到另一个进程。那么这个过程是自动发生的吗？</p>
+<p>在高层次上，操作系统需要做什么？与页面置换非常相似。操作系统是如何参与进来的？这是内核边界的常规情况，对吧？是的，对吧？它需要进入内核上下文，然后找到一个新的进程，切换到该进程的内核上下文，然后再切换回去，对吧？</p>
+<p>这并不简单。许多事情在这个过程中发生。这是我本科操作系统课程中讲过的内容。所以有多个上下文切换发生，而不是一个单一的上下文切换。它需要进入内核，但这不是单一的切换，对吧？它需要切换到调度上下文。然后调度上下文决定下一个运行的进程是什么，然后它会恢复该进程的上下文。</p>
+<p>明白我的意思了吗？理解页面置换的过程了吗？现在，这是一个问题，今天希望我们能探讨它。</p>
+<p>那么，在我们讨论的这两个过程中，页面错误处理和进程睡眠处理，你认为有自定义的机会吗？在这两个过程中，你认为我们可以在哪里进行自定义？</p>
+<p>好吧，如果它起作用，如果它有效，那很好，对吧？如果不起作用，好吧，5、4、3、2、1，很好，非常好。是的，在页面错误处理中有自定义的机会。那么我们讨论的这三个部分中，哪一部分是自定义的机会？</p>
+<p>5、4、3、2、1。非常好，这是正确答案。页面置换算法，我在之前提到了这个提示。你可以提出不同的页面置换算法，对吧？比如时钟算法、LRU算法，还有许多复杂的页面置换算法可以使用。所以这是我们可以在操作系统中实现自定义的地方。</p>
+<p>如果你问某人哪种算法最好？其实没有标准答案。这取决于你的目标是什么。我们会看到一些例子，在某些假设下，某些算法是好的，而在其他假设下，它们可能不好。非常好。那么关于调度的自定义呢？进程切换时的自定义是什么？</p>
+<p>好吧，我们看看会发生什么，对吧？非常好，调度策略。对吧？调度策略决定了我们如何选择下一个进程。例如，可以使用轮转调度、先来先服务调度，或者构建一个完全公平的调度器。不同的调度器会根据其优化目标选择不同的进程来恢复。非常好，非常好。</p>
+<p>很好，希望大家都能看到，这些过程中的许多部分是可以自定义的。事实上，我们需要许多这样的部分是可自定义的。因为我们希望应用程序能够从操作系统中获得最大的性能，获得最大的灵活性。但这些事情的一个问题是<strong>可扩展性</strong>。基于应用程序扩展操作系统始终是一个难题，对吧？几十年前是一个难题，现在依然是。</p>
+<p>我们将在下一节课讨论这一领域的一些进展，因为我想先完成这个模块，然后再讨论这方面的研究成果。请记住，所有这些研究大约是20年前、30年前进行的。所以你可能会觉得这些研究已经过时了，但事实并非如此。这些研究的一些成果最后变得非常有用。所以，当时的前沿研究对我们来说仍然有帮助。</p>
+<p>在当时，你不得不在两者之间做出选择。要么你的操作系统是高性能的，要么你的操作系统是灵活的。我们在内核组织的旧结构中看到了这一点，对吧？我们谈到了微内核，它提供了灵活性和隔离，但放弃了性能。另一方面，单体内核提供了性能，但失去了灵活性，因为所有东西都在内核中。</p>
+<p>那么，让我们开始讨论今天的第一篇论文吧。我想先为这三篇论文设置一些背景。背景是这样的：这些事情发生在1990年代。这篇论文发表在1995年，当时传统操作系统通常提供了一些抽象。我们都知道这些抽象，对吧？它们提供了进程、线程、系统调用等抽象。</p>
+<p>操作系统的主要任务是资源分配。因此，它需要抽象硬件，为应用程序提供更易于使用的抽象。这是操作系统的主要目标，对吧？与此同时，你需要以保护的方式来完成这些任务。</p>
+<p>你需要保护硬件不被恶意进程使用，对吧？你还需要允许并发执行。因为这些抽象的存在，在90年代人们觉得这些操作系统过于通用。而它们之所以通用，是因为当时你正在构建通用操作系统。你不知道将来会用这些操作系统来做什么。比如你构建了Linux、Unix等，你无法提前知道这些操作系统会被用于什么类型的应用程序。因此，所有的抽象都非常通用，对吧？而且它们在内核内部有固定的实现。</p>
+<p>由于这些原因，导致了许多问题。我会谈到一些问题，对吧？如果你读过这篇论文，你应该知道问题是什么，但我会简单讲解这些问题。性能成了一个很大的问题。在上节课中，我们已经看到了一些情况，对吧？</p>
+<p>边界跨越是一个问题。如果你读过论文，你会发现一次边界跨越需要大约1000个CPU周期，非常昂贵。而通用性影响了性能。由于通用性，你可能需要进行边界跨越，因此保护和管理总是伴随着可扩展性的损失。所以你无法扩展操作系统。</p>
+<p>在90年代，研究人员主要在做操作系统的“黑客”工作，而不是扩展操作系统。他们在操作系统内核中做了特殊的修改，以试图使其在某些情况下运行得更好。这些修改通常不具备通用性，对吧？</p>
+<p>与此同时，当时工业界在构建真正的大型系统，他们尝试使用通用操作系统。</p>
+<p>我在第一节课提到过这一点，这是来自论文中的一段话。工业界和操作系统实现之间的需求出现了错配。研究人员注意到了这一点，特别是当他们从工业界收到了太多抱怨的时候。这些抱怨推动了研究者开始思考如何将定制化功能引入操作系统。1995年前后，三篇论文开始关注定制化问题。</p>
+<p>当时的一些应用场景引发了这些研究。第一个场景是数据库缓冲管理。那时候，人们正在构建可扩展的数据库。我在第一节课中提到了Stonebraker。构建数据库时，会有非常可预测的访问模式。而如果你将这些模式与一个使用通用页面置换策略（比如LRU）的操作系统结合起来，可能会导致性能问题。因为数据库可能提前知道哪些页面将被访问，而操作系统不知道。</p>
+<p>因此，页面置换的决策应该由数据库自己完成，而不是由操作系统完成。如果你让数据库依赖操作系统的页面置换算法，比如LRU，那么效果可能会非常差。这是Stonebraker当时的观点。他指出这些算法对于数据库应用程序来说，要么太慢，要么不合适。</p>
+<p>当时人们还在构建其他类型的应用程序，例如将虚拟内存扩展到多台机器，而不是仅限于单一机器。你可以将多台机器的所有内存视为一个整体共享的内存域。然而，由于操作系统的虚拟内存抽象，当你试图从另一台机器的内存中查找页面时，必须经过内核，这使得实现这一功能变得非常昂贵。</p>
+<p>还有一个场景是检查点（Checkpointing）。我们现在都知道检查点技术，比如Windows和Linux中都有类似的功能，可以备份和保存检查点。当时，人们尝试使检查点更加高效，比如在不停止进程的情况下完成检查点的保存。他们尝试将检查点操作与进程的执行结合起来，但调度机制成为了瓶颈。调度干预检查点的过程使得优化变得困难。</p>
+<p>还有一个问题是多进程的协同工作。例如，当多个进程需要共享资源时，你可能需要通过应用程序本身来决定如何进行页面置换。这类似于数据库的情况。如果应用程序知道它们之间的依赖关系，就可以更好地协同管理内存，而不是让操作系统来猜测。</p>
+<p>所有这些实际需求在当时都很难实现。这些都是90年代非常典型的用例，它们引发了研究人员对操作系统定制化问题的深刻思考。</p>
+<p>由于这些问题，可扩展性成为了操作系统研究的一个痛点。如果我们用三轴图来表示——可扩展性、安全性和性能，你通常只能选择其中的一部分，而无法同时获得所有优点。例如：</p>
+<ul>
+<li><strong>Unix</strong> 提供了性能和安全性，但没有足够的可扩展性。</li>
+<li><strong>Mach</strong>（微内核）提供了可扩展性和安全性，但性能较差。</li>
+<li><strong>DOS</strong> 提供了性能，但几乎没有安全性和可扩展性。</li>
+</ul>
+<p>那么，如何才能同时获得这三个特性呢？这就是我们今天要讨论的论文提出的核心问题。</p>
+<p><strong>进入今天的论文——Spin</strong></p>
+<p>我们今天讨论的第一篇论文是1995年发表在<strong>SOSP</strong>上的论文，题为《Spin》。你们中有多少人阅读过这篇论文？（讲师互动）</p>
+<p>好的，不错不错。如果你没完全理解论文也没关系，今天我们会详细讨论。Spin这篇论文的核心思想是：</p>
+<ul>
+<li><strong>利用语言的原语和特性来实现操作系统的扩展性</strong>。</li>
+<li><strong>依靠语言提供的保护机制</strong>，以确保操作系统的安全性。</li>
+</ul>
+<p>从非常高的层次来看，这篇论文的主要内容就是这样。</p>
+<p><strong>Spin的高层结构</strong></p>
+<p>Spin的基本思想是通过内核扩展的方式来解决问题。我们来看一下具体是怎么做的。</p>
+<p>首先，Spin允许将扩展模块加载到内核中。这些扩展模块可以是你自己实现的逻辑。通过将扩展模块直接加载到内核中，可以减少边界跨越的开销，这样一来，我们就能提高性能。</p>
+<p>同时，为了保证安全性，Spin依靠语言的特性，例如类型安全。具体来说，它选择了Modula-3语言，这是一种静态类型安全的语言，能够提供编译时的安全保证。</p>
+<p>此外，Spin允许动态加载扩展模块。这意味着你不需要每次加载新模块时都重新启动操作系统。这种细粒度的可扩展性是通过动态加载扩展模块实现的。</p>
+<p>因此，Spin实现了以下目标：</p>
+<ol>
+<li><strong>性能</strong>：通过减少边界跨越来提高性能。</li>
+<li><strong>安全性</strong>：通过类型安全语言保证内核扩展的安全。</li>
+<li><strong>可扩展性</strong>：通过动态加载实现细粒度的扩展能力。</li>
+</ol>
+<p>这些特性使得Spin既快速又安全，同时具备很强的可扩展性。</p>
+<p><strong>Spin的类型安全语言：Modula-3</strong></p>
+<p>Spin依赖Modula-3语言来实现其保护机制。Modula-3是一个在90年代流行的语言，它对许多现代语言（如C#、Python和Java）都有一定的影响。它的主要特点包括：</p>
+<ul>
+<li><strong>类型安全</strong>：禁止非类型安全的操作，例如任意类型转换或空指针引用。</li>
+<li><strong>自动内存管理</strong>：支持垃圾回收，避免了手动管理内存的复杂性。</li>
+<li><strong>模块化设计</strong>：强调模块化和分层结构，便于扩展和维护。</li>
+</ul>
+<p>Modula-3的这些特性为Spin的内核扩展提供了强有力的支持。</p>
+<p>所以，Spin依赖Modula-3语言的一些特性，比如类型安全性、封装机制等。正是这些特性使Spin能够实现其功能。Spin依赖的关键特性包括：</p>
+<ol>
+<li>安全性和封装：由于是类型安全的，语言提供了很高的安全性。</li>
+<li>接口机制：允许定义明确的接口。</li>
+<li>自动存储管理：语言自动管理内存，不需要开发者手动操作。</li>
+</ol>
+<p>如果没有这些特性，Spin就无法正常工作。关于这一点有没有问题？如果没有，我们继续。</p>
+<p>现在我们已经设置好了背景，开始讨论Spin。我们知道它依赖语言特性，知道语言的属性是什么，也大致了解了Spin的高层设计。接下来我们需要进入细节，进一步了解它的工作原理。</p>
+<p>Spin的一个重要问题是：如果我们将所有东西都放入内核，会不会让内核变得脆弱？这个问题有两种解读：一种是安全性问题，比如会不会引入安全漏洞；另一种是如果一个扩展出错，会不会影响其他扩展？我们逐一讨论。</p>
+<p>关于安全性，这篇论文并没有深入讨论。这是我们稍后可以打开来讨论的一个话题。但关于错误影响的问题，我们来看具体如何处理。Spin并不是让扩展直接访问内核的所有内容，而是通过定义有限的接口，让扩展仅能访问必要的资源。稍后我们会具体谈到这一点。</p>
+<p>Spin的设计中，核心只实现了非常小的一部分功能，比如：</p>
+<ul>
+<li>处理器状态管理</li>
+<li>基础内存管理</li>
+<li>设备管理</li>
+<li>动态链接器和分发器</li>
+</ul>
+<p>这些是Spin核心实现的内容，其余大部分功能都被设计为可加载的扩展。</p>
+<p>现在回到另一个问题：完全隔离是否有用？我们知道，隔离是操作系统中的基本概念。这里我们要问的是，是否需要完全的隔离？给大家5秒钟思考，5、4、3、2、1。很好，完全隔离是没有用的，因为一个进程如果完全被隔离，就无法与其他进程或内核交互。因此，在Spin中，我们需要找到一种平衡。</p>
+<p>Spin的保护模型基于“能力”（Capabilities），这是一种对资源的精细化访问控制机制。在Spin中，所有资源的访问都是通过能力来实现的。</p>
+<p>什么是能力？能力是一种引用资源的方式，比如系统对象、接口、页面框架等。能力可以是指针，而Spin通过Modula-3语言的类型安全特性来实现能力的安全性。因为指针是类型安全的，开发者不能随意地伪造或更改指针，这就保证了系统的安全。</p>
+<p>这种基于能力的模型让Spin能够快速访问资源，而无需依赖硬件机制或虚拟内存机制。Spin的设计利用了语言的特性，使得能力的实现非常高效。</p>
+<p>所以，如果我们将传统操作系统中的保护域（Protection Domains）和地址空间（Address Spaces）进行对比，可以发现：传统操作系统通常使用虚拟内存来实现保护域，每个进程都有自己的地址空间。而在Spin中，没有虚拟地址空间的概念，保护域完全通过能力来实现。</p>
+<p>接下来我们来看如何使用能力实现精细化保护。在Spin中，命名和保护机制由语言管理。具体来说，它提供了以下三个功能：</p>
+<ol>
+<li><strong>创建保护域</strong>：通过一个“创建”函数来初始化保护域。</li>
+<li><strong>标记安全性</strong>：使用语言的特性来声明对象是否安全。</li>
+<li><strong>动态链接</strong>：通过解析（Resolve）功能将多个对象链接到一起。</li>
+</ol>
+<p>举个例子：假设你想加载一个文件系统扩展模块。你可以将文件系统的逻辑分成多个模块，并通过动态链接器将它们组合在一起，形成一个完整的文件系统扩展模块。这种设计提供了很大的灵活性。</p>
+<p>通过这些机制，你可以定义保护域，控制哪些功能对外暴露，哪些功能保持私有。</p>
+<p>那么，是否有必要将所有扩展的接口都公开呢？答案是否定的。Spin允许开发者定义非常精确的接口，只暴露必要的功能给应用程序或其他扩展。</p>
+<p>有人可能会问：如果有多个扩展，应用程序如何知道使用哪个扩展呢？这是一个很好的问题。这实际上是由扩展的设计者来决定的。开发者可以为扩展定义接口，并通过一个“库操作系统”（Library OS）来连接应用程序和扩展模块。这样，应用程序只需要调用库中的接口，而不用直接接触底层的扩展逻辑。</p>
+<p>如果我们加载了相同的扩展两次，会发生什么？在Spin中，每个扩展实例都被视为独立的对象，具有自己的保护域和能力设置。因此，加载两次相同的扩展并不会引起冲突。</p>
+<p>好的，那么我们已经讨论了如何加载扩展，我们也知道这可以用来构建一个操作系统。接下来我们来谈谈应用程序如何与扩展交互，以及扩展如何管理资源。</p>
+<p>在Spin中，光有扩展和接口是不够的，我们还需要处理操作系统中的中断和事件，例如：</p>
+<ul>
+<li>进程进入睡眠状态</li>
+<li>事件的触发</li>
+<li>中断的处理</li>
+</ul>
+<p>Spin通过**事件（Events）和处理器（Handlers）**来管理这些操作。事件可以是状态变化、服务请求等。事件处理器负责处理这些事件，并可以被注册到特定的事件。</p>
+<p>事件和处理器的机制使得扩展模块能够灵活地响应操作系统内的各种动态变化。例如，当网络包到达时，一个事件可以被触发，并调用一个处理器来处理这个包。</p>
+<p>在Spin中，事件和处理器的定义实际上与普通的函数调用没有本质区别。这是因为语言的语义使得事件处理和函数调用的实现可以统一。唯一的区别是事件处理器可以被异步触发，而普通函数调用是由程序显式调用的。</p>
+<p>Spin内部有一个称为分发器（Dispatcher）的核心服务。分发器的作用是管理所有事件，并在事件发生时调用相应的处理器。例如，当一个网络包到达时，分发器会根据包的类型调用对应的处理器，比如处理UDP包的处理器或处理TCP包的处理器。</p>
+<p>这个过程不需要边界跨越，因为所有的事件和处理器都在内核中，因此调用是非常快速的。这也是Spin的一个优势。</p>
+<p>现在，我们来看一个例子。假设你希望在页面错误发生时自定义页面置换策略。在传统操作系统中，页面置换算法是固定在内核中的，开发者无法更改。而在Spin中，你可以编写一个扩展模块，注册一个页面错误事件处理器。当页面错误发生时，这个处理器会被调用，你可以在其中实现自定义的页面置换逻辑。</p>
+<p>这种设计的核心目标是减少边界跨越，同时提供灵活性。这在传统操作系统中是无法实现的。</p>
+<p>有人可能会问：如果没有注册事件处理器，会发生什么？在这种情况下，Spin可以提供一个默认的处理器，例如使用LRU算法作为默认页面置换策略。</p>
+<p>最后我们来看一下事件触发的开销。在传统操作系统中，事件的处理通常需要边界跨越，这会带来很大的开销。而在Spin中，事件处理完全在内核内完成，因此开销非常小。</p>
+<p>好，我们时间不多了，我会快速总结一下。我们讨论了Spin的事件和处理器模型，以及它如何通过减少边界跨越来提高性能，同时提供灵活性。在下一节课中，我们将继续讨论Spin的细节，并介绍下一篇论文——Exokernel。如果有兴趣，请提前阅读论文《The Exokernel: An Operating System Architecture for Application-Level Resource Management》。</p>
+<p>今天的课就到这里，感谢大家的参与！别忘了今晚提交作业0和项目0。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/notes/">notes</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/cs-6290-lecture-2-notes-1-9-2025/index.html"
+                                   title="CS 6290 Lecture 2 Notes 1/9/2025"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">CS 6290 Lecture 2 Notes 1/9/2025</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/leetcode-2270-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/index.html"
+                                   title="LeetCode 2270. 分割数组的方案数"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">LeetCode 2270. 分割数组的方案数</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E7%A8%BF"><span class="nav-number">1.</span> <span class="nav-text"> 讲稿</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2025
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E7%A8%BF"><span class="nav-number">1.</span> <span class="nav-text"> 讲稿</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
