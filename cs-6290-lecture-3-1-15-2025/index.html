@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            CS 6290 Lecture 3 1/15/2025 |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        CS 6290 Lecture 3 1/15/2025
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-01-15 00:01:53</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Jan 15 2025 00:05:04 GMT-0500">2025-01-15 00:05:04</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/notes/">notes</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>6k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>21 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h3 id="讲稿"><a class="markdownIt-Anchor" href="#讲稿"></a> 讲稿</h3>
+<p>靠近中间部分。<br />
+好吧，就两个投影仪了。</p>
+<p>不过我觉得，可以边讲课边提问。这样也不错。<br />
+有一位教授来了，他站在那里。教授教了一些内容，关于“疫情世代”或者类似的东西？课程是录制的吗？</p>
+<p>嗯，好吧，我先不继续扯远了。不过，我希望有一本让我信任的书。真的有吗？<br />
+如果我自己写一本，它很快就会过时。我每年的笔记都会改变，因为很多东西都在变化。还有，你知道什么最有效吗？</p>
+<p>上次我们讨论过性能。我认为现在有很多不同的性能指标。人们关注功耗和总能耗，不过我……<br />
+虽然不总是有效，但如果我们优化时间性能，至少我们能达成一致。优化能效真的很难做到。我们现在还没完全掌握如何去做。我们会时不时地提到这一点，但主要专注于以下三个方面：运行时间范围。</p>
+<p>所以有吞吐量、运行时延迟。这是一个指标；第二个指标是……有时称为“周转时间”。<br />
+这就是你完成任务的速度。</p>
+<p><strong>吞吐量</strong>：速率，速度。<br />
+我们经常使用“加速比”，因为它可以说明提高了多少。<br />
+但加速比的问题是，如果你选择基准不恰当，可能会误导人们。</p>
+<p>比如用新时间比旧时间。如果你选择的基准时间是以前人类计算机的时间，那就不合理了。所以加速比可能会误导我们。</p>
+<p>不过我们会谈谈这个课程有趣的地方。这节课会讲一些计算机架构中的基本公式，其实并不多。这节课会讲几个公式，但我们先聊聊吞吐量和时间性能吧。</p>
+<p>为什么吞吐量（throughput）会写成那样？因为我懒，直接写throughput。<br />
+如果没有爆炸或者小型飞机从波音747上飞下来，这可是当时载客量最大的客机之一。还有空客，这很久以前是可以容纳470名乘客的飞机。</p>
+<p>对比一个载客量更小的飞机——协和式飞机（Concorde），它已经停飞了。协和式飞机曾经因为一个真的，真的很不幸的事件停飞了：轮胎爆裂，人们因此感到恐惧。</p>
+<p>协和式飞机是超音速的，但只能容纳132名乘客。<br />
+那么我们用波音飞机，对吗？不过看速度：波音飞机的最高时速是610英里，而协和式飞机是1350英里。<br />
+这意味着，如果从华盛顿飞到巴黎，坐波音飞机需要大约6.5小时，而坐协和式飞机只需3小时。</p>
+<p>好了，现在你会选哪一个呢？如果你是达美航空，哪个飞机更划算？<br />
+我们用“每小时乘客里程”来衡量，也就是载客数量乘以速度。波音飞机的乘客里程是286，而协和式飞机是178。那么从达美的角度来看，他们更喜欢波音747。<br />
+尽管协和式飞机更快，但波音飞机能运输更多的乘客。这就是两种不同的性能指标的对比。</p>
+<p><strong>性能的两种维度</strong>：完成单一任务所需时间 vs 完成多个任务的总速率。<br />
+这些指标可能导致不同的结论。</p>
+<p>接下来讨论运行时间性能，然后再聊速率。大家理解了吗？<br />
+好的，我们转向公式。</p>
+<p>假设我写了一个程序，CPU时间公式：<br />
+时钟周期数 ÷ 时钟频率（以GHz为单位）。</p>
+<p>无论需要多少周期运行程序，乘以时钟周期的时间，就可以得出程序的运行时间。这是最基本的逻辑。<br />
+不过，这还不能告诉我们太多信息，所以我们引入一个新概念：每指令平均周期数（CPI）。</p>
+<p>CPI表示平均每个指令需要多少时钟周期。例如在一个5级流水线中，每一级流水线都在处理一条指令。就像组装线上造车，每个工位需要10秒，每10秒就有一辆车出厂。</p>
+<p>于是我们可以写公式：<br />
+时钟周期数 = CPI × 指令数。</p>
+<p>假设有100条指令，流水线每秒能完成1条指令，那么总共需要100个时钟周期。这是非常基础的公式之一，可以称之为“计算机架构中的牛顿定律”。</p>
+<p>你可以用这个公式做一个纹身：<br />
+指令数 × 平均周期数 × 每周期时间 = 程序运行时间。</p>
+<p>我希望你走进浴室，双手抓住浴室镜子的两边，然后对着镜子说：“我是个极客（geek）”，接受这个事实，好吗？你就是个极客，但如果你纹个身，你就会变酷。不，其实你只是个纹了身的极客，所以你还不如就纹一个。纹一个带标尺的纹身。如果你真的纹了个永久性的纹身，我会允许你把它带进考试。但必须是永久性的，我需要你们的承诺。</p>
+<p>不过，这也告诉了我们如何改进计算机的方法。有三种方式：减少以下任何一个量。<br />
+如何减少指令数量？</p>
+<p>减少指令数量的方式是：即使你正在执行更复杂的指令，仍然保持总指令数不变，因为你可以通过复杂指令来分摊开销。</p>
+<p>增加复杂的指令是个好主意。例如，我设计了一个新的指令，叫做“Excel表格”。</p>
+<p>这是之前的一种趋势：不断增加指令的复杂度。一些微架构执行的指令集架构是经过简化的版本。当时看起来很有意义。我们稍后会更多地讨论这个问题。</p>
+<p>我们还可以减少CPI（每指令平均周期数）。这意味着我们可以通过流水线或者并行性来提高每周期执行的指令数。但如果遇到分支怎么办？那就用预测技术（speculation），在这个方面我还有一些小技巧可以用。</p>
+<p>接下来是减少周期时间（cycle time）。如何做到这一点呢？可以通过更深的流水线设计，把任务分成更小的阶段。例如，组装线上每个阶段需要10秒。如果我们把阶段分成5秒，工人只需要完成一半的任务，那么每辆车的总周期没有变化，但周期时间缩短了，也就提高了生产率。</p>
+<p>此外，还可以通过技术缩放（technology scaling）来提高电路速度。不过，这些方法也会带来权衡。</p>
+<p><strong>例如：</strong> 如果我们减少指令数量，就需要更复杂的指令；增加CPI可能导致更复杂的流水线设计；减少周期时间需要更精细的分工。历史上，这些权衡因记忆体的限制而存在，例如早期的核心存储（core memory）昂贵且手工制作复杂。随着半导体存储的发明，这些限制被逐渐突破。</p>
+<hr />
+<p><strong>DARPA（美国国防高级研究计划局）</strong> 在80年代推出了一些硬件项目。为了吸引资金和关注，项目通常需要一个吸引人的名字。例如，当时一个来自伯克利的团队提出了“精简指令集计算机”（RISC, Reduced Instruction Set Computer）的概念。这个名字来源于他们在提案中反复提到“降低风险”（reduce risk）。相对应的复杂指令集计算机（CISC）听起来则像一种需要去医院治疗的病。</p>
+<p>在RISC的发展过程中，他们的目标是设计规则简单的芯片。这种方法让研究生在课堂上能够设计一个包含30多条指令的处理器。由于功能有限，他们将某些“缺陷”设计成了“特性”，比如简单化的指令集。</p>
+<p>与此同时，编译器的发展也经历了一个漫长的过程。从早期需要手动编写解析器到后来使用“编译器生成器”自动完成编译过程，这大大缩小了高级语言与指令集之间的语义差距。这也推动了计算机架构的进步。</p>
+<p>他们认为通过直接在硬件中执行高级语言，可以减少语义差距并让编译器更容易实现。当然，真正执行高级语言的其实是微码（microcode）。编译器会将代码转化为一种解释器，然后通过微码来运行。这在当时非常流行，不仅仅因为编译器难以构建，还因为当时的内存非常昂贵。</p>
+<p>但到了80年代，内存变得便宜了，编译器也变得更好。<br />
+在IBM的一个学生研究实验室中，有一个名叫John Cock的人被分配了一个任务。他被要求开发一种通道处理器（channel processor）。这是什么呢？IBM的大型计算机不希望浪费时间处理I/O操作，所以他们开发了可编程的DNA引擎，即通道处理器，用来处理数据传输。John Cock接下了这个任务，但他其实是个编译器专家，于是他决定利用这个项目尝试构建一个新的微架构。</p>
+<p><strong>复杂指令的难点</strong></p>
+<p>他注意到，当时的指令集（例如IBM 390和Digital Equipment Corporation的VAX）中，有很多复杂的指令，甚至包括一个能计算双精度多项式的指令。问题在于，编译器无法识别代码中需要使用这些复杂指令的场景，因此这些指令并不实用。而且，这些复杂指令的解码器非常大，拖慢了整个处理器的速度。</p>
+<p>于是，John Cock决定创建一个新的指令集，只包括编译器真正会用到的指令。他将这个项目命名为“801项目”（Project 801），因为他的实验室位于Austin的801号大楼。这个项目的目标是简化指令集，让它们与编译器更匹配。</p>
+<p><strong>RISC（精简指令集计算机）的起源</strong></p>
+<p>大约在同一时间，斯坦福的一名助理教授（他的博士学位来自纽约州立大学石溪分校）与伯克利的一名研究人员合作。他们造访了John Cock，并提出了“RISC”（Reduced Instruction Set Computer）的概念。这个名字的灵感来自DARPA（美国国防高级研究计划局）的提案中反复提到的“降低风险”（reduce risk）。他们认为简化指令集不仅有助于硬件设计，还能更好地支持编译器优化。</p>
+<p><strong>关于ARM</strong></p>
+<p>有人知道ARM是什么意思吗？最早是“Acorn RISC Machines”，后来改成“Advanced RISC Machines”，但现在ARM官方网站甚至不再提及“RISC”。ARM的指令集在版本8中包含了数千条指令，从任何角度来看都算不上“精简”。此外，ARM的指令宽度并不固定，有标准指令、Thumb指令，以及介于两者之间的混合指令。</p>
+<p><strong>RISC-V现状</strong></p>
+<p>如果你对RISC-V感兴趣，可以去RISC-V委员会的网站下载它的指令集架构，数一数里面有多少条指令。结果会让你明白，设计处理器不能由委员会决定，因为总会有人提出额外的要求，比如加入离散余弦变换（DCT）指令，仅仅是为了安抚某个提出建议的人。</p>
+<p><strong>复杂指令的回归</strong></p>
+<p>早期（80年代末到90年代初），RISC的支持者认为复杂指令集计算机（CISC）的时代即将结束。然而，Intel和AMD找到了解决办法：他们通过解码器将复杂指令转化为简单指令，再在处理器中使用这些简单指令来执行。这种方法不仅保留了复杂指令集，还利用了解码器的灵活性来提升性能。通过这种方式，CISC并未消亡，反而继续发展。</p>
+<p><strong>结论</strong></p>
+<p>编译器技术在90年代之后取得了巨大进步，如今已经能够识别并使用复杂指令，例如向量指令。复杂指令的使用能够显著提高代码的运行效率，因此围绕RISC与CISC的争论已不再有意义。</p>
+<p>举个例子，当Intel开发P6处理器（代号Pentium Pro）时，他们通过引入微操作（micro-ops）和乱序执行流水线，大大提升了处理器性能。这一创新实际上结束了RISC与CISC的争论。</p>
+<p><strong>ARM和未来</strong></p>
+<p>ARM也证明了指令集的复杂性并不重要，关键是性能。微软的Surface设备已经采用了使用ARM架构的高通芯片，这些芯片的性能足够强大，对Intel构成了威胁。</p>
+<p>最后，作者提到了一些个人故事，例如他的妹妹在Intel从事量子物理相关工作，并希望大家继续支持Intel的产品，以确保她能顺利退休。</p>
+<p>我们回到刚才的话题，好吗？<br />
+听起来可能会很慢。</p>
+<p>如果你不定期为它充电，你基本上还是能获得收益？比如每隔几百个时钟周期。<br />
+你可以在你的模块上配置这个速率。<br />
+主板和其他所有东西，没错。所有这些数字，它们绝对……你懂的，控制着这些东西。</p>
+<p>通常都很不稳定。<br />
+我买的那一个是幸运的？<br />
+我不知道它有多好。<br />
+我觉得纯粹是碰运气买到了一个好芯片，我认为……</p>
+<p>现在说到周期时间以及如何优化它，让我来讲下一个话题。假设我们有三台计算机，分别称为A、B和C，还有两个程序。</p>
+<p>在B上运行程序1需要10秒，在C上需要0.1秒。<br />
+运行程序2，这个程序比较大。在A上需要1000秒，在B上需要100秒，而在C上需要20秒。</p>
+<p>如果我同样关心程序1和程序2的运行时间，总时间会是1140秒。那么如果我同样关心两个程序，应该选择哪台计算机？是C吗？<br />
+对不起，我是说，如果我同样关心程序1和程序2的运行时间。</p>
+<p>但如果我更关心程序1，而不运行程序2，那么我应该买A。所以决定买哪一台计算机取决于：哪个程序更重要？</p>
+<p>现在你看到这些数据后，接下来的问题是：“好吧，那么平均值是多少？”<br />
+500.5秒。看起来这是一个很好的方式，可以用来汇总这些数据并做出明智的决定，对吗？<br />
+但要小心，这里有两种性能的概念。我们来做另一个实验。</p>
+<p>假设程序1的吞吐量是4事务/秒，程序2在A上的吞吐量是7事务/秒。在B上，程序1的吞吐量是2事务/秒，程序2是7事务/秒。那么该选哪一台？<br />
+这似乎很简单，算一下平均值。如果我计算平均值，结果是4.5，看起来应该选择B，因为它的事务/秒更高。</p>
+<p>然后我被叫到老板办公室，被开除了。<br />
+为什么？因为如果我考虑每个事务所需的时间，就会发现，在A上做一次程序1的事务和一次程序2的事务，总共需要0.5秒。而在B上，它需要9/14秒。</p>
+<p>9/14秒比0.5秒长，所以其实A更好，而不是B。<br />
+那么为什么我会得出错误的结论？这是因为用算术平均值来处理速率是没有意义的。</p>
+<p>算术平均值适用于你希望数字越小越好的情况，但对于速率，你希望数字越大越好。所以使用算术平均值会产生误导。<br />
+那么我们该怎么做呢？如果我要将其转换回速率，我应该将总时间除以事务的数量。</p>
+<p>这样我就可以看到，A实际上比B更好。<br />
+为什么我要在计算机架构课上讲这个？因为这是人们过去在衡量计算机性能时的一个根本性错误。他们平均了速率，但速率不能这样平均。</p>
+<p>这种方法有点像电阻的串联和并联。在并联电阻中，是最慢的那一个决定了平均电阻的大小。同样，在这里，我需要强调哪一个是较小的数字，因为它是决定因素。</p>
+<p>这是一个非常重要的概念，似乎有点基础性，但却很有用。</p>
+<p><strong>为什么我要在这里教你基础统计学？</strong></p>
+<p>看起来有些基础，但这里有一篇非常经典的论文，这是我第一次提到它。这是一位非常有名的计算机架构师写的论文，现在他已经退休了，住在蒙大拿州，喜欢钓鱼之类的。他在20世纪70年代写了这篇论文，内容是如何用一个单一的数字总结计算机性能。我会把论文贴出来供大家阅读。</p>
+<p>顺便提一下，他的名字是Will Unique，不，开玩笑的，他的名字是Jim Smith。他来自伊利诺伊州的Carthage。我曾问过他是否和另一位有名的Smith有关系，他说：“不，不，那只是巧合。”你们可以自己去查一下。他最终被赶出了伊利诺伊州，去了其他地方。Jim Smith在计算机架构界很有名，我们称他为“大名鼎鼎的Jim Smith”。这是我第一次提到他，但在这门课上我至少还会提到两次。</p>
+<p><strong>如何综合这些概念</strong></p>
+<p>如果你喜欢较小的数值结果，或者较大的数值结果，首先要把数据转换成时间。然后，在计算完成后，将它们转换回速率。这个方法的数学公式是：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>η</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>−</mo><mi>f</mi><mo>+</mo><mfrac><mi>f</mi><mi>S</mi></mfrac></mrow></mfrac></mrow><annotation encoding="application/x-tex">\eta = \frac{1}{1 - f + \frac{f}{S}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">η</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.4886559999999998em;vertical-align:-1.1672159999999998em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.177784em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1672159999999998em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>这个公式很重要，堪称经典的“Amdahl定律”。</p>
+<p><strong>Amdahl定律的背景</strong></p>
+<p>在1967年的秋季联合计算机会议上（当时一年只有两场关于计算机的大会），有位名叫Gene Amdahl的人发表了一篇演讲。他提到，当时有一些人声称单台计算机的性能已经达到极限，只有通过多台计算机的互连协作才能取得真正的进步。换句话说，他在讨论并行计算的局限性。</p>
+<p>Amdahl指出，并行计算的瓶颈在于顺序部分（sequential part），因为它不能被并行化。无论你如何加速并行部分，瓶颈仍然存在。</p>
+<p><strong>Amdahl定律的解释</strong></p>
+<p>假设程序运行时间可以分为三个部分：A、B和C。现在我们发明了一种“神器”，可以加速B部分的运行时间。那么即使B部分的运行时间被缩短到接近0，A和C的时间仍然是决定性的。这意味着，即使我们让B的速度无限提高，程序的整体速度提升仍然受到限制。</p>
+<p>公式可以表示为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Speedup</mtext><mo>=</mo><mfrac><mn>1</mn><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mi>f</mi><mi>S</mi></mfrac></mrow></mfrac></mrow><annotation encoding="application/x-tex">\text{Speedup} = \frac{1}{(1 - f) + \frac{f}{S}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">Speedup</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.4886559999999998em;vertical-align:-1.1672159999999998em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.177784em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1672159999999998em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>其中，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> 是可以加速的部分占总时间的比例，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> 是加速比。</p>
+<p><strong>一个实际例子</strong></p>
+<p>假设我在一家设计飞机机翼的公司工作，用我的电脑模拟喷气机需要一周的时间。一天，我在邮件室里看到一张宣传单，上面写着一种名为“Acme Hyperbole”的新电脑，配备了10万个处理器。我的电脑用一个处理器需要一周，那么这台新电脑应该只需要6秒。</p>
+<p>但实际上，我检查了代码后发现，模拟中只有80%的部分可以被并行化，另外20%是顺序部分，比如分支、依赖关系等。</p>
+<p>用Amdahl定律计算：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Speedup</mtext><mo>=</mo><mfrac><mn>1</mn><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>0.8</mn><mo stretchy="false">)</mo><mo>+</mo><mfrac><mn>0.8</mn><mn>100000</mn></mfrac></mrow></mfrac><mo>≈</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\text{Speedup} = \frac{1}{(1 - 0.8) + \frac{0.8}{100000}} \approx 5
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">Speedup</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.401548em;vertical-align:-1.080108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.2648919999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mord mtight">.</span><span class="mord mtight">8</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.080108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span></span></p>
+<p>也就是说，即使使用这台超级电脑，模拟时间也只减少到原来的五分之一，这与预期的6秒相差甚远。这显然不值花费一大笔钱去购买。</p>
+<p><strong>总结</strong></p>
+<p>并行计算的提升受到顺序部分的限制。无论新技术多么先进，如果顺序部分占主导地位，性能的提升都会受到限制。这就是Amdahl定律所揭示的核心思想。</p>
+<p>这是我们将要使用的另一个关键概念。这真的是一个很好的纹身主题。去年有助教做了印着这个公式的T恤，必须尊重这一点。但我真的更想要一个纹身。我真的很尊敬接下来要提到的人，不过我觉得时间不够了，所以我会在周四继续讲。</p>
+<p>有一个叫 <strong>John Gustafson</strong> 的人，他说：“Amdahl 并没有错。”<br />
+他说：“Amdahl 并没有错，但你知道吗？我压缩下来的那部分——也就是那个 B 部分——之所以那么大，只是因为我受到限制，只能以一种方式完成任务。”</p>
+<p>但如果你给我更多的计算能力，我会更高效地利用这一周的时间。具体来说，不再是模拟 3D 网格中的每个点，而是增加精度，并增加 3D 点的数量。所以我不会运行旧的程序，而是会运行一个新的程序。</p>
+<p><strong>Gustafson 的观点</strong></p>
+<p>他提出了一个设想：假设你有一个并行程序，而当前的并行程序运行时间为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mn>1</mn></msub><mo>+</mo><msub><mi>T</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">T_1 + T_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">T_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是顺序部分（sequential part）。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">T_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是并行部分（parallel part）。</li>
+</ul>
+<p>他的观点很简单：如果你给我更多的计算能力，我不会缩小并行部分，而是会增加问题的规模，增加计算的精度，做更多的工作。我不会让那些处理器核心闲置，而是会让问题变得更复杂。</p>
+<p>于是，这个并行程序的顺序时间就是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mn>1</mn></msub><mo>+</mo><msub><mi>T</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">T_1 + T_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 个处理器，其加速比（Speedup）是：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Speedup</mtext><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><msub><mi>T</mi><mn>1</mn></msub><mo>+</mo><msub><mi>T</mi><mn>2</mn></msub></mrow><mrow><msub><mi>T</mi><mn>1</mn></msub><mo>+</mo><mfrac><msub><mi>T</mi><mn>2</mn></msub><mi>n</mi></mfrac></mrow></mfrac></mrow><annotation encoding="application/x-tex">\text{Speedup}(n) = \frac{T_1 + T_2}{T_1 + \frac{T_2}{n}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">Speedup</span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.483761em;vertical-align:-1.1234309999999998em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.221569em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884309999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1234309999999998em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>Gustafson 定律</strong></p>
+<p>如果进行数学推导，并定义一个新的变量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>，即原始程序的顺序部分的比例：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>α</mi><mo>=</mo><mfrac><msub><mi>T</mi><mn>1</mn></msub><mrow><msub><mi>T</mi><mn>1</mn></msub><mo>+</mo><msub><mi>T</mi><mn>2</mn></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">\alpha = \frac{T_1}{T_1 + T_2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.19633em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>那么加速比可以表示为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Speedup</mtext><mo>=</mo><mi>α</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">\text{Speedup} = \alpha + (1 - \alpha) \cdot n
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">Speedup</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span></span></p>
+<p>但这实际上是一个“谎言”。Gustafson 改变了问题的规模和基准。他改变了基线（baseline），这让加速比看起来好得多。他的观点是：<strong>如果我改变程序，把那些处理器用在其他地方，我的加速比就会显得很高。</strong></p>
+<p><strong>弱扩展（Weak Scaling）和强扩展（Strong Scaling）</strong></p>
+<p>这种方法被称为“弱扩展”（Weak Scaling），在超级计算会议上，几乎所有的论文都会展示弱扩展的结果。在这些论文中，绘制的每个点实际上对应一个不同的问题规模。他们“欺骗”了你，但他们别无选择。因为如果问题规模不变，根据 Amdahl 定律，性能提升会受到很大的限制。Amdahl 的方法被称为“强扩展”（Strong Scaling），它是一个很好的概念，但难以实现。</p>
+<p>作为架构师，我们无法改变算法，也无法改变程序逻辑，所以我们通常忽略 Gustafson 定律。<br />
+但如果你是一个国家实验室，并且需要为数十亿美元的纳税人资金正名，那么弱扩展就非常有吸引力了。</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/notes/">notes</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/cs-6290-lecture-2-notes-1-9-2025/index.html"
+                                   title="CS 6290 Lecture 2 Notes 1/9/2025"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">CS 6290 Lecture 2 Notes 1/9/2025</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E7%A8%BF"><span class="nav-number">1.</span> <span class="nav-text"> 讲稿</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2025
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B2%E7%A8%BF"><span class="nav-number">1.</span> <span class="nav-text"> 讲稿</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
