@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Sherwin">
+    
+    <title>
+        
+            CS 6210 Lecture 4 Notes 1/15/2025 |
+        
+        Sherwin&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"sherwin6180.github.io","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Sherwin's Blog","author":"Sherwin","avatar":"/images/avatar.jpeg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives","tags":"/tags","categories":"/categories"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":true,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.36"},"waline":{"server_url":null,"reaction":false,"version":"3.2.1"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.2"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+            <a class="site-name border-box" href="/">
+               Sherwin&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                TAGS
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                CATEGORIES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                            TAGS
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                            CATEGORIES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        CS 6210 Lecture 4 Notes 1/15/2025
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.jpeg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Sherwin</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-01-15 14:56:35</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Jan 15 2025 16:39:14 GMT-0500">2025-01-15 16:39:14</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/notes/">notes</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>14.6k Words</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>50 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="讲稿"><a class="markdownIt-Anchor" href="#讲稿"></a> 讲稿</h2>
+<p>让我们准时开始，因为今天要讲的内容非常多，希望能尽量完成所有内容。我会进行记录。今天的目标是完成关于SPIN（一个操作系统扩展架构）的讨论，然后讨论两篇论文，一篇是关于Kero的错误分析的论文，另一篇是关于微内核构造的论文。第四篇论文，我会布置为你们的阅读任务。你们不需要深入阅读，只需要对这一领域有基本的理解，因为它是一个技术报告，与论文相关。好了，今天我们会试着阅读相关论文，这份技术报告就交给你们自己去了解，好吗？<br />
+记得上次我们讨论了操作系统的扩展性，对吧？我们谈到了操作系统的结构，说实现所有特性是很难的。我们还开始讨论了第一篇尝试解决这个问题的论文——SPIN。该论文的核心思想是利用<strong>语言语义或语言特性</strong>来扩展操作系统。上次我们讨论到事件处理器（event handler）的地方，探讨了SPIN如何使扩展之间，以及SPIN代码与扩展之间进行通信。</p>
+<h3 id="spin-continued"><a class="markdownIt-Anchor" href="#spin-continued"></a> SPIN Continued</h3>
+<h4 id="spin-architecture"><a class="markdownIt-Anchor" href="#spin-architecture"></a> SPIN Architecture</h4>
+<p>我们讨论过，SPIN代码的基础上，你可以添加扩展，从而构建操作系统。这就是论文中描述SPIN系统的方式。<br />
+SPIN有一些核心服务，然后在其之上可以添加扩展。例如，对于操作系统，你需要文件系统、内存管理系统、网络、进程管理等模块。这些模块是<strong>共享扩展</strong>。在此基础上，你还可以构建自己的东西。<br />
+比如，论文中提到可以在SPIN上构建一个类Unix系统。实现方式是通过一个应用程序和一个库，有一个API连接所有扩展，并提供一个类似Unix的接口，应用程序可以通过它访问SPIN及其扩展，就像访问Unix操作系统一样。此外，论文还提到可以构建一个视频服务器，所有处理都可以在内核中完成，而无需用户级别的参与，从而提升性能等。<br />
+今天我们将继续讨论这些内容。</p>
+<h4 id="spin-core-services"><a class="markdownIt-Anchor" href="#spin-core-services"></a> SPIN Core Services</h4>
+<p>一个操作系统不仅仅需要SPIN，对吧？任何操作系统，仔细想想，任何操作系统都需要一些东西，对吧？这些东西是管理硬件资源。每个操作系统都会管理硬件，SPIN也不例外。因此，核心服务是<strong>无法安全地作为扩展来实现</strong>的东西。这一点论文里也提到，如果你读过论文，你会知道为什么。原因是有时候<strong>它们必须超出保护域的范围</strong>。它们需要确保访问硬件组件时的保护，因此这些服务必须放在SPIN代码内。<br />
+论文提到的一些核心服务包括<strong>内存管理</strong>和<strong>线程管理</strong>。让我们详细讨论一下，因为这是很重要的。本模块的每篇论文和你所能想到的每个操作系统都会包含这些内容。所以理解这些点很重要。</p>
+<h5 id="spin-memory-management"><a class="markdownIt-Anchor" href="#spin-memory-management"></a> SPIN Memory Management</h5>
+<p>关于内存管理，要记住SPIN是一种可扩展的操作系统。SPIN并不会完全提供所有的内存管理技术，而是给你提供<strong>构建它们的抽象能力</strong>。<br />
+假设你想构建自己的虚拟内存管理系统，SPIN并不会直接给你一个现成的系统，但它提供了足够的工具，你可以在它的基础上构建。论文提到有三点，你可以用来构建自己的虚拟内存抽象：</p>
+<ol>
+<li><strong>基于物理存储的抽象</strong>：你可以分配、重新分配以及回收能力（capabilities）。还记得能力吗？它可以是物理页面级别的，例如<u>物理页面分配</u>、<u>物理页面重新分配</u>，以及<u>物理页面回收</u>。</li>
+<li><strong>命名抽象</strong>：你可以在虚拟空间中分配和释放资源。</li>
+<li><strong>翻译</strong>：如果你有物理存储，并且有物理和虚拟命名，你需要某种方式将两者连接起来，这样才能实现虚拟地址的使用。因此，你需要一个翻译服务。<br />
+基于这三点，SPIN允许你定义物理能力和虚拟地址之间的映射。然后你把这个映射交给SPIN，SPIN会将它安装到MMU（内存管理单元）中。<br />
+要记住，MMU是执行翻译的组件。CPU中的内存管理单元会将所有这些虚拟到物理的映射进行转换，并为你提供访问权限。</li>
+</ol>
+<p>有了这些功能，你还需要一系列异常处理机制。例如，如果你的内存管理系统有问题，你可能会遇到一些页面未找到（page not found）的情况，这时候需要分配新页面。其他情况包括页面不存在（page not present）、地址错误（bad address）等。你可能还记得事件和处理器（event and handlers）。为了处理这些事件和异常，如果应用程序在使用这些抽象构建内存管理系统时触发了这些事件，比如页面未找到，那么它会触发页面不存在的事件，应用程序就可以做任何需要的操作。<br />
+应用程序或扩展可以根据需求进行相应的操作，这就是SPIN的特点。它强调一些高层次的概念。SPIN试图说，它并不想定义一个固定的用户空间模型，而是提供所有你需要的抽象，供你去构建自己的系统。SPIN核心代码不会担心具体实现，这样你就可以构建多种不同的用户空间模型。<br />
+例如，我的映射方式可能不适合某些应用程序，因此我可以写一个扩展来优化我的应用程序。这就是SPIN的基本原理。接下来他们讨论了线程管理。<br />
+记住，内存和CPU是关键，对吧？<br />
+有两类事件：一类是硬件中断（interrupts），来自硬件；另一类是SPIN中的事件。从SPIN的角度来看，事件和过程都是模块化接口。只要你有访问扩展的权限，就可以触发这些事件。</p>
+<h5 id="spin-thread-management"><a class="markdownIt-Anchor" href="#spin-thread-management"></a> SPIN Thread Management</h5>
+<p>然后他们讨论了线程管理。我稍微讲得快一点，因为想在前15分钟内讲完SPIN。如果有问题，可以随时打断我，我们可以讨论。<br />
+关于CPU管理，一般我们谈到的是线程（threads），但SPIN并不想定义线程模型，因为这会限制你能做的事情。相反，它定义了一种称为“strand”的接口。虽然它被称为strand接口，但实际上和线程接口非常相似，只不过没有那么重，差别就在于此。它并不会像线程那样跟踪所有信息。</p>
+<p>SPIN提供了一个strand接口，这个接口提供了两项功能：一个是阻塞（block）和解阻（unblock）原语，另一个是检查点（checkpoint）和恢复（resume）原语。那么，这些功能能用来做什么呢？实际上，你可以用它们编写应用级的调度程序。<br />
+比如，当内核通过block接口告诉你现在有一个阻塞操作时，你可以使用这个block原语。还记得我们在第一节课上提到的问题吗？如果你写一个应用级线程库，其中一个问题是，你不知道某个调用是否会阻塞。如果用户空间的线程调度器调用了系统调用，内核没有办法告诉用户程序这是一个阻塞调用，因此无法调度其他线程。正是因为这个原因，SPIN引入了block和unblock原语。<br />
+此外，SPIN还提供了检查点和恢复功能。引入检查点和恢复的目的是让应用程序可以编写自己的调度策略。SPIN内核可以告诉应用程序，“我将创建一个检查点，因为我需要调度其他任务。”要记住，SPIN中运行的不止一个扩展模块，你可以构建多个扩展模块。我之前提到过，你可以构建多个库操作系统。因此，SPIN也需要一个调度器。<br />
+从这个意义上说，SPIN可以告诉某个扩展，“我将为你创建一个检查点，因为我要运行其他模块。”而应用级调度器可以利用这个功能来实现自己的调度逻辑。<br />
+因此，SPIN中需要两个调度器：一个是由SPIN管理的全局调度器，负责调度所有的strand；另一个是应用级调度器，负责处理应用级别的任务。从SPIN的角度来看，应用级库就像一个线程包（thread package），非常类似于用户级线程库。唯一的不同是，线程模型现在由应用程序定义。<br />
+这是否让你想到之前提到的某个问题的解决方案？这与我们早些时候提到的一篇1991年的论文——**调度激活（scheduler activations）**非常相似。我们讨论过调度激活中，内核告诉应用程序“这是一个阻塞调用，现在你将被取消调度”的功能。在SPIN中，你实际上可以构建一个类似调度激活的扩展。这正是这些抽象的强大之处。<br />
+问题与性能讨论<br />
+有没有问题？这些概念清晰吗？SPIN的理念是，它不会通过严格的原语来约束应用程序，而是通过提供底层抽象，让应用程序根据需要自行决定，同时通过将这些功能内置于内核中来保证性能。这就是SPIN的核心思想。</p>
+<h4 id="spin-performance"><a class="markdownIt-Anchor" href="#spin-performance"></a> SPIN Performance</h4>
+<p>接下来，我想简要讨论SPIN的性能。在讨论性能之前，让我们先问一个问题：SPIN的性能是否优于微内核（microkernel）？<br />
+我们来思考一下，5秒钟，5，4，3，2，1。好的，答案是：它的性能最多与单体内核（monolithic kernel）相当，肯定优于微内核。原因是，SPIN通过将扩展放置在内核内部，避免了跨边界的开销。<br />
+接下来是一个问题：为什么SPIN的性能不会优于单体内核？答案是，一旦你将所有扩展放入SPIN中，它就变成了一个单体内核。如果你在SPIN上构建一个类Unix的抽象操作系统，最终的结果就会变得类似于Unix操作系统，它的性能不会优于Unix操作系统。只有在应用程序特定的场景下，它才能表现得比单体内核更好，但对于一般情况来说，它的性能只能与单体内核相当。<br />
+你们理解这些逻辑吗？我们继续讨论。<br />
+性能的评价<br />
+SPIN的文件系统可以与内存管理器通信，而不需要跨越边界，这一点确实减少了开销。然而，SPIN有语言层面的开销。此外，你还需要定义接口，并承担编写这些接口的额外成本。因此，在性能方面，SPIN的表现与单体内核相似。但在开发成本方面，SPIN比单体内核要复杂得多。<br />
+我们接下来会讨论SPIN的缺点。由于时间原因，现在已经是10:15了，我们继续往下讲。我会稍后详细讨论这篇论文的性能，以及接下来的论文如何评价性能。因为仅仅凭空讨论性能是没有意义的。<br />
+系统性能的评价<br />
+评价操作系统论文的一个关键在于性能。任何系统的设计都需要说服别人你的系统是有效的。所以你需要对其进行评价。评价的方式是将系统与当时最先进的技术进行比较。如果你今天设计一个系统，你需要与当今最好的现有系统进行对比，以证明你的想法是有效的。<br />
+评价通常涉及多个方面，比如系统是否实现了你声称的功能。例如，SPIN的论文声称提供了灵活性和高性能，我们就需要通过实验来验证这一点。</p>
+<p>每个系统都有缺点，我们在设计系统时总是需要权衡。所以，我们需要讨论它的缺点，以及系统的哪些子系统会影响性能，比如微内核。<br />
+需要注意的一点是，这些论文大部分都非常非常老了。所以，直接看原始性能数据其实没有太大意义，因为它们在性能上可能非常慢，看起来并没有意义。相反，我们应该关注趋势，关注论文是否达到了它想要实现的目标，而不是纠结于原始的性能数据。问问自己：这些技术今天还能用吗？这些技术今天还会产生影响吗？这些技术已经有20年甚至30年的历史了，这些技术现在是否已经进入主流？<br />
+这是我们要讨论的内容。他们讨论了很多内容。需要理解的是，他们在评估系统的每个方面。<br />
+他们提到了内核内部的多次调用，以及把所有操作当作过程调用的方式。这就是他们在这里尝试展示的内容。他们在对比两个系统，一个是一个单体内核（cos of），另一个是微内核（Mach）。唯一的不同是，SPIN通过扩展实现了无边界跨越。如果你使用扩展，那么在内核中保护的调用和过程调用一样便宜，这一点可以从对比中看出来。这两个系统不提供这个功能，因为你无法在单体内核中安装扩展。而对于微内核来说，你必须进行边界跨越，这就是微内核的实现方式。<br />
+因此，SPIN并没有快得多，而对于系统调用来说，性能是相似的。而对于跨地址空间调用（如RPC或IPC），性能也是相似的。这里存在一些问题，我们稍后会讨论这些问题。这些是他们评估方法的产物，以及他们所使用的处理器的影响。但你可以看到，这里它们的性能是类似的。这就是他们试图展示的内容。<br />
+所以这是内核调用的情况。这里用消息来实现，那里用套接字来实现。这些都对数据有影响。这也是为什么我们说原始数据没有意义的原因。<br />
+我们需要关注的是，他们展示了扩展注入是可行的，这种方式成本更低。他们还提到了管理。如果你将其实现为类似调度激活的方式，那么成本会更低。这正是他们试图展示的内容。</p>
+<h5 id="virtual-memory"><a class="markdownIt-Anchor" href="#virtual-memory"></a> Virtual Memory</h5>
+<p>然后，他们讨论了<strong>虚拟内存</strong>。如果你在SPIN提供的所有原语之上构建虚拟内存子系统，SPIN核心提供的原语可以更快地实现。例如，这里展示了一些基准测试结果。对于最后两个基准测试，它们试图改变页面的保护级别等。前几个基准测试，比如陷阱的创建成本、页面错误的成本、页面脏的成本等。这些内容表明，如果你使用这些注入机制并改变虚拟内存机制的实现方式，那么性能可以更快。<br />
+所有这些评估的目标，在任何系统论文中，你都会看到这样的趋势。他们会将自己的系统与当时的最先进技术进行比较，展示他们在某些方面优于现有技术。他们也会展示在其他方面至少和现有系统一样好。<br />
+当他们的技术不起作用时，比如扩展机制不符合你的需求，他们也会展示这一点。</p>
+<h5 id="networking"><a class="markdownIt-Anchor" href="#networking"></a> Networking</h5>
+<p>他们还在网络方面做了展示。你可以注入网络栈，将网络过滤器安装在内核中作为扩展。同样，他们展示了这与单体内核一样好。你可以看到这里的数字非常接近，比如27和33。所以，我们可以说它和单体内核一样好。</p>
+<h5 id="end-to-end-performance"><a class="markdownIt-Anchor" href="#end-to-end-performance"></a> End-to-end Performance</h5>
+<p>他们还做了端到端的评估。之前的内容是在评估单独的组件。现在他们说，让我们构建一个特定的应用程序，并在SPIN中使用所有技术。他们将一切都放在内核中，没有边界跨越。他们构建了一个视频服务系统，把所有功能都放在内核中，包括视频的输入。</p>
+<h5 id="extension-sizes"><a class="markdownIt-Anchor" href="#extension-sizes"></a> Extension Sizes</h5>
+<p>他们展示了SPIN在扩展能力上的优势，例如它可以更好地扩展，支持更多的客户端，且使用相同硬件可以实现更高的性能。这在图表中得到了体现：随着客户端数量的增加，资源利用率也在增加。对于SPIN来说，这种增长更加平稳，因为所有操作都在内核内部完成，不需要跨越边界来服务这些媒体。因此，他们指出，可以在支持更多客户端和降低成本之间取得平衡。<br />
+同时，他们回应了可能有人会问的一个问题：实现这些扩展是否需要大量工作量？论文通过图表展示了他们开发的所有扩展，并指出开发这些扩展所需的代码量并不是成千上万行，很多扩展只需要几百行代码即可完成，开发相对简单。<br />
+那么这些是否清晰？不需要完全理解所有的性能细节，只需要明白它的核心思路：通过在内核中注入扩展可以提高性能，而评估结果也证明了这一点。评估显示，在所有基准测试中，这种方法的性能优于单体内核的对应系统。这是因为对于特定应用程序，当所有操作都在内核内部完成时，性能可以得到优化。<br />
+例如，如果你看带宽数据，它们的表现非常相似。而在其他情况下，比如第三篇论文中提到的一些内容，你会发现差异。这可能与处理器的具体实现有关。</p>
+<h4 id="spin-drawbacks"><a class="markdownIt-Anchor" href="#spin-drawbacks"></a> SPIN Drawbacks</h4>
+<p>论文提到了两个主要的缺点，但实际上可能还有更多的缺点。我们来讨论论文中提到的两个：</p>
+<ol>
+<li>调度器的可扩展性：SPIN依赖于单个全局调度器，当扩展数量增多或需要处理的事件增多时，调度器可能会成为可扩展性的瓶颈。论文提到了这一点。</li>
+<li>垃圾回收问题：SPIN使用的是Modula-3语言，该语言具有自动内存管理功能。但由于应用程序可以用任何语言编写，而且内核中的指针可能会被暴露给外部引用，导致对内存的控制能力减弱。这可能导致内存泄漏，且外部应用程序的内存分配难以完全被管理。为了解决这个问题，SPIN内置了垃圾回收器，但论文指出频繁运行垃圾回收器可能会带来性能问题，不过没有深入展开。<br />
+此外，还有一些论文中未提到但可能存在的缺点：<br />
+•	对语言的过度依赖：SPIN完全依赖Modula-3语言。他们提到，Modula-3解决了扩展的安全性问题，但这也意味着SPIN的所有扩展必须使用Modula-3来编写。这对开发者来说是一个巨大的负担，开发者可能需要改变工作方式，学习新的语言，并用这种语言来编写扩展。这对推广来说是一个很大的障碍。<br />
+•	核心服务的信任问题：核心服务必须被信任，因为它们运行在SPIN代码中。有时候这些服务需要超出保护域，这使得不得不信任SPIN核心。这在某种意义上是一个安全问题。尽管论文中没有过多讨论安全性，但这确实是一个潜在的问题。<br />
+•	全局处理器的问题：论文提到，全局处理器使用的是轮询（round robin）调度。虽然轮询调度简单，但并不适合所有场景。因此，这可能成为另一个瓶颈。</li>
+</ol>
+<p>所以，这些是我认为可能存在的问题。那么我们继续，因为已经过了半小时，希望你们对SPIN的扩展技术有了大致的了解。它的整体技术理念是依赖语言，把代码放入内核中，并利用语言的原语来确保安全性，比如垃圾回收和自动内存分配等。这就是它的基础。</p>
+<h3 id="exokernel"><a class="markdownIt-Anchor" href="#exokernel"></a> Exokernel</h3>
+<h4 id="exokernel-intro"><a class="markdownIt-Anchor" href="#exokernel-intro"></a> Exokernel intro</h4>
+<p>接下来是第二篇论文，Exokernel。这篇论文与SPIN的发表时间相近，出现在同一个会议上（SOSP 1995）。SPIN论文来自华盛顿大学，而这篇论文来自麻省理工学院。这篇论文讨论的主题也是如何扩展内核，但它的理念完全不同。我们来谈谈这个。<br />
+这是相同的问题——操作系统的可扩展性问题，但他们提供的解决方案与SPIN截然不同，可以说是完全的两种视角。论文所基于的假设也完全不同。<br />
+Exokernel的假设是，未来会有许多内核，它们需要不断被扩展和修改，因此需要一种方式使内核可以完全不同。而SPIN的关注点是如何安全地向内核中注入内容，并确保这些注入不会带来问题。SPIN关注的是在内核中注入代码，比如设备驱动程序，同时确保这些驱动程序是安全的。这是SPIN的假设。<br />
+因为这些不同的假设，他们的解决方案也完全不同。<br />
+有一点你可能不知道的是，这篇Exokernel论文最初是一篇硕士论文。它后来产生了一系列的后续研究和出版物。这也意味着，你们中的大多数人也有机会写出这样的论文。只需要一点努力就可以做到。</p>
+<h4 id="exokernel-motivation"><a class="markdownIt-Anchor" href="#exokernel-motivation"></a> Exokernel Motivation</h4>
+<p>我们稍微加快速度，因为这些内容在之前已经有所提及。Exokernel认为传统操作系统主要处理资源管理，尝试隐藏硬件所暴露的复杂原语，并提供易于使用的抽象接口。<br />
+但他们认为这是个问题。因为这迫使系统只能提供他们认为正确的抽象，而不是用户想要的抽象。比如，我需要的是另一种抽象，但操作系统提供的却是固定的接口。这可能会影响应用程序的性能。他们提到了许多例子，比如数据库等，接口的设计并不能完全满足应用的需求。<br />
+另一个问题是，这种设计隐藏了许多内部细节。比如，当发生页面错误时，操作系统会自动处理，但并不会告诉我它是怎么处理的。这种隐藏的机制限制了用户的功能。如果我有很多很棒的想法，但操作系统是单体内核，那么这些想法很可能无法实现，因为系统已经被固定了，我没有机会将我的核心想法融入到操作系统中。</p>
+<h4 id="exokernel-key-ideas"><a class="markdownIt-Anchor" href="#exokernel-key-ideas"></a> Exokernel Key Ideas</h4>
+<p>他们的解决方法是：操作系统不应该管理资源，而应该仅仅负责保护资源。操作系统的唯一职责是保护资源，而不是隔离资源。<br />
+具体来说，他们认为应该让应用程序自己管理资源，让它们自行处理，而操作系统只负责保护这些资源的安全。实现这一点的方式是将硬件功能直接暴露给应用程序，并通过非常安全的方式完成。<br />
+结果是，Exokernel变得非常非常小，因为它只需要负责保护，而不需要管理资源。这种设计使得Exokernel非常简单且易于扩展。开发者可以在用户空间实现自己的资源管理想法，而这些想法可以共存。<br />
+这与SPIN的理念完全不同。在SPIN中，内核提供了许多功能，包括资源管理，同时允许开发者将功能注入到内核中。而Exokernel则完全反其道而行之——操作系统什么都不管，让应用程序自己处理。<br />
+问题讨论<br />
+那么，Exokernel究竟是什么？它是微内核、单体内核、操作系统，还是以上都不是？</p>
+<p>五、四、三……<br />
+所以答案是“以上都不是”。原因在于，Exokernel不是一个微内核。微内核会提供抽象，允许你在用户空间运行一切，但它仍然有堆栈软件并负责资源管理。Exokernel显然也不是一个单体内核，它也不是一个完整的操作系统，因为操作系统是建立在它之上的。因此，Exokernel实际上是一个非常薄的层，不是单体内核，不是微内核，而是一个仅仅提供安全性的薄层，直接操作底层硬件。这就是它的定位。</p>
+<p>在Exokernel中，论文主要讨论了资源的多路复用。Exokernel中存在资源共享，但没有任何策略。论文展示了通过三种方式来构建Exokernel：第一种是内核，论文中称之为“Aegis”；第二种是更高层次的抽象，用户所需要的一切操作系统功能都以库操作系统的形式运行在用户空间中。论文中给出了一个名为“ExOS”的库操作系统作为示例；第三种是应用程序，开发者可以编写应用程序并将其与所选的库操作系统链接。</p>
+<h4 id="exokernel-design-principles"><a class="markdownIt-Anchor" href="#exokernel-design-principles"></a> Exokernel Design Principles</h4>
+<p>请记住，Exokernel的一个核心目标是允许多种内核的共存。例如，允许完全不同的内核设计存在，开发者可以编写绑定到任何所需内核的应用程序。这就是它的设计目标。<br />
+接下来论文讨论了一些设计原则，以及如何实现这些目标。核心点在于安全地暴露硬件（“expose”被重点强调）。他们表示，资源管理将尽量精简，只提供保护所需的最小功能。<br />
+•	Expose allocation：没有隐式分配。除非明确请求页面，否则不会主动分配资源。<br />
+•	Expose names：Raw access to hardware features。<br />
+•	Expose Revocation：Polite first, forcefully abort。</p>
+<h4 id="exokernel-exporting"><a class="markdownIt-Anchor" href="#exokernel-exporting"></a> Exokernel Exporting</h4>
+<p>论文进一步介绍了具体实现方式，这完全与传统操作系统的方式相反。从Exokernel的角度看，关键问题是如何实际实现这些功能。他们提出了三种技术：</p>
+<ol>
+<li>安全绑定（Secure Bindings）</li>
+<li>显式回收（Visible Revocations）</li>
+<li>Abort protocol</li>
+</ol>
+<p>其中，安全绑定是最重要的一点。Exokernel非常小，底层是硬件，上面是Exokernel，其职责是确保安全性。它通过绑定机制将硬件与库操作系统连接。当我说“绑定”时，意思是它将访问硬件的权限以某种安全的方式授予库操作系统，可能是通过某种密钥。<br />
+例如，当某个系统请求访问物理内存时，Exokernel会验证请求并返回一个密钥。随后，只需要在访问时提供这个密钥进行快速验证，用户即可访问该资源。这种绑定在资源创建时完成，而在访问时只需简单验证即可。<br />
+这与单体内核完全不同。在单体内核中，一切都在内核内部；也与微内核不同。微内核通过IPC等机制处理通信，而在Exokernel中，这些操作全部暴露给用户。</p>
+<h4 id="secure-bindings"><a class="markdownIt-Anchor" href="#secure-bindings"></a> Secure Bindings</h4>
+<p>接下来是关于安全绑定的讨论。这部分内容在我阅读时一度感到困惑，但后来逐渐理解了其原理。<br />
+Exokernel假设所有的库操作系统都是不安全和不可信的，因此当库操作系统请求资源时，它会在绑定时进行严格的验证，确保其安全性。这是一个比较复杂的步骤。一旦完成验证，Exokernel会向库操作系统颁发一个加密密钥，随后库操作系统可以使用该密钥访问资源。在之后的资源访问中，只需出示该密钥进行快速验证，即可获得访问权限。<br />
+这种方法的优点是，Exokernel无需理解库操作系统的语义。例如，如果它只是分配了物理内存帧，用户可以随意使用这些帧。Exokernel不需要处理分页系统或虚拟地址等问题，只需授予访问权限即可。</p>
+<h5 id="secure-bindings-tlb-entries"><a class="markdownIt-Anchor" href="#secure-bindings-tlb-entries"></a> Secure Bindings: TLB Entries</h5>
+<p>论文中给出的关于安全绑定（Secure Bindings）的例子包括TLB地址。我们都熟悉TLB（Translation Lookaside Buffer，翻译后备缓冲器），TLB的作用是将虚拟地址映射到物理地址。这个映射必须由库操作系统（Library Operating System）完成。那么，Exokernel的工作方式是，库操作系统将映射呈现给Exokernel。经过认证后，Exokernel会将物理地址交给库操作系统，并要求其提供虚拟到物理的映射。Exokernel随后会将这个映射安装到TLB中。之后，库操作系统可以随意使用这些映射。在安装映射时，库操作系统需要证明其有权执行操作。一旦获得授权，Exokernel会提供一个密钥，下次访问页面时，库操作系统只需出示密钥即可快速访问。这就是安全绑定的一个例子。Exokernel可以逐条管理TLB的条目，并通过安全绑定机制让库操作系统通过Exokernel安装这些条目。</p>
+<h5 id="secure-bindings-packet-filters"><a class="markdownIt-Anchor" href="#secure-bindings-packet-filters"></a> Secure Bindings: Packet Filters</h5>
+<p>另一个例子是数据包过滤器（Packet Filters）。假设网络数据包需要被分发到多个库操作系统。如果内核中没有任何过滤器，我们就无法知道某个数据包应该分发给哪个库操作系统。一种可能的方式是询问每个库操作系统“这个包是不是属于你？”，但这种方式显然无法扩展。相反，Exokernel允许库操作系统将过滤规则作为谓词（Predicate）安装到内核中。当一个库操作系统启动时，它会通知Exokernel：“我对这些类型的数据包感兴趣。”Exokernel会要求其提供授权，并通过一套认证流程进行验证。一旦验证通过，Exokernel将这个谓词安装到内核中，并在每次数据包到达时运行这个过滤器。这种方式为数据包分配建立了绑定。</p>
+<h5 id="secure-bindings-implementation"><a class="markdownIt-Anchor" href="#secure-bindings-implementation"></a> Secure Bindings: Implementation</h5>
+<p>到这里为止，我们理解了安全绑定的理念：Exokernel能够为TLB或网络卡等硬件资源提供细粒度的访问权限。但具体如何实现呢？论文中提出了三种技术：</p>
+<ol>
+<li>基于硬件的技术（Hardware-based Techniques）<br />
+如果硬件支持这些功能，比如TLB中的标签或地址空间标签，Exokernel就会利用这些硬件功能来实现资源的多路复用。这也是整个设计的核心：为多个库操作系统实现资源的多路复用。如果硬件支持这些功能，Exokernel将直接利用这些功能。</li>
+<li>基于软件的技术（Software-based Techniques）<br />
+如果硬件本身不支持所需功能（例如某些网络卡），Exokernel会通过软件实现相应的功能。例如，论文中提到了软件实现的TLB作为一个解决方案。</li>
+<li>下载代码（Code Download）<br />
+如果硬件和软件都无法满足需求，Exokernel允许将代码下载到内核中运行，从而实现扩展。这种方式与SPIN非常相似，但也带来了一个大问题，我们稍后会讨论。</li>
+</ol>
+<p>关于安全绑定的理解<br />
+安全绑定是一个成本较高的过程，但一旦完成，后续的访问将非常快速。它的原理类似于进入一个房间的例子：第一次进入时，需要验证身份，例如出示乔治亚理工的学生证。一旦验证通过，管理员可能会给你一把钥匙。之后，你就可以直接使用这把钥匙进入房间，不需要每次都重新验证。这种设计使得绑定的成本较高，但访问的成本非常低。</p>
+<h4 id="core-services-memory"><a class="markdownIt-Anchor" href="#core-services-memory"></a> Core Services: Memory</h4>
+<p>Exokernel的内存管理方式与传统操作系统不同。在传统操作系统中，页面错误通常由内核处理，处理过程对用户是透明的。而在Exokernel中，当库操作系统需要访问内存时，Exokernel只负责提供对物理内存的访问权限。每当库操作系统尝试访问某个页面发生页面错误时，Exokernel会通知库操作系统：“我找不到这个页面。”随后，由库操作系统而不是内核来处理这个页面错误。这种方式完全避免了传统操作系统中内核处理页面错误的封闭和不透明问题。</p>
+<p>你不知道它是如何运作的，对吧？图书馆操作系统会询问它应该做什么，然后它会进行映射。它将映射信息传递给Exokernel，因为将内容安装到TLB（转换后备缓冲区）中是一个需要特权的操作，对吧？必须由内核来完成，因此Exokernel会负责。<br />
+问题是，当你有多个类型的操作系统时，该怎么办？对吧？只有一个操作系统还好，没问题，但如果有许多图书馆操作系统，你如何处理？这时，如果硬件支持的话，你可以通过硬件实现；如果硬件不支持，你就需要依赖软件，对吧？因此他们提到了软件TLB (sTLB)。<br />
+这种技术已经存在一段时间了。其思想是，如果你了解日志记录和写时复制技术（如影子技术），你会知道，在软件中为每个图书馆操作系统保留一个完整的TLB副本，每当一个新的图书馆操作系统运行时，你会加载对应的软件TLB。<br />
+为什么要这样做？为什么不能直接刷新TLB并重建？<br />
+有什么想法吗？这是第三篇论文中讨论的问题，我们也知道问题的症结所在。假设有多个图书馆操作系统，而只有一个TLB，并且它不是一个分区的TLB（没有多租户支持）。那么当一个新的图书馆操作系统启动时需要做什么呢？记住Exokernel管理许多操作系统，并会调度许多不同的任务。如果它调度了一个新的图书馆操作系统，需要发生什么？确保这一过程及时完成。<br />
+你需要刷新TLB，必须刷新TLB，因为现在有一个新的操作系统启动了，而旧的TLB已经不适用了。这是一个耗时的操作，对吧？你必须为下一个操作系统重建TLB，这需要许多周期。这就是他们试图避免的，通过引入这个缓存，他们可以快速加载并启动。</p>
+<h4 id="core-services-cpu"><a class="markdownIt-Anchor" href="#core-services-cpu"></a> Core Services: CPU</h4>
+<p>在这个机制中，他们定义了固定时间片（quantum），图书馆操作系统可以请求在这些固定时间片内被调度。<br />
+Exokernel会跟踪调度情况。它会记录每个操作系统，并假定图书馆操作系统会在规定时间内完成。如果没有按时完成，它会进行一些簿记，记录超时的使用情况，并用这些数据来进行资源回收（revocation）。</p>
+<h5 id="revocation-abort"><a class="markdownIt-Anchor" href="#revocation-abort"></a> Revocation &amp; Abort</h5>
+<p>回收的机制很有趣，因为它类似于图书馆操作系统和Exokernel之间的对话。Exokernel会说，“嘿，你的行为不符合要求，所以我要从你这里回收一些资源。”图书馆操作系统可以回应说，“好的，没问题。”或者“祝你好运。”它可以选择任何一种回应。因此，Exokernel会明确地执行资源回收操作。<br />
+Exokernel会告知，“我将从你这里收回这个页面，我提前通知你，你可以采取行动，比如将数据刷写到磁盘上，或者做任何你想做的事情，因为你得到了提前的通知。”如果图书馆操作系统不合作，不做出响应，那么Exokernel最终会强制收回资源。他们表示，他们不希望终止某个操作系统，但会在一个回收向量中记录下这些行为。图书馆操作系统可以利用这个回收向量，查看它之前提交了哪些数据，从而进行补偿性操作。<br />
+以上就是这些机制的运作方式。有许多图书馆操作系统和软件TLB。每当发生一些事情时，它会调度某个图书馆操作系统，让它在某个时间片运行，并允许它使用CPU资源。这时，操作系统会运行并完成所有目标任务。这是从Exokernel的角度讨论的。</p>
+<h5 id="discontinuities"><a class="markdownIt-Anchor" href="#discontinuities"></a> discontinuities</h5>
+<p>那么，Exokernel应该如何处理中断？Exokernel应该处理中断吗？记住，它的策略是尽量不干预管理，对吧？它不想直接处理这些事情，那么应该怎么做？有许多可能性，对吧？当一个中断发生时，比如一个外部中断或其他事情，Exokernel怎么知道这个中断是针对谁的呢？<br />
+不过，总之，总之。这其实是个很棒的想法，对吧？可以使用机器学习，也许可以用像Llama这样的工具，来学习它的运行方式。这可能是一个很好的扩展方向。<br />
+是的，这就是“头脑”。它会跟踪一个数据结构，这实际上只是一个映射，非常类似于人类处理异常的映射——比如加密的映射和图书馆操作系统的映射。一个是内核处理磁盘。另一个是处理系统调用的异常处理程序，等等。这与软件TLB非常相似。Exokernel 会维护一个数据结构，每当出现异常时，它会调用特定图书馆操作系统中的特定例程，并将控制权传递给它，让它执行所需的操作。</p>
+<h6 id="question1"><a class="markdownIt-Anchor" href="#question1"></a> Question1</h6>
+<p>好了，在结束这个关于 Exokernel 的讨论之前，我们再讲一个点。<br />
+我们继续讨论，对吧？因此，当处理不连续性时，我们知道，事实上，不存在边界跨越，对吧？这是 Spin 的优势，因为你已经在某种程度上将扩展安装到了系统内部。他提到必须存在边界跨越。如果涉及异常处理，对吧？是否应该跨越边界？是否不存在边界跨越或防御？<br />
+“5，4，3，2。”好吧，是的，所以存在边界跨越，对吧？这是真的，但这也是真的，“it depends”也是对的。之所以会有边界跨越，是因为在 Exokernel 中，不像 Spin，所有内容都在图书馆操作系统中，而图书馆操作系统位于内核之外，对吧？所以必须存在边界跨越。<br />
+这取决于具体情况，因为我提到的其中一种技术实际上是将内容注入到内核，非常类似于 Spin，对吧？因此，如果实现中使用了这种注入技术，那么 Exokernel 就变得与 Spin 一样。这就是当安全绑定通过内核内部的下载完成时，不需要跨越边界的原因。这也是为什么“第三种情况”也是成立的原因。那么，这些都清楚吗？</p>
+<h6 id="question2"><a class="markdownIt-Anchor" href="#question2"></a> Question2</h6>
+<p>最后一个问题。如果有外部中断，应该怎么做？Spin 怎么做？记住，在 Spin 中，我们也可能有多个模块，对吧？多个扩展、多个 API 和多个操作系统。当外部中断到来时，Spin 应该做什么？<br />
+它是否需要做除了调用例程之外的其他事情？根据我们对 Spin 的了解，对吧？所有内容都在内核内，因此它可以直接调用，对吧？<br />
+不需要跨越任何边界。因此，每当有中断到来时，它知道要调用哪个处理程序，并可以直接调用它，对吧？“5，4，3，2，1。”非常好，非常好。所以它必须缓冲，对吧？因为记住，在大多数情况下，它必须跨越边界。而且我们知道有一个轮转调度器。如果图书馆操作系统还未被调度到 CPU 上，而这个中断是针对该操作系统的，那么你必须将中断缓冲在某处，直到它被调度到 CPU 上后再传递，对吧？</p>
+<h5 id="exokernel-drawbacks"><a class="markdownIt-Anchor" href="#exokernel-drawbacks"></a> Exokernel Drawbacks</h5>
+<p>你不希望发生上下文切换。而在 Spin 的情况下，对吧？没有上下文切换。它可以直接调用该过程，而在这里，则需要上下文切换。这就是为什么必须等待的原因。那么还有什么缺点吗？在继续之前，有什么缺点？<br />
+当然，延迟服务是个问题，这可能会导致丢失。是的。在传统操作系统中，只有一个操作系统。而这里有多个图书馆操作系统。这就是为什么会有这些问题。那么缺点是什么呢？以下是我认为在这种情况下存在的一些问题，对吧？它依赖于软件 TLB，对吧？记住，TLB 刷新的问题在于它会依赖软件 TLB，而这种基于软件的 TLB 是特定于架构的。这种依赖是一个问题。<br />
+另一个问题是，他们提到可以下载代码，但从未说明代码应该使用什么语言编写，对吧？如果使用 Modula-3 编写，我们知道它是安全的，但如果使用其他语言编写，如何验证代码是安全的？如何确保它的安全性？这一点我们不知道。因此，下载代码的安全性是一个巨大的问题，对吧？<br />
+还有一些假设证明是完全错误的，对吧？他们最初假设未来会有许多完全不同的内核，它们之间没有重叠。这一假设被证明是错误的。他们的整个设计思想是通过将所有内容从内核中移除来实现这种情况，但事实证明这是错误的。最后，由于这个原因，如果你将所有东西都移出了内核，那么你必须提供更高的性能。如果让我管理所有这些抽象，我必须应对硬件的所有复杂性，那么至少我应该比其他操作系统快得多。然而，这并未实现，对吧？这一目标并未实现。</p>
+<p>这又是一个问题。因此，从评估来看，这是否实现了目标并不明确，对吧？这正是这篇论文的切入点。</p>
+<h3 id="on-microkernel-construction"><a class="markdownIt-Anchor" href="#on-microkernel-construction"></a> On Microkernel Construction</h3>
+<p>第三部分，这是一篇非常非常有趣的论文，如果你已经读过的话。是 Johan Liedtke 写的，他是这个领域的权威人物。再次提到，你会发现，这与前面讨论的内容是同一话题，对吧？所以这些论文基本上是在同一时期发表的。Johan 是一些知名微内核的作者，他是 L3 微内核和 L4 系列的主要作者。所以很自然，他对这些论文感到不满，对吧？</p>
+<h4 id="bad-press-on-microkernels"><a class="markdownIt-Anchor" href="#bad-press-on-microkernels"></a> Bad Press on Microkernels</h4>
+<p>这些论文都在批评微内核。这就是这篇论文的内容。他说，对微内核的攻击是不合理的。他给出了几个理由。首先，他提到，许多关于微内核不好的提议和结论，像 Spin 这样的论文认为微内核不好。它们的核心论点是微内核表现不佳。它们的所有评估都在证明微内核在性能上表现不好。所有对微内核的攻击都基于性能。<br />
+我们之前也讨论过这个问题，对吧？我们提到，如果使用微内核，就必须进行多次边界跨越，而边界跨越非常昂贵，会导致性能损失。所有研究都展示了这一问题，尤其是在微内核之上运行的系统中。它们证明了 Mach 的表现非常糟糕。Mach 是一个我们知道的微内核，来自卡内基梅隆大学的一个团队。他们展示了 Mach 的糟糕表现，而这篇论文试图反驳对微内核的这种评估方法。<br />
+简单来说，论文的核心观点是，这一切都与实现有关，与微内核架构无关。所有的问题都源于人们如何实现微内核，而不是与微内核的抽象概念相关。</p>
+<h4 id="microkernel"><a class="markdownIt-Anchor" href="#microkernel"></a> Microkernel</h4>
+<p>回到微内核的基本定义。微内核的核心是一个非常小的内核，仅包含最基本的功能。内核内部的功能非常少，主要包括进程间通信（IPC）和进程管理。这是内核中仅有的两部分功能，其他一切都在内核之外。因此，任何访问都需要进行边界跨越，对吧？当两个内核外部的组件需要通信时，必须通过内核，并且通信是受保护的，这意味着需要双向的边界跨越。这是两个主要问题所在：切换开销和内核-用户切换。</p>
+<h4 id="switching-overheads-kernel-user-switching"><a class="markdownIt-Anchor" href="#switching-overheads-kernel-user-switching"></a> Switching Overheads: kernel-user switching</h4>
+<p>在微内核中，边界跨越被证明是非常昂贵的。例如，论文提到，Mach 系统中边界跨越需要 18 微秒。如果将其转换为 486 处理器的时钟周期数，这个数字是非常高的，性能非常糟糕。<br />
+但 Johan 提出，他设计的微内核 L3 表现优异。他展示了在 L3 系统中，边界跨越仅需要 123 微秒，而 Mach 需要 900 微秒。他的观点是：“为什么大家还在用 Mach？为什么不使用我的系统？”他认为这些批评过于笼统，将 Mach 的问题泛化到所有微内核。</p>
+<h4 id="switching-overheads-address-space-switching"><a class="markdownIt-Anchor" href="#switching-overheads-address-space-switching"></a> Switching Overheads: address space switching</h4>
+<p>接着，论文讨论了地址空间切换问题。每次新进程运行时，需要切换地址空间，刷新 TLB，并加载新内容。页表切换本身并不昂贵，真正昂贵的是 TLB 的刷新操作，这可能导致性能严重受损。<br />
+论文介绍了一种解决方案，即地址空间标记（Address Space Tagging）。非标记的 TLB (non-tagged TLB) 的问题在于，每次切换到新进程时，都必须清除 TLB 中的所有内容。而一些处理器允许使用地址空间标识符（ASID）标记 TLB 条目，这样多个进程可以在 TLB 中同时拥有条目。当需要移除条目时，只需移除当前进程的条目，其他条目可以保留。在这种情况下，就不需要刷新整个 TLB。</p>
+<p>有些事情你仍然可以重复使用，对吧？但这些事情是人们在购买时从未谈论过的。这就是他的观点。他说，切换开销的问题只存在于非标记的 TLB 上，而标记的 TLB 不存在这个问题。此外，他还为非标记的 TLB 提供了一种解决方案。实际上，你并不需要总是刷新非标记的 TLB。<br />
+这里是一种有趣的解决方案。我的一些 3210 课程的学生可能记得，这个问题在夏季学期的期末考试中出现过。<br />
+你实际上可以利用架构特性，对吧？我们已经学过 x86 架构，希望大家记得。我们知道，在所有像 x86 这样的处理器上，分段是默认开启的。这是一种非常古老的虚拟内存形式，你可以将内存划分为连续的块。分段在每个进程中都是默认开启的，虽然你可以关闭它。唯一的问题是，分段默认只有一个段，它映射整个物理内存。他建议，为什么只创建一个映射整个物理内存的段呢？相反，你可以创建多个段，分别映射物理内存的不同部分，对吧？<br />
+现在，如果你需要切换，只需更改段寄存器就行了，而不需要刷新整个 TLB。这非常高效。你只需要将整个物理内存划分为多个部分，并利用已有的分段功能，而不是将所有内容都放入一个段中。通过这种方式，你可以避免将 TLB 刷写到内存中。分段模式由硬件强制执行，因为这是硬件寄存器的一部分，因此它可以避免 TLB 刷新。<br />
+唯一的问题是，这种方法有一个限制。是什么问题呢？你会因此放弃什么？不仅仅是效率。也不是内存碎片的问题，因为在这种方法中你实际上可以有一个连续的地址空间。<br />
+问题在于，你原本可以使用整个地址空间，但现在你只能使用一个较小的地址空间。对吧？每个进程只能使用一个较小的地址空间，这就是问题所在。因此，这种方法在小型保护域中非常有效。如果你不需要使用整个物理地址空间，这种方法就很好用。但一旦你需要大规模的保护域，比如文件系统可能需要整个地址空间，或者其他东西需要整个地址空间，这种解决方案就行不通了。那么，这是否是微内核的问题呢？这是其他论文讨论过的问题吗？其实不是。</p>
+<h4 id="switching-overheads-thread-switches-ipc"><a class="markdownIt-Anchor" href="#switching-overheads-thread-switches-ipc"></a> Switching Overheads: Thread Switches &amp; IPC</h4>
+<p>接下来，他讨论了显性成本和隐性成本。显性成本是刷新 TLB 所需的开销。隐性成本是什么呢？隐性成本是重新建立缓存的过程。这就是他谈到缓存效应的地方。如果你读过论文，你会发现这是一种切换开销。他指出，长期以来，大家一直有这样的认知：如果你看 Mach，边界跨越的周期数是数千个。但在 L3 系统中，边界跨越只需要 250 个周期。然而，之前的论文从未提到过这一点。因此，所有的批评都集中在 Mach 上。</p>
+<h4 id="memory-effects"><a class="markdownIt-Anchor" href="#memory-effects"></a> Memory Effects</h4>
+<p>接着，他谈到了 Mach 的问题，也就是内存效应。我们都知道，访问内存时存在延迟，而在 Mach 中，这种延迟被证明是显著的。因此，大家都假设所有的微内核都有这种问题。这种假设带来了非常大的隐性成本。<br />
+我们都知道，存在“近内存”和“远内存”。越靠近内存，访问速度越快；越远离内存，访问速度越慢。而且每向层级更远的内存迈进一次，所需的周期数会呈指数级增长。所以你想要的是将所有东西尽可能放在靠近你的位置。如果内容靠近你，访问速度会更快。当你刷新 TLB 时，这些内容会丢失，你需要重新建立缓存，而这个过程非常昂贵。这就是问题所在，这也是为什么你会耗费大量时间的原因。他指出，这个问题只在 Mach 上存在，而不是微内核本身的问题。</p>
+<h4 id="why-does-mach-perform-so-poorly"><a class="markdownIt-Anchor" href="#why-does-mach-perform-so-poorly"></a> Why does Mach perform so poorly?</h4>
+<p>这篇论文还讨论了为什么 Mach 的表现如此糟糕。他分析了原因，并指出，Mach 系统表现不佳的首要原因是它试图做到可移植。他们试图将 Mach 设计成可以运行在每种处理器上的系统。因此，你可以想象，为了支持许多不同的架构，内核代码变得非常臃肿。尽管是微内核，但由于过于关注可移植性，它的代码体积变得庞大，内核内存占用也变得很大。<br />
+此外，这还导致性能损失。你可能会有一些架构，本可以更好地处理缓存和近内存，但由于 Mach 的目标是支持所有架构，你失去了这些优化的机会。</p>
+<p>这与 x86 的 TSX 技术非常相似，对吧？如果你还记得，x86 的目标之一就是向后兼容。而对于 32 位和 64 位架构的切换，我们知道从实模式切换到保护模式时所面临的问题，对吧？这些愚蠢的事情我们必须应对，仅仅是因为需要向后兼容。这种情况非常类似，对吧？其影响在于延迟。Mach 系统需要的周期数从原来的 100 增加到 900，这意味着切换开销增加了 9 倍，所有这些都是为了重建 TLB。<br />
+这其实是便携性和性能之间的一场拉锯战。这篇论文提出了这样的论点：Mach 可能不是微内核的正确代表。他们应该用真正的微内核来比较，而不是用 Mach 来比较，因为真正的微内核性能损失不会那么大，甚至可能比他们的系统更好，但他们没有这样做。</p>
+<h4 id="portability-vs-performance"><a class="markdownIt-Anchor" href="#portability-vs-performance"></a> Portability vs Performance</h4>
+<p>接着论文提出了一些观点。我想以此作为结束，来讨论为什么这很重要。他指出，微内核不应该试图追求便携性，因为这样会失去优化硬件性能的机会。微内核无法实现便携性。抽象对便携性来说是必要的，但这些抽象会让你失去对代码的优化能力，使硬件特定的调优更加困难，同时可能引发与硬件相关的问题。<br />
+如果你试图实现便携性，你可能会以一种适用于所有架构的方式编写代码。但这样一来，程序在某些处理器上可能运行得更慢，因为编译方式不同。因此，他认为微内核必须具备处理器无关的抽象，这是必要的，但实现应针对具体的硬件进行优化。</p>
+<h3 id="os-structuring"><a class="markdownIt-Anchor" href="#os-structuring"></a> OS Structuring</h3>
+<p>好，让我们总结一下。还有三分钟，很高兴我们快到尾声了。<br />
+我们从一个问题开始：内核是否可以同时实现性能、安全性和可扩展性？我们讨论了三篇论文：Spin、Exokernel，以及关于 L3 和 L4 的论文。这三种方法都通过非常不同的技术实现了这些目标。一个是微内核，一个是通过注入扩展内核，还有一个是通过导出扩展内核。所有这些方法都让你能够实现目标。<br />
+那么，从这些讨论中我们学到了什么？一个结论是，这些结构的研究成果非常重要。在上世纪 90 年代，我相信它对今天的操作系统产生了深远的影响。为什么这么说？因为这些论文几乎同时期出现，这意味着作者能够相互看到彼此的工作，从中汲取灵感，弥补各自的弱点，并提出实际可行的解决方案。这极大地推动了许多想法的采纳。<br />
+让我列举一些被采纳的想法。例如，正如我们之前讨论的，许多现代操作系统采用了一种混合内核结构。这种结构主要是单体内核，但某些部分是微内核形式。微内核的概念仍然存在，并没有消失。而这种代码注入到内核的方式，尽管在 Spin 和 Exokernel 中存在一些问题，最终却成为主流。<br />
+现在你可能知道，大多数设备驱动程序都可以动态加载。它们通过静态验证来检查设备驱动程序是否安全。静态验证成为一个重要的研究主题。<br />
+这始于一篇名为《Proof Can Be Code》的论文。这是一篇非常优秀的论文，谈到了 Spin 的依赖模型。它提出，如果你不想使用 Modula-3，该怎么办？他们的想法是，你可以为你的扩展签署一个证明，表明它是安全的。内核只需要验证这个证明是否正确，这个过程可以非常快速地完成。<br />
+这种演化产生了一种叫做 eBPF 的技术（扩展伯克利数据包过滤器）。你可能听说过 eBPF。它现在被 Windows 和 Linux 都支持，允许通过代码注入在内核中运行操作。这是一个巨大的进步。<br />
+为什么是一个巨大的进步呢？因为如果你看过去几年的操作系统会议，比如 OSDI 和 SOSP，很多论文都在谈论这种可扩展性。eBPF 是一个热门话题，大家都在讨论如何利用 eBPF。与 Spin 不同的是，eBPF 不依赖特定语言，而是依赖静态验证器。<br />
+好，让我们以此作为可扩展性模块的总结。下一节课，我们将开始讨论虚拟化。虚拟化是可扩展性的自然延续。在那之前，祝大家学有所成，谢谢！</p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/notes/">notes</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/leetcode-3066-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii/index.html"
+                                   title="LeetCode 3066. 超过阈值的最少操作数 II"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">LeetCode 3066. 超过阈值的最少操作数 II</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B2%E7%A8%BF"><span class="nav-number">1.</span> <span class="nav-text"> 讲稿</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spin-continued"><span class="nav-number">1.1.</span> <span class="nav-text"> SPIN Continued</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-architecture"><span class="nav-number">1.1.1.</span> <span class="nav-text"> SPIN Architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-core-services"><span class="nav-number">1.1.2.</span> <span class="nav-text"> SPIN Core Services</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spin-memory-management"><span class="nav-number">1.1.2.1.</span> <span class="nav-text"> SPIN Memory Management</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spin-thread-management"><span class="nav-number">1.1.2.2.</span> <span class="nav-text"> SPIN Thread Management</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-performance"><span class="nav-number">1.1.3.</span> <span class="nav-text"> SPIN Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#virtual-memory"><span class="nav-number">1.1.3.1.</span> <span class="nav-text"> Virtual Memory</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#networking"><span class="nav-number">1.1.3.2.</span> <span class="nav-text"> Networking</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#end-to-end-performance"><span class="nav-number">1.1.3.3.</span> <span class="nav-text"> End-to-end Performance</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#extension-sizes"><span class="nav-number">1.1.3.4.</span> <span class="nav-text"> Extension Sizes</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-drawbacks"><span class="nav-number">1.1.4.</span> <span class="nav-text"> SPIN Drawbacks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exokernel"><span class="nav-number">1.2.</span> <span class="nav-text"> Exokernel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-intro"><span class="nav-number">1.2.1.</span> <span class="nav-text"> Exokernel intro</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-motivation"><span class="nav-number">1.2.2.</span> <span class="nav-text"> Exokernel Motivation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-key-ideas"><span class="nav-number">1.2.3.</span> <span class="nav-text"> Exokernel Key Ideas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-design-principles"><span class="nav-number">1.2.4.</span> <span class="nav-text"> Exokernel Design Principles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-exporting"><span class="nav-number">1.2.5.</span> <span class="nav-text"> Exokernel Exporting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#secure-bindings"><span class="nav-number">1.2.6.</span> <span class="nav-text"> Secure Bindings</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#secure-bindings-tlb-entries"><span class="nav-number">1.2.6.1.</span> <span class="nav-text"> Secure Bindings: TLB Entries</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#secure-bindings-packet-filters"><span class="nav-number">1.2.6.2.</span> <span class="nav-text"> Secure Bindings: Packet Filters</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#secure-bindings-implementation"><span class="nav-number">1.2.6.3.</span> <span class="nav-text"> Secure Bindings: Implementation</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#core-services-memory"><span class="nav-number">1.2.7.</span> <span class="nav-text"> Core Services: Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#core-services-cpu"><span class="nav-number">1.2.8.</span> <span class="nav-text"> Core Services: CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#revocation-abort"><span class="nav-number">1.2.8.1.</span> <span class="nav-text"> Revocation &amp; Abort</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#discontinuities"><span class="nav-number">1.2.8.2.</span> <span class="nav-text"> discontinuities</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#question1"><span class="nav-number">1.2.8.2.1.</span> <span class="nav-text"> Question1</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#question2"><span class="nav-number">1.2.8.2.2.</span> <span class="nav-text"> Question2</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#exokernel-drawbacks"><span class="nav-number">1.2.8.3.</span> <span class="nav-text"> Exokernel Drawbacks</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#on-microkernel-construction"><span class="nav-number">1.3.</span> <span class="nav-text"> On Microkernel Construction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bad-press-on-microkernels"><span class="nav-number">1.3.1.</span> <span class="nav-text"> Bad Press on Microkernels</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#microkernel"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Microkernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switching-overheads-kernel-user-switching"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Switching Overheads: kernel-user switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switching-overheads-address-space-switching"><span class="nav-number">1.3.4.</span> <span class="nav-text"> Switching Overheads: address space switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switching-overheads-thread-switches-ipc"><span class="nav-number">1.3.5.</span> <span class="nav-text"> Switching Overheads: Thread Switches &amp; IPC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#memory-effects"><span class="nav-number">1.3.6.</span> <span class="nav-text"> Memory Effects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why-does-mach-perform-so-poorly"><span class="nav-number">1.3.7.</span> <span class="nav-text"> Why does Mach perform so poorly?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#portability-vs-performance"><span class="nav-number">1.3.8.</span> <span class="nav-text"> Portability vs Performance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-structuring"><span class="nav-number">1.4.</span> <span class="nav-text"> OS Structuring</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+        &copy;&nbsp;2025
+        
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Sherwin</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B2%E7%A8%BF"><span class="nav-number">1.</span> <span class="nav-text"> 讲稿</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spin-continued"><span class="nav-number">1.1.</span> <span class="nav-text"> SPIN Continued</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-architecture"><span class="nav-number">1.1.1.</span> <span class="nav-text"> SPIN Architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-core-services"><span class="nav-number">1.1.2.</span> <span class="nav-text"> SPIN Core Services</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#spin-memory-management"><span class="nav-number">1.1.2.1.</span> <span class="nav-text"> SPIN Memory Management</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spin-thread-management"><span class="nav-number">1.1.2.2.</span> <span class="nav-text"> SPIN Thread Management</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-performance"><span class="nav-number">1.1.3.</span> <span class="nav-text"> SPIN Performance</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#virtual-memory"><span class="nav-number">1.1.3.1.</span> <span class="nav-text"> Virtual Memory</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#networking"><span class="nav-number">1.1.3.2.</span> <span class="nav-text"> Networking</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#end-to-end-performance"><span class="nav-number">1.1.3.3.</span> <span class="nav-text"> End-to-end Performance</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#extension-sizes"><span class="nav-number">1.1.3.4.</span> <span class="nav-text"> Extension Sizes</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spin-drawbacks"><span class="nav-number">1.1.4.</span> <span class="nav-text"> SPIN Drawbacks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exokernel"><span class="nav-number">1.2.</span> <span class="nav-text"> Exokernel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-intro"><span class="nav-number">1.2.1.</span> <span class="nav-text"> Exokernel intro</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-motivation"><span class="nav-number">1.2.2.</span> <span class="nav-text"> Exokernel Motivation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-key-ideas"><span class="nav-number">1.2.3.</span> <span class="nav-text"> Exokernel Key Ideas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-design-principles"><span class="nav-number">1.2.4.</span> <span class="nav-text"> Exokernel Design Principles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exokernel-exporting"><span class="nav-number">1.2.5.</span> <span class="nav-text"> Exokernel Exporting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#secure-bindings"><span class="nav-number">1.2.6.</span> <span class="nav-text"> Secure Bindings</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#secure-bindings-tlb-entries"><span class="nav-number">1.2.6.1.</span> <span class="nav-text"> Secure Bindings: TLB Entries</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#secure-bindings-packet-filters"><span class="nav-number">1.2.6.2.</span> <span class="nav-text"> Secure Bindings: Packet Filters</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#secure-bindings-implementation"><span class="nav-number">1.2.6.3.</span> <span class="nav-text"> Secure Bindings: Implementation</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#core-services-memory"><span class="nav-number">1.2.7.</span> <span class="nav-text"> Core Services: Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#core-services-cpu"><span class="nav-number">1.2.8.</span> <span class="nav-text"> Core Services: CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#revocation-abort"><span class="nav-number">1.2.8.1.</span> <span class="nav-text"> Revocation &amp; Abort</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#discontinuities"><span class="nav-number">1.2.8.2.</span> <span class="nav-text"> discontinuities</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#question1"><span class="nav-number">1.2.8.2.1.</span> <span class="nav-text"> Question1</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#question2"><span class="nav-number">1.2.8.2.2.</span> <span class="nav-text"> Question2</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#exokernel-drawbacks"><span class="nav-number">1.2.8.3.</span> <span class="nav-text"> Exokernel Drawbacks</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#on-microkernel-construction"><span class="nav-number">1.3.</span> <span class="nav-text"> On Microkernel Construction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bad-press-on-microkernels"><span class="nav-number">1.3.1.</span> <span class="nav-text"> Bad Press on Microkernels</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#microkernel"><span class="nav-number">1.3.2.</span> <span class="nav-text"> Microkernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switching-overheads-kernel-user-switching"><span class="nav-number">1.3.3.</span> <span class="nav-text"> Switching Overheads: kernel-user switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switching-overheads-address-space-switching"><span class="nav-number">1.3.4.</span> <span class="nav-text"> Switching Overheads: address space switching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switching-overheads-thread-switches-ipc"><span class="nav-number">1.3.5.</span> <span class="nav-text"> Switching Overheads: Thread Switches &amp; IPC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#memory-effects"><span class="nav-number">1.3.6.</span> <span class="nav-text"> Memory Effects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why-does-mach-perform-so-poorly"><span class="nav-number">1.3.7.</span> <span class="nav-text"> Why does Mach perform so poorly?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#portability-vs-performance"><span class="nav-number">1.3.8.</span> <span class="nav-text"> Portability vs Performance</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-structuring"><span class="nav-number">1.4.</span> <span class="nav-text"> OS Structuring</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="pjax">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
